@@ -14,6 +14,7 @@ namespace StudentOffice.Models
         /// <summary>
         /// Основные сведения
         /// </summary>
+        public int AnketaId { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string Middlename { get; set; }
@@ -79,5 +80,7 @@ namespace StudentOffice.Models
         public string PlaceOfWorkAndPosition { get; set; }
         public string SeniorityGeneral { get; set; }
         public string SeniorityProfileSpecialty { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
     }
 }

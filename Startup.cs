@@ -21,7 +21,10 @@ namespace StudentOffice
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationContext>(options =>
+            {
+                options.UseSqlServer(connection, x => x.MigrationsAssembly("StudentOffice"));
+            });
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
