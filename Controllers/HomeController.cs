@@ -18,11 +18,12 @@ namespace StudentOffice.Controllers
         }
 
         //[AllowAnonymous]
-        [Authorize(Roles = "admin, user")]
+        //[Authorize(Roles = "admin, user")]
         public IActionResult Index()
         {
-            string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
-            return Content($"Ваша роль: {role}");
+            //string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            //return Content($"Ваша роль: {role}");
+            return View();
         }
          
         public IActionResult About()
@@ -39,6 +40,11 @@ namespace StudentOffice.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public string Hello(int id)
+        {
+            return $"id = {id}";
         }
     }
 }
