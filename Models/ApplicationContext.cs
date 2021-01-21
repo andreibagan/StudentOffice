@@ -26,12 +26,12 @@ namespace StudentOffice.Models
             string adminEmail = "admin@mail.ru";
             string adminPassword = "12345";
 
-            Role adminRole = new Role { Id = 1, Name = adminRoleName };
-            Role userRole = new Role { Id = 2, Name = userRoleName };
-            Role studentRole = new Role { Id = 3, Name = studentRoleName };
-            Role teacherRole = new Role { Id = 4, Name = teacherRoleName };
+            Role adminRole = new Role { RoleId = 1, Name = adminRoleName };
+            Role userRole = new Role { RoleId = 2, Name = userRoleName };
+            Role studentRole = new Role { RoleId = 3, Name = studentRoleName };
+            Role teacherRole = new Role { RoleId = 4, Name = teacherRoleName };
 
-            User adminUser = new User { id = 1, Email = adminEmail, Password = adminPassword, RoleId = adminRole.Id };
+            User adminUser = new User { UserId = 1, Email = adminEmail, Password = adminPassword, RoleId = adminRole.RoleId };
 
             modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, studentRole, teacherRole });
             modelBuilder.Entity<User>().HasData(new User[] { adminUser });

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentOffice.Models;
 
 namespace StudentOffice.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210121064024_AddGroup")]
+    partial class AddGroup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,7 +185,7 @@ namespace StudentOffice.Migrations
 
             modelBuilder.Entity("StudentOffice.Models.Role", b =>
                 {
-                    b.Property<int>("RoleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -191,36 +193,36 @@ namespace StudentOffice.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoleId");
+                    b.HasKey("Id");
 
                     b.ToTable("Roles");
 
                     b.HasData(
                         new
                         {
-                            RoleId = 1,
+                            Id = 1,
                             Name = "admin"
                         },
                         new
                         {
-                            RoleId = 2,
+                            Id = 2,
                             Name = "user"
                         },
                         new
                         {
-                            RoleId = 3,
+                            Id = 3,
                             Name = "student"
                         },
                         new
                         {
-                            RoleId = 4,
+                            Id = 4,
                             Name = "teacher"
                         });
                 });
 
             modelBuilder.Entity("StudentOffice.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -240,7 +242,7 @@ namespace StudentOffice.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId");
+                    b.HasKey("id");
 
                     b.HasIndex("AnketaId");
 
@@ -253,7 +255,7 @@ namespace StudentOffice.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = 1,
+                            id = 1,
                             Email = "admin@mail.ru",
                             Password = "12345",
                             RoleId = 1
