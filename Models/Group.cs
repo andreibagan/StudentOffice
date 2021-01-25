@@ -9,7 +9,6 @@ namespace StudentOffice.Models
 
         public virtual ICollection<User> Users { get; set; }
 
-        public int TimetableId { get; set; }
-        public virtual Timetable Timetable { get; set; }
+        public virtual ICollection<Timetable> Timetables { get; set; }
     }
 }

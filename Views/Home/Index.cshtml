@@ -1,8 +1,20 @@
-﻿@{
+﻿@model StudentOffice.ViewModels.RegisterViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+<h2>Кабинет абитуриента</h2>
+<form> 
+    <div>
+        <button method="get" asp-controller="Home" asp-action="Anketa">Заполнить анкету учащегося</button>
+    </div>
+    <div>
+        <button></button>
+    </div>
+    <div>
+        <button></button>
+    </div>
+</form>

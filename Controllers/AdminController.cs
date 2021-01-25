@@ -19,11 +19,11 @@ namespace StudentOffice.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Users.Include(i => i.Role).ToListAsync());
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Index()
+        //{
+        //    return View(await _context.Users.Include(i => i.Role).ToListAsync());
+        //}
 
     }
 }

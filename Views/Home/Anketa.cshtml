@@ -1,0 +1,274 @@
+﻿@model StudentOffice.Models.Anketa
+
+@{
+    ViewData["Title"] = "Anketa";
+}
+
+
+
+<h2>Анкета</h2>
+<form method="post" asp-controller="Home" asp-action="Anketa">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <h4>Основные сведения</h4>
+        <div>
+            <label asp-for="Surname"></label><br />
+            <input asp-for="Surname" />
+            <span asp-validation-for="Surname"></span>
+        </div>
+        <div>
+            <label asp-for="Name"></label><br />
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label asp-for="Middlename"></label><br />
+            <input asp-for="Middlename" />
+            <span asp-validation-for="Middlename"></span>
+        </div>
+        <div>
+            <label asp-for="SurnameR"></label><br />
+            <input asp-for="SurnameR" />
+            <span asp-validation-for="SurnameR"></span>
+        </div>
+        <div>
+            <label asp-for="NameR"></label><br />
+            <input asp-for="NameR" />
+            <span asp-validation-for="NameR"></span>
+        </div>
+        <div>
+            <label asp-for="MiddlenameR"></label><br />
+            <input asp-for="MiddlenameR" />
+            <span asp-validation-for="MiddlenameR"></span>
+        </div>
+        <div>
+            <label asp-for="Birthday"></label><br />
+            <input type="date" asp-for="Birthday" />
+            <span asp-validation-for="Birthday"></span>
+        </div>
+        <div>
+            <label asp-for="Sex"></label><br />
+            <input type="radio" asp-for="Sex" checked="checked" value="Мужской" /><br />
+            <input type="radio" asp-for="Sex" value="Женский" />
+            <span asp-validation-for="Sex"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>Паспортные данные</h4>
+        <div>
+            <label asp-for="DocumentType"></label><br />
+            <input asp-for="DocumentType" />
+            <span asp-validation-for="DocumentType"></span>
+        </div>
+        <div>
+            <label asp-for="IdentityNumber"></label><br />
+            <input asp-for="IdentityNumber" />
+            <span asp-validation-for="IdentityNumber"></span>
+        </div>
+        <div>
+            <label asp-for="PassportSeries"></label><br />
+            <input asp-for="PassportSeries" />
+            <span asp-validation-for="PassportSeries"></span>
+        </div>
+        <div>
+            <label asp-for="PassportNumber"></label><br />
+            <input asp-for="PassportNumber" />
+            <span asp-validation-for="PassportNumber"></span>
+        </div>
+        <div>
+            <label asp-for="DateOfIssue"></label><br />
+            <input type="date" asp-for="DateOfIssue" />
+            <span asp-validation-for="DateOfIssue"></span>
+        </div>
+        <div>
+            <label asp-for="DateOfValidity"></label><br />
+            <input type="date" asp-for="DateOfValidity" />
+            <span asp-validation-for="DateOfValidity"></span>
+        </div>
+        <div>
+            <label asp-for="IssuedBy"></label><br />
+            <input asp-for="IssuedBy" />
+            <span asp-validation-for="IssuedBy"></span>
+        </div>
+        <div>
+            <label asp-for="PlaceOfBirth"></label><br />
+            <input asp-for="PlaceOfBirth" />
+            <span asp-validation-for="PlaceOfBirth"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>Сведения о месте проживания</h4>
+        <div>
+            <label asp-for="Postcode"></label><br />
+            <input asp-for="Postcode" />
+            <span asp-validation-for="Postcode"></span>
+        </div>
+        <div>
+            <label asp-for="Region"></label><br />
+            <input asp-for="Region" />
+            <span asp-validation-for="Region"></span>
+        </div>
+        <div>
+            <label asp-for="TypeOfSettlement"></label><br />
+            <input asp-for="TypeOfSettlement" />
+            <span asp-validation-for="TypeOfSettlement"></span>
+        </div>
+        <div>
+            <label asp-for="NameOfSettlement"></label><br />
+            <input asp-for="NameOfSettlement" />
+            <span asp-validation-for="NameOfSettlement"></span>
+        </div>
+        <div>
+            <label asp-for="StreetType"></label><br />
+            <input asp-for="StreetType" />
+            <span asp-validation-for="StreetType"></span>
+        </div>
+        <div>
+            <label asp-for="StreetName"></label><br />
+            <input asp-for="StreetName" />
+            <span asp-validation-for="StreetName"></span>
+        </div>
+        <div>
+            <label asp-for="HouseNumber"></label><br />
+            <input asp-for="HouseNumber" />
+            <span asp-validation-for="HouseNumber"></span>
+        </div>
+        <div>
+            <label asp-for="HullNumber"></label><br />
+            <input asp-for="HullNumber" />
+            <span asp-validation-for="HullNumber"></span>
+        </div>
+        <div>
+            <label asp-for="ApartmentNumber"></label><br />
+            <input asp-for="ApartmentNumber" />
+            <span asp-validation-for="ApartmentNumber"></span>
+        </div>
+        <div>
+            <label asp-for="HomePhone"></label><br />
+            <input asp-for="HomePhone" />
+            <span asp-validation-for="HomePhone"></span>
+        </div>
+        <div>
+            <label asp-for="SocialBehavior"></label><br />
+            <input type="checkbox" asp-for="SocialBehavior" spellcheck="false" />
+            <span asp-validation-for="SocialBehavior"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>Сведения о родителях</h4>
+        <div>
+            <label asp-for="KinshipTypeFather"></label><br />
+            <input asp-for="KinshipTypeFather" />
+            <span asp-validation-for="KinshipTypeFather"></span>
+        </div>
+        <div>
+            <label asp-for="SurnameFather"></label><br />
+            <input asp-for="SurnameFather" />
+            <span asp-validation-for="SurnameFather"></span>
+        </div>
+        <div>
+            <label asp-for="NameFather"></label><br />
+            <input asp-for="NameFather" />
+            <span asp-validation-for="NameFather"></span>
+        </div>
+        <div>
+            <label asp-for="MiddlenameFather"></label><br />
+            <input asp-for="MiddlenameFather" />
+            <span asp-validation-for="MiddlenameFather"></span>
+        </div>
+        <div>
+            <label asp-for="AddressFather"></label><br />
+            <input asp-for="AddressFather" />
+            <span asp-validation-for="AddressFather"></span>
+        </div>
+        <div>
+            <label asp-for="KinshipTypeMother"></label><br />
+            <input asp-for="KinshipTypeMother" />
+            <span asp-validation-for="KinshipTypeMother"></span>
+        </div>
+        <div>
+            <label asp-for="SurnameMother"></label><br />
+            <input asp-for="SurnameMother" />
+            <span asp-validation-for="SurnameMother"></span>
+        </div>
+        <div>
+            <label asp-for="NameMother"></label><br />
+            <input asp-for="NameMother" />
+            <span asp-validation-for="NameMother"></span>
+        </div>
+        <div>
+            <label asp-for="MiddlenameMother"></label><br />
+            <input asp-for="MiddlenameMother" />
+            <span asp-validation-for="MiddlenameMother"></span>
+        </div>
+        <div>
+            <label asp-for="AddressMother"></label><br />
+            <input asp-for="AddressMother" />
+            <span asp-validation-for="AddressMother"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>Сведения об образовании</h4>
+        <div>
+            <label asp-for="EducationLevel"></label><br />
+            <input asp-for="EducationLevel" />
+            <span asp-validation-for="EducationLevel"></span>
+        </div>
+        <div>
+            <label asp-for="Institution"></label><br />
+            <input asp-for="Institution" />
+            <span asp-validation-for="Institution"></span>
+        </div>
+        <div>
+            <label asp-for="YearOfEnding"></label><br />
+            <input type="date" asp-for="YearOfEnding" />
+            <span asp-validation-for="YearOfEnding"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>Специальность</h4>
+        <div>
+            <label asp-for="Branch"></label><br />
+            <input asp-for="Branch" />
+            <span asp-validation-for="Branch"></span>
+        </div>
+        <div>
+            <label asp-for="Specialty"></label><br />
+            <input asp-for="Specialty" />
+            <span asp-validation-for="Specialty"></span>
+        </div>
+    </div>
+
+    <div>
+        <h4>
+            Сведения о трудовой деятельности<br/>
+            (заполняется только учащимися заочного отделения)
+        </h4>
+        <div>
+            <label asp-for="PlaceOfWorkAndPosition"></label><br />
+            <input asp-for="PlaceOfWorkAndPosition" />
+            <span asp-validation-for="PlaceOfWorkAndPosition"></span>
+        </div>
+        <div>
+            <label asp-for="SeniorityGeneral"></label><br />
+            <input asp-for="SeniorityGeneral" />
+            <span asp-validation-for="SeniorityGeneral"></span>
+        </div>
+        <div>
+            <label asp-for="SeniorityProfileSpecialty"></label><br />
+            <input asp-for="SeniorityProfileSpecialty" />
+            <span asp-validation-for="SeniorityProfileSpecialty"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Отправить" />
+    </div>
+
+</form>

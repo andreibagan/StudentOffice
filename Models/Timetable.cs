@@ -15,8 +15,10 @@ namespace StudentOffice.Models
         public int AudienceId { get; set; }
         public virtual Audience Audience { get; set; }
         public int TimeWindowId { get; set; }
-        public TimeWindow TimeWindow { get; set; }
+        public virtual TimeWindow TimeWindow { get; set; }
 
-        public virtual ICollection<Group> Groups { get; set; }
+
+        public int GroupId { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

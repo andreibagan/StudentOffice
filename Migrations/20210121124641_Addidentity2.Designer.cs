@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentOffice.Models;
 
 namespace StudentOffice.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210121124641_Addidentity2")]
+    partial class Addidentity2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -343,7 +345,12 @@ namespace StudentOffice.Migrations
                     b.Property<string>("GroupName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TimetableId")
+                        .HasColumnType("int");
+
                     b.HasKey("GroupId");
+
+                    b.HasIndex("TimetableId");
 
                     b.ToTable("Group");
                 });
@@ -354,12 +361,6 @@ namespace StudentOffice.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
-
-                    b.Property<bool>("FirstHalf")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("SecondHalf")
-                        .HasColumnType("bit");
 
                     b.Property<string>("TimeWindowName")
                         .HasColumnType("nvarchar(max)");
@@ -388,9 +389,6 @@ namespace StudentOffice.Migrations
                     b.Property<int>("DisciplineId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
                     b.Property<bool?>("IsSubgroups")
                         .HasColumnType("bit");
 
@@ -408,8 +406,6 @@ namespace StudentOffice.Migrations
                     b.HasIndex("AudienceId");
 
                     b.HasIndex("DisciplineId");
-
-                    b.HasIndex("GroupId");
 
                     b.HasIndex("TimeWindowId");
 
@@ -542,6 +538,17 @@ namespace StudentOffice.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("StudentOffice.Models.Group", b =>
+                {
+                    b.HasOne("StudentOffice.Models.Timetable", "Timetable")
+                        .WithMany("Groups")
+                        .HasForeignKey("TimetableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Timetable");
+                });
+
             modelBuilder.Entity("StudentOffice.Models.Timetable", b =>
                 {
                     b.HasOne("StudentOffice.Models.Audience", "Audience")
@@ -556,12 +563,6 @@ namespace StudentOffice.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StudentOffice.Models.Group", "Group")
-                        .WithMany("Timetables")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("StudentOffice.Models.TimeWindow", "TimeWindow")
                         .WithMany("Timetables")
                         .HasForeignKey("TimeWindowId")
@@ -571,8 +572,6 @@ namespace StudentOffice.Migrations
                     b.Navigation("Audience");
 
                     b.Navigation("Discipline");
-
-                    b.Navigation("Group");
 
                     b.Navigation("TimeWindow");
                 });
@@ -609,14 +608,17 @@ namespace StudentOffice.Migrations
 
             modelBuilder.Entity("StudentOffice.Models.Group", b =>
                 {
-                    b.Navigation("Timetables");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("StudentOffice.Models.TimeWindow", b =>
                 {
                     b.Navigation("Timetables");
+                });
+
+            modelBuilder.Entity("StudentOffice.Models.Timetable", b =>
+                {
+                    b.Navigation("Groups");
                 });
 #pragma warning restore 612, 618
         }
