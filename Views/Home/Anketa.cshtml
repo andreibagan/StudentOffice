@@ -4,8 +4,6 @@
     ViewData["Title"] = "Anketa";
 }
 
-
-
 <h2>Анкета</h2>
 <form method="post" asp-controller="Home" asp-action="Anketa">
     <div asp-validation-summary="ModelOnly"></div>
@@ -48,9 +46,11 @@
             <span asp-validation-for="Birthday"></span>
         </div>
         <div>
-            <label asp-for="Sex"></label><br />
-            <input type="radio" asp-for="Sex" checked="checked" value="Мужской" /><br />
-            <input type="radio" asp-for="Sex" value="Женский" />
+            <label asp-for="Sex"></label><br/>
+            <input type="radio" asp-for="Sex" checked="checked" value="Мужской"/>
+            <label>Мужской</label><br/>
+            <input type="radio" asp-for="Sex" value="Женский"/>
+            <label>Женский</label>
             <span asp-validation-for="Sex"></span>
         </div>
     </div>
@@ -152,7 +152,7 @@
             <span asp-validation-for="HomePhone"></span>
         </div>
         <div>
-            <label asp-for="SocialBehavior"></label><br />
+            <label asp-for="SocialBehavior"></label>
             <input type="checkbox" asp-for="SocialBehavior" spellcheck="false" />
             <span asp-validation-for="SocialBehavior"></span>
         </div>
