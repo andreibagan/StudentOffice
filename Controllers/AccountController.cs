@@ -27,31 +27,38 @@ namespace StudentOffice.Controllers
         }
 
         [HttpGet]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
-            return View();
+            return View(new LoginModel { ReturnUrl = returnUrl });
         }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Login(LoginModel model)
-        //{
-        //    //if(ModelState.IsValid)
-        //    //{
-        //    //    User user = await _context.Users.Include(u => u.Role).FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
-        //    //    if (user != null)
-        //    //    {
-        //    //        await Authenticate(user);
+                if(result.Succeeded)
+                {
+                    if(!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Неправильный логин и (или) пароль");
+                }
+            }
 
-        //    //        return RedirectToAction("Index", "Home");
-        //    //    }
-
-        //    //    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-        //    //}
-
-        //    //return View(model);
-        //}
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult Register()
@@ -60,7 +67,7 @@ namespace StudentOffice.Controllers
         }
 
         [HttpPost]
-        //  [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             //if (ModelState.IsValid)
@@ -126,11 +133,12 @@ namespace StudentOffice.Controllers
 
         //    //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         //}
-
-        //public async Task<IActionResult> Logout()
-        //{
-        //    //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    //return RedirectToAction("Login", "Account");
-        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
     }
 }

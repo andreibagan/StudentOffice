@@ -4,17 +4,35 @@
     ViewData["Title"] = "Home Page";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@User.Identity.Name</p>
 
+    <form method="post" asp-controller="Account" asp-action="Logout">
+        <input type="submit" value="Выход" />
+    </form>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login">Вход</a>
+    <a asp-controller="Account" asp-action="Register">Регистрация</a>
+}
 
 <h2>Кабинет абитуриента</h2>
-<form> 
+<form>
     <div>
         <button method="get" asp-controller="Home" asp-action="Anketa">Заполнить анкету учащегося</button>
     </div>
     <div>
-        <button></button>
+        <button method="get" asp-controller="Home" asp-action="SendDoc">Отправить изображения документов</button>
     </div>
     <div>
-        <button></button>
+        <button method="get" asp-controller="Home" asp-action="DisplayDoc">Вывести заявление</button>
+    </div>
+    <div>
+        <button method="get" asp-controller="Home" asp-action="SignUpForDoc">Записаться на подачу документов</button>
+    </div>
+    <div>
+        <button method="get" asp-controller="Account" asp-action="Logout">Записаться на подачу документов</button>
     </div>
 </form>

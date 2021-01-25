@@ -1,19 +1,24 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using StudentOffice.Models;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudentOffice.Controllers
 {
     [Authorize]
     public class HomeController : Controller
     {
+        private readonly ApplicationContext _context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         //[AllowAnonymous]
@@ -31,15 +36,42 @@ namespace StudentOffice.Controllers
         {
             return View();
         }
-        //public IActionResult About()
-        //{
-        //    return Content("Authorized");
-        //}
-        ////[Authorize(Roles = "admin")]
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
+
+        [HttpPost]
+        public async Task<IActionResult> Anketa(Anketa model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                var user = _context.Users.Include(i => i.Anketa).FirstOrDefault(i => i.UserName == User.Identity.Name);
+
+                if (user.Anketa != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+
+                _context.Anketa.Add(model);
+                await _context.SaveChangesAsync();
+
+                user.AnketaId = model.AnketaId;
+
+                _context.Update(user);
+
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
+        public IActionResult About()
+        {
+            return Content("Authorized");
+        }
+        [Authorize(Roles = "admin")]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
