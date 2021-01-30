@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentOffice.ViewModels
 {
-    public class LoginViewModel
+    public class ResetPasswordViewModel
     {
         [Required(ErrorMessage = "Не указан Email")]
         [Display(Name = "Email")]
@@ -14,13 +14,16 @@ namespace StudentOffice.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
+        [StringLength(100, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символов.", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "Запомнить?")]
-        public bool RememberMe { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Подтвердить пароль")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
+        public string ConfirmPassword { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string Code { get; set; }
     }
 }

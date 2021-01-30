@@ -6,6 +6,7 @@ namespace StudentOffice.ViewModels
     {
         [Required(ErrorMessage = "Не указан Email")]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Не указан пароль")]
