@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentOffice.ViewModels
 {
-    public class LoginModel
+    public class LoginViewModel
     {
         [Required(ErrorMessage = "Не указан Email")]
         [Display(Name = "Email")]

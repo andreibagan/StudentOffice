@@ -1,5 +1,3 @@
-using System;
-
 namespace StudentOffice.Models
 {
     public class ErrorViewModel
