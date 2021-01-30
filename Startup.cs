@@ -28,7 +28,14 @@ namespace StudentOffice
                 options.UseSqlServer(connection, x => x.MigrationsAssembly("StudentOffice"));
             });
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+            services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 5;
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireDigit = true;
+            }).AddEntityFrameworkStores<ApplicationContext>();
 
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             //{
