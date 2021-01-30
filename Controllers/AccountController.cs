@@ -5,17 +5,19 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentOffice.Models;
+using StudentOffice.Services;
 using StudentOffice.ViewModels;
 
 namespace StudentOffice.Controllers
 {
     public class AccountController : Controller
     {
-        //private ApplicationContext _context;
+        //private ApplicationContext _context;  
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -38,6 +40,17 @@ namespace StudentOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByNameAsync(model.Email);
+                if (user != null)
+                {
+                    // проверяем, подтвержден ли email
+                    if (!await _userManager.IsEmailConfirmedAsync(user))
+                    {
+                        ModelState.AddModelError(string.Empty, "Вы не подтвердили свой email");
+                        return View(model);
+                    }
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
                 if(result.Succeeded)
@@ -70,35 +83,6 @@ namespace StudentOffice.Controllers
         //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-
-            //    if (user == null)
-            //    {
-            //        user = new User { Email = model.Email, Password = model.Password };
-
-            //        Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-            //        if(userRole != null)
-            //        {
-            //            user.Role = userRole;
-            //        }
-
-            //        _context.Users.Add(user);
-            //        await _context.SaveChangesAsync();
-
-            //        await Authenticate(user);
-
-            //        return RedirectToAction("Index", "Home");
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-            //    }
-            //}
-            //return View(model);
-
-
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email };
@@ -106,9 +90,18 @@ namespace StudentOffice.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // установка куки
-                    await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Home");
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action(
+                        "ConfirmEmail",
+                        "Account",
+                        new { userId = user.Id, code = code },
+                        protocol: HttpContext.Request.Scheme);
+
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(model.Email, "Confirm your account",
+                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+
+                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
                 else
                 {
@@ -121,18 +114,30 @@ namespace StudentOffice.Controllers
             return View(model);
         }
 
-        //private async Task Authenticate(User user)
-        //{
-        //    //var claims = new List<Claim>
-        //    //{
-        //    //    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-        //    //    new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name),
-        //    //};
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return View("Error");
+            }
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return View("Error");
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
 
-        //    //ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-
-        //    //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

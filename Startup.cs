@@ -35,13 +35,9 @@ namespace StudentOffice
                 opts.Password.RequireUppercase = false;
                 opts.Password.RequireLowercase = false;
                 opts.Password.RequireDigit = true;
-            }).AddEntityFrameworkStores<ApplicationContext>();
-
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            //{
-            //    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-            //    options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-            //});
+            })
+            .AddEntityFrameworkStores<ApplicationContext>()
+            .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
         }
@@ -59,7 +55,7 @@ namespace StudentOffice
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();  
+            app.UseHttpsRedirection();  
 
             app.UseStaticFiles();
 
