@@ -6,6 +6,8 @@ using Microsoft.Extensions.Logging;
 using StudentOffice.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace StudentOffice.Controllers
 {
@@ -13,12 +15,14 @@ namespace StudentOffice.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly IWebHostEnvironment _appEnvironment;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context, IWebHostEnvironment appEnvironment)
         {
             _logger = logger;
             _context = context;
+            _appEnvironment = appEnvironment;
         }
 
         //[AllowAnonymous]
@@ -79,9 +83,15 @@ namespace StudentOffice.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public string Hello(int id)
+        public IActionResult GetFile()
         {
-            return $"id = {id}";
+            string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\Unity1.pdf");
+
+            string file_type = "application/pdf";
+
+            string file_name = "Unity1.pdf";
+
+            return PhysicalFile(file_path, file_type, file_name);
         }
     }
 }
