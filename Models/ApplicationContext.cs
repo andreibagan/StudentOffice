@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace StudentOffice.Models
@@ -22,6 +18,8 @@ namespace StudentOffice.Models
         public DbSet<ParentInformation> ParentInformations { get; set; }
         public DbSet<Passport> Passports { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
+        public DbSet<Spravka> Spravkas { get; set; }
+        public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)

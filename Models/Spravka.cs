@@ -1,4 +1,6 @@
-﻿namespace StudentOffice.Models
+﻿using System.Collections.Generic;
+
+namespace StudentOffice.Models
 {
     public class Spravka
     {
@@ -10,7 +12,6 @@
         public TypeOfSpravka TypeOfSpravka { get; set; }
         public string AdditionalInformation { get; set; }
 
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
     }
 }

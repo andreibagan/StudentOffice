@@ -13,6 +13,30 @@ namespace StudentOffice.Models
         public int? GroupId { get; set; }
         public virtual Group Group { get; set; }
 
-        public ICollection<Spravka> Spravkas { get; set; }
+        public string GetFullNameMother
+        {
+            get
+            {
+                return Anketa == null ? null : Anketa.ParentInformation.SurnameMother + " " + Anketa.ParentInformation.NameMother + " " + Anketa.ParentInformation.MiddlenameMother;
+            }
+        }
+
+        public string GetFullNameFather
+        {
+            get
+            {
+                return Anketa == null ? null : Anketa.ParentInformation.SurnameFather + " " + Anketa.ParentInformation.NameFather + " " + Anketa.ParentInformation.MiddlenameFather;
+            }
+        }
+
+        public string GetFullNameR
+        {
+            get
+            {
+                return Anketa == null ? null : Anketa.SurnameR + " " + Anketa.NameR + " " + Anketa.MiddlenameR;
+            }
+        }
+
+        public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
     }
 }

@@ -16,6 +16,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Spire.Doc" Version="9.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Parser\" />
   </ItemGroup>
 
 </Project>
