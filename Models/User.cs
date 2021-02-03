@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace StudentOffice.Models
@@ -11,5 +12,7 @@ namespace StudentOffice.Models
 
         public int? GroupId { get; set; }
         public virtual Group Group { get; set; }
+
+        public ICollection<Spravka> Spravkas { get; set; }
     }
 }
