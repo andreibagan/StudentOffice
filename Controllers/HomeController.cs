@@ -54,7 +54,7 @@ namespace StudentOffice.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                _context.Anketa.Add(model);
+                _context.Anketas.Add(model);
                 await _context.SaveChangesAsync();
 
                 user.AnketaId = model.AnketaId;

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System;
 
 namespace StudentOffice.Services
 {
@@ -25,9 +23,18 @@ namespace StudentOffice.Services
             {
                 await client.ConnectAsync("smtp.mail.ru", 465, true);
                 await client.AuthenticateAsync("andrei.bagan2@mail.ru", "chiter78555312");
-                await client.SendAsync(emailMessage);
-
-                await client.DisconnectAsync(true);
+                try
+                {
+                    await client.SendAsync(emailMessage);
+                }
+                catch(SmtpCommandException ex)
+                {
+                    Console.WriteLine("Пользователь с таким email не существует\nКод ошибки:" + ex.Message);
+                }
+                finally
+                {
+                    await client.DisconnectAsync(true);
+                }
             }
         }
     }

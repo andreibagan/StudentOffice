@@ -9,12 +9,20 @@ namespace StudentOffice.Models
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
-        public DbSet<Anketa> Anketa { get; set; }
-        public DbSet<Audience> Audience { get; set; }
-        public DbSet<Discipline> Discipline { get; set; }
-        public DbSet<Group> Group { get; set; }
-        public DbSet<Timetable> Timetable { get; set; }
-        public DbSet<TimeWindow> TimeWindow { get; set; }
+        public DbSet<Anketa> Anketas { get; set; }
+        public DbSet<Audience> Audiences { get; set; }
+        public DbSet<Discipline> Disciplines { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Timetable> Timetables { get; set; }
+        public DbSet<TimeWindow> TimeWindows { get; set; }
+        public DbSet<YearOfFormation> YearOfFormations { get; set; }
+        public DbSet<Accommodation> Accommodations { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<EmploymentInformation> EmploymentInformations { get; set; }
+        public DbSet<ParentInformation> ParentInformations { get; set; }
+        public DbSet<Passport> Passports { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
+        //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
