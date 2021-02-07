@@ -31,11 +31,12 @@ namespace StudentOffice.Models
         public DbSet<District> Districts { get; set; }
         public DbSet<Area> Areas { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
+        public DbSet<TypeOfSpravka> TypeOfSpravkas { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

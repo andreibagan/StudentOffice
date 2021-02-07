@@ -11,7 +11,6 @@ namespace StudentOffice.Models
         public int? GroupId { get; set; }
         public virtual Group Group { get; set; }
 
-        public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
         public virtual ICollection<Enrollee> Enrollees { get; set; }
         public virtual ICollection<Student> Students { get; set; }
         public virtual ICollection<Teacher> Teachers { get; set; }

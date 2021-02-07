@@ -10,10 +10,10 @@ namespace StudentOffice.Models
     {
         public int SpravkaOrderId { get; set; }
 
+        public int StudentId { get; set; }
+        public virtual Student Student { get; set; }
         public int SpravkaId { get; set; }
         public virtual Spravka Spravka { get; set; }
-
-        public virtual User User { get; set; }
 
         public DateTime DateTimeNow { get; set; }
     }

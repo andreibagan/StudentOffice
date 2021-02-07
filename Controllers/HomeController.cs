@@ -89,6 +89,46 @@ namespace StudentOffice.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize(Roles = "учащийся, admin")]
+        [HttpGet]
+        public async Task<IActionResult> Spravka()
+        {
+            SpravkaViewModel model = new SpravkaViewModel();
+
+            model.TypeOfSpravkas = await _context.TypeOfSpravkas.ToListAsync();
+            //model.Spravka.TypeOfSpravkaId = 1;
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "учащийся, admin")]
+        [HttpPost]
+        public async Task<IActionResult> Spravka(SpravkaViewModel model)
+        {
+           
+            Student student = await _context.Students.Include(i => i.User).FirstOrDefaultAsync(i => i.User.UserName == User.Identity.Name);
+          
+            if (model.Spravka != null && student != null)
+            {
+                await _context.Spravkas.AddAsync(model.Spravka);
+                await _context.SaveChangesAsync();
+
+                SpravkaOrder spravkaOrder = new SpravkaOrder()
+                {
+                    StudentId = student.StudentId,
+                    SpravkaId = model.Spravka.SpravkaId,
+                    DateTimeNow = DateTime.Now
+                };
+
+                await _context.SpravkaOrders.AddAsync(spravkaOrder);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return NotFound();
+        }
+
         public IActionResult GetFile()
         {
             string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\Unity1.pdf");

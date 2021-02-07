@@ -1,0 +1,56 @@
+﻿@model SpravkaViewModel
+
+@{
+    ViewData["Title"] = "Anketa";
+}
+
+<h2>Справка</h2>
+<form method="post" asp-controller="Home" asp-action="Spravka">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <h4>Заказ справки</h4>
+        <div>
+            <label asp-for="Spravka.Surname"></label><br />
+            <input asp-for="Spravka.Surname" />
+            <span asp-validation-for="Spravka.Surname"></span>
+        </div>
+        <div>
+            <label asp-for="Spravka.Name"></label><br />
+            <input asp-for="Spravka.Name" />
+            <span asp-validation-for="Spravka.Name"></span>
+        </div>
+        <div>
+            <label asp-for="Spravka.Middlename"></label><br />
+            <input asp-for="Spravka.Middlename" />
+            <span asp-validation-for="Spravka.Middlename"></span>
+        </div>
+        <div>
+            <label asp-for="Spravka.OrganizationName"></label><br />
+            <input asp-for="Spravka.OrganizationName" />
+            <span asp-validation-for="Spravka.OrganizationName"></span>
+        </div>
+        <div>
+            <label asp-for="Spravka.TypeOfSpravka.TypeOfSpravkaName"></label><br />
+            <select asp-for="Spravka.TypeOfSpravkaId" name="model.Spravka.TypeOfSpravkaId">
+                <option value="0">Не выбрано</option>
+                @foreach (var item in Model.TypeOfSpravkas)
+                {
+                    <option value="@item.TypeOfSpravkaId">@item.TypeOfSpravkaName</option>
+                }
+            </select>
+            <span asp-validation-for="Spravka.TypeOfSpravkaId"></span>
+        </div>
+
+        <div>
+            <label asp-for="Spravka.AdditionalInformation"></label><br />
+            <input asp-for="Spravka.AdditionalInformation" />
+            <span asp-validation-for="Spravka.AdditionalInformation"></span>
+        </div>
+    </div>
+
+    <div>
+        <input type="submit" value="Отправить" />
+    </div>
+
+</form>

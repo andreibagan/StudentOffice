@@ -10,6 +10,6 @@ namespace StudentOffice.Models
         public int StudentId { get; set; }
 
         public User User { get; set; }
-
+        public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
     }
 }
