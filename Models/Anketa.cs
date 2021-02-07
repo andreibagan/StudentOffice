@@ -67,11 +67,7 @@ namespace StudentOffice.Models
         /// </summary>
         public int AccommodationId { get; set; }
         public virtual Accommodation Accommodation { get; set; }
-        /// <summary>
-        /// Сведения о родителях
-        /// </summary>
-        public int ParentInformationId { get; set; }
-        public virtual ParentInformation ParentInformation { get; set; }
+
         /// <summary>
         /// Сведения об образовании
         /// </summary>
@@ -86,8 +82,19 @@ namespace StudentOffice.Models
         /// Сведения о трудовой деятельности
         ///(заполняется только учащимися заочного отделения)
         /// </summary>
-        public int EmploymentInformationId { get; set; }
+        public int? EmploymentInformationId { get; set; }
         public virtual EmploymentInformation EmploymentInformation { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        /// <summary>
+        /// Сведения о отце
+        /// </summary>
+        public int? FatherId { get; set; }
+        public virtual Father Father { get; set; }
+        /// <summary>
+        /// Сведения о матери
+        /// </summary>
+        public int? MotherId { get; set; }
+        public virtual Mother Mother { get; set; }
+
+        public virtual ICollection<Enrollee> Enrollees { get; set; }
     }
 }

@@ -27,7 +27,6 @@ namespace StudentOffice.Models
         [DataType(DataType.Date)]
         [Display(Name = "Год окончания")]
         public DateTime YearOfEnding { get; set; }
-
         public virtual ICollection<Anketa> Anketas { get; set; }
     }
 }

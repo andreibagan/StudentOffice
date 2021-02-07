@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models
 {
     public enum Sex
     {
+        [Display(Name = "Мужской")]
         Male,
+        [Display(Name = "Женский")]
         Female
     }
 }

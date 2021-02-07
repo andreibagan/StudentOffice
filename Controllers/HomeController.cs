@@ -49,9 +49,9 @@ namespace StudentOffice.Controllers
             if (ModelState.IsValid)
             {
 
-                var user = _context.Users.Include(i => i.Anketa).FirstOrDefault(i => i.UserName == User.Identity.Name);
+                Enrollee enrollee = _context.Enrollees.Include(i => i.User).Include(i => i.Anketa).FirstOrDefault(i => i.User.UserName == User.Identity.Name);
 
-                if (user.Anketa != null)
+                if (enrollee != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -59,9 +59,9 @@ namespace StudentOffice.Controllers
                 _context.Anketas.Add(model);
                 await _context.SaveChangesAsync();
 
-                user.AnketaId = model.AnketaId;
+                enrollee.AnketaId = model.AnketaId;
 
-                _context.Update(user);
+                _context.Update(enrollee);
 
                 await _context.SaveChangesAsync();
 
@@ -73,6 +73,7 @@ namespace StudentOffice.Controllers
         {
             return Content("Authorized");
         }
+
         [Authorize(Roles = "admin")]
         public IActionResult Privacy()
         {
@@ -98,9 +99,9 @@ namespace StudentOffice.Controllers
 
         public async Task<IActionResult> GetFile1()
         {
-            User user = await _context.Users.Include(i => i.Anketa).ThenInclude(i => i.ParentInformation).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            Enrollee enrollee = await _context.Enrollees.Include(i => i.Anketa).ThenInclude(i => i.Mother).Include(i => i.Anketa).ThenInclude(i => i.Father).FirstOrDefaultAsync(u => u.User.UserName == User.Identity.Name);
 
-            if (user.Anketa == null)
+            if (enrollee.Anketa == null)
             {
                 return Content("Вы не заполнили анкету!");
             }
@@ -111,10 +112,10 @@ namespace StudentOffice.Controllers
                 Document document = new Document();
                 document.LoadFromFile(file_path);
 
-                document.Replace("ParentFullName", user.GetFullNameMother.ToUpper(), false, true);
-                document.Replace("ParentType", user.Anketa.ParentInformation.KinshipTypeMother.ToUpper(), false, true);
-                document.Replace("Sex", user.Anketa.Sex == Sex.Male ? "СВОЕГО СЫНА" : "СВОЕЙ ДОЧЕРИ", false, true);
-                document.Replace("FullName", user.GetFullNameR.ToUpper(), false, true);
+                document.Replace("ParentFullName", enrollee.GetFullNameMother.ToUpper(), false, true);
+                document.Replace("ParentType", enrollee.Anketa.Mother.KinshipType.ToUpper(), false, true);
+                document.Replace("Sex", enrollee.Anketa.Sex == Sex.Male ? "СВОЕГО СЫНА" : "СВОЕЙ ДОЧЕРИ", false, true);
+                document.Replace("FullName", enrollee.GetFullNameR.ToUpper(), false, true);
                 document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
 
                 document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\123123.docx"), FileFormat.Docx);
@@ -125,15 +126,16 @@ namespace StudentOffice.Controllers
 
         public async Task<IActionResult> GetFile2()
         {
-            User user = await _context.Users
-                .Include(i => i.Anketa).ThenInclude(i => i.ParentInformation)
+            Enrollee enrollee = await _context.Enrollees
+                .Include(i => i.Anketa).ThenInclude(i => i.Mother)
+                .Include(i => i.Anketa).ThenInclude(i => i.Father)
                 .Include(i => i.Anketa).ThenInclude(i => i.Specialty)
                 .Include(i => i.Anketa).ThenInclude(i => i.Accommodation)
                 .Include(i => i.Anketa).ThenInclude(i => i.Education)
                 .Include(i => i.Anketa).ThenInclude(i => i.Passport)
-                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                .FirstOrDefaultAsync(u => u.User.UserName == User.Identity.Name);
 
-            if (user.Anketa == null)
+            if (enrollee.Anketa == null)
             {
                 return Content("Вы не заполнили анкету!");
             }
@@ -144,27 +146,27 @@ namespace StudentOffice.Controllers
                 Document document = new Document();
                 document.LoadFromFile(file_path);
 
-                document.Replace("SpecialtyName", user.Anketa.Specialty.SpecialtyName, false, true);
-                document.Replace("PostCode", user.Anketa.Accommodation.Postcode.ToString(), false, true);
-                document.Replace("Area", user.Anketa.Accommodation.Region, false, true);
-                document.Replace("District", user.Anketa.Accommodation.TypeOfSettlement, false, true);
-                document.Replace("Town", user.Anketa.Accommodation.NameOfSettlement, false, true);
-                document.Replace("Street", user.Anketa.Accommodation.StreetName, false, true);
-                document.Replace("HomeNumber", user.Anketa.Accommodation.HouseNumber, false, true);
-                document.Replace("Apartment", user.Anketa.Accommodation.ApartmentNumber, false, true);
-                document.Replace("Phone", user.Anketa.Accommodation.HomePhone, false, true);
-                document.Replace("YearOfEnding", user.Anketa.Education.YearOfEnding.Year.ToString(), false, true);
-                document.Replace("EducationLevel", user.Anketa.Education.EducationLevel, false, true);
-                document.Replace("Institution ", user.Anketa.Education.Institution, false, true);
-                document.Replace("Birthday", user.Anketa.Birthday.ToLongDateString(), false, true);
-                document.Replace("FatherFullName", user.GetFullNameFather, false, true);
-                document.Replace("FullName", user.GetFullNameR, false, true);
-                document.Replace("MotherFullName", user.GetFullNameMother, false, true);
-                document.Replace("DocumentType", user.Anketa.Passport.DocumentType, false, true);
-                document.Replace("Passport", user.Anketa.Passport.PassportSeries + user.Anketa.Passport.PassportNumber, false, true);
-                document.Replace("DateOfIssue", user.Anketa.Passport.DateOfIssue.ToShortDateString(), false, true);
-                document.Replace("IssuedBy", user.Anketa.Passport.IssuedBy, false, true);
-                document.Replace("IdentityNumber", user.Anketa.Passport.IdentityNumber, false, true);
+                document.Replace("SpecialtyName", enrollee.Anketa.Specialty.SpecialtyName, false, true);
+                document.Replace("PostCode", enrollee.Anketa.Accommodation.Address.Postcode.ToString(), false, true);
+                document.Replace("Area", enrollee.Anketa.Accommodation.Address.Region, false, true);
+                document.Replace("District", enrollee.Anketa.Accommodation.Address.TypeOfSettlement, false, true);
+                document.Replace("Town", enrollee.Anketa.Accommodation.Address.NameOfSettlement, false, true);
+                document.Replace("Street", enrollee.Anketa.Accommodation.Address.StreetName, false, true);
+                document.Replace("HomeNumber", enrollee.Anketa.Accommodation.Address.HouseNumber, false, true);
+                document.Replace("Apartment", enrollee.Anketa.Accommodation.Address.ApartmentNumber, false, true);
+                document.Replace("Phone", enrollee.Anketa.Accommodation.HomePhone, false, true);
+                document.Replace("YearOfEnding", enrollee.Anketa.Education.YearOfEnding.Year.ToString(), false, true);
+                document.Replace("EducationLevel", enrollee.Anketa.Education.EducationLevel, false, true);
+                document.Replace("Institution ", enrollee.Anketa.Education.Institution, false, true);
+                document.Replace("Birthday", enrollee.Anketa.Birthday.ToLongDateString(), false, true);
+                document.Replace("FatherFullName", enrollee.GetFullNameFather, false, true);
+                document.Replace("FullName", enrollee.GetFullNameR, false, true);
+                document.Replace("MotherFullName", enrollee.GetFullNameMother, false, true);
+                document.Replace("DocumentType", enrollee.Anketa.Passport.DocumentType, false, true);
+                document.Replace("Passport", enrollee.Anketa.Passport.PassportSeries + enrollee.Anketa.Passport.PassportNumber, false, true);
+                document.Replace("DateOfIssue", enrollee.Anketa.Passport.DateOfIssue.ToShortDateString(), false, true);
+                document.Replace("IssuedBy", enrollee.Anketa.Passport.IssuedBy, false, true);
+                document.Replace("IdentityNumber", enrollee.Anketa.Passport.IdentityNumber, false, true);
                 document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
 
                 document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\zav123.docx"), FileFormat.Docx);

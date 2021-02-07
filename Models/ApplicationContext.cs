@@ -15,16 +15,23 @@ namespace StudentOffice.Models
         public DbSet<Accommodation> Accommodations { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<EmploymentInformation> EmploymentInformations { get; set; }
-        public DbSet<ParentInformation> ParentInformations { get; set; }
         public DbSet<Passport> Passports { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Spravka> Spravkas { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Enrollee> Enrollees { get; set; }
+        public DbSet<Father> Fathers { get; set; }
+        public DbSet<FatherAddress> FatherAddresses { get; set; }
+        public DbSet<Mother> Mothers { get; set; }
+        public DbSet<MotherAddress> MotherAddresses { get; set; }
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -47,6 +54,7 @@ namespace StudentOffice.Models
 
             //modelBuilder.Entity<Role>().HasData(new Role[] { adminRole, userRole, studentRole, teacherRole });
             //modelBuilder.Entity<User>().HasData(new User[] { adminUser });
+           
             base.OnModelCreating(modelBuilder);
         }
     }
