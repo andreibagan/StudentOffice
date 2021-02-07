@@ -21,12 +21,16 @@ namespace StudentOffice.Models
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Enrollee> Enrollees { get; set; }
         public DbSet<Father> Fathers { get; set; }
-        public DbSet<FatherAddress> FatherAddresses { get; set; }
         public DbSet<Mother> Mothers { get; set; }
-        public DbSet<MotherAddress> MotherAddresses { get; set; }
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<StreetType> StreetTypes { get; set; }
+        public DbSet<Locality> Localities { get; set; }
+        public DbSet<TypeLocality> TypeLocalities { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)

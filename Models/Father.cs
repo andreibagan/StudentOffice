@@ -30,8 +30,10 @@ namespace StudentOffice.Models
         [Display(Name = "Отчество")]
         public string Middlename { get; set; }
 
-        public int FatherAddressId { get; set; }
-        public virtual FatherAddress FatherAddress { get; set; }
+        [Required(ErrorMessage = "Не указан адрес")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Адрес")]
+        public string Address { get; set; }
 
         public virtual ICollection<Anketa> Anketas { get; set; }
     }

@@ -13,11 +13,6 @@ namespace StudentOffice.Models
     {
         public int PassportId { get; set; }
 
-        [Required(ErrorMessage = "Не указан тип документа")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Тип документа")]
-        public string DocumentType { get; set; }
-
         [Required(ErrorMessage = "Не указан идентификационный номер")]
         [DataType(DataType.Text)]
         [Display(Name = "Идентификационный номер")]
@@ -53,6 +48,11 @@ namespace StudentOffice.Models
         [Display(Name = "Место рождения")]
         public string PlaceOfBirth { get; set; }
 
+        [Required(ErrorMessage = "Не указан тип документа")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Тип документа")]
+        public int DocumentTypeId { get; set; }
+        public virtual DocumentType DocumentType { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
     }
 }

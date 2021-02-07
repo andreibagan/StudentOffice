@@ -8,7 +8,7 @@ namespace StudentOffice.Models
 {
     public class ApplicationInitializer
     {
-        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, ApplicationContext context)
         {
             string adminEmail = "andrei.bagan2@mail.ru";
             string password = "petros123";
@@ -36,6 +36,51 @@ namespace StudentOffice.Models
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
                 }
+            }
+
+            if(!context.DocumentTypes.Any())
+            {
+                await context.DocumentTypes.AddRangeAsync(new List<DocumentType>
+                {
+                    new DocumentType
+                    {
+                        Name = "Нет"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Паспорт гражданина Республики Беларусь"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Паспорт гражданина Российской Федерациии"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Паспорт гражданина Республики Казахстан"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Паспорт гражданина Республики Кыргызстан"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Паспорт гражданина Республики Таджикистан"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Вид на жительство в Республике Беларусь"
+
+                    },
+                    new DocumentType
+                    {
+                        Name = "Свидетельство о рождении"
+                    },
+                    new DocumentType
+                    {
+                        Name = "Удостоверение беженца"
+                    },
+                });
+                await context.SaveChangesAsync();
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StudentOffice.Models;
 using StudentOffice.ViewModels;
 
@@ -19,7 +20,7 @@ namespace StudentOffice.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index() => View(_userManager.Users.ToList());
+        public async Task<IActionResult> Index() => View(await _userManager.Users.ToListAsync());
 
         [HttpGet]
         public IActionResult Create() => View();

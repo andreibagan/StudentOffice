@@ -23,7 +23,8 @@ namespace StudentOffice
                 {
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await ApplicationInitializer.InitializeAsync(userManager, roleManager);
+                    var context = services.GetRequiredService<ApplicationContext>();
+                    await ApplicationInitializer.InitializeAsync(userManager, roleManager, context);
                 }
                 catch(Exception ex)
                 {

@@ -15,22 +15,7 @@ namespace StudentOffice.Models
         [DataType(DataType.PostalCode)]
         [Display(Name = "Почтовый индекс")]
         public int Postcode { get; set; }
-        [Required(ErrorMessage = "Не указана область")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Область")]
-        public string Region { get; set; }
-        [Required(ErrorMessage = "Не указан тип населенного пункта")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Тип населенного пункта")]
-        public string TypeOfSettlement { get; set; }
-        [Required(ErrorMessage = "Не указано название населенного пункта")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Название населенного пункта")]
-        public string NameOfSettlement { get; set; }
-        [Required(ErrorMessage = "Не указан тип улицы")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Тип улицы")]
-        public string StreetType { get; set; }
+
         [Required(ErrorMessage = "Не указано название улицы")]
         [DataType(DataType.Text)]
         [Display(Name = "Название улицы")]
@@ -47,6 +32,12 @@ namespace StudentOffice.Models
         [DataType(DataType.Text)]
         [Display(Name = "Номер квартиры")]
         public string ApartmentNumber { get; set; }
+
+        public int LocalityId { get; set; }
+        public virtual Locality Locality { get; set; }
+
+        public int StreetTypeId { get; set; }
+        public StreetType StreetType { get; set; }
 
         public virtual ICollection<Accommodation> Accommodations { get; set; }
     }

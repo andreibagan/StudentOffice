@@ -10,6 +10,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Spire.Doc;
 using System;
+using StudentOffice.ViewModels;
 
 namespace StudentOffice.Controllers
 {
@@ -38,13 +39,15 @@ namespace StudentOffice.Controllers
         }
 
         [HttpGet]
-        public IActionResult Anketa()
+        public async Task<IActionResult> Anketa()
         {
-            return View();
+            AnketaViewModel model = new AnketaViewModel();
+            model.DocumentTypes = await _context.DocumentTypes.ToListAsync();
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Anketa(Anketa model)
+        public async Task<IActionResult> Anketa(AnketaViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -56,10 +59,10 @@ namespace StudentOffice.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                _context.Anketas.Add(model);
+                await _context.Anketas.AddAsync(model.Anketa);
                 await _context.SaveChangesAsync();
 
-                enrollee.AnketaId = model.AnketaId;
+                enrollee.AnketaId = model.Anketa.AnketaId;
 
                 _context.Update(enrollee);
 
@@ -148,9 +151,9 @@ namespace StudentOffice.Controllers
 
                 document.Replace("SpecialtyName", enrollee.Anketa.Specialty.SpecialtyName, false, true);
                 document.Replace("PostCode", enrollee.Anketa.Accommodation.Address.Postcode.ToString(), false, true);
-                document.Replace("Area", enrollee.Anketa.Accommodation.Address.Region, false, true);
-                document.Replace("District", enrollee.Anketa.Accommodation.Address.TypeOfSettlement, false, true);
-                document.Replace("Town", enrollee.Anketa.Accommodation.Address.NameOfSettlement, false, true);
+                document.Replace("Area", enrollee.Anketa.Accommodation.Address.Locality.District.Area.NameArea, false, true);
+                document.Replace("District", enrollee.Anketa.Accommodation.Address.Locality.District.NameDistrict, false, true);
+                document.Replace("Town", enrollee.Anketa.Accommodation.Address.Locality.Namelocality, false, true);
                 document.Replace("Street", enrollee.Anketa.Accommodation.Address.StreetName, false, true);
                 document.Replace("HomeNumber", enrollee.Anketa.Accommodation.Address.HouseNumber, false, true);
                 document.Replace("Apartment", enrollee.Anketa.Accommodation.Address.ApartmentNumber, false, true);
@@ -162,13 +165,12 @@ namespace StudentOffice.Controllers
                 document.Replace("FatherFullName", enrollee.GetFullNameFather, false, true);
                 document.Replace("FullName", enrollee.GetFullNameR, false, true);
                 document.Replace("MotherFullName", enrollee.GetFullNameMother, false, true);
-                document.Replace("DocumentType", enrollee.Anketa.Passport.DocumentType, false, true);
+                document.Replace("DocumentType", enrollee.Anketa.Passport.DocumentType.ToString(), false, true);
                 document.Replace("Passport", enrollee.Anketa.Passport.PassportSeries + enrollee.Anketa.Passport.PassportNumber, false, true);
                 document.Replace("DateOfIssue", enrollee.Anketa.Passport.DateOfIssue.ToShortDateString(), false, true);
                 document.Replace("IssuedBy", enrollee.Anketa.Passport.IssuedBy, false, true);
                 document.Replace("IdentityNumber", enrollee.Anketa.Passport.IdentityNumber, false, true);
                 document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
-
                 document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\zav123.docx"), FileFormat.Docx);
 
                 return RedirectToAction("index");
