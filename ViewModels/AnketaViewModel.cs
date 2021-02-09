@@ -91,9 +91,25 @@ namespace StudentOffice.ViewModels
         ///// </summary>
         //public int? MotherId { get; set; }
         //public virtual Mother Mother { get; set; }
-        public Anketa Anketa { get; set; }
-        public virtual ICollection<Enrollee> Enrollees { get; set; }
 
-        public ICollection<DocumentType> DocumentTypes { get; set; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public Anketa Anketa { get; set; }
+        //public virtual ICollection<Enrollee> Enrollees { get; set; }
+
+        //public ICollection<DocumentType> DocumentTypes { get; set; }
     }
 }

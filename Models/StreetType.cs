@@ -1,19 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models
 {
-    public class StreetType
+    public enum StreetType
     {
-        public int StreetTypeId { get; set; }
-
-        [Required(ErrorMessage = "Не указан тип улицы")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Тип улицы")]
-        public string StreetTypeName { get; set; }
-        public virtual ICollection<Address> Addresses { get; set; }
+        [Display(Name = "Аллея")]
+        Alley = 1,
+        [Display(Name = "Бульвар")]
+        Boulevard,
+        [Display(Name = "Въезд")]
+        Entry,
+        [Display(Name = "Квартал")]
+        Quarter,
+        [Display(Name = "Микрорайон")]
+        Microdistrict,
+        [Display(Name = "Набережная")]
+        Embankment,
+        [Display(Name = "Переулок")]
+        Lane,
+        [Display(Name = "Площадь")]
+        Area,
+        [Display(Name = "Проезд")]
+        Travel,
+        [Display(Name = "Проспект")]
+        Avenue,
+        [Display(Name = "Станция")]
+        Station,
+        [Display(Name = "Территория")]
+        Territory,
+        [Display(Name = "Тракт")]
+        Tract,
+        [Display(Name = "Тупик")]
+        DeadEnd,
+        [Display(Name = "Улица")]
+        Outside,
+        [Display(Name = "Шоссе")]
+        Highway
     }
 }

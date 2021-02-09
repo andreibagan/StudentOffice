@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace StudentOffice.Models
 {
@@ -87,143 +88,180 @@ namespace StudentOffice.Models
                 });
             }
 
-
-            if (!context.StreetTypes.Any())
+            if (!context.Specialties.Any())
             {
-                await context.StreetTypes.AddRangeAsync(new List<StreetType>
+                await context.Specialties.AddRangeAsync(new List<Specialty>
                 {
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Аллея"
+                        Branch = Branch.Correspondence,
+                        Name = "Правоведение",
                     },
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Бульвар"
+                        Branch = Branch.Correspondence,
+                        Name = "Бухгалтерский учёт, анализ и контроль",
                     },
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Въезд"
+                        Branch = Branch.Daytime,
+                        Name = "Программное обеспечение информационных технологий",
                     },
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Квартал"
+                        Branch = Branch.Daytime,
+                        Name = "Операционная деятельность в логистике",
                     },
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Микрорайон"
+                        Branch = Branch.Daytime,
+                        Name = "Правоведение",
                     },
-                    new StreetType
+                    new Specialty
                     {
-                        StreetTypeName = "Набережная"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Переулок"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Площадь"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Проезд"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Станция"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Территория"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Тракт"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Тупик"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Улица"
-                    },
-                    new StreetType
-                    {
-                        StreetTypeName = "Шоссе"
+                        Branch = Branch.Daytime,
+                        Name = "Бухгалтерский учёт, анализ и контроль",
                     },
                 });
             }
 
-            if (!context.TypeLocalities.Any())
-            {
-                await context.TypeLocalities.AddRangeAsync(new List<TypeLocality>
-                {
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Агрогородок"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Город"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Городской поселок"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Деревня"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Курортный поселок"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Поселок"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Рабочий поселок"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Село"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Сельский населенный пункт"
-                    },
-                    new TypeLocality
-                    {
-                        TypeLocalityName = "Хутор"
-                    },
-                }); 
-            }
-            if (!context.TypeOfSpravkas.Any())
-            {
-                await context.AddRangeAsync(new List<TypeOfSpravka>
-                {
-                    new TypeOfSpravka
-                    {
-                        TypeOfSpravkaName = "Об обучении"
-                    },
-                    new TypeOfSpravka
-                    {
-                         TypeOfSpravkaName = "Военкомат"
-                    },
-                    new TypeOfSpravka
-                    {
-                         TypeOfSpravkaName = "Райсобес"
-                    },
-                    new TypeOfSpravka
-                    {
-                         TypeOfSpravkaName = "ЖКХ"
-                    },
-                });
-            }
-                await context.SaveChangesAsync();
+            await context.SaveChangesAsync();
+            //if (!context.StreetTypes.Any())
+            //{
+            //    await context.StreetTypes.AddRangeAsync(new List<StreetType>
+            //    {
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Аллея"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Бульвар"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Въезд"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Квартал"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Микрорайон"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Набережная"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Переулок"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Площадь"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Проезд"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Станция"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Территория"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Тракт"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Тупик"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Улица"
+            //        },
+            //        new StreetType
+            //        {
+            //            StreetTypeName = "Шоссе"
+            //        },
+            //    });
+            //}
+
+            //if (!context.TypeLocalities.Any())
+            //{
+            //    await context.TypeLocalities.AddRangeAsync(new List<TypeLocality>
+            //    {
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Агрогородок"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Город"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Городской поселок"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Деревня"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Курортный поселок"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Поселок"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Рабочий поселок"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Село"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Сельский населенный пункт"
+            //        },
+            //        new TypeLocality
+            //        {
+            //            TypeLocalityName = "Хутор"
+            //        },
+            //    }); 
+            //}
+            //if (!context.TypeOfSpravkas.Any())
+            //{
+            //    await context.AddRangeAsync(new List<TypeOfSpravka>
+            //    {
+            //        new TypeOfSpravka
+            //        {
+            //            TypeOfSpravkaName = "Об обучении"
+            //        },
+            //        new TypeOfSpravka
+            //        {
+            //             TypeOfSpravkaName = "Военкомат"
+            //        },
+            //        new TypeOfSpravka
+            //        {
+            //             TypeOfSpravkaName = "Райсобес"
+            //        },
+            //        new TypeOfSpravka
+            //        {
+            //             TypeOfSpravkaName = "ЖКХ"
+            //        },
+            //    });
+            //}
+
         }
     }
 }

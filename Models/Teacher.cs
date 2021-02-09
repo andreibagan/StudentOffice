@@ -10,5 +10,6 @@ namespace StudentOffice.Models
         public int TeacherId { get; set; }
 
         public User User { get; set; }
+        public virtual ICollection<Timetable> Timetables { get; set; }
     }
 }

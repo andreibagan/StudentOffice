@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StudentOffice.Models
 {
+    /// <summary>
+    /// Паспортные данные
+    /// </summary>
     public class DocumentType
     {
         public int DocumentTypeId { get; set; }
+
+        [Required(ErrorMessage = "Не указан тип документа")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Тип документа")]
         public string Name { get; set; }
-        public virtual ICollection<Passport> Passports { get; set; }
+        public virtual ICollection<Anketa> Anketas { get; set; }
     }
 }

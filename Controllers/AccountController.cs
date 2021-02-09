@@ -197,6 +197,7 @@ namespace StudentOffice.Controllers
 
             if (user == null)
             {
+                
                 return View("ResetPasswordConfirmation");
             }
 

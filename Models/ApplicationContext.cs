@@ -12,31 +12,18 @@ namespace StudentOffice.Models
         public DbSet<Timetable> Timetables { get; set; }
         public DbSet<TimeWindow> TimeWindows { get; set; }
         public DbSet<YearOfFormation> YearOfFormations { get; set; }
-        public DbSet<Accommodation> Accommodations { get; set; }
-        public DbSet<Education> Educations { get; set; }
-        public DbSet<EmploymentInformation> EmploymentInformations { get; set; }
-        public DbSet<Passport> Passports { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Spravka> Spravkas { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Enrollee> Enrollees { get; set; }
-        public DbSet<Father> Fathers { get; set; }
-        public DbSet<Mother> Mothers { get; set; }
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<StreetType> StreetTypes { get; set; }
-        public DbSet<Locality> Localities { get; set; }
-        public DbSet<TypeLocality> TypeLocalities { get; set; }
-        public DbSet<District> Districts { get; set; }
-        public DbSet<Area> Areas { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<TypeOfSpravka> TypeOfSpravkas { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

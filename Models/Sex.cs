@@ -5,7 +5,7 @@ namespace StudentOffice.Models
     public enum Sex
     {
         [Display(Name = "Мужской")]
-        Male,
+        Male = 1,
         [Display(Name = "Женский")]
         Female
     }

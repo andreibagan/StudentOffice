@@ -14,11 +14,13 @@ namespace StudentOffice.Models
         public virtual Discipline Discipline { get; set; }
         public int AudienceId { get; set; }
         public virtual Audience Audience { get; set; }
-        public int TimeWindowId { get; set; }
+        public int? TimeWindowId { get; set; }
         public virtual TimeWindow TimeWindow { get; set; }
-
-
         public int GroupId { get; set; }
         public virtual Group Group { get; set; }
+        public int SemesterId { get; set; }
+        public virtual Semester Semester { get; set; }
+        public int TeacherId { get; set; }
+        public virtual Teacher Teacher { get; set; }
     }
 }

@@ -9,9 +9,8 @@ namespace StudentOffice.Models
     public class SpravkaOrder
     {
         public int SpravkaOrderId { get; set; }
-
-        public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        public string GroupName { get { return User.Group.GroupName; } }
+        public virtual User User { get; set; }
         public int SpravkaId { get; set; }
         public virtual Spravka Spravka { get; set; }
 
