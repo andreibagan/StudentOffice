@@ -10,9 +10,9 @@ namespace StudentOffice.Models
     {
         public int DocumentTypeId { get; set; }
 
-        [Required(ErrorMessage = "Не указан тип документа")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Тип документа")]
+        //[Required(ErrorMessage = "Не указан тип документа")]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Тип документа")]
         public string Name { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
     }

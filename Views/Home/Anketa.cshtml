@@ -1,8 +1,8 @@
-﻿@*@model AnketaViewModel
+﻿@model AnketaViewModel
 
-@{
+@*@{
     ViewData["Title"] = "Anketa";
-}
+}*@
 
 <h2>Анкета</h2>
 <form method="post" asp-controller="Home" asp-action="Anketa">
@@ -17,7 +17,7 @@
         </div>
         <div>
             <label asp-for="Anketa.Name"></label><br />
-            <input asp-for="Anketa.Name"/>
+            <input asp-for="Anketa.Name" />
             <span asp-validation-for="Anketa.Name"></span>
         </div>
         <div>
@@ -46,10 +46,10 @@
             <span asp-validation-for="Anketa.Birthday"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Sex"></label><br/>
-            <input type="radio" asp-for="Anketa.Sex" checked="checked" value="0"/>
-            <label>Мужской</label><br/>
-            <input type="radio" asp-for="Anketa.Sex" value="1"/>
+            <label asp-for="Anketa.Sex"></label><br />
+            <input type="radio" asp-for="Anketa.Sex" checked="checked" value="1" />
+            <label>Мужской</label><br />
+            <input type="radio" asp-for="Anketa.Sex" value="2" />
             <label>Женский</label>
             <span asp-validation-for="Anketa.Sex"></span>
         </div>
@@ -58,217 +58,224 @@
     <div>
         <h4>Паспортные данные</h4>
         <div>
-            <label asp-for="Anketa.Passport.DocumentType"></label><br />
-            <select asp-for="Anketa.Passport.DocumentType" name="DocumnetTypeId">
-                @foreach (var item in Model.DocumentTypes)
-                {
-                    <option value="@item.DocumentTypeId">@item.Name</option>
-                }
-            </select>
-            <span asp-validation-for="Anketa.Passport.DocumentType"></span>
+            <label asp-for="Anketa.DocumentType.Name"></label><br />
+            <select asp-for="Anketa.DocumentTypeId">
+                    @foreach (var item in Model.DocumentTypes)
+                    {
+                        <option value="@item.DocumentTypeId">@item.Name</option>
+                    }
+                </select>
+            @*@Html.DropDownListFor(Model => Model.Anketa.DocumentTypeId, ViewBag.DocumentTypeId as SelectList)*@
+           @* <span asp-validation-for="Anketa.DocumentTypeId"></span>*@
         </div>
         <div>
-            <label asp-for="Anketa.Passport.IdentityNumber"></label><br />
-            <input asp-for="Anketa.Passport.IdentityNumber" />
-            <span asp-validation-for="Anketa.Passport.IdentityNumber"></span>
+            <label asp-for="Anketa.IdentityNumber"></label><br />
+            <input asp-for="Anketa.IdentityNumber" />
+            <span asp-validation-for="Anketa.IdentityNumber"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.PassportSeries"></label><br />
-            <input asp-for="Anketa.Passport.PassportSeries" />
-            <span asp-validation-for="Anketa.Passport.PassportSeries"></span>
+            <label asp-for="Anketa.PassportSeries"></label><br />
+            <input asp-for="Anketa.PassportSeries" />
+            <span asp-validation-for="Anketa.PassportSeries"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.PassportNumber"></label><br />
-            <input asp-for="Anketa.Passport.PassportNumber" />
-            <span asp-validation-for="Anketa.Passport.PassportNumber"></span>
+            <label asp-for="Anketa.PassportNumber"></label><br />
+            <input asp-for="Anketa.PassportNumber" />
+            <span asp-validation-for="Anketa.PassportNumber"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.DateOfIssue"></label><br />
-            <input type="date" asp-for="Anketa.Passport.DateOfIssue" />
-            <span asp-validation-for="Anketa.Passport.DateOfIssue"></span>
+            <label asp-for="Anketa.DateOfIssue"></label><br />
+            <input type="date" asp-for="Anketa.DateOfIssue" />
+            <span asp-validation-for="Anketa.DateOfIssue"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.DateOfValidity"></label><br />
-            <input type="date" asp-for="Anketa.Passport.DateOfValidity" />
-            <span asp-validation-for="Anketa.Passport.DateOfValidity"></span>
+            <label asp-for="Anketa.DateOfValidity"></label><br />
+            <input type="date" asp-for="Anketa.DateOfValidity" />
+            <span asp-validation-for="Anketa.DateOfValidity"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.IssuedBy"></label><br />
-            <input asp-for="Anketa.Passport.IssuedBy" />
-            <span asp-validation-for="Anketa.Passport.IssuedBy"></span>
+            <label asp-for="Anketa.IssuedBy"></label><br />
+            <input asp-for="Anketa.IssuedBy" />
+            <span asp-validation-for="Anketa.IssuedBy"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Passport.PlaceOfBirth"></label><br />
-            <input asp-for="Anketa.Passport.PlaceOfBirth" />
-            <span asp-validation-for="Anketa.Passport.PlaceOfBirth"></span>
+            <label asp-for="Anketa.PlaceOfBirth"></label><br />
+            <input asp-for="Anketa.PlaceOfBirth" />
+            <span asp-validation-for="Anketa.PlaceOfBirth"></span>
         </div>
     </div>
 
     <div>
         <h4>Сведения о месте проживания</h4>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.Postcode"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.Postcode" />
-            <span asp-validation-for="Anketa.Accommodation.Address.Postcode"></span>
+            <label asp-for="Anketa.Postcode"></label><br />
+            <input asp-for="Anketa.Postcode" />
+            <span asp-validation-for="Anketa.Postcode"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.Locality.District.Area.NameArea"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.Locality.District.Area.NameArea" />
-            <span asp-validation-for="Anketa.Accommodation.Address.Locality.District.Area.NameArea"></span>
+            <label asp-for="Anketa.Region"></label><br />
+            <select asp-for="Anketa.Region" asp-items="Html.GetEnumSelectList<Region>()"></select>
+            <span asp-validation-for="Anketa.Region"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.Locality.TypeLocality.TypeLocalityName"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.Locality.TypeLocality.TypeLocalityName" />
-            <span asp-validation-for="Anketa.Accommodation.Address.Locality.TypeLocality.TypeLocalityName"></span>
+            <label asp-for="Anketa.TypeOfSettlement"></label><br />
+            <select asp-for="Anketa.TypeOfSettlement" asp-items="Html.GetEnumSelectList<TypeOfSettlement>()"></select>
+            <span asp-validation-for="Anketa.TypeOfSettlement"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.Locality.Namelocality"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.Locality.Namelocality" />
-            <span asp-validation-for="Anketa.Accommodation.Address.Locality.Namelocality"></span>
+            <label asp-for="Anketa.NameOfSettlement"></label><br />
+            <input asp-for="Anketa.NameOfSettlement" />
+            <span asp-validation-for="Anketa.NameOfSettlement"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.StreetType"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.StreetType" />
-            <span asp-validation-for="Anketa.Accommodation.Address.StreetType"></span>
+            <label asp-for="Anketa.StreetType"></label><br />
+            <select asp-for="Anketa.StreetType" asp-items="Html.GetEnumSelectList<StreetType>()"></select>
+            <span asp-validation-for="Anketa.StreetType"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.StreetName"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.StreetName" />
-            <span asp-validation-for="Anketa.Accommodation.Address.StreetName"></span>
+            <label asp-for="Anketa.StreetName"></label><br />
+            <input asp-for="Anketa.StreetName" />
+            <span asp-validation-for="Anketa.StreetName"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.HouseNumber"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.HouseNumber" />
-            <span asp-validation-for="Anketa.Accommodation.Address.HouseNumber"></span>
+            <label asp-for="Anketa.HouseNumber"></label><br />
+            <input asp-for="Anketa.HouseNumber" />
+            <span asp-validation-for="Anketa.HouseNumber"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.HullNumber"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.HullNumber" />
-            <span asp-validation-for="Anketa.Accommodation.Address.HullNumber"></span>
+            <label asp-for="Anketa.HullNumber"></label><br />
+            <input asp-for="Anketa.HullNumber" />
+            <span asp-validation-for="Anketa.HullNumber"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.Address.ApartmentNumber"></label><br />
-            <input asp-for="Anketa.Accommodation.Address.ApartmentNumber" />
-            <span asp-validation-for="Anketa.Accommodation.Address.ApartmentNumber"></span>
+            <label asp-for="Anketa.ApartmentNumber"></label><br />
+            <input asp-for="Anketa.ApartmentNumber" />
+            <span asp-validation-for="Anketa.ApartmentNumber"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.HomePhone"></label><br />
-            <input asp-for="Anketa.Accommodation.HomePhone" />
-            <span asp-validation-for="Anketa.Accommodation.HomePhone"></span>
+            <label asp-for="Anketa.HomePhone"></label><br />
+            <input asp-for="Anketa.HomePhone" />
+            <span asp-validation-for="Anketa.HomePhone"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Accommodation.SocialBehavior"></label>
-            <input type="checkbox" asp-for="Anketa.Accommodation.SocialBehavior" spellcheck="false" />
-            <span asp-validation-for="Anketa.Accommodation.SocialBehavior"></span>
+            <label asp-for="Anketa.SocialBehavior"></label>
+            <input type="checkbox" asp-for="Anketa.SocialBehavior" spellcheck="false" />
+            <span asp-validation-for="Anketa.SocialBehavior"></span>
         </div>
     </div>
 
     <div>
         <h4>Сведения о родителях</h4>
         <div>
-            <label asp-for="Anketa.Father.KinshipType"></label><br />
-            <input asp-for="Anketa.Father.KinshipType" />
-            <span asp-validation-for="Anketa.Father.KinshipType"></span>
+            <label asp-for="Anketa.KinshipTypeFather"></label><br />
+            <select asp-for="Anketa.KinshipTypeFather" asp-items="Html.GetEnumSelectList<KinshipTypeFather>()"></select>
+            <span asp-validation-for="Anketa.KinshipTypeFather"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Father.Surname"></label><br />
-            <input asp-for="Anketa.Father.Surname" />
-            <span asp-validation-for="Anketa.Father.Surname"></span>
+            <label asp-for="Anketa.SurnameFather"></label><br />
+            <input asp-for="Anketa.SurnameFather" />
+            <span asp-validation-for="Anketa.SurnameFather"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Father.Name"></label><br />
-            <input asp-for="Anketa.Father.Name" />
-            <span asp-validation-for="Anketa.Father.Name"></span>
+            <label asp-for="Anketa.NameFather"></label><br />
+            <input asp-for="Anketa.NameFather" />
+            <span asp-validation-for="Anketa.NameFather"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Father.Middlename"></label><br />
-            <input asp-for="Anketa.Father.Middlename" />
-            <span asp-validation-for="Anketa.Father.Middlename"></span>
+            <label asp-for="Anketa.MiddlenameFather"></label><br />
+            <input asp-for="Anketa.MiddlenameFather" />
+            <span asp-validation-for="Anketa.MiddlenameFather"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Father.Address"></label><br />
-            <input asp-for="Anketa.Father.Address" />
-            <span asp-validation-for="Anketa.Father.Address"></span>
+            <label asp-for="Anketa.AddressFather"></label><br />
+            <input asp-for="Anketa.AddressFather" />
+            <span asp-validation-for="Anketa.AddressFather"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Mother.KinshipType"></label><br />
-            <input asp-for="Anketa.Mother.KinshipType" />
-            <span asp-validation-for="Anketa.Mother.KinshipType"></span>
+            <label asp-for="Anketa.KinshipTypeMother"></label><br />
+            <select asp-for="Anketa.KinshipTypeMother" asp-items="Html.GetEnumSelectList<KinshipTypeMother>()"></select>
+            <span asp-validation-for="Anketa.KinshipTypeMother"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Mother.Surname"></label><br />
-            <input asp-for="Anketa.Mother.Surname" />
-            <span asp-validation-for="Anketa.Mother.Surname"></span>
+            <label asp-for="Anketa.SurnameMother"></label><br />
+            <input asp-for="Anketa.SurnameMother" />
+            <span asp-validation-for="Anketa.SurnameMother"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Mother.Name"></label><br />
-            <input asp-for="Anketa.Mother.Name" />
-            <span asp-validation-for="Anketa.Mother.Name"></span>
+            <label asp-for="Anketa.NameMother"></label><br />
+            <input asp-for="Anketa.NameMother" />
+            <span asp-validation-for="Anketa.NameMother"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Mother.Middlename"></label><br />
-            <input asp-for="Anketa.Mother.Middlename" />
-            <span asp-validation-for="Anketa.Mother.Middlename"></span>
+            <label asp-for="Anketa.MiddlenameMother"></label><br />
+            <input asp-for="Anketa.MiddlenameMother" />
+            <span asp-validation-for="Anketa.MiddlenameMother"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Mother.Address"></label><br />
-            <input asp-for="Anketa.Mother.Address" />
-            <span asp-validation-for="Anketa.Mother.Address"></span>
+            <label asp-for="Anketa.AddressMother"></label><br />
+            <input asp-for="Anketa.AddressMother" />
+            <span asp-validation-for="Anketa.AddressMother"></span>
         </div>
     </div>
 
     <div>
         <h4>Сведения об образовании</h4>
         <div>
-            <label asp-for="Anketa.Education.EducationLevel"></label><br />
-            <input asp-for="Anketa.Education.EducationLevel" />
-            <span asp-validation-for="Anketa.Education.EducationLevel"></span>
+            <label asp-for="Anketa.EducationLevel"></label><br />
+            <select asp-for="Anketa.EducationLevel" asp-items="Html.GetEnumSelectList<EducationLevel>()"></select>
+            <span asp-validation-for="Anketa.EducationLevel"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Education.Institution"></label><br />
-            <input asp-for="Anketa.Education.Institution" />
-            <span asp-validation-for="Anketa.Education.Institution"></span>
+            <label asp-for="Anketa.Institution"></label><br />
+            <input asp-for="Anketa.Institution" />
+            <span asp-validation-for="Anketa.Institution"></span>
         </div>
         <div>
-            <label asp-for="Anketa.Education.YearOfEnding"></label><br />
-            <input type="date" asp-for="Anketa.Education.YearOfEnding" />
-            <span asp-validation-for="Anketa.Education.YearOfEnding"></span>
+            <label asp-for="Anketa.YearOfEnding"></label><br />
+            <input type="date" asp-for="Anketa.YearOfEnding" />
+            <span asp-validation-for="Anketa.YearOfEnding"></span>
         </div>
     </div>
 
     <div>
         <h4>Специальность</h4>
         <div>
-            <label asp-for="Anketa.Specialty.Branch"></label><br />
-            <input asp-for="Anketa.Specialty.Branch" />
-            <span asp-validation-for="Anketa.Specialty.Branch"></span>
+            @*<label asp-for="Anketa.Specialty.Branch"></label><br />
+            <select asp-for="Anketa.Specialty.Branch" asp-items="Html.GetEnumSelectList<Branch>()"></select>
+            <span asp-validation-for="Anketa.Specialty.Branch"></span>*@
         </div>
         <div>
-            <label asp-for="Anketa.Specialty.SpecialtyName"></label><br />
-            <input asp-for="Anketa.Specialty.SpecialtyName" />
-            <span asp-validation-for="Anketa.Specialty.SpecialtyName"></span>
+            <label asp-for="Anketa.Specialty.Name"></label><br />
+            <select asp-for="Anketa.SpecialtyId">
+                @foreach (var item in Model.Specialties)
+                {
+                    <option value="@item.SpecialtyId">@item.Name</option>
+                }
+            </select>
+            @*@Html.DropDownListFor(Model => Model.Anketa.SpecialtyId, ViewBag.SpecialtyId as SelectList)*@
+            @*<span asp-validation-for="Anketa.SpecialtyId"></span>*@
         </div>
     </div>
 
     <div>
         <h4>
-            Сведения о трудовой деятельности<br/>
+            Сведения о трудовой деятельности<br />
             (заполняется только учащимися заочного отделения)
         </h4>
         <div>
-            <label asp-for="Anketa.EmploymentInformation.PlaceOfWorkAndPosition"></label><br />
-            <input asp-for="Anketa.EmploymentInformation.PlaceOfWorkAndPosition" />
-            <span asp-validation-for="Anketa.EmploymentInformation.PlaceOfWorkAndPosition"></span>
+            <label asp-for="Anketa.PlaceOfWorkAndPosition"></label><br />
+            <input asp-for="Anketa.PlaceOfWorkAndPosition" />
+            <span asp-validation-for="Anketa.PlaceOfWorkAndPosition"></span>
         </div>
         <div>
-            <label asp-for="Anketa.EmploymentInformation.SeniorityGeneral"></label><br />
-            <input asp-for="Anketa.EmploymentInformation.SeniorityGeneral" />
-            <span asp-validation-for="Anketa.EmploymentInformation.SeniorityGeneral"></span>
+            <label asp-for="Anketa.SeniorityGeneral"></label><br />
+            <input asp-for="Anketa.SeniorityGeneral" />
+            <span asp-validation-for="Anketa.SeniorityGeneral"></span>
         </div>
         <div>
-            <label asp-for="Anketa.EmploymentInformation.SeniorityProfileSpecialty"></label><br />
-            <input asp-for="Anketa.EmploymentInformation.SeniorityProfileSpecialty" />
-            <span asp-validation-for="Anketa.EmploymentInformation.SeniorityProfileSpecialty"></span>
+            <label asp-for="Anketa.SeniorityProfileSpecialty"></label><br />
+            <input asp-for="Anketa.SeniorityProfileSpecialty" />
+            <span asp-validation-for="Anketa.SeniorityProfileSpecialty"></span>
         </div>
     </div>
 
@@ -276,4 +283,4 @@
         <input type="submit" value="Отправить" />
     </div>
 
-</form>*@
+</form>

@@ -27,6 +27,11 @@ namespace StudentOffice.Models
         [Display(Name = "Название организации, для которой изготавливается справка")]
         public string OrganizationName { get; set; }
 
+        [Required(ErrorMessage = "Не указана группа")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Группа")]
+        public string Group { get; set; }
+
         [DataType(DataType.Text)]
         [Display(Name = "Дополнительная информация")]
         public string AdditionalInformation { get; set; }

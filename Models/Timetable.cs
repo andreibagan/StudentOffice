@@ -20,7 +20,6 @@ namespace StudentOffice.Models
         public virtual Group Group { get; set; }
         public int SemesterId { get; set; }
         public virtual Semester Semester { get; set; }
-        public int TeacherId { get; set; }
-        public virtual Teacher Teacher { get; set; }
+        public User User { get; set; }
     }
 }

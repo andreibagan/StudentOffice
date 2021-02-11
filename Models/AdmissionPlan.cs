@@ -11,7 +11,9 @@ namespace StudentOffice.Models
     public class AdmissionPlan
     {
         public int AdmissionPlanId { get; set; }
-        public string Name { get; set; }
+        public TypeAdmission TypeAdmission { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
         public int SelectionСommitteeId { get; set; }
         public virtual SelectionСommittee SelectionСommittee { get; set; }
         public virtual ICollection<MainPlan> MainPlans { get; set; }

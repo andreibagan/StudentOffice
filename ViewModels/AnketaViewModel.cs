@@ -107,9 +107,10 @@ namespace StudentOffice.ViewModels
 
 
 
-        //public Anketa Anketa { get; set; }
-        //public virtual ICollection<Enrollee> Enrollees { get; set; }
+        public Anketa Anketa { get; set; }
 
-        //public ICollection<DocumentType> DocumentTypes { get; set; }
+        public IEnumerable<DocumentType> DocumentTypes { get; set; }
+        public IEnumerable<Specialty> Specialties { get; set; }
+        //TODO: ?
     }
 }

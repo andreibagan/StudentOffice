@@ -209,11 +209,11 @@ namespace StudentOffice.Models
         [Display(Name = "Стаж(по профилю избранной специальности)")]
         public string SeniorityProfileSpecialty { get; set; }
 
-        public int SpecialtyId { get; set; }
+        public int? SpecialtyId { get; set; }
         public virtual Specialty Specialty { get; set; }
 
-        public int DocumentTypeId { get; set; }
+        public int? DocumentTypeId { get; set; }
         public virtual DocumentType DocumentType { get; set; }
-        public virtual User User { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -32,7 +32,7 @@
         </div>
         <div>
             <label asp-for="Spravka.TypeOfSpravka.TypeOfSpravkaName"></label><br />
-            <select asp-for="Spravka.TypeOfSpravkaId" name="model.Spravka.TypeOfSpravkaId">
+            <select asp-for="Spravka.TypeOfSpravkaId">
                 <option value="0">Не выбрано</option>
                 @foreach (var item in Model.TypeOfSpravkas)
                 {
@@ -41,7 +41,17 @@
             </select>
             <span asp-validation-for="Spravka.TypeOfSpravkaId"></span>
         </div>
-
+        <div>
+            <label asp-for="Spravka.Group"></label><br />
+            <select asp-for="Spravka.Group">
+                <option value="Не выбрано">Не выбрано</option>
+                @foreach (var item in Model.Groups)
+                {
+                    <option value="@item.GroupName">@item.GroupName</option>
+                }
+            </select>
+            <span asp-validation-for="Spravka.Group"></span>
+        </div>
         <div>
             <label asp-for="Spravka.AdditionalInformation"></label><br />
             <input asp-for="Spravka.AdditionalInformation" />

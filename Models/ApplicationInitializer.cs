@@ -125,6 +125,49 @@ namespace StudentOffice.Models
                 });
             }
 
+            if (!context.TypeOfSpravkas.Any())
+            {
+                await context.TypeOfSpravkas.AddRangeAsync(new List<TypeOfSpravka>
+                {
+                    new TypeOfSpravka
+                    {
+                        TypeOfSpravkaName = "Об обучении"
+                    },
+                    new TypeOfSpravka
+                    {
+                         TypeOfSpravkaName = "Военкомат"
+                    },
+                    new TypeOfSpravka
+                    {
+                         TypeOfSpravkaName = "Райсобес"
+                    },
+                    new TypeOfSpravka
+                    {
+                         TypeOfSpravkaName = "ЖКХ"
+                    },
+                });
+            }
+
+            if (!context.Groups.Any())
+            {
+                await context.Groups.AddRangeAsync(new List<Group>
+                {
+                    new Group
+                    {
+                        GroupName = "409",
+                        YearOfFormation = new DateTime(2000, 10, 3),
+                        ExpirationDate = new DateTime(2004, 10, 3),
+                    },
+                    new Group
+                    {
+                        GroupName = "309",
+                        YearOfFormation = new DateTime(2001, 10, 3),
+                        ExpirationDate = new DateTime(2005, 11, 3),
+                    },
+
+                });
+            }
+
             await context.SaveChangesAsync();
             //if (!context.StreetTypes.Any())
             //{
@@ -239,28 +282,7 @@ namespace StudentOffice.Models
             //        },
             //    }); 
             //}
-            //if (!context.TypeOfSpravkas.Any())
-            //{
-            //    await context.AddRangeAsync(new List<TypeOfSpravka>
-            //    {
-            //        new TypeOfSpravka
-            //        {
-            //            TypeOfSpravkaName = "Об обучении"
-            //        },
-            //        new TypeOfSpravka
-            //        {
-            //             TypeOfSpravkaName = "Военкомат"
-            //        },
-            //        new TypeOfSpravka
-            //        {
-            //             TypeOfSpravkaName = "Райсобес"
-            //        },
-            //        new TypeOfSpravka
-            //        {
-            //             TypeOfSpravkaName = "ЖКХ"
-            //        },
-            //    });
-            //}
+           
 
         }
     }

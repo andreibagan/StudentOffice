@@ -10,6 +10,6 @@ namespace StudentOffice.ViewModels
     {
         public Spravka Spravka { get; set; }
         public IEnumerable<TypeOfSpravka> TypeOfSpravkas { get; set; }
-
+        public IEnumerable<Group> Groups { get; set; }
     }
 }

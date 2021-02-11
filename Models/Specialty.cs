@@ -10,14 +10,14 @@ namespace StudentOffice.Models
     {
         public int SpecialtyId { get; set; }
 
-        [Required(ErrorMessage = "Не указано отделение")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Отделение")]
+        //[Required(ErrorMessage = "Не указано отделение")]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Отделение")]
         public Branch Branch { get; set; }
 
-        [Required(ErrorMessage = "Не указана специальность")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Специальность")]
+        //[Required(ErrorMessage = "Не указана специальность")]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Специальность")]
         public string Name { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
         public virtual ICollection<MainPlan> MainPlans { get; set; }

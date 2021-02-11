@@ -11,19 +11,16 @@ namespace StudentOffice.Models
         public DbSet<Group> Groups { get; set; }
         public DbSet<Timetable> Timetables { get; set; }
         public DbSet<TimeWindow> TimeWindows { get; set; }
-        public DbSet<YearOfFormation> YearOfFormations { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Spravka> Spravkas { get; set; }
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<TypeOfSpravka> TypeOfSpravkas { get; set; }
         //public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
