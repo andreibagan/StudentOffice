@@ -1,4 +1,4 @@
-﻿namespace StudentOffice.Models
+﻿namespace StudentOffice.Models.DataBase
 {
     /// <summary>
     /// Главный план

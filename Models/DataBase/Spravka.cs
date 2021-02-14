@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     public class Spravka
     {

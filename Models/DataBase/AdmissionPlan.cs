@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     /// <summary>
     /// План приема

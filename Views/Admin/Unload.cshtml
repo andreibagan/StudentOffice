@@ -1,0 +1,65 @@
+﻿@*@model IEnumerable<StudentOffice.Models.User>
+
+    <h2 class="text-center" style="margin-bottom: 30px">Меню администратора</h2>
+
+    <form>
+
+        <table class="table">
+            <tr>
+                <th>Логин</th>
+                <th>Пароль</th>
+                <th>Роль</th>
+            </tr>
+            @foreach (User item in Model)
+            {
+                <tr>
+                    <td>@item.Email</td>
+                    <td>@item.Password</td>
+                    <td>@item.Role?.Name</td>
+                </tr>
+
+            }
+        </table>
+        <select>
+            @foreach (User item in Model)
+            {
+
+                <option>@item.Email</option>
+                <option>@item.Password</option>
+                <option>@item.Role?.Name</option>
+
+
+            }
+        </select>
+
+    </form>*@
+
+@model UnloadViewModel
+@using Microsoft.AspNetCore.Identity
+
+<h2>Выгрузка пользователей</h2>
+
+<form method="post" asp-action="Unload" asp-controller="Admin" asp-anti-forgery="true">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div class="form-group">
+            <label asp-for="Path"></label>
+            <input type="url" asp-for="Path" id="fileUpload" accept=".json" />
+            <span asp-validation-for="Path"></span>
+        </div>
+        <div class="form-group">
+            @foreach (IdentityRole role in Model.Roles)
+            {
+                <input type="checkbox" name="roles" value="@role.Name"/>
+                @role.Name<br />
+            }
+        </div>
+        <div class="form-group">
+            <label asp-for="IsConfirmedEmail"></label>
+            <input type="checkbox" asp-for="IsConfirmedEmail" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Выгрузить" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>

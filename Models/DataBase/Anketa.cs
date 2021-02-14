@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 { 
     /// <summary>
     /// Класс 'Анкета'. Нужна для 

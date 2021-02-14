@@ -1,18 +1,17 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using StudentOffice.Models;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Spire.Doc;
-using System;
+using StudentOffice.Models;
+using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Text.Json;
 
 namespace StudentOffice.Controllers
 {

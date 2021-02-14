@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using StudentOffice.Models;
+using StudentOffice.Models.DataBase;
 
 namespace StudentOffice
 {

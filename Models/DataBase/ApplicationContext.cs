@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     public class ApplicationContext : IdentityDbContext<User>
     {

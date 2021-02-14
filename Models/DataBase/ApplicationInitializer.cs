@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     public class ApplicationInitializer
     {
@@ -37,11 +37,6 @@ namespace StudentOffice.Models
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
                 }
-
-                await context.Students.AddAsync(new Student
-                {
-                    User = admin
-                });
             }
 
             if(!context.DocumentTypes.Any())

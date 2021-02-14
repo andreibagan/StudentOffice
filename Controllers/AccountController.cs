@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using StudentOffice.Models;
+using StudentOffice.Models.DataBase;
 using StudentOffice.Services;
 using StudentOffice.ViewModels;
 

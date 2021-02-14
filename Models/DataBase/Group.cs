@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     public class Group
     {

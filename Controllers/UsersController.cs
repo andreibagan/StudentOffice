@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using StudentOffice.Models;
+using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
 
 namespace StudentOffice.Controllers

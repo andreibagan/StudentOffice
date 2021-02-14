@@ -1,4 +1,25 @@
-{
-  "Email": "andrei.bagan2@mail.ru",
-  "Password": "qwerty123"
-}
+[
+  {
+
+    "Email": "andrei1@mail.ru",
+    "Password": "qwerty1"
+  },
+
+  {
+
+    "Email": "andrei2@mail.ru",
+    "Password": "qwerty12"
+  },
+
+  {
+
+    "Email": "andrei3@mail.ru",
+    "Password": "qwerty123"
+  },
+
+  {
+
+    "Email": "andrei4@mail.ru",
+    "Password": "qwerty1234"
+  }
+]

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace StudentOffice.Models
+namespace StudentOffice.Models.DataBase
 {
     public enum EducationLevel
     {
