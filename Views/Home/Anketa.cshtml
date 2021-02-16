@@ -1,8 +1,7 @@
 ﻿@model AnketaViewModel
-
 @*@{
-    ViewData["Title"] = "Anketa";
-}*@
+        ViewData["Title"] = "Anketa";
+    }*@
 
 <h2>Анкета</h2>
 <form method="post" asp-controller="Home" asp-action="Anketa">
@@ -10,6 +9,7 @@
 
     <div>
         <h4>Основные сведения</h4>
+        <input type="hidden" asp-for="Anketa.AnketaId" />
         <div>
             <label asp-for="Anketa.Surname"></label><br />
             <input asp-for="Anketa.Surname" />
@@ -60,13 +60,11 @@
         <div>
             <label asp-for="Anketa.DocumentType.Name"></label><br />
             <select asp-for="Anketa.DocumentTypeId">
-                    @foreach (var item in Model.DocumentTypes)
-                    {
-                        <option value="@item.DocumentTypeId">@item.Name</option>
-                    }
-                </select>
-            @*@Html.DropDownListFor(Model => Model.Anketa.DocumentTypeId, ViewBag.DocumentTypeId as SelectList)*@
-           @* <span asp-validation-for="Anketa.DocumentTypeId"></span>*@
+                @foreach (var item in Model.DocumentTypes)
+                {
+                    <option value="@item.DocumentTypeId">@item.Name</option>
+                }
+            </select>
         </div>
         <div>
             <label asp-for="Anketa.IdentityNumber"></label><br />
@@ -241,8 +239,8 @@
         <h4>Специальность</h4>
         <div>
             @*<label asp-for="Anketa.Specialty.Branch"></label><br />
-            <select asp-for="Anketa.Specialty.Branch" asp-items="Html.GetEnumSelectList<Branch>()"></select>
-            <span asp-validation-for="Anketa.Specialty.Branch"></span>*@
+                <select asp-for="Anketa.Specialty.Branch" asp-items="Html.GetEnumSelectList<Branch>()"></select>
+                <span asp-validation-for="Anketa.Specialty.Branch"></span>*@
         </div>
         <div>
             <label asp-for="Anketa.Specialty.Name"></label><br />
@@ -252,8 +250,6 @@
                     <option value="@item.SpecialtyId">@item.Name</option>
                 }
             </select>
-            @*@Html.DropDownListFor(Model => Model.Anketa.SpecialtyId, ViewBag.SpecialtyId as SelectList)*@
-            @*<span asp-validation-for="Anketa.SpecialtyId"></span>*@
         </div>
     </div>
 

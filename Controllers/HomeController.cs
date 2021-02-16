@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -19,14 +21,16 @@ namespace StudentOffice.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment _appEnvironment;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationContext context, IWebHostEnvironment appEnvironment)
+        public HomeController(ILogger<HomeController> logger, ApplicationContext context, IWebHostEnvironment appEnvironment, UserManager<User> userManager)
         {
             _logger = logger;
             _context = context;
             _appEnvironment = appEnvironment;
+            _userManager = userManager;
         }
 
         //[AllowAnonymous]
@@ -36,19 +40,35 @@ namespace StudentOffice.Controllers
         {
             //string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             //return Content($"Ваша роль: {role}");
+           
             return View();
         }
 
         [HttpGet]
-        public async Task<IActionResult> Anketa()
+        public async Task<IActionResult> Anketa(string id)
         {
-            //ViewBag.DocumentTypeId = new SelectList(await _context.DocumentTypes.ToListAsync(), "DocumentTypeId", "Name");
-            //ViewBag.SpecialtyId = new SelectList(await _context.Specialties.ToListAsync(), "SpecialtyId", "Name");
-
             var documentTypes = await _context.DocumentTypes.ToListAsync();
             var specialties = await _context.Specialties.ToListAsync();
 
             AnketaViewModel model = new AnketaViewModel { DocumentTypes = documentTypes, Specialties = specialties };
+
+            if (id != null && User.IsInRole("admin"))
+            {
+                User user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.Id == id);
+
+                if (user.Anketa != null)
+                {
+                    model.Anketa = user.Anketa;
+                }
+            }
+            else
+            {
+                Anketa anketa = _context.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name).Result.Anketa;
+                if (anketa != null)
+                {
+                    model.Anketa = anketa;
+                }
+            }
 
             return View(model);
         }
@@ -58,6 +78,60 @@ namespace StudentOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+                Anketa anketa = await _context.Anketas.FindAsync(model.Anketa.AnketaId);
+
+                if (anketa != null)
+                {
+                    anketa.AddressFather = model.Anketa.AddressFather;
+                    anketa.AddressMother = model.Anketa.AddressMother;
+                    anketa.ApartmentNumber = model.Anketa.ApartmentNumber;
+                    anketa.Birthday = model.Anketa.Birthday;
+                    anketa.DateOfIssue = model.Anketa.DateOfIssue;
+                    anketa.DateOfValidity = model.Anketa.DateOfValidity;
+                    anketa.DocumentTypeId = model.Anketa.DocumentTypeId;
+                    anketa.EducationLevel = model.Anketa.EducationLevel;
+                    anketa.HomePhone = model.Anketa.HomePhone;
+                    anketa.HouseNumber = model.Anketa.HouseNumber;
+                    anketa.HullNumber = model.Anketa.HullNumber;
+                    anketa.IdentityNumber = model.Anketa.IdentityNumber;
+                    anketa.Institution = model.Anketa.Institution;
+                    anketa.IssuedBy = model.Anketa.IssuedBy;
+                    anketa.KinshipTypeFather = model.Anketa.KinshipTypeFather;
+                    anketa.KinshipTypeMother = model.Anketa.KinshipTypeMother;
+                    anketa.Middlename = model.Anketa.Middlename;
+                    anketa.MiddlenameFather = model.Anketa.MiddlenameFather;
+                    anketa.MiddlenameMother = model.Anketa.MiddlenameMother;
+                    anketa.MiddlenameR = model.Anketa.MiddlenameR;
+                    anketa.Name = model.Anketa.Name;
+                    anketa.NameFather = model.Anketa.NameFather;
+                    anketa.NameMother = model.Anketa.NameMother;
+                    anketa.NameOfSettlement = model.Anketa.NameOfSettlement;
+                    anketa.NameR = model.Anketa.NameR;
+                    anketa.PassportNumber = model.Anketa.PassportNumber;
+                    anketa.PassportSeries = model.Anketa.PassportSeries;
+                    anketa.PlaceOfBirth = model.Anketa.PlaceOfBirth;
+                    anketa.PlaceOfWorkAndPosition = model.Anketa.PlaceOfWorkAndPosition;
+                    anketa.Postcode = model.Anketa.Postcode;
+                    anketa.Region = model.Anketa.Region;
+                    anketa.SeniorityGeneral = model.Anketa.SeniorityGeneral;
+                    anketa.SeniorityProfileSpecialty = model.Anketa.SeniorityProfileSpecialty;
+                    anketa.Sex = model.Anketa.Sex;
+                    anketa.SocialBehavior = model.Anketa.SocialBehavior;
+                    anketa.SpecialtyId = model.Anketa.SpecialtyId;
+                    anketa.StreetName = model.Anketa.StreetName;
+                    anketa.StreetType = model.Anketa.StreetType;
+                    anketa.Surname = model.Anketa.Surname;
+                    anketa.SurnameFather = model.Anketa.AddressFather;
+                    anketa.SurnameMother = model.Anketa.SurnameMother;
+                    anketa.SurnameR = model.Anketa.SurnameR;
+                    anketa.TypeOfSettlement = model.Anketa.TypeOfSettlement;
+                    anketa.YearOfEnding = model.Anketa.YearOfEnding;
+
+                    _context.Anketas.Update(anketa);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Home");
+                }
 
                 User user = await _context.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
 
@@ -119,6 +193,7 @@ namespace StudentOffice.Controllers
         [HttpPost]
         public async Task<IActionResult> Spravka(SpravkaViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 User user = await _context.Users.FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
@@ -244,6 +319,23 @@ namespace StudentOffice.Controllers
              
             return Content("Объект был успешно сериализован");
         }
+
+        //public void Reser()
+        //{
+        //    using (var client = new WebClient())
+        //    {
+        //        string html = client.DownloadString("https://google.com");
+
+
+        //        using (FileStream fstream = new FileStream($"google.html", FileMode.OpenOrCreate))
+        //        {
+        //            // преобразуем строку в байты
+        //            byte[] array = System.Text.Encoding.Default.GetBytes(html);
+        //            // запись массива байтов в файл
+        //            fstream.Write(array, 0, array.Length);
+        //        }
+        //    }
+        //}
     }
 }
 

@@ -12,15 +12,36 @@ namespace StudentOffice.Controllers
 {
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;
+        private readonly ApplicationContext _context;
 
-        public UsersController(UserManager<User> userManager)
+        public UsersController(UserManager<User> userManager, ApplicationContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index() => View(await _userManager.Users.ToListAsync());
+        public async Task<IActionResult> Index(int? groupId)
+        {
+            List<User> users;
+            List<GroupModel> groups = await _context.Groups.Select(i => new GroupModel { GroupId = i.GroupId, GroupName = i.GroupName }).ToListAsync();
+
+            groups.Insert(0, new GroupModel { GroupId = 0, GroupName = "Все" });
+
+            if (groupId != null && groupId > 0)
+            {
+                users = await _userManager.Users.Include(i => i.Group).Where(i => i.Group.GroupId == groupId).ToListAsync();
+            }
+            else
+            {
+                users = await _userManager.Users.Include(i => i.Group).ToListAsync();
+            }
+
+            UserViewModel model = new UserViewModel { Users = users, Groups = groups };
+
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult Create() => View();
