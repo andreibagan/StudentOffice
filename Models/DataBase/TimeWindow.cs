@@ -8,6 +8,6 @@ namespace StudentOffice.Models.DataBase
         public string TimeWindowName { get; set; }
         public bool FirstHalf { get; set; }
         public bool SecondHalf { get; set; }
-        public ICollection<Timetable> Timetables { get; set; }
+        public ICollection<Couple> Couples { get; set; }
     }
 }

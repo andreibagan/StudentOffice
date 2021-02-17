@@ -6,6 +6,6 @@ namespace StudentOffice.Models.DataBase
     {
         public int SemesterId { get; set; }
         public int SemesterNumber { get; set; }
-        public virtual ICollection<Timetable> Timetables { get; set; }
+        public virtual ICollection<TimeTable> TimeTables { get; set; }
     }
 }

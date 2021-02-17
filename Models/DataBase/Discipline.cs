@@ -8,6 +8,6 @@ namespace StudentOffice.Models.DataBase
         public string DisciplineName { get; set; }
         public string DisciplineShortName { get; set; }
 
-        public virtual ICollection<Timetable> Timetables { get; set; }
+        public virtual ICollection<Couple> Couples { get; set; }
     }
 }

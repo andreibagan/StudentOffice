@@ -9,9 +9,10 @@ namespace StudentOffice.Models.DataBase
     public class User : IdentityUser
     {
         public int? GroupId { get; set; }
+        public string FullName { get; set; }
         public virtual Group Group { get; set; }
         public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
-        public virtual ICollection<Timetable> Timetables { get; set; }
+        public virtual ICollection<Couple> Couples { get; set; }
         public int? AnketaId { get; set; }
         public virtual Anketa Anketa { get; set; }
         public string GetFullNameMother

@@ -8,6 +8,6 @@ namespace StudentOffice.Models.DataBase
         public int AudienceNumber { get; set; }
         public string AudienceName { get; set; }
 
-        public virtual ICollection<Timetable> Timetables { get; set; }
+        public virtual ICollection<Couple> Couples { get; set; }
     }
 }

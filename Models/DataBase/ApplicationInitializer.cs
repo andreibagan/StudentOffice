@@ -37,9 +37,51 @@ namespace StudentOffice.Models.DataBase
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
                 }
+
+                User user1 = new User { Email = "Apetenok@mail.ru", UserName = "Apetenok@mail.ru", FullName = "Апетенок О.Н.", EmailConfirmed = true };
+                IdentityResult result1 = await userManager.CreateAsync(user1, "qwerty123");
+                if (result1.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user1, "преподаватель");
+                }
+
+                User user2 = new User { Email = "Ciganok@mail.ru", UserName = "Ciganok@mail.ru", FullName = "Цыганок О.Ч.", EmailConfirmed = true };
+                IdentityResult result2 = await userManager.CreateAsync(user2, "qwerty123");
+                if (result2.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user2, "преподаватель");
+                }
+
+                User user3 = new User { Email = "Skadorva@mail.ru", UserName = "Skadorva@mail.ru", FullName = "Скадорва Е.О.", EmailConfirmed = true };
+                IdentityResult result3 = await userManager.CreateAsync(user3, "qwerty123");
+                if (result3.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user3, "преподаватель");
+                }
+
+                User user4 = new User { Email = "Vasilevich@mail.ru", UserName = "Vasilevich@mail.ru", FullName = "Василевич А.Е.", EmailConfirmed = true };
+                IdentityResult result4 = await userManager.CreateAsync(user4, "qwerty123");
+                if (result4.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user4, "преподаватель");
+                }
+
+                User user5 = new User { Email = "Manuk@mail.ru", UserName = "Manuk@mail.ru", FullName = "Манюк М.Г.", EmailConfirmed = true };
+                IdentityResult result5 = await userManager.CreateAsync(user5, "qwerty123");
+                if (result5.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user5, "преподаватель");
+                }
+
+                User user6 = new User { Email = "Klincevich@mail.ru", UserName = "Klincevich@mail.ru", FullName = "Клинцевич А.И.", EmailConfirmed = true };
+                IdentityResult result6 = await userManager.CreateAsync(user6, "qwerty123");
+                if (result6.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user6, "преподаватель");
+                }
             }
 
-            if(!context.DocumentTypes.Any())
+            if (!context.DocumentTypes.Any())
             {
                 await context.DocumentTypes.AddRangeAsync(new List<DocumentType>
                 {
@@ -160,6 +202,169 @@ namespace StudentOffice.Models.DataBase
                         ExpirationDate = new DateTime(2005, 11, 3),
                     },
 
+                    new Group
+                    {
+                        GroupName = "305",
+                        YearOfFormation = new DateTime(2000, 10, 3),
+                        ExpirationDate = new DateTime(2004, 10, 3),
+                    },
+                });
+            }
+
+            if (!context.Semesters.Any())
+            {
+                await context.Semesters.AddRangeAsync(new List<Semester>
+                {
+                    new Semester
+                    {
+                        SemesterNumber = 1
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 2
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 3
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 4
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 5
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 6
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 7
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 8
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 9
+                    },
+                    new Semester
+                    {
+                        SemesterNumber = 10
+                    },
+
+                });
+            }
+
+            if (!context.Audiences.Any())
+            {
+                await context.Audiences.AddRangeAsync(new List<Audience>
+                {
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 42
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 35
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 31
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 32
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 33
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Компьютерная аудитория",
+                        AudienceNumber = 43
+                    },
+                });
+            }
+
+            if (!context.Disciplines.Any())
+            {
+                await context.Disciplines.AddRangeAsync(new List<Discipline>
+                {
+                    new Discipline
+                    {
+                        DisciplineName = "Бухгалтерский учёт",
+                        DisciplineShortName = "Бух.уч"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Белорусский язык (профессиональная лексика)",
+                        DisciplineShortName = "Бел.яз.(проф.лек.)"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Информатика",
+                        DisciplineShortName = "Информатика"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Биология",
+                        DisciplineShortName = "Биология"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "География",
+                        DisciplineShortName = "География"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы права",
+                        DisciplineShortName = "Осн.права"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Базы данных и системы управления базами данных",
+                        DisciplineShortName = "БДиСУБД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Сит. операционных систем",
+                        DisciplineShortName = "Сит.опер.сист."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "ТРПО",
+                        DisciplineShortName = "ТРПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Физкультура",
+                        DisciplineShortName = "Физ."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Программные средства и создание интернет приложений",
+                        DisciplineShortName = "Прогр.ср-ва созд.инт"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Защита компьютерной информации",
+                        DisciplineShortName = "Защита комп.инф."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Сит. операционных систем",
+                        DisciplineShortName = "Сит.опер.сист."
+                    },
                 });
             }
 
@@ -277,7 +482,7 @@ namespace StudentOffice.Models.DataBase
             //        },
             //    }); 
             //}
-           
+
 
         }
     }

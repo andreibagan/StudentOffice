@@ -10,6 +10,6 @@ namespace StudentOffice.Models.DataBase
         public DateTime YearOfFormation { get; set; }
         public DateTime ExpirationDate { get; set; }
         public virtual ICollection<User> Users { get; set; }
-        public virtual ICollection<Timetable> Timetables { get; set; }
+        public virtual ICollection<TimeTableGroup> TimeTableGroups { get; set; }
     }
 }
