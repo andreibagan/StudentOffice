@@ -36,50 +36,50 @@ namespace StudentOffice.Models.DataBase
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
-                }
-
-                User user1 = new User { Email = "Apetenok@mail.ru", UserName = "Apetenok@mail.ru", FullName = "Апетенок О.Н.", EmailConfirmed = true };
-                IdentityResult result1 = await userManager.CreateAsync(user1, "qwerty123");
-                if (result1.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user1, "преподаватель");
-                }
-
-                User user2 = new User { Email = "Ciganok@mail.ru", UserName = "Ciganok@mail.ru", FullName = "Цыганок О.Ч.", EmailConfirmed = true };
-                IdentityResult result2 = await userManager.CreateAsync(user2, "qwerty123");
-                if (result2.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user2, "преподаватель");
-                }
-
-                User user3 = new User { Email = "Skadorva@mail.ru", UserName = "Skadorva@mail.ru", FullName = "Скадорва Е.О.", EmailConfirmed = true };
-                IdentityResult result3 = await userManager.CreateAsync(user3, "qwerty123");
-                if (result3.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user3, "преподаватель");
-                }
-
-                User user4 = new User { Email = "Vasilevich@mail.ru", UserName = "Vasilevich@mail.ru", FullName = "Василевич А.Е.", EmailConfirmed = true };
-                IdentityResult result4 = await userManager.CreateAsync(user4, "qwerty123");
-                if (result4.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user4, "преподаватель");
-                }
-
-                User user5 = new User { Email = "Manuk@mail.ru", UserName = "Manuk@mail.ru", FullName = "Манюк М.Г.", EmailConfirmed = true };
-                IdentityResult result5 = await userManager.CreateAsync(user5, "qwerty123");
-                if (result5.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user5, "преподаватель");
-                }
-
-                User user6 = new User { Email = "Klincevich@mail.ru", UserName = "Klincevich@mail.ru", FullName = "Клинцевич А.И.", EmailConfirmed = true };
-                IdentityResult result6 = await userManager.CreateAsync(user6, "qwerty123");
-                if (result6.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user6, "преподаватель");
-                }
+                }           
             }
+
+            //User user1 = new User { Email = "Apetenok@mail.ru", UserName = "Apetenok@mail.ru", FullName = "Апетенок О.Н.", EmailConfirmed = true };
+            //IdentityResult result1 = await userManager.CreateAsync(user1, "qwerty123");
+            //if (result1.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user1, "преподаватель");
+            //}
+
+            //User user2 = new User { Email = "Ciganok@mail.ru", UserName = "Ciganok@mail.ru", FullName = "Цыганок О.Ч.", EmailConfirmed = true };
+            //IdentityResult result2 = await userManager.CreateAsync(user2, "qwerty123");
+            //if (result2.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user2, "преподаватель");
+            //}
+
+            //User user3 = new User { Email = "Skadorva@mail.ru", UserName = "Skadorva@mail.ru", FullName = "Скадорва Е.О.", EmailConfirmed = true };
+            //IdentityResult result3 = await userManager.CreateAsync(user3, "qwerty123");
+            //if (result3.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user3, "преподаватель");
+            //}
+
+            //User user4 = new User { Email = "Vasilevich@mail.ru", UserName = "Vasilevich@mail.ru", FullName = "Василевич А.Е.", EmailConfirmed = true };
+            //IdentityResult result4 = await userManager.CreateAsync(user4, "qwerty123");
+            //if (result4.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user4, "преподаватель");
+            //}
+
+            //User user5 = new User { Email = "Manuk@mail.ru", UserName = "Manuk@mail.ru", FullName = "Манюк М.Г.", EmailConfirmed = true };
+            //IdentityResult result5 = await userManager.CreateAsync(user5, "qwerty123");
+            //if (result5.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user5, "преподаватель");
+            //}
+
+            //User user6 = new User { Email = "Klincevich@mail.ru", UserName = "Klincevich@mail.ru", FullName = "Клинцевич А.И.", EmailConfirmed = true };
+            //IdentityResult result6 = await userManager.CreateAsync(user6, "qwerty123");
+            //if (result6.Succeeded)
+            //{
+            //    await userManager.AddToRoleAsync(user6, "преподаватель");
+            //}
 
             if (!context.DocumentTypes.Any())
             {
@@ -367,6 +367,144 @@ namespace StudentOffice.Models.DataBase
                     },
                 });
             }
+
+            if (!context.TimeWindows.Any())
+            {
+                await context.TimeWindows.AddRangeAsync(new List<TimeWindow>
+                {
+                    new TimeWindow
+                    {
+                        TimeWindowName = "123",
+                        FirstHalf = true,
+                        SecondHalf = false
+                    },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.TimeTables.Any())
+            {
+                await context.TimeTables.AddRangeAsync(new List<TimeTable>
+                {
+                    new TimeTable
+                    {
+                        DateTime = DateTime.Now,
+                        DayNumber = 18,
+                        PatternType = "Рабочий",
+                        SemesterId = 1
+                    },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.TimeTableGroups.Any())
+            {
+                await context.TimeTableGroups.AddRangeAsync(new List<TimeTableGroup>
+                {
+                    new TimeTableGroup
+                    {
+                        GroupId = 1,
+                        TimeTableId = 1,
+                    },
+                    new TimeTableGroup
+                    {
+                        GroupId = 2,
+                        TimeTableId = 1,
+                    },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.Couples.Any())
+            {
+                await context.Couples.AddRangeAsync(new List<Couple>
+                {
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 8,
+                        AudienceId = 6,
+                        TimeWindowId = 1,
+                        UserId = "2d9c95e5-f5e9-4891-80d4-ee7818e7f173",
+                        TimeTableGroupId = 1
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 7,
+                        AudienceId = 6,
+                        TimeWindowId = 1,
+                        UserId = "6176f305-d1f7-4310-8be5-fb188e2c05c1",
+                        TimeTableGroupId = 1
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 9,
+                        AudienceId = 6,
+                        TimeWindowId = 1,
+                        UserId = "651507e2-6aca-4876-89e1-e03a0c1cb8e0",
+                        TimeTableGroupId = 1
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 10,
+                        AudienceId = 6,
+                        TimeWindowId = 1,
+                        UserId = "ab3ee0eb-fccf-4522-b41a-02ad24c4b75a",
+                        TimeTableGroupId = 1
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 11,
+                        AudienceId = 1,
+                        TimeWindowId = 1,
+                        UserId = "cbe0d18e-2763-4e7e-9ece-5eb8e7d08461",
+                        TimeTableGroupId = 2
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 13,
+                        AudienceId = 2,
+                        TimeWindowId = 1,
+                        UserId = "de1eaadb-4f45-4594-899a-66202bba02b2",
+                        TimeTableGroupId = 2
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 7,
+                        AudienceId = 2,
+                        TimeWindowId = 1,
+                        UserId = "651507e2-6aca-4876-89e1-e03a0c1cb8e0",
+                        TimeTableGroupId = 2
+                    },
+                    new Couple
+                    {
+                        IsSubgroups = false,
+                        Subgroups = 0,
+                        DisciplineId = 10,
+                        AudienceId = 6,
+                        TimeWindowId = 1,
+                        UserId = "ab3ee0eb-fccf-4522-b41a-02ad24c4b75a",
+                        TimeTableGroupId = 2
+                    },
+                });
+            }
+
 
             await context.SaveChangesAsync();
             //if (!context.StreetTypes.Any())

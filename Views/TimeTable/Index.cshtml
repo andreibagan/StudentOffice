@@ -1,5 +1,80 @@
-﻿
+﻿@model List<TimeTable>
 
 <h2>Расписание</h2>
 
+<table border="1" align="center">
+    <!--<tr>
+        <td>
+            День
+        </td>
 
+        <td>
+            ПАРА
+        </td>
+
+        @foreach (TimeTable timeTable in Model)
+        {
+            foreach (TimeTableGroup timeTableGroup in timeTable.TimeTableGroups)
+            {
+                <td>@timeTableGroup.Group.GroupName</td>
+            }
+        }-->
+    @*@Model.TimeTableGroups.FirstOrDefault().Group?.GroupName*@
+    <!--</tr>-->
+    @*@foreach (var couple in Model.TimeTableGroups.FirstOrDefault().Couples)
+        {
+            <tr>
+                <td>
+                    @Model.DateTime.ToShortDateString()
+                </td>
+                <td>
+                    1
+                </td>
+                <td>
+                    @($"{couple.Discipline.DisciplineShortName} {couple.User.FullName} {couple.Audience.AudienceNumber}")
+                </td>
+            </tr>
+        }*@
+
+
+    @foreach (var timeTable in Model.Select((timeTableValue, timeTableIterator) => new { timeTableValue, timeTableIterator }))
+    {
+
+        foreach (var timeTableGroup in timeTable.timeTableValue.TimeTableGroups.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
+        {
+            <tr>
+
+                <td>
+                    День
+                </td>
+
+                <td>
+                    ПАРА
+                </td>
+
+                <td>@timeTableGroup.timeTableGroupValue.Group.GroupName</td>
+
+            </tr>
+            foreach (var couple in timeTableGroup.timeTableGroupValue.Couples.Select((value, i) => new { value, i }))
+            {
+                <tr>
+
+                    @if (couple.i == 0)
+                    {
+                        <td rowspan="@Model.ElementAt(timeTable.timeTableIterator).TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                            @*@Model.DateTime.ToShortDateString()*@
+                            @DateTime.Now.ToShortDateString()
+                        </td>
+                    }
+                    <td>
+                        @(couple.i + 1)
+                    </td>
+                    <td>
+                        @($"{couple.value.Discipline.DisciplineShortName} {couple.value.User.FullName} {couple.value.Audience.AudienceNumber}")
+                    </td>
+                </tr>
+            }
+
+        }
+    }
+</table>

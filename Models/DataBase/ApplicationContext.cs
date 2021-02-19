@@ -16,6 +16,8 @@ namespace StudentOffice.Models.DataBase
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<TypeOfSpravka> TypeOfSpravkas { get; set; }
+        public DbSet<TimeTableGroup> TimeTableGroups { get; set; }
+        public DbSet<TimeTable> TimeTables { get; set; }
         public DbSet<Semester> Semesters { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)

@@ -14,6 +14,7 @@ namespace StudentOffice.Models.DataBase
         public virtual Audience Audience { get; set; }
         public int? TimeWindowId { get; set; }
         public virtual TimeWindow TimeWindow { get; set; }
+        public string UserId { get; set; }
         public virtual User User { get; set; }
         public int TimeTableGroupId { get; set; }
         public virtual TimeTableGroup TimeTableGroup { get; set; }
