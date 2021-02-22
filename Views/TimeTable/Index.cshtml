@@ -2,40 +2,9 @@
 
 <h2>Расписание</h2>
 
-<table border="1" align="center">
-    <!--<tr>
-        <td>
-            День
-        </td>
+<a asp-action="Create" asp-controller="TimeTable">Добавить</a>
 
-        <td>
-            ПАРА
-        </td>
-
-        @foreach (TimeTable timeTable in Model)
-        {
-            foreach (TimeTableGroup timeTableGroup in timeTable.TimeTableGroups)
-            {
-                <td>@timeTableGroup.Group.GroupName</td>
-            }
-        }-->
-    @*@Model.TimeTableGroups.FirstOrDefault().Group?.GroupName*@
-    <!--</tr>-->
-    @*@foreach (var couple in Model.TimeTableGroups.FirstOrDefault().Couples)
-        {
-            <tr>
-                <td>
-                    @Model.DateTime.ToShortDateString()
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    @($"{couple.Discipline.DisciplineShortName} {couple.User.FullName} {couple.Audience.AudienceNumber}")
-                </td>
-            </tr>
-        }*@
-
+<table align="center">
 
     @foreach (var timeTable in Model.Select((timeTableValue, timeTableIterator) => new { timeTableValue, timeTableIterator }))
     {
@@ -61,20 +30,44 @@
 
                     @if (couple.i == 0)
                     {
-                        <td rowspan="@Model.ElementAt(timeTable.timeTableIterator).TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
-                            @*@Model.DateTime.ToShortDateString()*@
-                            @DateTime.Now.ToShortDateString()
+                        <td id="rotate" rowspan="@Model.ElementAt(timeTable.timeTableIterator).TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                            @Model.ElementAt(timeTable.timeTableIterator).DateTime.ToShortDateString()
                         </td>
                     }
+
                     <td>
                         @(couple.i + 1)
                     </td>
-                    <td>
-                        @($"{couple.value.Discipline.DisciplineShortName} {couple.value.User.FullName} {couple.value.Audience.AudienceNumber}")
+
+                    <td style="text-align: left">
+                        @Html.Raw($"Дисциплина: {couple.value.Discipline.DisciplineShortName}</br>Преподаватель: {couple.value.User.FullName}</br>Аудитория: {couple.value.Audience.AudienceNumber}")
                     </td>
+
                 </tr>
             }
 
         }
     }
+
 </table>
+
+
+
+<style type="text/css">
+    td {
+        border-collapse: collapse;
+        border: 1px black solid;
+        text-align: center;
+    }
+
+    #rotate {
+        -moz-transform: rotate(-90.0deg); /* FF3.5+ */
+        -o-transform: rotate(-90.0deg); /* Opera 10.5 */
+        -webkit-transform: rotate(-90.0deg); /* Saf3.1+, Chrome */
+        filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083); /* IE6,IE7 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+        max-width: 35px;
+    }
+</style>
+
+

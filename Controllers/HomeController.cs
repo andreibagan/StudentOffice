@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Spire.Doc;
+using System.Text;
 using StudentOffice.Models;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
@@ -40,7 +41,7 @@ namespace StudentOffice.Controllers
         {
             //string role = User.FindFirst(x => x.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
             //return Content($"Ваша роль: {role}");
-           
+
             return View();
         }
 
@@ -157,7 +158,7 @@ namespace StudentOffice.Controllers
 
             model.DocumentTypes = documentTypes;
             model.Specialties = specialties;
-            
+
             return View(model);
         }
         public IActionResult About()
@@ -225,6 +226,34 @@ namespace StudentOffice.Controllers
             return View(model);
 
         }
+
+        public async Task<FileResult> qwerty123()
+        {
+            WebRequest request = WebRequest.Create("https://www.google.com/");
+            using (WebResponse response = await request.GetResponseAsync())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+
+                    byte[] buffer = new byte[16 * 1024];
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        int read;
+                        while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            ms.Write(buffer, 0, read);
+                        }
+
+                        string file_type = "application/msword";
+                        string file_name = "sample.doc";
+                        return File(ms.ToArray(), file_type, file_name);
+                    }
+                }
+            }
+        }
+
+
 
         public IActionResult GetFile()
         {
@@ -316,7 +345,7 @@ namespace StudentOffice.Controllers
                 User user = await _context.Users.FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
                 await JsonSerializer.SerializeAsync<User>(fs, user);
             }
-             
+
             return Content("Объект был успешно сериализован");
         }
 

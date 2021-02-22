@@ -1,0 +1,90 @@
+﻿@model TimeTableViewModel
+
+<h2>Расписание</h2>
+
+@if (Model.Couples.Count < 1)
+{
+    <form method="get" asp-controller="TimeTable" asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+        <h4>Введите кол-во занятий</h4>
+        <div>
+            <label name="CoupleCount"></label><br />
+            <input type="number" name="CoupleCount" />
+            <span name="CoupleCount"></span>
+        </div>
+        <div>
+            <input type="submit" value="Добавить" />
+        </div>
+    </form>
+}
+else
+{
+    <form method="post" asp-controller="TimeTable" asp-action="Create">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+
+            <h4>Добавление расписания</h4>
+            <div>
+                <label asp-for="DateTime"></label><br />
+                <input type="date" asp-for="DateTime" />
+                <span asp-validation-for="DateTime"></span>
+            </div>
+            <div>
+                <label asp-for="GroupId"></label><br />
+                <select asp-for="GroupId">
+                    <option value="0">Не выбрано</option>
+                    @foreach (Group group in Model.Groups)
+                    {
+                        <option value="@group.GroupId">@group.GroupName</option>
+                    }
+                </select>
+                <span asp-validation-for="GroupId"></span>
+            </div>
+            @for (int i = 0; i < Model.Couples.Count(); i++)
+            {
+                <div>
+                    <label asp-for="Couples[i].TeacherId"></label><br />
+                    <select asp-for="Couples[i].TeacherId">
+                        <option value="0">Не выбрано</option>
+                        @foreach (User teacher in Model.Teachers)
+                        {
+                            <option value="@teacher.Id">@teacher.FullName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Couples[i].TeacherId"></span>
+                </div>
+                <div>
+                    <label asp-for="Couples[i].DisciplineId"></label><br />
+                    <select asp-for="Couples[i].DisciplineId">
+                        <option value="0">Не выбрано</option>
+                        @foreach (Discipline discipline in Model.Disciplines)
+                        {
+                            <option value="@discipline.DisciplineId">@discipline.DisciplineShortName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Couples[i].DisciplineId"></span>
+                </div>
+                <div>
+                    <label asp-for="Couples[i].AudienceId"></label><br />
+                    <select asp-for="Couples[i].AudienceId">
+                        <option value="0">Не выбрано</option>
+                        @foreach (Audience audience in Model.Audiences)
+                        {
+                            <option value="@audience.AudienceId">@audience.AudienceName @audience.AudienceNumber</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Couples[i].AudienceId"></span>
+                </div>
+            }
+
+
+        </div>
+        <div>
+            <input type="submit" value="Добавить" />
+        </div>
+
+    </form>
+
+}
+
+
