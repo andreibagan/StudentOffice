@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StudentOffice.ViewModels
 {
@@ -10,10 +12,5 @@ namespace StudentOffice.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Путь")]
         public string Path { get; set; }
-        public List<IdentityRole> Roles { get; set; }
-
-        [Required]
-        [Display(Name = "Подтвердить Email")]
-        public bool IsConfirmedEmail { get; set; }
     }
 }

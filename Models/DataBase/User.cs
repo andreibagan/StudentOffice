@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 
 namespace StudentOffice.Models.DataBase
 {
+    [Serializable]
     [Table("AspNetUsers")]
     public class User : IdentityUser
     {
-        public int? GroupId { get; set; }
+        [JsonIgnore]
         public string FullName { get; set; }
+        [JsonIgnore]
+        public int? GroupId { get; set; }
+        [JsonIgnore]
         public virtual Group Group { get; set; }
+        [JsonIgnore]
         public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Couple> Couples { get; set; }
+        [JsonIgnore]
         public int? AnketaId { get; set; }
+        [JsonIgnore]
         public virtual Anketa Anketa { get; set; }
         public string GetFullNameMother
         {

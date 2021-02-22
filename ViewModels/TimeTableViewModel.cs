@@ -15,6 +15,7 @@ namespace StudentOffice.ViewModels
         [Required(ErrorMessage = "Не указана группа")]
         [DataType(DataType.Text)]
         [Display(Name = "Группа")]
+        [Range(1, Int32.MaxValue)]
         public int GroupId { get; set; }
 
         //[Required(ErrorMessage = "Не указано кол-во занятий")]

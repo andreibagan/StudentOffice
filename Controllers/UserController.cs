@@ -1,24 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
 
 namespace StudentOffice.Controllers
 {
-    public class UsersController : Controller
+    public class UserController : Controller
     {
-        private readonly UserManager<User> _userManager;
         private readonly ApplicationContext _context;
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(UserManager<User> userManager, ApplicationContext context)
+        public UserController(ApplicationContext context, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _userManager = userManager;
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -168,6 +173,51 @@ namespace StudentOffice.Controllers
                 }
             }
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Unload()
+        {
+            UnloadUserViewModel model = new UnloadUserViewModel { Roles = await _roleManager.Roles.ToListAsync() };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unload(UnloadUserViewModel model, IEnumerable<string> roles)
+        {
+            string json = string.Empty;
+
+            using (var fs = System.IO.File.OpenRead(model.Path))
+            {
+                using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
+                {
+                    json = sr.ReadToEnd();
+                }
+            }
+
+            var usersviewmodel = JsonConvert.DeserializeObject<List<UserUnloadModel>>(json);
+
+            if (usersviewmodel == null)
+            {
+                return Content("Ошибка чтения файла");
+            }
+
+            foreach (var user in usersviewmodel)
+            {
+                var currentuser = new User
+                {
+                    Email = user.Email,
+                    UserName = user.Email,
+                    EmailConfirmed = model.IsConfirmedEmail
+                };
+
+                await _userManager.CreateAsync(currentuser, user.Password);
+
+                await _userManager.AddToRolesAsync(currentuser, roles);
+            }
+
+            return RedirectToAction("Unload");
         }
     }
 }

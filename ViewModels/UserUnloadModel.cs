@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace StudentOffice.ViewModels
 {
     [Serializable]
-    public class UserUnloadViewModel
+    public class UserUnloadModel
     {
         public string Email { get; set; }
         public string Password { get; set; }

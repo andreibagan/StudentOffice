@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
 
@@ -95,7 +99,7 @@ namespace StudentOffice.Controllers
                     Subgroups = 0,
                     DisciplineId = i.DisciplineId,
                     AudienceId = i.AudienceId,
-                    TimeWindowId = null,
+                    TimeWindowId = null, //TODO: Временное окно?
                     UserId = i.TeacherId,
                     TimeTableGroupId = timeTableGroup.TimeTableGroupId
                 }).ToList();
@@ -107,9 +111,76 @@ namespace StudentOffice.Controllers
             }
             else
             {
+                model.Audiences = await _context.Audiences.ToListAsync();
+                model.Disciplines = await _context.Disciplines.ToListAsync();
+                model.Groups = await _context.Groups.ToListAsync();
+                model.Teachers = await _userManager.GetUsersInRoleAsync("преподаватель");
+
                 return View(model);
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Unload()
+        {
+            //TimeTable timeTable = await _context.TimeTables
+            //    .Include(i => i.Semester)
+            //    .Include(i => i.TimeTableGroups)
+            //    .ThenInclude(i => i.Group)
+            //    .Include(i => i.TimeTableGroups)
+            //    .ThenInclude(i => i.Couples)
+            //    .ThenInclude(i => i.Discipline)
+            //    .Include(i => i.TimeTableGroups)
+            //    .ThenInclude(i => i.Couples)
+            //    .ThenInclude(i => i.Audience)
+            //    .Include(i => i.TimeTableGroups)
+            //    .ThenInclude(i => i.Couples)
+            //    .ThenInclude(i => i.TimeWindow)
+            //    .Include(i => i.TimeTableGroups)
+            //    .ThenInclude(i => i.Couples)
+            //    .ThenInclude(i => i.User)
+            //    .FirstOrDefaultAsync();
+
+            //using (StreamWriter fs = new StreamWriter("timetable.json"))
+            //{
+            //    await fs.WriteLineAsync(JsonConvert.SerializeObject(timeTable));
+            //}
+
+            //return Content("Сериализован");
+
+
+            UnloadViewModel model = new UnloadViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Unload(UnloadViewModel model)
+        {
+            string json = string.Empty;
+
+            using (var fs = System.IO.File.OpenRead(model.Path))
+            {
+                using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
+                {
+                    json = sr.ReadToEnd();
+                }
+            }
+
+            var timeTables = JsonConvert.DeserializeObject<List<TimeTable>>(json);
+
+            if (timeTables == null)
+            {
+                return Content("Ошибка чтения файла");
+            }
+
+            foreach (var timetable in timeTables)
+            {
+                await _context.TimeTables.AddAsync(timetable);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Unload");
+        }
     }
 }

@@ -45,7 +45,7 @@ else
                 <div>
                     <label asp-for="Couples[i].TeacherId"></label><br />
                     <select asp-for="Couples[i].TeacherId">
-                        <option value="0">Не выбрано</option>
+                        <option value="">Не выбрано</option>
                         @foreach (User teacher in Model.Teachers)
                         {
                             <option value="@teacher.Id">@teacher.FullName</option>
