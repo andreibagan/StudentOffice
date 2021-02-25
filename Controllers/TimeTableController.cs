@@ -24,28 +24,67 @@ namespace StudentOffice.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var timeTable = await _context.TimeTables
-                .Include(i => i.Semester)
-                .Include(i => i.TimeTableGroups)
-                .ThenInclude(i => i.Group)
-                .Include(i => i.TimeTableGroups)
-                .ThenInclude(i => i.Couples)
-                .ThenInclude(i => i.Discipline)
-                .Include(i => i.TimeTableGroups)
-                .ThenInclude(i => i.Couples)
-                .ThenInclude(i => i.Audience)
-                .Include(i => i.TimeTableGroups)
-                .ThenInclude(i => i.Couples)
-                .ThenInclude(i => i.TimeWindow)
-                .Include(i => i.TimeTableGroups)
-                .ThenInclude(i => i.Couples)
-                .ThenInclude(i => i.User).ToListAsync();
-                //.FirstOrDefaultAsync(i => i.DateTime.Date == DateTime.Now.Date);
-            return View(timeTable);
-        }
+        //[HttpGet]
+        //public async Task<IActionResult> Index()
+        //{
+        //    var currentUser = await _userManager.Users.Include(i => i.Group).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
+
+        //    var timeTableGroup = new List<TimeTableGroup>();
+
+        //    if (currentUser?.Group != null)
+        //    {
+        //        timeTableGroup = await _context.TimeTableGroups
+        //           .Include(i => i.TimeTable)
+        //           .ThenInclude(i => i.Semester)
+        //           .Include(i => i.Group)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.Discipline)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.Audience)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.TimeWindow)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.User)
+        //           .Where(i => i.Group.GroupName == currentUser.Group.GroupName && i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
+        //    }
+        //    else
+        //    {
+        //        timeTableGroup = await _context.TimeTableGroups
+        //           .Include(i => i.TimeTable)
+        //           .ThenInclude(i => i.Semester)
+        //           .Include(i => i.Group)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.Discipline)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.Audience)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.TimeWindow)
+        //           .Include(i => i.Couples)
+        //           .ThenInclude(i => i.User)
+        //           .Where(i => i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
+        //    }
+        //    //--------------------------------------------------
+        //    //timeTable = await _context.TimeTables
+        //    //    .Include(i => i.Semester)
+        //    //    .Include(i => i.TimeTableGroups)
+        //    //    .ThenInclude(i => i.Group)
+        //    //    .Include(i => i.TimeTableGroups)
+        //    //    .ThenInclude(i => i.Couples)
+        //    //    .ThenInclude(i => i.Discipline)
+        //    //    .Include(i => i.TimeTableGroups)
+        //    //    .ThenInclude(i => i.Couples)
+        //    //    .ThenInclude(i => i.Audience)
+        //    //    .Include(i => i.TimeTableGroups)
+        //    //    .ThenInclude(i => i.Couples)
+        //    //    .ThenInclude(i => i.TimeWindow)
+        //    //    .Include(i => i.TimeTableGroups)
+        //    //    .ThenInclude(i => i.Couples)
+        //    //    .ThenInclude(i => i.User).ToListAsync();
+        //    ////.FirstOrDefaultAsync(i => i.DateTime.Date == DateTime.Now.Date);
+        //    ///-----------------------------------------------------
+
+        //    return View(timeTableGroup);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> Create(int? CoupleCount)

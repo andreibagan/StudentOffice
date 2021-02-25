@@ -1,4 +1,4 @@
-﻿@model List<TimeTable>
+﻿@model List<TimeTableGroup>
 
 <h2>Расписание</h2>
 
@@ -6,10 +6,10 @@
 
 <table align="center">
 
-    @foreach (var timeTable in Model.Select((timeTableValue, timeTableIterator) => new { timeTableValue, timeTableIterator }))
-    {
+    @*@foreach (var timeTableGroup in Model.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
+    {*@
 
-        foreach (var timeTableGroup in timeTable.timeTableValue.TimeTableGroups.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
+        @foreach (var timeTableGroup in Model.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
         {
             <tr>
 
@@ -30,8 +30,8 @@
 
                     @if (couple.i == 0)
                     {
-                        <td id="rotate" rowspan="@Model.ElementAt(timeTable.timeTableIterator).TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
-                            @Model.ElementAt(timeTable.timeTableIterator).DateTime.ToShortDateString()
+                        <td id="rotate" rowspan="@Model.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                            @Model.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
                         </td>
                     }
 
@@ -47,7 +47,7 @@
             }
 
         }
-    }
+    
 
 </table>
 

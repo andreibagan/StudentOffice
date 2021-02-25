@@ -12,10 +12,10 @@ namespace StudentOffice.Models.DataBase
     {
         [JsonIgnore]
         public string FullName { get; set; }
-        [JsonIgnore]
-        public int? GroupId { get; set; }
-        [JsonIgnore]
-        public virtual Group Group { get; set; }
+        //[JsonIgnore]
+        //public int? GroupId { get; set; }
+        //[JsonIgnore]
+        //public virtual Group Group { get; set; }
         [JsonIgnore]
         public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
         [JsonIgnore]
@@ -24,6 +24,8 @@ namespace StudentOffice.Models.DataBase
         public int? AnketaId { get; set; }
         [JsonIgnore]
         public virtual Anketa Anketa { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<MarkUser> MarkUsers { get; set; }
         public string GetFullNameMother
         {
             get

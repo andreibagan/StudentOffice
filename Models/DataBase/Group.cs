@@ -11,9 +11,15 @@ namespace StudentOffice.Models.DataBase
         public string GroupName { get; set; }
         public DateTime YearOfFormation { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int? SpecialtyId { get; set; }
         [JsonIgnore]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual Specialty Specialty { get; set; }
         [JsonIgnore]
         public virtual ICollection<TimeTableGroup> TimeTableGroups { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<GroupDiscipline> GroupDisciplines { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<GroupExam> GroupExams { get; set; }
+        
     }
 }

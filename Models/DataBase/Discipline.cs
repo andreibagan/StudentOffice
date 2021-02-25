@@ -13,5 +13,8 @@ namespace StudentOffice.Models.DataBase
 
         [JsonIgnore]
         public virtual ICollection<Couple> Couples { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<GroupDiscipline> GroupDisciplines { get; set; }
+        
     }
 }
