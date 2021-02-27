@@ -6,25 +6,32 @@
     <title>@ViewData["Title"] - StudentOffice</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" />
 </head>
-<body>
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div>
-                <ul class="nav navbar-nav">
-                    <li><a href="~/Home/Index" class="navbar-brand">Главная</a></li>
-                    <li><a href="~/Home/About" class="navbar-brand">About</a></li>
-                </ul>
+<body style='font-family: "Roboto", sans-serif;'>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Authentication System</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    //partial layout for logged in user.
+                    <partial name="_LoginPartial"></partial>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     <!--основной контент-->
-    <div class="container body-content">
-        @RenderBody()
-        <hr/>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <hr />
         <footer>
             <p>© 2021 - Личный кабинет учащегося</p>
         </footer>
     </div>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

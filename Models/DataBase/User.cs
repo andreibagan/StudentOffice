@@ -11,6 +11,7 @@ namespace StudentOffice.Models.DataBase
     public class User : IdentityUser
     {
         [JsonIgnore]
+        [Column(TypeName = "nvarchar(100)")]
         public string FullName { get; set; }
         //[JsonIgnore]
         //public int? GroupId { get; set; }

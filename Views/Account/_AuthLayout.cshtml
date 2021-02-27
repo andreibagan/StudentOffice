@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card login-logout-tab">
+            <div style="padding: 0px 0px 12px 0px;" class="card-header">
+                <ul style="margin: 0px 0px -12px 0px;" class="nav nav-tabs card-header-tabs">
+                    <li style="width: 50%;" class="nav-item">
+                        <a style="font-size: 25px; color: #495057; text-align: center;" class="nav-link" href='/Account/Login'>Авторизация</a>
+                    </li>   
+                    <li style="width: 50%;" class="nav-item">
+                        <a style="font-size: 25px; color: #495057; text-align: center;" class="nav-link" href='/Account/Register'>Регистрация</a>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding: 10px 20px;" class="card-content">
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @RenderSection("Scripts", required: false)
+    
+<script>
+        $(function () {
+            var current = location.pathname;
+            $('.nav-tabs li a').each(function () {
+                var $this = $(this);
+                if (current.indexOf($this.attr('href')) !== -1) {
+                    $this.addClass('active');
+                }
+            })
+        })
+ </script>
+
+}

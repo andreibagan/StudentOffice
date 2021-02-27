@@ -1,28 +1,87 @@
 ﻿@model LoginViewModel
 
-<h2>Вход на сайт</h2>
+@{ViewData["Title"] = "Login";}
 
-<a asp-action="Register" asp-controller="Account">Регистрация</a>
 
-<form method="post" asp-action="Login" asp-controller="Account" asp-anti-forgery="true" asp-route-returnUrl="@Model.ReturnUrl">
-    <div class="validation" asp-validation-summary="ModelOnly"></div>
-    <div>
-        <div class="form-group">
-            <label asp-for="Email"></label>
-            <input type="text" asp-for="Email"/>
-            <span asp-validation-for="Email"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Password"></label>
-            <input asp-for="Password"/>
-            <span asp-validation-for="Password"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="RememberMe"></label>
-            <input asp-for="RememberMe"/>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Войти" class="btn btn-outline-dark" />
-        </div>
+@{
+    Layout = "~/Views/Account/_AuthLayout.cshtml" ;
+}
+
+
+<div class="col-md-10 offset-1">
+    <div class="login-form-icon">
+        <i class="fas fa-user-circle fa-9x text-secondary"></i>
     </div>
-</form>
+    <form id="account" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+                <input asp-for="Email" class="form-control" placeholder="Email Address" />
+            </div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="checkbox">
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe" />
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+}
+
+
+
+
+@*@model LoginViewModel
+
+    <h2>Вход на сайт</h2>
+
+    <a asp-action="Register" asp-controller="Account">Регистрация</a>
+
+    <form method="post" asp-action="Login" asp-controller="Account" asp-anti-forgery="true" asp-route-returnUrl="@Model.ReturnUrl">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input type="text" asp-for="Email"/>
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password"/>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RememberMe"></label>
+                <input asp-for="RememberMe"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Войти" class="btn btn-outline-dark" />
+            </div>
+        </div>
+    </form>*@

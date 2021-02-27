@@ -377,6 +377,287 @@ namespace StudentOffice.Models.DataBase
 
             await context.SaveChangesAsync();
 
+
+            if (!context.Omissions.Any())
+            {
+                await context.Omissions.AddRangeAsync(new List<Omission>
+                {
+                   new Omission
+                   {
+                       Total = 33,
+                       Disrespectful = 0
+                   },
+                   new Omission
+                   {
+                       Total = 40,
+                       Disrespectful = 5
+                   },
+                   new Omission
+                   {
+                       Total = 1,
+                       Disrespectful = 1
+                   },
+                   new Omission
+                   {
+                       Total = 0,
+                       Disrespectful = 0
+                   },
+                   new Omission
+                   {
+                       Total = 2,
+                       Disrespectful = 0
+                   },
+                });
+            }
+
+            if (!context.Exams.Any())
+            {
+                await context.Exams.AddRangeAsync(new List<Exam>
+                {
+                   new Exam
+                   {
+                       ExamName = "Математика",
+                   },
+                   new Exam
+                   {
+                        ExamName = "Компьютерная графика",
+                   },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.GroupExams.Any())
+            {
+                await context.GroupExams.AddRangeAsync(new List<GroupExam>
+                {
+                   new GroupExam
+                   {
+                       GroupId = 3,
+                       ExamId = 1
+                   },
+                   new GroupExam
+                   {
+                       GroupId = 3,
+                       ExamId = 2
+                   },
+                });
+            }
+
+            if (!context.MarkLogs.Any())
+            {
+                await context.MarkLogs.AddRangeAsync(new List<MarkLog>
+                {
+                   new MarkLog
+                   {
+                       SemesterId = 1,
+                   },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.MarkUsers.Any())
+            {
+                await context.MarkUsers.AddRangeAsync(new List<MarkUser>
+                {
+                   new MarkUser
+                   {
+                       UserId = "f750bc9d-d740-4789-8592-07572a588ad0",
+                       OmissionId = 1,
+                       MarkLogId = 1
+                   },
+                   new MarkUser
+                   {
+                       UserId = "4299fe3f-406e-453a-80d1-5f5ae1aa37c4",
+                       OmissionId = 2,
+                       MarkLogId = 1
+                   },
+                }); 
+            }
+
+            if (!context.GroupDisciplines.Any())
+            {
+                await context.GroupDisciplines.AddRangeAsync(new List<GroupDiscipline>
+                {
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 1,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 2,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 3,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 4,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 5,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 6,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 7,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 8,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 9,
+                   },
+                   new GroupDiscipline
+                   {
+                       GroupId = 3,
+                       DisciplineId = 10,
+                   },
+                });
+            }
+
+            await context.SaveChangesAsync();
+
+            if (!context.Marks.Any())
+            {
+                await context.Marks.AddRangeAsync(new List<Mark>
+                {
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 1,
+                       MarkValue = "5"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 2,
+                       MarkValue = "7"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 3,
+                       MarkValue = "6"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 4,
+                       MarkValue = "8"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 5,
+                       MarkValue = "2"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 6,
+                       MarkValue = "8"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 1,
+                       GroupDisciplineId = 7,
+                       MarkValue = "5"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 1,
+                       MarkValue = "3"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 2,
+                       MarkValue = "7"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 3,
+                       MarkValue = "9"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 4,
+                       MarkValue = "5"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 5,
+                       MarkValue = "4"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 6,
+                       MarkValue = "4"
+                   },
+                   new Mark
+                   {
+                       MarkUserId = 2,
+                       GroupDisciplineId = 7,
+                       MarkValue = "6"
+                   },
+                });
+            }
+
+            if (!context.MarkExams.Any())
+            {
+                await context.MarkExams.AddRangeAsync(new List<MarkExam>
+                {
+                   new MarkExam
+                   {
+                       MarkValue = 7,
+                       MarkUserId = 1,
+                       GroupExamId = 1
+                   },
+                   new MarkExam
+                   {
+                       MarkValue = 5,
+                       MarkUserId = 1,
+                       GroupExamId = 2
+                   },
+                   new MarkExam
+                   {
+                       MarkValue = 8,
+                       MarkUserId = 2,
+                       GroupExamId = 1
+                   },
+                   new MarkExam
+                   {
+                       MarkValue = 9,
+                       MarkUserId = 2,
+                       GroupExamId = 2
+                   },
+                });
+            }
+
+            await context.SaveChangesAsync();
             //if (!context.TimeWindows.Any())
             //{
             //    await context.TimeWindows.AddRangeAsync(new List<TimeWindow>

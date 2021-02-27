@@ -38,6 +38,8 @@ namespace StudentOffice
             .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
+
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -68,6 +70,7 @@ namespace StudentOffice
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
         }

@@ -19,6 +19,15 @@ namespace StudentOffice.Models.DataBase
         public DbSet<TimeTableGroup> TimeTableGroups { get; set; }
         public DbSet<TimeTable> TimeTables { get; set; }
         public DbSet<Semester> Semesters { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<GroupDiscipline> GroupDisciplines { get; set; }
+        public DbSet<GroupExam> GroupExams { get; set; }
+        public DbSet<Mark> Marks { get; set; }
+        public DbSet<MarkExam> MarkExams { get; set; }
+        public DbSet<MarkLog> MarkLogs { get; set; }
+        public DbSet<MarkUser> MarkUsers { get; set; }
+        public DbSet<Omission> Omissions { get; set; }
+
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
