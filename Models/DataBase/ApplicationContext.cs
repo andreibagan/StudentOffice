@@ -27,6 +27,7 @@ namespace StudentOffice.Models.DataBase
         public DbSet<MarkLog> MarkLogs { get; set; }
         public DbSet<MarkUser> MarkUsers { get; set; }
         public DbSet<Omission> Omissions { get; set; }
+        public DbSet<Image> Images { get; set; }
 
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)

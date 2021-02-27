@@ -74,11 +74,11 @@ body {
 }
 
 /*for tab control*/
-div .login-logout-tab div .card-header {
+div.login-logout-tab div.card-header {
     padding: 0px 0px 12px 0px;
 }
 
-div .login-logout-tab ul .nav-tabs {
+div.login-logout-tab ul.nav-tabs {
     margin: 0px 0px -12px 0px;
 }
 
@@ -101,6 +101,3 @@ div.login-form-icon {
     text-align: center;
 }
 
-.center123{
-    text-align: center;
-}
