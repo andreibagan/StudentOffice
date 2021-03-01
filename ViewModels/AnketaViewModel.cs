@@ -109,6 +109,7 @@ namespace StudentOffice.ViewModels
 
         public Anketa Anketa { get; set; }
 
+        [Required]
         public IEnumerable<DocumentType> DocumentTypes { get; set; }
         public IEnumerable<Specialty> Specialties { get; set; }
         //TODO: ?

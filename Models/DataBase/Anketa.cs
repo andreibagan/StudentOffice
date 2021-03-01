@@ -209,10 +209,18 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Стаж(по профилю избранной специальности)")]
         public string SeniorityProfileSpecialty { get; set; }
 
-        public int? SpecialtyId { get; set; }
+        [Required(ErrorMessage = "Не указана специальнось")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Специальность")]
+        public int SpecialtyId { get; set; }
+        [Display(Name = "Специальность")]
         public virtual Specialty Specialty { get; set; }
 
-        public int? DocumentTypeId { get; set; }
+        [Required(ErrorMessage = "Не указан вид документа")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Вид документа")]
+        public int DocumentTypeId { get; set; }
+        [Display(Name = "Вид документа")]
         public virtual DocumentType DocumentType { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }

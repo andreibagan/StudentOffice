@@ -11,10 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Spire.Doc;
-using System.Text;
 using StudentOffice.Models;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace StudentOffice.Controllers
 {
@@ -75,10 +79,10 @@ namespace StudentOffice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Anketa(AnketaViewModel model)
+        public async Task<IActionResult> Anketa([Bind("Anketa")]AnketaViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 Anketa anketa = await _context.Anketas.FindAsync(model.Anketa.AnketaId);
 
                 if (anketa != null)
@@ -151,7 +155,7 @@ namespace StudentOffice.Controllers
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Home");
-            }
+            //}
 
             var documentTypes = await _context.DocumentTypes.ToListAsync();
             var specialties = await _context.Specialties.ToListAsync();
@@ -255,16 +259,32 @@ namespace StudentOffice.Controllers
 
 
 
-        public IActionResult GetFile()
-        {
-            string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\Unity1.pdf");
+        //public FileResult GetFile()
+        //{
+        //    //string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\Unity1.pdf");
 
-            string file_type = "application/pdf";
+        //    //string file_type = "application/pdf";
 
-            string file_name = "Unity1.pdf";
+        //    //string file_name = "Unity1.pdf";
 
-            return PhysicalFile(file_path, file_type, file_name);
-        }
+        //    //return PhysicalFile(file_path, file_type, file_name);
+
+
+        //    //WordDocument document = new WordDocument();
+        //    //WSection section = document.AddSection() as WSection;
+        //    //MemoryStream stream = new MemoryStream();
+        //    //document.Save(stream, FormatType.Docx);
+        //    //stream.Position = 0;
+        //    //return File(stream, "application/msword", "Sample.docx");
+
+
+
+
+
+
+
+
+        //}
 
         public async Task<IActionResult> GetFile1()
         {
@@ -278,7 +298,7 @@ namespace StudentOffice.Controllers
             {
                 string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\123.docx");
 
-                Document document = new Document();
+                Spire.Doc.Document document = new Spire.Doc.Document();
                 document.LoadFromFile(file_path);
 
                 document.Replace("ParentFullName", user.GetFullNameMother.ToUpper(), false, true);
@@ -288,6 +308,25 @@ namespace StudentOffice.Controllers
                 document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
 
                 document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\123123.docx"), FileFormat.Docx);
+
+
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(Path.Combine(_appEnvironment.ContentRootPath, "Files\\123123.docx"), true))
+                {
+                    string docText = null;
+                    using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+                    {
+                        docText = sr.ReadToEnd();
+                    }
+
+                    Regex regexText = new Regex("Evaluation Warning: The document was created with Spire.Doc for .NET.");
+                    docText = regexText.Replace(docText, "");
+
+                    using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
+                    {
+                        sw.Write(docText);
+                    }
+                }
+
 
                 return RedirectToAction("index");
             }
@@ -307,7 +346,7 @@ namespace StudentOffice.Controllers
             {
                 string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\zav.docx");
 
-                Document document = new Document();
+                Spire.Doc.Document document = new Spire.Doc.Document();
                 document.LoadFromFile(file_path);
 
                 document.Replace("SpecialtyName", user.Anketa.Specialty.Name, false, true);

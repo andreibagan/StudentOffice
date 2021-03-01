@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using StudentOffice.Helpers;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models.DataBase
@@ -23,6 +25,15 @@ namespace StudentOffice.Models.DataBase
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
         public virtual ICollection<MainPlan> MainPlans { get; set; }
+
+
+        public string GetSpecialtyNameBranch
+        {
+            get
+            {
+                return $"{Name} ({EnumHelper<Branch>.GetDisplayValue(Branch)})";
+            }
+        }
 
         //[Display(Name = "Программное обеспечение информационных технологий")]
         //InformationTechnologySoftware = 1,

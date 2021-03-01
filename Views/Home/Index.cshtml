@@ -1,5 +1,4 @@
-﻿@model RegisterViewModel
-
+﻿
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -21,7 +20,7 @@ else
 <h2>Кабинет абитуриента</h2>
 <form>
     <div>
-        <button method="get" asp-controller="Home" asp-action="Anketa">Заполнить анкету учащегося</button>
+        <button method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету учащегося</button>
     </div>
     <div>
         <button method="get" asp-controller="Home" asp-action="SendDoc">Отправить изображения документов</button>
