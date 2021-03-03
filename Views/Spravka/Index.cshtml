@@ -1,0 +1,79 @@
+﻿@using StudentOffice.ViewModels;
+@model IEnumerable<Spravka>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Главная справки</h1>
+
+<p>
+    <a asp-action="AddOrEdit">Создать новую</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Middlename)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfSpravkaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditionalInformation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SpravkaOrders.FirstOrDefault().DateTimeNow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Middlename)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeOfSpravka.TypeOfSpravkaName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.GroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdditionalInformation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SpravkaOrders.FirstOrDefault().DateTimeNow)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.SpravkaId">Редактировать</a>
+                <a asp-action="Details" asp-route-id="@item.SpravkaId">Подробнее</a>
+                <a asp-action="Delete" asp-route-id="@item.SpravkaId">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

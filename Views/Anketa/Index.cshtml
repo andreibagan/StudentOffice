@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Главная анкеты</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить</a>
 </p>
 <table class="table">
     <thead>
@@ -284,9 +284,9 @@
                 @Html.DisplayFor(modelItem => item.DocumentType.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.AnketaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AnketaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AnketaId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.AnketaId">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.AnketaId">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.AnketaId">Удалить</a>
             </td>
         </tr>
 }

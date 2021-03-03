@@ -463,13 +463,13 @@ namespace StudentOffice.Models.DataBase
                 {
                    new MarkUser
                    {
-                       UserId = "f750bc9d-d740-4789-8592-07572a588ad0",
+                       UserId = "4ac1a332-7bc9-4592-a955-8128cac4b874",
                        OmissionId = 1,
                        MarkLogId = 1
                    },
                    new MarkUser
                    {
-                       UserId = "4299fe3f-406e-453a-80d1-5f5ae1aa37c4",
+                       UserId = "1d8820a0-6ac9-4bd2-b95c-917d6616751b",
                        OmissionId = 2,
                        MarkLogId = 1
                    },

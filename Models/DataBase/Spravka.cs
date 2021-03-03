@@ -27,15 +27,22 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Название организации, для которой изготавливается справка")]
         public string OrganizationName { get; set; }
 
-        [Required(ErrorMessage = "Не указана группа")]
+        [Required(ErrorMessage = "Не указан номер группы")]
         [DataType(DataType.Text)]
-        [Display(Name = "Группа")]
-        public string Group { get; set; }
+        [Display(Name = "Номер группы")]
+        public int GroupId { get; set; }
+        [Display(Name = "Номер группы")]
+        public Group Group { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "Дополнительная информация")]
         public string AdditionalInformation { get; set; }
+
+        [Required(ErrorMessage = "Не указан вид справки")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Вид справки")]
         public int TypeOfSpravkaId { get; set; }
+        [Display(Name = "Вид справки")]
         public TypeOfSpravka TypeOfSpravka { get; set; }
         public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
     }

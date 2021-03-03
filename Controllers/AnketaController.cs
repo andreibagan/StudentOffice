@@ -26,8 +26,8 @@ namespace StudentOffice.Controllers
         // GET: Anketa
         public async Task<IActionResult> Index()
         {
-            var applicationContext = _context.Anketas.Include(a => a.DocumentType).Include(a => a.Specialty);
-            return View(await applicationContext.ToListAsync());
+            var anketa = _context.Anketas.Include(a => a.DocumentType).Include(a => a.Specialty);
+            return View(await anketa.ToListAsync());
         }
 
         // GET: Anketa/Details/5
@@ -50,42 +50,43 @@ namespace StudentOffice.Controllers
             return View(anketa);
         }
 
-        // GET: Anketa/Create
-        //public IActionResult Create()
-        //{
-        //    ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name");
-        //    ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch");
-        //    return View();
-        //}
+        //GET: Anketa/Create
+        public IActionResult Create()
+        {
+            ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name");
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch");
+            return View();
+        }
 
-        // POST: Anketa/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId")] Anketa anketa)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        //POST: Anketa/Create
+        //To protect from overposting attacks, enable the specific properties you want to bind to.
+        //For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        //        if (user == null)
-        //        {
-        //            return NotFound("Пользователь не найден");
-        //        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId")] Anketa anketa)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-        //        await _context.AddAsync(anketa);
-        //        await _context.SaveChangesAsync();
+                if (user == null)
+                {
+                    return NotFound("Пользователь не найден");
+                }
 
-        //        user.AnketaId = anketa.AnketaId;
-        //        _context.Users.Update(user);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketa.DocumentTypeId);
-        //    ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);
-        //    return View(anketa);
-        //}
+                await _context.AddAsync(anketa);
+                await _context.SaveChangesAsync();
+
+                user.AnketaId = anketa.AnketaId;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketa.DocumentTypeId);
+            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);
+            return View(anketa);
+        }
         [HttpGet]
         public async Task<IActionResult> AddOrEdit()
         {
@@ -96,7 +97,7 @@ namespace StudentOffice.Controllers
 
             if (user?.AnketaId == null)
             {
-                return View();
+                return View(new Anketa());
             }
             else
             {
@@ -131,6 +132,7 @@ namespace StudentOffice.Controllers
 
                     user.AnketaId = anketa.AnketaId;
                     _context.Users.Update(user);
+                    await _context.SaveChangesAsync();
                 }
                 else
                 {
@@ -152,7 +154,7 @@ namespace StudentOffice.Controllers
                     }
                 }
                 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketa.DocumentTypeId);
             ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);

@@ -11,6 +11,7 @@ namespace StudentOffice.Models.DataBase
         public int ImageId { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
+        [DisplayName("Описание")]
         public string Title { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]

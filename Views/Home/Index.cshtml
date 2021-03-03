@@ -3,38 +3,34 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
 
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <input type="submit" value="Выход" />
-    </form>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login">Вход</a>
-    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-}
-
-<h2>Кабинет абитуриента</h2>
 <form>
-    <div>
-        <button method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету учащегося</button>
+    <div class="container overflow-hidden">
+        <h2 align="center">Кабинет абитуриента</h2>
+        <div>
+            <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету учащегося</button>
+        </div>
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Image" asp-action="Index">Отправить изображения документов</button>
+        </div>
+        @*<div>
+                <button type="button" style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Home" asp-action="DisplayDoc">Вывести заявление</button>
+            </div>*@
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Spravka" asp-action="Index">Справки об обучении</button>
+        </div>
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
+        </div>
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Marklog" asp-action="Index">Отметки учащегося</button>
+        </div>
+        @*<div>
+                    <button method="get" asp-controller="Home" asp-action="Reser">Записаться на подачу документов</button>
+            </div>*@
+
+
     </div>
-    <div>
-        <button method="get" asp-controller="Home" asp-action="SendDoc">Отправить изображения документов</button>
-    </div>
-    <div>
-        <button method="get" asp-controller="Home" asp-action="DisplayDoc">Вывести заявление</button>
-    </div>
-    <div>
-        <button method="get" asp-controller="Home" asp-action="Reser">Записаться на подачу документов</button>
-    </div>
-    <div>
-        <button method="get" asp-controller="Home" asp-action="Spravka">Справки об обучении</button>
-    </div>
-    <div>
-        <button method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
-    </div>
+
 </form>
+

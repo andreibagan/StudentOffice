@@ -12,12 +12,12 @@ namespace StudentOffice.Models.DataBase
         [JsonIgnore]
         public int TimeTableId { get; set; }
         public DateTime DateTime { get; set; }
-        public int DayNumber { get; set; } //TODO: Зачем?
-        public string PatternType { get; set; } //TODO: Зачем?
+        public int DayNumber { get; set; } //TODO: 
+        public string PatternType { get; set; } //TODO: 
 
         public int? SemesterId { get; set; }
         [JsonIgnore]
-        public virtual Semester Semester { get; set; } //TODO: что?
+        public virtual Semester Semester { get; set; } //TODO: 
 
         public virtual ICollection<TimeTableGroup> TimeTableGroups { get; set; }
     }
