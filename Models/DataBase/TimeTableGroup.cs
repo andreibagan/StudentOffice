@@ -15,6 +15,7 @@ namespace StudentOffice.Models.DataBase
         public int GroupId { get; set; }
         [JsonIgnore]
         public virtual Group Group { get; set; }
+        [JsonIgnore]
         public int TimeTableId { get; set; }
         [JsonIgnore]
         public virtual TimeTable TimeTable { get; set; }

@@ -50,5 +50,28 @@ namespace StudentOffice.Models.DataBase
                 return Anketa == null ? null : Anketa.SurnameR + " " + Anketa.NameR + " " + Anketa.MiddlenameR;
             }
         }
+
+        public string GetFullName
+        {
+            get
+            {
+                return Anketa == null ? null : Anketa.Surname + " " + Anketa.Name + " " + Anketa.Middlename;
+            }
+        }
+
+        public string GetInitial
+        {
+            get
+            {
+                if (Anketa != null)
+                {
+                    string fullname = Anketa.Surname + " " + Anketa.Name + " " + Anketa.Middlename;
+                    string[] fio = fullname.Split(' ');
+                    string initial = $"{fio[0]} {fio[1][0]} {fio[2][0]}";
+                    return initial;
+                }
+                return null;
+            }
+        }
     }
 }

@@ -12,8 +12,8 @@ namespace StudentOffice.Models.DataBase
         [JsonIgnore]
         public int TimeTableId { get; set; }
         public DateTime DateTime { get; set; }
-        public int DayNumber { get; set; } //TODO: 
-        public string PatternType { get; set; } //TODO: 
+        public int DayNumber { get; set; } 
+        public string PatternType { get; set; } 
 
         public int? SemesterId { get; set; }
         [JsonIgnore]

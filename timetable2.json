@@ -1,0 +1,47 @@
+[
+  {
+    "DateTime": "2021-03-04T00:00:00",
+    "DayNumber": 4,
+    "PatternType": "Рабочий",
+    "SemesterId": null,
+    "TimeTableGroups": [
+      {
+        "GroupId": 3,
+        "Couples": [
+          {
+            "IsSubgroups": false,
+            "Subgroups": 0,
+            "DisciplineId": 7,
+            "AudienceId": 1,
+            "TimeWindowId": null,
+            "UserId": "1868da31-3eee-46c4-b64c-6d880703aa73"
+          },
+          {
+            "IsSubgroups": false,
+            "Subgroups": 0,
+            "DisciplineId": 11,
+            "AudienceId": 1,
+            "TimeWindowId": null,
+            "UserId": "1d8820a0-6ac9-4bd2-b95c-917d6616751b"
+          },
+          {
+            "IsSubgroups": false,
+            "Subgroups": 0,
+            "DisciplineId": 13,
+            "AudienceId": 4,
+            "TimeWindowId": null,
+            "UserId": "af5f0755-000f-4022-9db9-4096c550d4ee"
+          },
+          {
+            "IsSubgroups": false,
+            "Subgroups": 0,
+            "DisciplineId": 9,
+            "AudienceId": 3,
+            "TimeWindowId": null,
+            "UserId": "b2c11549-af1a-4a10-b5ad-7b226fcbc112"
+          }
+        ]
+      }
+    ]
+  }
+]

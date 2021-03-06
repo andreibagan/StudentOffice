@@ -19,6 +19,7 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Text.RegularExpressions;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace StudentOffice.Controllers
 {
@@ -261,13 +262,48 @@ namespace StudentOffice.Controllers
             }
         }
 
-        public async Task<IActionResult> Serialize()
+        public async Task<IActionResult> SerializeUser()
         {
             using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
             {
                 User user = await _context.Users.FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
-                await JsonSerializer.SerializeAsync<User>(fs, user);
+                await System.Text.Json.JsonSerializer.SerializeAsync<User>(fs, user);
             }
+
+            return Content("Объект был успешно сериализован");
+        }
+
+        public async Task<IActionResult> SerializeTimeTable()
+        {
+            //using (FileStream fs = new FileStream("timetable2.json", FileMode.OpenOrCreate))
+            //{
+                TimeTable timeTable = await _context.TimeTables.Include(i => i.Semester)
+                .Include(i => i.Semester)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Group)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.Discipline)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.Audience)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.TimeWindow)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.User)
+                .OrderByDescending(i => i.TimeTableId)
+                .FirstOrDefaultAsync();
+                //await JsonSerializer.SerializeAsync<TimeTable>(fs, timeTable);
+            //}
+
+            using (StreamWriter fs = new StreamWriter("timetable2.json"))
+            {
+                await fs.WriteLineAsync(JsonConvert.SerializeObject(timeTable));
+            }
+
+            //return Content("Сериализован");
 
             return Content("Объект был успешно сериализован");
         }

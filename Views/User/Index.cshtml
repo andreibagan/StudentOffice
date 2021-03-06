@@ -1,4 +1,4 @@
-﻿@*@model UserViewModel
+﻿@model UserViewModel
 @{
     ViewBag.Title = "Список пользователей";
 }
@@ -27,7 +27,7 @@
     {
         <tr>
             <td>@user.Email</td>
-            <td>@user.Group?.GroupName</td>
+            <td>@user.Anketa?.Specialty?.Groups?.FirstOrDefault()?.GroupName</td>
             <td><a asp-action="Anketa" asp-controller="Home" asp-route-id="@user.Id">Анкета</a></td>
             <td>
                 <form asp-action="Delete" asp-route-id="@user.Id" method="post">
@@ -40,4 +40,4 @@
             </td>
         </tr>
     }
-</table>*@
+</table>

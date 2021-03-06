@@ -26,27 +26,27 @@ namespace StudentOffice.Controllers
             _roleManager = roleManager;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Index(int? groupId)
-        //{
-        //    List<User> users;
-        //    List<GroupModel> groups = await _context.Groups.Select(i => new GroupModel { GroupId = i.GroupId, GroupName = i.GroupName }).ToListAsync();
+        [HttpGet]
+        public async Task<IActionResult> Index(int? groupId)
+        {
+            List<User> users;
+            List<GroupModel> groups = await _context.Groups.Select(i => new GroupModel { GroupId = i.GroupId, GroupName = i.GroupName }).ToListAsync();
 
-        //    groups.Insert(0, new GroupModel { GroupId = 0, GroupName = "Все" });
+            groups.Insert(0, new GroupModel { GroupId = 0, GroupName = "Все" });
 
-        //    if (groupId != null && groupId > 0)
-        //    {
-        //        users = await _userManager.Users.Include(i => i.Group).Where(i => i.Group.GroupId == groupId).ToListAsync();
-        //    }
-        //    else
-        //    {
-        //        users = await _userManager.Users.Include(i => i.Group).ToListAsync();
-        //    }
+            if (groupId != null && groupId > 0)
+            {
+                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Groups).Where(i => i.Anketa.Specialty.Groups.FirstOrDefault().GroupId == groupId).ToListAsync();
+            }
+            else
+            {
+                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Groups).ToListAsync();
+            }
 
-        //    UserViewModel model = new UserViewModel { Users = users, Groups = groups };
+            UserViewModel model = new UserViewModel { Users = users, Groups = groups };
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         [HttpGet]
         public IActionResult Create() => View();

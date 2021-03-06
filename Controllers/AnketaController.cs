@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using StudentOffice.Helpers;
 using StudentOffice.Models.DataBase;
+using StudentOffice.ViewModels;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StudentOffice.Controllers
 {
@@ -91,41 +93,242 @@ namespace StudentOffice.Controllers
         public async Task<IActionResult> AddOrEdit()
         {
             ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name");
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch");
 
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             if (user?.AnketaId == null)
             {
-                return View(new Anketa());
+                return View(new AnketaViewModel());
             }
             else
             {
-                var anketa = await _context.Anketas.FindAsync(user.AnketaId);
+                var anketa = await _context.Anketas.Include(i => i.Specialty).FirstOrDefaultAsync(i => i.AnketaId == user.AnketaId);
 
                 if (anketa == null)
                 {
                     return NotFound("Анкета не найдена");
                 }
-                return View(anketa);
+
+                if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Дневное")
+                {
+                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Daytime).ToList(), "SpecialtyId", "Name", anketa.Specialty.Branch);
+                }
+                else
+                if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Заочное")
+                {
+                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Correspondence).ToList(), "SpecialtyId", "Name", anketa.Specialty.Branch);
+                }
+
+                AnketaViewModel anketaViewModel = new AnketaViewModel();
+
+                anketaViewModel.AnketaId = anketa.AnketaId;
+                anketaViewModel.AddressFather = anketa.AddressFather;
+                anketaViewModel.AddressMother = anketa.AddressMother;
+                anketaViewModel.ApartmentNumber = anketa.ApartmentNumber;
+                anketaViewModel.Birthday = anketa.Birthday;
+                anketaViewModel.DateOfIssue = anketa.DateOfIssue;
+                anketaViewModel.DateOfValidity = anketa.DateOfValidity;
+                anketaViewModel.DocumentTypeId = anketa.DocumentTypeId;
+                anketaViewModel.EducationLevel = anketa.EducationLevel;
+                anketaViewModel.HomePhone = anketa.HomePhone;
+                anketaViewModel.HouseNumber = anketa.HouseNumber;
+                anketaViewModel.HullNumber = anketa.HullNumber;
+                anketaViewModel.IdentityNumber = anketa.IdentityNumber;
+                anketaViewModel.Institution = anketa.Institution;
+                anketaViewModel.IssuedBy = anketa.IssuedBy;
+                anketaViewModel.KinshipTypeFather = anketa.KinshipTypeFather;
+                anketaViewModel.KinshipTypeMother = anketa.KinshipTypeMother;
+                anketaViewModel.Middlename = anketa.Middlename;
+                anketaViewModel.MiddlenameFather = anketa.MiddlenameFather;
+                anketaViewModel.MiddlenameMother = anketa.MiddlenameMother;
+                anketaViewModel.MiddlenameR = anketa.MiddlenameR;
+                anketaViewModel.Name = anketa.Name;
+                anketaViewModel.NameFather = anketa.NameFather;
+                anketaViewModel.NameMother = anketa.NameMother;
+                anketaViewModel.NameOfSettlement = anketa.NameOfSettlement;
+                anketaViewModel.NameR = anketa.NameR;
+                anketaViewModel.PassportNumber = anketa.PassportNumber;
+                anketaViewModel.PassportSeries = anketa.PassportSeries;
+                anketaViewModel.PlaceOfBirth = anketa.PlaceOfBirth;
+                anketaViewModel.PlaceOfWorkAndPosition = anketa.PlaceOfWorkAndPosition;
+                anketaViewModel.Postcode = anketa.Postcode;
+                anketaViewModel.Region = anketa.Region;
+                anketaViewModel.SeniorityGeneral = anketa.SeniorityGeneral;
+                anketaViewModel.SeniorityProfileSpecialty = anketa.SeniorityProfileSpecialty;
+                anketaViewModel.Sex = anketa.Sex;
+                anketaViewModel.SocialBehavior = anketa.SocialBehavior;
+                anketaViewModel.SpecialtyId = anketa.SpecialtyId;
+                anketaViewModel.StreetName = anketa.StreetName;
+                anketaViewModel.StreetType = anketa.StreetType;
+                anketaViewModel.Surname = anketa.Surname;
+                anketaViewModel.SurnameFather = anketa.SurnameFather;
+                anketaViewModel.SurnameMother = anketa.SurnameMother;
+                anketaViewModel.SurnameR = anketa.SurnameR;
+                anketaViewModel.TypeOfSettlement = anketa.TypeOfSettlement;
+                anketaViewModel.YearOfEnding = anketa.YearOfEnding;
+
+                return View(anketaViewModel);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId")] Anketa anketa)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId,XeracopyPassportFirst,XeracopyPassportSecond,Registration,CertificateFirst,CertificateSecond,MedicalCertificateFirst,MedicalCertificateSecond")] AnketaViewModel anketaViewModel)
         {
 
             if (ModelState.IsValid)
             {
+
                 if (id == 0)
                 {
+                    Anketa anketa = new Anketa();
+
                     var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
                     if (user == null)
                     {
                         return NotFound("Пользователь не найден");
                     }
+
+                    #region MyRegion
+
+
+                    if (anketaViewModel.XeracopyPassportFirst != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.XeracopyPassportFirst.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.XeracopyPassportFirst.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.XeracopyPassportFirstHash = imageData;
+                    }
+
+                    if (anketaViewModel.XeracopyPassportSecond != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.XeracopyPassportSecond.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.XeracopyPassportSecond.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.XeracopyPassportSecondHash = imageData;
+                    }
+
+                    if (anketaViewModel.Registration != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.Registration.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.Registration.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.RegistrationHash = imageData;
+                    }
+
+                    if (anketaViewModel.CertificateFirst != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.CertificateFirst.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.CertificateFirst.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.CertificateFirstHash = imageData;
+                    }
+
+                    if (anketaViewModel.CertificateSecond != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.CertificateSecond.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.CertificateSecond.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.CertificateSecondHash = imageData;
+                    }
+
+                    if (anketaViewModel.MedicalCertificateFirst != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.MedicalCertificateFirst.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.MedicalCertificateFirst.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.MedicalCertificateFirstHash = imageData;
+                    }
+
+                    if (anketaViewModel.MedicalCertificateSecond != null)
+                    {
+                        byte[] imageData = null;
+
+                        using (var binaryReader = new BinaryReader(anketaViewModel.MedicalCertificateSecond.OpenReadStream()))
+                        {
+                            imageData = binaryReader.ReadBytes((int)anketaViewModel.MedicalCertificateSecond.Length);
+                        }
+                        // установка массива байтов
+                        anketaViewModel.MedicalCertificateSecondHash = imageData;
+                    }
+
+                    anketa.AddressFather = anketaViewModel.AddressFather;
+                    anketa.AddressMother = anketaViewModel.AddressMother;
+                    anketa.ApartmentNumber = anketaViewModel.ApartmentNumber;
+                    anketa.Birthday = anketaViewModel.Birthday;
+                    anketa.CertificateFirstHash = anketaViewModel.CertificateFirstHash;
+                    anketa.CertificateSecondHash = anketaViewModel.CertificateSecondHash;
+                    anketa.DateOfIssue = anketaViewModel.DateOfIssue;
+                    anketa.DateOfValidity = anketaViewModel.DateOfValidity;
+                    anketa.DocumentTypeId = anketaViewModel.DocumentTypeId;
+                    anketa.EducationLevel = anketaViewModel.EducationLevel;
+                    anketa.HomePhone = anketaViewModel.HomePhone;
+                    anketa.HouseNumber = anketaViewModel.HouseNumber;
+                    anketa.HullNumber = anketaViewModel.HullNumber;
+                    anketa.IdentityNumber = anketaViewModel.IdentityNumber;
+                    anketa.Institution = anketaViewModel.Institution;
+                    anketa.IssuedBy = anketaViewModel.IssuedBy;
+                    anketa.KinshipTypeFather = anketaViewModel.KinshipTypeFather;
+                    anketa.KinshipTypeMother = anketaViewModel.KinshipTypeMother;
+                    anketa.MedicalCertificateFirstHash = anketaViewModel.MedicalCertificateFirstHash;
+                    anketa.MedicalCertificateSecondHash = anketaViewModel.MedicalCertificateSecondHash;
+                    anketa.Middlename = anketaViewModel.Middlename;
+                    anketa.MiddlenameFather = anketaViewModel.MiddlenameFather;
+                    anketa.MiddlenameMother = anketaViewModel.MiddlenameMother;
+                    anketa.MiddlenameR = anketaViewModel.MiddlenameR;
+                    anketa.Name = anketaViewModel.Name;
+                    anketa.NameFather = anketaViewModel.NameFather;
+                    anketa.NameMother = anketaViewModel.NameMother;
+                    anketa.NameOfSettlement = anketaViewModel.NameOfSettlement;
+                    anketa.NameR = anketaViewModel.NameR;
+                    anketa.PassportNumber = anketaViewModel.PassportNumber;
+                    anketa.PassportSeries = anketaViewModel.PassportSeries;
+                    anketa.PlaceOfBirth = anketaViewModel.PlaceOfBirth;
+                    anketa.PlaceOfWorkAndPosition = anketaViewModel.PlaceOfWorkAndPosition;
+                    anketa.Postcode = anketaViewModel.Postcode;
+                    anketa.Region = anketaViewModel.Region;
+                    anketa.RegistrationHash = anketaViewModel.RegistrationHash;
+                    anketa.SeniorityGeneral = anketaViewModel.SeniorityGeneral;
+                    anketa.SeniorityProfileSpecialty = anketaViewModel.SeniorityProfileSpecialty;
+                    anketa.Sex = anketaViewModel.Sex;
+                    anketa.SocialBehavior = anketaViewModel.SocialBehavior;
+                    anketa.SpecialtyId = anketaViewModel.SpecialtyId;
+                    anketa.StreetName = anketaViewModel.StreetName;
+                    anketa.StreetType = anketaViewModel.StreetType;
+                    anketa.Surname = anketaViewModel.Surname;
+                    anketa.SurnameFather = anketaViewModel.SurnameFather;
+                    anketa.SurnameMother = anketaViewModel.SurnameMother;
+                    anketa.SurnameR = anketaViewModel.SurnameR;
+                    anketa.TypeOfSettlement = anketaViewModel.TypeOfSettlement;
+                    anketa.XeracopyPassportFirstHash = anketaViewModel.XeracopyPassportFirstHash;
+                    anketa.XeracopyPassportSecondHash = anketaViewModel.XeracopyPassportSecondHash;
+                    anketa.YearOfEnding = anketaViewModel.YearOfEnding;
+                    #endregion
 
                     await _context.AddAsync(anketa);
                     await _context.SaveChangesAsync();
@@ -138,12 +341,153 @@ namespace StudentOffice.Controllers
                 {
                     try
                     {
-                        _context.Update(anketa);
+                        #region MyRegion
+
+                        Anketa anketa = await _context.Anketas.FindAsync(id);
+
+                        if (anketaViewModel.XeracopyPassportFirst != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.XeracopyPassportFirst.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.XeracopyPassportFirst.Length);
+                            }
+                            // установка массива байтов
+                            anketa.XeracopyPassportFirstHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.XeracopyPassportSecond != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.XeracopyPassportSecond.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.XeracopyPassportSecond.Length);
+                            }
+                            // установка массива байтов
+                            anketa.XeracopyPassportSecondHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.Registration != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.Registration.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.Registration.Length);
+                            }
+                            // установка массива байтов
+                            anketa.RegistrationHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.CertificateFirst != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.CertificateFirst.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.CertificateFirst.Length);
+                            }
+                            // установка массива байтов
+                            anketa.CertificateFirstHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.CertificateSecond != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.CertificateSecond.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.CertificateSecond.Length);
+                            }
+                            // установка массива байтов
+                            anketa.CertificateSecondHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.MedicalCertificateFirst != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.MedicalCertificateFirst.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.MedicalCertificateFirst.Length);
+                            }
+                            // установка массива байтов
+                            anketa.MedicalCertificateFirstHash = imageData;
+                        }
+
+
+                        if (anketaViewModel.MedicalCertificateSecond != null)
+                        {
+                            byte[] imageData = null;
+
+                            using (var binaryReader = new BinaryReader(anketaViewModel.MedicalCertificateSecond.OpenReadStream()))
+                            {
+                                imageData = binaryReader.ReadBytes((int)anketaViewModel.MedicalCertificateSecond.Length);
+                            }
+                            // установка массива байтов
+                            anketa.MedicalCertificateSecondHash = imageData;
+                        }
+
+                        anketa.AddressFather = anketaViewModel.AddressFather;
+                        anketa.AddressMother = anketaViewModel.AddressMother;
+                        anketa.ApartmentNumber = anketaViewModel.ApartmentNumber;
+                        anketa.Birthday = anketaViewModel.Birthday;
+                        anketa.DateOfIssue = anketaViewModel.DateOfIssue;
+                        anketa.DateOfValidity = anketaViewModel.DateOfValidity;
+                        anketa.DocumentTypeId = anketaViewModel.DocumentTypeId;
+                        anketa.EducationLevel = anketaViewModel.EducationLevel;
+                        anketa.HomePhone = anketaViewModel.HomePhone;
+                        anketa.HouseNumber = anketaViewModel.HouseNumber;
+                        anketa.HullNumber = anketaViewModel.HullNumber;
+                        anketa.IdentityNumber = anketaViewModel.IdentityNumber;
+                        anketa.Institution = anketaViewModel.Institution;
+                        anketa.IssuedBy = anketaViewModel.IssuedBy;
+                        anketa.KinshipTypeFather = anketaViewModel.KinshipTypeFather;
+                        anketa.KinshipTypeMother = anketaViewModel.KinshipTypeMother;
+                        anketa.Middlename = anketaViewModel.Middlename;
+                        anketa.MiddlenameFather = anketaViewModel.MiddlenameFather;
+                        anketa.MiddlenameMother = anketaViewModel.MiddlenameMother;
+                        anketa.MiddlenameR = anketaViewModel.MiddlenameR;
+                        anketa.Name = anketaViewModel.Name;
+                        anketa.NameFather = anketaViewModel.NameFather;
+                        anketa.NameMother = anketaViewModel.NameMother;
+                        anketa.NameOfSettlement = anketaViewModel.NameOfSettlement;
+                        anketa.NameR = anketaViewModel.NameR;
+                        anketa.PassportNumber = anketaViewModel.PassportNumber;
+                        anketa.PassportSeries = anketaViewModel.PassportSeries;
+                        anketa.PlaceOfBirth = anketaViewModel.PlaceOfBirth;
+                        anketa.PlaceOfWorkAndPosition = anketaViewModel.PlaceOfWorkAndPosition;
+                        anketa.Postcode = anketaViewModel.Postcode;
+                        anketa.Region = anketaViewModel.Region;
+                        anketa.SeniorityGeneral = anketaViewModel.SeniorityGeneral;
+                        anketa.SeniorityProfileSpecialty = anketaViewModel.SeniorityProfileSpecialty;
+                        anketa.Sex = anketaViewModel.Sex;
+                        anketa.SocialBehavior = anketaViewModel.SocialBehavior;
+                        anketa.SpecialtyId = anketaViewModel.SpecialtyId;
+                        anketa.StreetName = anketaViewModel.StreetName;
+                        anketa.StreetType = anketaViewModel.StreetType;
+                        anketa.Surname = anketaViewModel.Surname;
+                        anketa.SurnameFather = anketaViewModel.SurnameFather;
+                        anketa.SurnameMother = anketaViewModel.SurnameMother;
+                        anketa.SurnameR = anketaViewModel.SurnameR;
+                        anketa.TypeOfSettlement = anketaViewModel.TypeOfSettlement;
+                        anketa.YearOfEnding = anketaViewModel.YearOfEnding;
+
+                        #endregion
+
+                        _context.Anketas.Update(anketa);
                         await _context.SaveChangesAsync();
                     }
                     catch (DbUpdateConcurrencyException)
                     {
-                        if (!AnketaExists(anketa.AnketaId))
+                        if (!AnketaExists(anketaViewModel.AnketaId))
                         {
                             return NotFound();
                         }
@@ -153,12 +497,12 @@ namespace StudentOffice.Controllers
                         }
                     }
                 }
-                
+
                 return RedirectToAction("Index", "Home");
             }
-            ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketa.DocumentTypeId);
-            ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);
-            return View(anketa);
+            ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketaViewModel.DocumentTypeId);
+            //ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);
+            return View(anketaViewModel);
         }
 
         // GET: Anketa/Edit/5

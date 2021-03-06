@@ -8,9 +8,7 @@ namespace StudentOffice.Models.DataBase
         Not = 0,
         [Display(Name = "Мать")]
         Mother,
-        [Display(Name = "Мачеха")]
-        Stepmother,
-        [Display(Name = "Попечительница")]
+        [Display(Name = "Попечитель")]
         Trustee,
     }
 }

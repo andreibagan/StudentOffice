@@ -1,4 +1,4 @@
-﻿@model StudentOffice.Models.DataBase.Anketa
+﻿@model StudentOffice.ViewModels.AnketaViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -11,9 +11,10 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.AnketaId">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.AnketaId" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AnketaId" />
+
             <div class="row">
                 <div class="form-group col-md-4">
                     <label asp-for="Surname" class="control-label"></label>
@@ -52,7 +53,7 @@
 
             <div class="form-group">
                 <label asp-for="Birthday" class="control-label"></label>
-                <input asp-for="Birthday" class="form-control" />
+                <input asp-for="Birthday" value="@(Model.Birthday.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.Birthday.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -80,12 +81,12 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label asp-for="DateOfIssue" class="control-label"></label>
-                    <input asp-for="DateOfIssue" class="form-control" />
+                    <input asp-for="DateOfIssue" value="@(Model.DateOfIssue.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfIssue.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                     <span asp-validation-for="DateOfIssue" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
                     <label asp-for="DateOfValidity" class="control-label"></label>
-                    <input asp-for="DateOfValidity" class="form-control" />
+                    <input asp-for="DateOfValidity" value="@(Model.DateOfValidity.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfValidity.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                     <span asp-validation-for="DateOfValidity" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
@@ -168,8 +169,8 @@
                 <span asp-validation-for="SocialBehavior"></span>
             </div>
             @*<hr />
-                <h3 align="center">Информация об отце</h3>
-                <hr />*@
+        <h3 align="center">Информация об отце</h3>
+        <hr />*@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label asp-for="KinshipTypeFather" class="control-label"></label>
@@ -199,8 +200,8 @@
                 <span asp-validation-for="AddressFather" class="text-danger"></span>
             </div>
             @*<hr />
-                <h3 align="center">Информация о матери</h3>
-                <hr />*@
+        <h3 align="center">Информация о матери</h3>
+        <hr />*@
             <div class="row">
                 <div class="form-group col-md-3">
                     <label asp-for="KinshipTypeMother" class="control-label"></label>
@@ -232,7 +233,7 @@
             <div class="row">
                 <div class="form-group col-md-4">
                     <label asp-for="EducationLevel" class="control-label"></label>
-                    <select asp-for="EducationLevel" class="form-control" asp-items="Html.GetEnumSelectList<EducationLevel>()"></select>
+                    <select id="sel1" asp-for="EducationLevel" class="form-control" asp-items="Html.GetEnumSelectList<EducationLevel>()" onchange="SetOptions();"></select>
                     <span asp-validation-for="EducationLevel" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-4">
@@ -242,9 +243,30 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label asp-for="YearOfEnding" class="control-label"></label>
-                    <input asp-for="YearOfEnding" class="form-control" />
+                    <input asp-for="YearOfEnding" value="@(Model.YearOfEnding.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.YearOfEnding.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                     <span asp-validation-for="YearOfEnding" class="text-danger"></span>
                 </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="control-label">Отделение</label>
+                    <select id="sel2" class="form-control" asp-items="Html.GetEnumSelectList<Branch>()" onchange="SetOptions();"></select>
+                    @*<span asp-validation-for="Specialty.Branch" class="text-danger"></span>*@
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="SpecialtyId" class="control-label"></label>
+                    <select id="sel3" asp-for="SpecialtyId" class="form-control" asp-items="ViewBag.SpecialtyId">
+                        <option value="0">Нет</option>
+                    </select>
+                    <span asp-validation-for="SpecialtyId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DocumentTypeId" class="control-label"></label>
+                <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
+                <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
             </div>
 
             <div class="row">
@@ -263,18 +285,53 @@
                     <input asp-for="SeniorityProfileSpecialty" class="form-control" />
                     <span asp-validation-for="SeniorityProfileSpecialty" class="text-danger"></span>
                 </div>
+
+
+                <div class="form-group">
+                    <label asp-for="XeracopyPassportFirst" class="control-label"></label>
+                    <input asp-for="@Model.XeracopyPassportFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="XeracopyPassportFirst" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="XeracopyPassportSecond" class="control-label"></label>
+                    <input asp-for="@Model.XeracopyPassportSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="XeracopyPassportSecond" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Registration" class="control-label"></label>
+                    <input asp-for="@Model.Registration" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="Registration" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CertificateFirst" class="control-label"></label>
+                    <input asp-for="@Model.CertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="CertificateFirst" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CertificateSecond" class="control-label"></label>
+                    <input asp-for="@Model.CertificateSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="CertificateSecond" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MedicalCertificateFirst" class="control-label"></label>
+                    <input asp-for="@Model.MedicalCertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="MedicalCertificateFirst" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MedicalCertificateSecond" class="control-label"></label>
+                    <input asp-for="@Model.MedicalCertificateSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
+                    <span asp-validation-for="MedicalCertificateSecond" class="text-danger"></span>
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label asp-for="SpecialtyId" class="control-label"></label>
-                <select asp-for="SpecialtyId" class="form-control" asp-items="ViewBag.SpecialtyId"></select>
-                <span asp-validation-for="SpecialtyId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DocumentTypeId" class="control-label"></label>
-                <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
-                <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
             </div>
@@ -288,4 +345,60 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        function SetOptions() {
+            //if (($('#sel2 option:selected').text() == "Дневное" && $('#sel1 option:selected').text() == "Базовое") || ($('#sel2 option:selected').text() == "Дневное" && ($('#sel1 option:selected').text() == "Среднее" || $('#sel1 option:selected').text() == "Средне-специальное"))) {
+            //    $('#sel3 option').remove();
+            //    $('#sel3').prepend('<option value="0">Нет</option>');
+            //    $('#sel3').prepend('<option value="3">Программное обеспечение информационных технологий</option>');
+            //    $('#sel3').prepend('<option value="5">Правоведение</option>');
+            //    $('#sel3').prepend('<option value="4">Операционная деятельность в логистике</option>');
+            //    $('#sel3').prepend('<option value="1">Бухгалтерский учёт, анализ и контроль</option>');
+            //}
+            //if ($('#sel2 option:selected').text() == "Заочное" && ($('#sel1 option:selected').text() == "Среднее" || $('#sel1 option:selected').text() == "Средне-специальное")) {
+            //    $('#sel3 option').remove();
+            //    $('#sel3').prepend('<option value="0">Нет</option>');
+            //    $('#sel3').prepend('<option value="6">Правоведение</option>');
+            //    $('#sel3').prepend('<option value="2">Бухгалтерский учёт, анализ и контроль</option>');
+            //}
+            //if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {
+            //    $('#sel3').options.length = 0;
+            //    $('#sel3').prepend('<option value="0">Нет</option>');
+            //}
+
+            if (($('#sel2 option:selected').text() == "Дневное")) {
+                $('#sel3 option').remove();
+                $('#sel3').prepend('<option value="0">Нет</option>');
+                $('#sel3').prepend('<option value="3">Программное обеспечение информационных технологий</option>');
+                $('#sel3').prepend('<option value="5">Правоведение</option>');
+                $('#sel3').prepend('<option value="4">Операционная деятельность в логистике</option>');
+                $('#sel3').prepend('<option value="1">Бухгалтерский учёт, анализ и контроль</option>');
+            }
+            if ($('#sel2 option:selected').text() == "Заочное") {
+                $('#sel3 option').remove();
+                $('#sel3').prepend('<option value="0">Нет</option>');
+                $('#sel3').prepend('<option value="6">Правоведение</option>');
+                $('#sel3').prepend('<option value="2">Бухгалтерский учёт, анализ и контроль</option>');
+            }
+            if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {
+                $('#sel3 option').remove();
+                $('#sel3').prepend('<option value="0">Нет</option>');
+            }
+
+        }
+    </script>
+
+
+    @*<script>
+            $(function () {
+                var current = location.pathname;
+                $('.nav-tabs li a').each(function () {
+                    var $this = $(this);
+                    if (current.indexOf($this.attr('href')) !== -1) {
+                        $this.addClass('active');
+                    }
+                })
+            })
+        </script>*@
 }
