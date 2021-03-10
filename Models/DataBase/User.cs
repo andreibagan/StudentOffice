@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using StudentOffice.Helpers;
 
 namespace StudentOffice.Models.DataBase
 {
@@ -71,6 +72,19 @@ namespace StudentOffice.Models.DataBase
                     return initial;
                 }
                 return null;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                if (Anketa != null)
+                {
+                    return $"{Anketa.Postcode}, {EnumHelper<Region>.GetDisplayValue(Anketa.Region)}, {Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetDisplayValue(Anketa.TypeOfSettlement).ToLower()} {Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetDisplayValue(Anketa.StreetType).ToLower()} {Anketa.StreetName}, дом № {Anketa.HouseNumber}, квартира {Anketa.ApartmentNumber}";
+                }
+
+                return "";
             }
         }
     }

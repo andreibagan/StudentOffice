@@ -210,6 +210,8 @@ namespace StudentOffice.ViewModels
         [Display(Name = "Стаж(по профилю избранной специальности)")]
         public string SeniorityProfileSpecialty { get; set; }
 
+        [Display(Name = "Отделение")]
+        public Branch Branch { get; set; }
 
 
         [Display(Name = "Ксерокопия паспорта")]

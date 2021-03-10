@@ -10,7 +10,7 @@ namespace StudentOffice.Models.DataBase
     {
         public int SelectionСommitteeId { get; set; }
         public string Name { get; set; }
-        public DateTime Year { get; set; }
+        public int Year { get; set; }
         public virtual ICollection<AdmissionPlan> AdmissionPlans { get; set; }
     }
 }

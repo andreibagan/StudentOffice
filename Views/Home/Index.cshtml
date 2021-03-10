@@ -11,13 +11,7 @@
             <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету учащегося</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Image" asp-action="Index">Отправить изображения документов</button>
-        </div>
-        @*<div>
-                <button type="button" style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Home" asp-action="DisplayDoc">Вывести заявление</button>
-            </div>*@
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Spravka" asp-action="Index">Справки об обучении</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Spravka" asp-action="AddOrEdit">Справки об обучении</button>
         </div>
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
@@ -25,9 +19,12 @@
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Marklog" asp-action="Index">Отметки учащегося</button>
         </div>
-        @*<div>
-                    <button method="get" asp-controller="Home" asp-action="Reser">Записаться на подачу документов</button>
-            </div>*@
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="Index">Документы</button>
+        </div>
+        <div>
+                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="AdmissionPlan" asp-action="Index">Записаться на подачу документов</button>
+        </div>
 
 
     </div>

@@ -9,318 +9,325 @@
 
 <h4 align="center">Анкета</h4>
 <hr />
-<div class="row">
-    <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.AnketaId" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="AnketaId" />
 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="Surname" class="control-label"></label>
-                    <input asp-for="Surname" class="form-control" />
-                    <span asp-validation-for="Surname" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Middlename" class="control-label"></label>
-                    <input asp-for="Middlename" class="form-control" />
-                    <span asp-validation-for="Middlename" class="text-danger"></span>
-                </div>
-            </div>
+<div class="container-md">
+    <div class="row">
+        <div class="col-md">
+            <form asp-action="AddOrEdit" asp-route-id="@Model.AnketaId" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="AnketaId" />
 
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="SurnameR" class="control-label"></label>
-                    <input asp-for="SurnameR" class="form-control" />
-                    <span asp-validation-for="SurnameR" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="NameR" class="control-label"></label>
-                    <input asp-for="NameR" class="form-control" />
-                    <span asp-validation-for="NameR" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="MiddlenameR" class="control-label"></label>
-                    <input asp-for="MiddlenameR" class="form-control" />
-                    <span asp-validation-for="MiddlenameR" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="Birthday" class="control-label"></label>
-                <input asp-for="Birthday" value="@(Model.Birthday.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.Birthday.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
-                <span asp-validation-for="Birthday" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sex" class="control-label"></label>
-                <select asp-for="Sex" class="form-control" asp-items="Html.GetEnumSelectList<Sex>()"></select>
-                <span asp-validation-for="Sex" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="IdentityNumber" class="control-label"></label>
-                    <input asp-for="IdentityNumber" class="form-control" />
-                    <span asp-validation-for="IdentityNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="PassportSeries" class="control-label"></label>
-                    <input asp-for="PassportSeries" class="form-control" />
-                    <span asp-validation-for="PassportSeries" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="PassportNumber" class="control-label"></label>
-                    <input asp-for="PassportNumber" class="form-control" />
-                    <span asp-validation-for="PassportNumber" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="DateOfIssue" class="control-label"></label>
-                    <input asp-for="DateOfIssue" value="@(Model.DateOfIssue.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfIssue.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
-                    <span asp-validation-for="DateOfIssue" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="DateOfValidity" class="control-label"></label>
-                    <input asp-for="DateOfValidity" value="@(Model.DateOfValidity.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfValidity.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
-                    <span asp-validation-for="DateOfValidity" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="IssuedBy" class="control-label"></label>
-                    <input asp-for="IssuedBy" class="form-control" />
-                    <span asp-validation-for="IssuedBy" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="PlaceOfBirth" class="control-label"></label>
-                    <input asp-for="PlaceOfBirth" class="form-control" />
-                    <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Postcode" class="control-label"></label>
-                    <input asp-for="Postcode" class="form-control" />
-                    <span asp-validation-for="Postcode" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Region" class="control-label"></label>
-                    <select asp-for="Region" class="form-control" asp-items="Html.GetEnumSelectList<Region>()"></select>
-                    <span asp-validation-for="Region" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label asp-for="TypeOfSettlement" class="control-label"></label>
-                    <select asp-for="TypeOfSettlement" class="form-control" asp-items="Html.GetEnumSelectList<TypeOfSettlement>()"></select>
-                    <span asp-validation-for="TypeOfSettlement" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-6">
-                    <label asp-for="NameOfSettlement" class="control-label"></label>
-                    <input asp-for="NameOfSettlement" class="form-control" />
-                    <span asp-validation-for="NameOfSettlement" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="Surname" class="control-label"></label>
+                        <input asp-for="Surname" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Middlename" class="control-label"></label>
+                        <input asp-for="Middlename" class="form-control" />
+                        <span asp-validation-for="Middlename" class="text-danger"></span>
+                    </div>
                 </div>
 
-            </div>
-            <div class="row">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="SurnameR" class="control-label"></label>
+                        <input asp-for="SurnameR" class="form-control" />
+                        <span asp-validation-for="SurnameR" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="NameR" class="control-label"></label>
+                        <input asp-for="NameR" class="form-control" />
+                        <span asp-validation-for="NameR" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="MiddlenameR" class="control-label"></label>
+                        <input asp-for="MiddlenameR" class="form-control" />
+                        <span asp-validation-for="MiddlenameR" class="text-danger"></span>
+                    </div>
+                </div>
 
-                <div class="form-group col-md-6">
-                    <label asp-for="StreetType" class="control-label"></label>
-                    <select asp-for="StreetType" class="form-control" asp-items="Html.GetEnumSelectList<StreetType>()"></select>
-                    <span asp-validation-for="StreetType" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Birthday" class="control-label"></label>
+                    <input asp-for="Birthday" value="@(Model.Birthday.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.Birthday.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-6">
-                    <label asp-for="StreetName" class="control-label"></label>
-                    <input asp-for="StreetName" class="form-control" />
-                    <span asp-validation-for="StreetName" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Sex" class="control-label"></label>
+                    <select asp-for="Sex" class="form-control" asp-items="Html.GetEnumSelectList<Sex>()"></select>
+                    <span asp-validation-for="Sex" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label asp-for="HouseNumber" class="control-label"></label>
-                    <input asp-for="HouseNumber" class="form-control" />
-                    <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="IdentityNumber" class="control-label"></label>
+                        <input asp-for="IdentityNumber" class="form-control" />
+                        <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="PassportSeries" class="control-label"></label>
+                        <input asp-for="PassportSeries" class="form-control" />
+                        <span asp-validation-for="PassportSeries" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="PassportNumber" class="control-label"></label>
+                        <input asp-for="PassportNumber" class="form-control" />
+                        <span asp-validation-for="PassportNumber" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="HullNumber" class="control-label"></label>
-                    <input asp-for="HullNumber" class="form-control" />
-                    <span asp-validation-for="HullNumber" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="DateOfIssue" class="control-label"></label>
+                        <input asp-for="DateOfIssue" value="@(Model.DateOfIssue.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfIssue.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
+                        <span asp-validation-for="DateOfIssue" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="DateOfValidity" class="control-label"></label>
+                        <input asp-for="DateOfValidity" value="@(Model.DateOfValidity.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfValidity.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
+                        <span asp-validation-for="DateOfValidity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="IssuedBy" class="control-label"></label>
+                        <input asp-for="IssuedBy" class="form-control" />
+                        <span asp-validation-for="IssuedBy" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="ApartmentNumber" class="control-label"></label>
-                    <input asp-for="ApartmentNumber" class="form-control" />
-                    <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="PlaceOfBirth" class="control-label"></label>
+                        <input asp-for="PlaceOfBirth" class="form-control" />
+                        <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Postcode" class="control-label"></label>
+                        <input asp-for="Postcode" class="form-control" />
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Region" class="control-label"></label>
+                        <select asp-for="Region" class="form-control" asp-items="Html.GetEnumSelectList<Region>()"></select>
+                        <span asp-validation-for="Region" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group  col-md-3">
-                    <label asp-for="HomePhone" class="control-label"></label>
-                    <input asp-for="HomePhone" class="form-control" />
-                    <span asp-validation-for="HomePhone" class="text-danger"></span>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="TypeOfSettlement" class="control-label"></label>
+                        <select asp-for="TypeOfSettlement" class="form-control" asp-items="Html.GetEnumSelectList<TypeOfSettlement>()"></select>
+                        <span asp-validation-for="TypeOfSettlement" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="NameOfSettlement" class="control-label"></label>
+                        <input asp-for="NameOfSettlement" class="form-control" />
+                        <span asp-validation-for="NameOfSettlement" class="text-danger"></span>
+                    </div>
+
                 </div>
-            </div>
+                <div class="row">
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="StreetType" class="control-label"></label>
+                        <select asp-for="StreetType" class="form-control" asp-items="Html.GetEnumSelectList<StreetType>()"></select>
+                        <span asp-validation-for="StreetType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="StreetName" class="control-label"></label>
+                        <input asp-for="StreetName" class="form-control" />
+                        <span asp-validation-for="StreetName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="HouseNumber" class="control-label"></label>
+                        <input asp-for="HouseNumber" class="form-control" />
+                        <span asp-validation-for="HouseNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="HullNumber" class="control-label"></label>
+                        <input asp-for="HullNumber" class="form-control" />
+                        <span asp-validation-for="HullNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="ApartmentNumber" class="control-label"></label>
+                        <input asp-for="ApartmentNumber" class="form-control" />
+                        <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group  col-md-3">
+                        <label asp-for="HomePhone" class="control-label"></label>
+                        <input asp-for="HomePhone" class="form-control" />
+                        <span asp-validation-for="HomePhone" class="text-danger"></span>
+                    </div>
+                </div>
 
 
-            <div class="form-group">
-                <label class="form-check-label" asp-for="SocialBehavior"></label><br />
-                <input type="checkbox" asp-for="SocialBehavior" />
-                <span asp-validation-for="SocialBehavior"></span>
-            </div>
-            @*<hr />
+                <div class="form-group">
+                    <label class="form-check-label" asp-for="SocialBehavior"></label><br />
+                    <input type="checkbox" asp-for="SocialBehavior" />
+                    <span asp-validation-for="SocialBehavior"></span>
+                </div>
+                @*<hr />
         <h3 align="center">Информация об отце</h3>
         <hr />*@
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label asp-for="KinshipTypeFather" class="control-label"></label>
-                    <select asp-for="KinshipTypeFather" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeFather>()"></select>
-                    <span asp-validation-for="KinshipTypeFather" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="KinshipTypeFather" class="control-label"></label>
+                        <select asp-for="KinshipTypeFather" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeFather>()"></select>
+                        <span asp-validation-for="KinshipTypeFather" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="SurnameFather" class="control-label"></label>
+                        <input asp-for="SurnameFather" class="form-control" />
+                        <span asp-validation-for="SurnameFather" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="NameFather" class="control-label"></label>
+                        <input asp-for="NameFather" class="form-control" />
+                        <span asp-validation-for="NameFather" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="MiddlenameFather" class="control-label"></label>
+                        <input asp-for="MiddlenameFather" class="form-control" />
+                        <span asp-validation-for="MiddlenameFather" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="SurnameFather" class="control-label"></label>
-                    <input asp-for="SurnameFather" class="form-control" />
-                    <span asp-validation-for="SurnameFather" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="NameFather" class="control-label"></label>
-                    <input asp-for="NameFather" class="form-control" />
-                    <span asp-validation-for="NameFather" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="MiddlenameFather" class="control-label"></label>
-                    <input asp-for="MiddlenameFather" class="form-control" />
-                    <span asp-validation-for="MiddlenameFather" class="text-danger"></span>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label asp-for="AddressFather" class="control-label"></label>
-                <input asp-for="AddressFather" class="form-control" />
-                <span asp-validation-for="AddressFather" class="text-danger"></span>
-            </div>
-            @*<hr />
+                <div class="form-group">
+                    <label asp-for="AddressFather" class="control-label"></label>
+                    <input asp-for="AddressFather" class="form-control" />
+                    <span asp-validation-for="AddressFather" class="text-danger"></span>
+                </div>
+                @*<hr />
         <h3 align="center">Информация о матери</h3>
         <hr />*@
-            <div class="row">
-                <div class="form-group col-md-3">
-                    <label asp-for="KinshipTypeMother" class="control-label"></label>
-                    <select asp-for="KinshipTypeMother" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeMother>()"></select>
-                    <span asp-validation-for="KinshipTypeMother" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="SurnameMother" class="control-label"></label>
-                    <input asp-for="SurnameMother" class="form-control" />
-                    <span asp-validation-for="SurnameMother" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="NameMother" class="control-label"></label>
-                    <input asp-for="NameMother" class="form-control" />
-                    <span asp-validation-for="NameMother" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="MiddlenameMother" class="control-label"></label>
-                    <input asp-for="MiddlenameMother" class="form-control" />
-                    <span asp-validation-for="MiddlenameMother" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="AddressMother" class="control-label"></label>
-                <input asp-for="AddressMother" class="form-control" />
-                <span asp-validation-for="AddressMother" class="text-danger"></span>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="EducationLevel" class="control-label"></label>
-                    <select id="sel1" asp-for="EducationLevel" class="form-control" asp-items="Html.GetEnumSelectList<EducationLevel>()" onchange="SetOptions();"></select>
-                    <span asp-validation-for="EducationLevel" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="Institution" class="control-label"></label>
-                    <input asp-for="Institution" class="form-control" />
-                    <span asp-validation-for="Institution" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="YearOfEnding" class="control-label"></label>
-                    <input asp-for="YearOfEnding" value="@(Model.YearOfEnding.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.YearOfEnding.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
-                    <span asp-validation-for="YearOfEnding" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label class="control-label">Отделение</label>
-                    <select id="sel2" class="form-control" asp-items="Html.GetEnumSelectList<Branch>()" onchange="SetOptions();"></select>
-                    @*<span asp-validation-for="Specialty.Branch" class="text-danger"></span>*@
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label asp-for="SpecialtyId" class="control-label"></label>
-                    <select id="sel3" asp-for="SpecialtyId" class="form-control" asp-items="ViewBag.SpecialtyId">
-                        <option value="0">Нет</option>
-                    </select>
-                    <span asp-validation-for="SpecialtyId" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="DocumentTypeId" class="control-label"></label>
-                <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
-                <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-4">
-                    <label asp-for="PlaceOfWorkAndPosition" class="control-label"></label>
-                    <input asp-for="PlaceOfWorkAndPosition" class="form-control" />
-                    <span asp-validation-for="PlaceOfWorkAndPosition" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="SeniorityGeneral" class="control-label"></label>
-                    <input asp-for="SeniorityGeneral" class="form-control" />
-                    <span asp-validation-for="SeniorityGeneral" class="text-danger"></span>
-                </div>
-                <div class="form-group col-md-4">
-                    <label asp-for="SeniorityProfileSpecialty" class="control-label"></label>
-                    <input asp-for="SeniorityProfileSpecialty" class="form-control" />
-                    <span asp-validation-for="SeniorityProfileSpecialty" class="text-danger"></span>
-                </div>
-
-
-                <div class="form-group">
-                    <label asp-for="XeracopyPassportFirst" class="control-label"></label>
-                    <input asp-for="@Model.XeracopyPassportFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="XeracopyPassportFirst" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="KinshipTypeMother" class="control-label"></label>
+                        <select asp-for="KinshipTypeMother" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeMother>()"></select>
+                        <span asp-validation-for="KinshipTypeMother" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="SurnameMother" class="control-label"></label>
+                        <input asp-for="SurnameMother" class="form-control" />
+                        <span asp-validation-for="SurnameMother" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="NameMother" class="control-label"></label>
+                        <input asp-for="NameMother" class="form-control" />
+                        <span asp-validation-for="NameMother" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label asp-for="MiddlenameMother" class="control-label"></label>
+                        <input asp-for="MiddlenameMother" class="form-control" />
+                        <span asp-validation-for="MiddlenameMother" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="XeracopyPassportSecond" class="control-label"></label>
-                    <input asp-for="@Model.XeracopyPassportSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="XeracopyPassportSecond" class="text-danger"></span>
+                    <label asp-for="AddressMother" class="control-label"></label>
+                    <input asp-for="AddressMother" class="form-control" />
+                    <span asp-validation-for="AddressMother" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="EducationLevel" class="control-label"></label>
+                        <select id="sel1" asp-for="EducationLevel" class="form-control" asp-items="Html.GetEnumSelectList<EducationLevel>()" onchange="SetOptions();"></select>
+                        <span asp-validation-for="EducationLevel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Institution" class="control-label"></label>
+                        <input asp-for="Institution" class="form-control" />
+                        <span asp-validation-for="Institution" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="YearOfEnding" class="control-label"></label>
+                        <input asp-for="YearOfEnding" value="@(Model.YearOfEnding.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.YearOfEnding.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
+                        <span asp-validation-for="YearOfEnding" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Branch" class="control-label"></label>
+                        <select asp-for="Branch" id="sel2" class="form-control" asp-items="Html.GetEnumSelectList<Branch>()" onchange="SetOptions();"></select>
+                        <span asp-validation-for="Branch" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="SpecialtyId" class="control-label"></label>
+                        <select id="sel3" asp-for="SpecialtyId" class="form-control" asp-items="ViewBag.SpecialtyId">
+                            <option value="0">Нет</option>
+                        </select>
+                        <span asp-validation-for="SpecialtyId" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Registration" class="control-label"></label>
-                    <input asp-for="@Model.Registration" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="Registration" class="text-danger"></span>
+                    <label asp-for="DocumentTypeId" class="control-label"></label>
+                    <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
+                    <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="CertificateFirst" class="control-label"></label>
-                    <input asp-for="@Model.CertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="CertificateFirst" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="PlaceOfWorkAndPosition" class="control-label"></label>
+                        <input asp-for="PlaceOfWorkAndPosition" class="form-control" />
+                        <span asp-validation-for="PlaceOfWorkAndPosition" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="SeniorityGeneral" class="control-label"></label>
+                        <input asp-for="SeniorityGeneral" class="form-control" />
+                        <span asp-validation-for="SeniorityGeneral" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="SeniorityProfileSpecialty" class="control-label"></label>
+                        <input asp-for="SeniorityProfileSpecialty" class="form-control" />
+                        <span asp-validation-for="SeniorityProfileSpecialty" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="CertificateSecond" class="control-label"></label>
-                    <input asp-for="@Model.CertificateSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="CertificateSecond" class="text-danger"></span>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="XeracopyPassportFirst" class="control-label"></label>
+                        <input asp-for="@Model.XeracopyPassportFirst" type="file" class="form-control" accept="image/jpeg,image/png" id="formFile" />
+                        <span asp-validation-for="XeracopyPassportFirst" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="XeracopyPassportSecond" class="control-label"></label>
+                        <input asp-for="@Model.XeracopyPassportSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
+                        <span asp-validation-for="XeracopyPassportSecond" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="Registration" class="control-label"></label>
+                        <input asp-for="@Model.Registration" type="file" class="form-control" accept="image/jpeg,image/png" />
+                        <span asp-validation-for="Registration" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="MedicalCertificateFirst" class="control-label"></label>
-                    <input asp-for="@Model.MedicalCertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
-                    <span asp-validation-for="MedicalCertificateFirst" class="text-danger"></span>
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="CertificateFirst" class="control-label"></label>
+                        <input asp-for="@Model.CertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
+                        <span asp-validation-for="CertificateFirst" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="CertificateSecond" class="control-label"></label>
+                        <input asp-for="@Model.CertificateSecond" type="file" class="form-control" accept="image/jpeg,image/png" />
+                        <span asp-validation-for="CertificateSecond" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="MedicalCertificateFirst" class="control-label"></label>
+                        <input asp-for="@Model.MedicalCertificateFirst" type="file" class="form-control" accept="image/jpeg,image/png" />
+                        <span asp-validation-for="MedicalCertificateFirst" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -329,16 +336,17 @@
                     <span asp-validation-for="MedicalCertificateSecond" class="text-danger"></span>
                 </div>
 
-            </div>
 
 
-            <div class="form-group">
-                <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
+
+</div>
 @*<div>
         <a asp-action="Index">Back to List</a>
     </div>*@
@@ -348,25 +356,6 @@
 
     <script>
         function SetOptions() {
-            //if (($('#sel2 option:selected').text() == "Дневное" && $('#sel1 option:selected').text() == "Базовое") || ($('#sel2 option:selected').text() == "Дневное" && ($('#sel1 option:selected').text() == "Среднее" || $('#sel1 option:selected').text() == "Средне-специальное"))) {
-            //    $('#sel3 option').remove();
-            //    $('#sel3').prepend('<option value="0">Нет</option>');
-            //    $('#sel3').prepend('<option value="3">Программное обеспечение информационных технологий</option>');
-            //    $('#sel3').prepend('<option value="5">Правоведение</option>');
-            //    $('#sel3').prepend('<option value="4">Операционная деятельность в логистике</option>');
-            //    $('#sel3').prepend('<option value="1">Бухгалтерский учёт, анализ и контроль</option>');
-            //}
-            //if ($('#sel2 option:selected').text() == "Заочное" && ($('#sel1 option:selected').text() == "Среднее" || $('#sel1 option:selected').text() == "Средне-специальное")) {
-            //    $('#sel3 option').remove();
-            //    $('#sel3').prepend('<option value="0">Нет</option>');
-            //    $('#sel3').prepend('<option value="6">Правоведение</option>');
-            //    $('#sel3').prepend('<option value="2">Бухгалтерский учёт, анализ и контроль</option>');
-            //}
-            //if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {
-            //    $('#sel3').options.length = 0;
-            //    $('#sel3').prepend('<option value="0">Нет</option>');
-            //}
-
             if (($('#sel2 option:selected').text() == "Дневное")) {
                 $('#sel3 option').remove();
                 $('#sel3').prepend('<option value="0">Нет</option>');
@@ -388,17 +377,4 @@
 
         }
     </script>
-
-
-    @*<script>
-            $(function () {
-                var current = location.pathname;
-                $('.nav-tabs li a').each(function () {
-                    var $this = $(this);
-                    if (current.indexOf($this.attr('href')) !== -1) {
-                        $this.addClass('active');
-                    }
-                })
-            })
-        </script>*@
 }

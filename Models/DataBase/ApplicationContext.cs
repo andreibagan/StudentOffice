@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using StudentOffice.Models.DataBase;
 
 namespace StudentOffice.Models.DataBase
 {
@@ -58,5 +59,9 @@ namespace StudentOffice.Models.DataBase
            
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<StudentOffice.Models.DataBase.AdmissionPlan> AdmissionPlan { get; set; }
+
+        public DbSet<StudentOffice.Models.DataBase.SelectionСommittee> SelectionСommittee { get; set; }
     }
 }

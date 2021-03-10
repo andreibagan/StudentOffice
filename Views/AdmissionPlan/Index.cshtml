@@ -1,0 +1,54 @@
+﻿@model IEnumerable<StudentOffice.Models.DataBase.AdmissionPlan>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeAdmission)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SelectionСommittee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeAdmission)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SelectionСommittee.SelectionСommitteeId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AdmissionPlanId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AdmissionPlanId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AdmissionPlanId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

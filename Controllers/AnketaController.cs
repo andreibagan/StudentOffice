@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using StudentOffice.Helpers;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -111,13 +112,15 @@ namespace StudentOffice.Controllers
 
                 if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Дневное")
                 {
-                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Daytime).ToList(), "SpecialtyId", "Name", anketa.Specialty.Branch);
+                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Daytime).ToList(), "SpecialtyId", "Name", Branch.Daytime);
                 }
                 else
                 if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Заочное")
                 {
-                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Correspondence).ToList(), "SpecialtyId", "Name", anketa.Specialty.Branch);
+                    ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Correspondence).ToList(), "SpecialtyId", "Name", Branch.Correspondence);
                 }
+
+                ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "2");
 
                 AnketaViewModel anketaViewModel = new AnketaViewModel();
 
@@ -166,6 +169,7 @@ namespace StudentOffice.Controllers
                 anketaViewModel.SurnameR = anketa.SurnameR;
                 anketaViewModel.TypeOfSettlement = anketa.TypeOfSettlement;
                 anketaViewModel.YearOfEnding = anketa.YearOfEnding;
+                anketaViewModel.Branch = anketa.Specialty.Branch;
 
                 return View(anketaViewModel);
             }
