@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models.DataBase
 {
@@ -11,6 +12,8 @@ namespace StudentOffice.Models.DataBase
         public string GroupName { get; set; }
         public DateTime YearOfFormation { get; set; }
         public DateTime ExpirationDate { get; set; }
+        public int Course { get; set; }
+
         public int? SpecialtyId { get; set; }
         [JsonIgnore]
         public virtual Specialty Specialty { get; set; }

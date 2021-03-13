@@ -29,6 +29,7 @@ namespace StudentOffice.Models.DataBase
         public DbSet<MarkUser> MarkUsers { get; set; }
         public DbSet<Omission> Omissions { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
 
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
@@ -63,5 +64,7 @@ namespace StudentOffice.Models.DataBase
         public DbSet<StudentOffice.Models.DataBase.AdmissionPlan> AdmissionPlan { get; set; }
 
         public DbSet<StudentOffice.Models.DataBase.SelectionСommittee> SelectionСommittee { get; set; }
+
+        public DbSet<StudentOffice.Models.DataBase.MainPlan> MainPlan { get; set; }
     }
 }

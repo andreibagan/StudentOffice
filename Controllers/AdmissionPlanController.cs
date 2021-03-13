@@ -21,8 +21,8 @@ namespace StudentOffice.Controllers
         // GET: AdmissionPlan
         public async Task<IActionResult> Index()
         {
-            var applicationContext = _context.AdmissionPlan.Include(a => a.SelectionСommittee);
-            return View(await applicationContext.ToListAsync());
+            var admissionPlans = _context.AdmissionPlan.Include(a => a.SelectionСommittee);
+            return View(await admissionPlans.ToListAsync());
         }
 
         // GET: AdmissionPlan/Details/5
@@ -47,7 +47,7 @@ namespace StudentOffice.Controllers
         // GET: AdmissionPlan/Create
         public IActionResult Create()
         {
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "SelectionСommitteeId");
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace StudentOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "SelectionСommitteeId", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 
@@ -81,7 +81,7 @@ namespace StudentOffice.Controllers
             {
                 return NotFound();
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "SelectionСommitteeId", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 
@@ -117,7 +117,7 @@ namespace StudentOffice.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "SelectionСommitteeId", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 

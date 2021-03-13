@@ -70,7 +70,7 @@ else
                         <option value="0">Не выбрано</option>
                         @foreach (Audience audience in Model.Audiences)
                         {
-                            <option value="@audience.AudienceId">@audience.AudienceName @audience.AudienceNumber</option>
+                            <option value="@audience.AudienceId">@audience.AudienceName</option>
                         }
                     </select>
                     <span asp-validation-for="Couples[i].AudienceId"></span>

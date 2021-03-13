@@ -8,8 +8,9 @@ namespace StudentOffice.Models.DataBase
     public class Audience
     {
         public int AudienceId { get; set; }
-        public int AudienceNumber { get; set; }
         public string AudienceName { get; set; }
+        public string AudienceNameShort { get; set; }
+        public AudienceType AudienceType { get; set; }
 
         [JsonIgnore]
         public virtual ICollection<Couple> Couples { get; set; }

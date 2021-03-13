@@ -138,33 +138,57 @@ namespace StudentOffice.Models.DataBase
                 {
                     new Specialty
                     {
-                        Branch = Branch.Correspondence,
                         Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence
                     },
                     new Specialty
                     {
-                        Branch = Branch.Correspondence,
                         Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence
                     },
                     new Specialty
                     {
-                        Branch = Branch.Daytime,
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence
+                    },
+                    new Specialty
+                    {
                         Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
                     },
                     new Specialty
                     {
-                        Branch = Branch.Daytime,
                         Name = "Операционная деятельность в логистике",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
                     },
                     new Specialty
                     {
-                        Branch = Branch.Daytime,
                         Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
                     },
                     new Specialty
                     {
-                        Branch = Branch.Daytime,
                         Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
+                    },
+                    new Specialty
+                    {
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
+                    },
+                    new Specialty
+                    {
+                        Name = "Визуальный мерчендайзинг",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime
                     },
                 });
             }
@@ -192,28 +216,263 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
+            await context.SaveChangesAsync();
+
+            if (!context.Specializations.Any())
+            {
+                await context.Specializations.AddRangeAsync(new List<Specialization>
+                {
+                    new Specialization
+                    {
+                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
+                        SpecialtyId = 1
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
+                        SpecialtyId = 6
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Информационное обеспечение бизнеса",
+                        SpecialtyId = 8
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
+                        SpecialtyId = 3
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
+                        SpecialtyId = 8
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Системное программирование",
+                        SpecialtyId = 4
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Программное обеспечение обработки экономической и деловой информации",
+                        SpecialtyId = 4
+                    },
+                });
+            }
+
             if (!context.Groups.Any())
             {
                 await context.Groups.AddRangeAsync(new List<Group>
                 {
                     new Group
                     {
-                        GroupName = "409",
-                        YearOfFormation = new DateTime(2000, 10, 3),
-                        ExpirationDate = new DateTime(2004, 10, 3),
+                        GroupName = "П1",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+
                     },
                     new Group
                     {
-                        GroupName = "309",
-                        YearOfFormation = new DateTime(2001, 10, 3),
-                        ExpirationDate = new DateTime(2005, 11, 3),
+                        GroupName = "Б1",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П2",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б2",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б3",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "К3",
+                        SpecialtyId = 3,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П3",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П310",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО209",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б301",
+                        SpecialtyId = 7,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П206",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП405",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
                     },
 
                     new Group
                     {
-                        GroupName = "305",
-                        YearOfFormation = new DateTime(2000, 10, 3),
-                        ExpirationDate = new DateTime(2004, 10, 3),
+                        GroupName = "СП105",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД103",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД303",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО309",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П306",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б101",
+                        SpecialtyId = 7,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП305",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ВМ201",
+                        SpecialtyId = 9,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "И312",
+                        SpecialtyId = 8,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП205",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД203",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "П106",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П210",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО409",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
                     },
                 });
             }
@@ -272,33 +531,208 @@ namespace StudentOffice.Models.DataBase
                 {
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 42
+                        AudienceName = "10",
+                        AudienceNameShort = "10",
+                        AudienceType = AudienceType.Cabinet
                     },
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 35
+                        AudienceName = "11",
+                        AudienceNameShort = "11",
+                        AudienceType = AudienceType.Cabinet
                     },
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 31
+                        AudienceName = "12",
+                        AudienceNameShort = "12",
+                        AudienceType = AudienceType.Cabinet
                     },
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 32
+                        AudienceName = "13",
+                        AudienceNameShort = "13",
+                        AudienceType = AudienceType.Cabinet
                     },
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 33
+                        AudienceName = "14",
+                        AudienceNameShort = "14",
+                        AudienceType = AudienceType.Cabinet
                     },
                     new Audience
                     {
-                        AudienceName = "Компьютерная аудитория",
-                        AudienceNumber = 43
+                        AudienceName = "15",
+                        AudienceNameShort = "15",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "16",
+                        AudienceNameShort = "16",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "21",
+                        AudienceNameShort = "21",
+                        AudienceType = AudienceType.Cabinet
+
+                    },
+                    new Audience
+                    {
+                        AudienceName = "22",
+                        AudienceNameShort = "22",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "24",
+                        AudienceNameShort = "24",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "23",
+                        AudienceNameShort = "23",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "25",
+                        AudienceNameShort = "25",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "26",
+                        AudienceNameShort = "26",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "27",
+                        AudienceNameShort = "27",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "29",
+                        AudienceNameShort = "29",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "30",
+                        AudienceNameShort = "30",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "31",
+                        AudienceNameShort = "31",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "32",
+                        AudienceNameShort = "32",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "15",
+                        AudienceNameShort = "15",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "33",
+                        AudienceNameShort = "33",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "35",
+                        AudienceNameShort = "35",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "36",
+                        AudienceNameShort = "36",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "37",
+                        AudienceNameShort = "37",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "38",
+                        AudienceNameShort = "38",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "40",
+                        AudienceNameShort = "40",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "41",
+                        AudienceNameShort = "41",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "42",
+                        AudienceNameShort = "42",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "43",
+                        AudienceNameShort = "43",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "44",
+                        AudienceNameShort = "44",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Библиотека",
+                        AudienceNameShort = "Библ",
+                        AudienceType = AudienceType.Library
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Комната отдыха",
+                        AudienceNameShort = "КО",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Читальный зал",
+                        AudienceNameShort = "ЧЗ",
+                        AudienceType = AudienceType.Cabinet
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Спортзал",
+                        AudienceNameShort = "С/зал",
+                        AudienceType = AudienceType.Gym
+                    },
+                    new Audience
+                    {
+                        AudienceName = "Спортзал2",
+                        AudienceNameShort = "С/зал2",
+                        AudienceType = AudienceType.Gym
                     },
                 });
             }
@@ -309,33 +743,58 @@ namespace StudentOffice.Models.DataBase
                 {
                     new Discipline
                     {
-                        DisciplineName = "Бухгалтерский учёт",
-                        DisciplineShortName = "Бух.уч"
+                        DisciplineName = "1С Программирование",
+                        DisciplineShortName = "1Сп"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Белорусский язык (профессиональная лексика)",
-                        DisciplineShortName = "Бел.яз.(проф.лек.)"
+                        DisciplineName = "Автоматизация управленческой деятельности организации",
+                        DisciplineShortName = "АУДО"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Информатика",
-                        DisciplineShortName = "Информатика"
+                        DisciplineName = "Автоматизация учета",
+                        DisciplineShortName = "АУ"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Биология",
-                        DisciplineShortName = "Биология"
+                        DisciplineName = "Автоматизированная обработка учёной информации",
+                        DisciplineShortName = "АОУИ"
                     },
                     new Discipline
                     {
-                        DisciplineName = "География",
-                        DisciplineShortName = "География"
+                        DisciplineName = "Административно-деликтное и процессуально-исполнительное право",
+                        DisciplineShortName = "АДиПИП"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Основы права",
-                        DisciplineShortName = "Осн.права"
+                        DisciplineName = "Административное право",
+                        DisciplineShortName = "АП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Активные формы продвижения товаров на рынке",
+                        DisciplineShortName = "АФПТ на р"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Актуальные проблемы гражданского права",
+                        DisciplineShortName = "АПГП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Анализ хозяйственной деятельности",
+                        DisciplineShortName = "АХД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Арифметико-логические основы  вычислительной техники",
+                        DisciplineShortName = "АЛОВТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Астрономия",
+                        DisciplineShortName = "Астро"
                     },
                     new Discipline
                     {
@@ -344,33 +803,1208 @@ namespace StudentOffice.Models.DataBase
                     },
                     new Discipline
                     {
-                        DisciplineName = "Сит. операционных систем",
-                        DisciplineShortName = "Сит.опер.сист."
+                        DisciplineName = "Белорусская литература",
+                        DisciplineShortName = "БЛ"
                     },
                     new Discipline
                     {
-                        DisciplineName = "ТРПО",
-                        DisciplineShortName = "ТРПО"
+                        DisciplineName = "Белорусский язык",
+                        DisciplineShortName = "БЯ"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Физкультура",
-                        DisciplineShortName = "Физ."
+                        DisciplineName = "Белорусский язык (профессиональная лексика)",
+                        DisciplineShortName = "БЯпроф"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Программные средства и создание интернет приложений",
-                        DisciplineShortName = "Прогр.ср-ва созд.инт"
+                        DisciplineName = "Бизнес-планирование",
+                        DisciplineShortName = "БП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Биология",
+                        DisciplineShortName = "Био"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Бухгалтерский учет",
+                        DisciplineShortName = "БУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Бухгалтерский учет в отрослях потребительской кооперации",
+                        DisciplineShortName = "БУвОПК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Бухгалтерский учет в торговле",
+                        DisciplineShortName = "БУВТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Введение в специальность",
+                        DisciplineShortName = "ВвС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Введение в специальность (Факультатив)",
+                        DisciplineShortName = "В в С"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Великая отечественная война советского народа",
+                        DisciplineShortName = "ВОВ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Внешнеэкономическая деятельность",
+                        DisciplineShortName = "ВД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Возможности языка Java в сетевом программировании",
+                        DisciplineShortName = "JAVA"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Техника коммуникации и основы командообразования",
+                        DisciplineShortName = "ТКиОК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Воспитательный час",
+                        DisciplineShortName = "Воспит. ч."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Всемирная история",
+                        DisciplineShortName = "ВИ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "География",
+                        DisciplineShortName = "Гео"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Государственный экзамен по специальности",
+                        DisciplineShortName = "ГЭК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Гражданский процесс",
+                        DisciplineShortName = "ГПр"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Гражданское право",
+                        DisciplineShortName = "ГП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Деловая документация",
+                        DisciplineShortName = "Дел.Док."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Дипломное проектирование",
+                        DisciplineShortName = "Дипл. пр."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Документацинное обеспечение логистических процессов",
+                        DisciplineShortName = "ДОЛП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Документационное обеспечение  управления",
+                        DisciplineShortName = "ДОУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Документационное обеспечение управления и деловая документация организации",
+                        DisciplineShortName = "ДОУиДДП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Допризывная (медицинская) подготовка",
+                        DisciplineShortName = "ДМ и МП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Жилищное право",
+                        DisciplineShortName = "ЖП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Закупочная и производственная логистика",
+                        DisciplineShortName = "ЗиПЛ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Защита дипломного проекта",
+                        DisciplineShortName = "ЗДП"
                     },
                     new Discipline
                     {
                         DisciplineName = "Защита компьютерной информации",
-                        DisciplineShortName = "Защита комп.инф."
+                        DisciplineShortName = "ЗКИ"
                     },
                     new Discipline
                     {
-                        DisciplineName = "Сит. операционных систем",
-                        DisciplineShortName = "Сит.опер.сист."
+                        DisciplineName = "Защита населения и территории от чрезвычайных ситуаций",
+                        DisciplineShortName = "ЗН"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Земельное право",
+                        DisciplineShortName = "ЗП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Иностранный язык",
+                        DisciplineShortName = "ИЯ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Иностранный язык в профессии",
+                        DisciplineShortName = "Ин яз в пр"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Иностранный язык делового общения",
+                        DisciplineShortName = "ИЯДО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Инструментальное программное обеспечение",
+                        DisciplineShortName = "инстр. по."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Информатика",
+                        DisciplineShortName = "Инфо"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Информационные технологии",
+                        DisciplineShortName = "ИТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Информационные технологии в пофессиональной деятельности",
+                        DisciplineShortName = "ИТ в ПрофД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "История Беларуси",
+                        DisciplineShortName = "ИБ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "История государства и права",
+                        DisciplineShortName = "Игп"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "История государства и права Беларуси",
+                        DisciplineShortName = "ИГиПБ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "История стилей в искусстве",
+                        DisciplineShortName = "ИСвИ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Квалификационный экзамен",
+                        DisciplineShortName = "Квалиф.экз"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Коммерческая деятельность",
+                        DisciplineShortName = "КД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Компьютерная графика",
+                        DisciplineShortName = "КГ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Компьютерная лексика (факультативный курс)",
+                        DisciplineShortName = "КЛ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Компьютерная лингвистика",
+                        DisciplineShortName = "КЛ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Компьютерные сети",
+                        DisciplineShortName = "КС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Конституционное право",
+                        DisciplineShortName = "КП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Конструирование программ и языки программирования",
+                        DisciplineShortName = "КПиАП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Конфигурирование и адаптация программных средств для систем управления",
+                        DisciplineShortName = "КиАПСУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Коррупция и её общественная опасность",
+                        DisciplineShortName = "Коррупция"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Коррупция и ее общественная опасность (факультативный курс)",
+                        DisciplineShortName = "КиООфа"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Культура речи юриста",
+                        DisciplineShortName = "КРЮ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Культурное наследие белорусов",
+                        DisciplineShortName = "КНБ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Культурное наследие белорусов (факультативный курс)",
+                        DisciplineShortName = "ТКиОК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа  по организация и технология торговли",
+                        DisciplineShortName = "ОиТТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по организации производства",
+                        DisciplineShortName = "КР по ОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по автоматизации управленческой деятельности",
+                        DisciplineShortName = "КР по АУД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по базам данных и системам  управления базами данных",
+                        DisciplineShortName = "КР по БД и"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по бухгалтерскому учёту",
+                        DisciplineShortName = "КР по БУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по коммерческой деятельности",
+                        DisciplineShortName = "КР по КД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по конструированию программ  и языкам программирования",
+                        DisciplineShortName = "КР по КПИЯ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по основам  алгоритмизации и програмированию",
+                        DisciplineShortName = "КР по ОАП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовая работа по экономике организации",
+                        DisciplineShortName = "КР по ЭО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по автоматизации",
+                        DisciplineShortName = "Курс.проек"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по базам данных и СУБД",
+                        DisciplineShortName = "Курс.проек"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по бухгалтерскому учету",
+                        DisciplineShortName = "КПБУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по коммерческой деятельности",
+                        DisciplineShortName = "Курс.проек"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по оранизации производства",
+                        DisciplineShortName = "КППОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Курсовое проектирование по организации и технологии торговли",
+                        DisciplineShortName = "КПОТТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Логистика",
+                        DisciplineShortName = "Логистика"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Логистика складирования",
+                        DisciplineShortName = "Лскад"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Маркетинг",
+                        DisciplineShortName = "Маркетинг"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Математика",
+                        DisciplineShortName = "Математика"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Математика (ч.1)",
+                        DisciplineShortName = "Математика (ч.1)"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Математика(ч.2)",
+                        DisciplineShortName = "Математика(ч.2)"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Математическое моделирование",
+                        DisciplineShortName = "МатМод"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Международное право",
+                        DisciplineShortName = "МП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Международное публичное право",
+                        DisciplineShortName = "МПП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Международные стандарты бухгалтерского (финансового) учета ",
+                        DisciplineShortName = "МСБУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Международные стандарты бухгалтерской (финансовой) отчётности",
+                        DisciplineShortName = "Междун ста"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Методы и алгоритмы принятия решений",
+                        DisciplineShortName = "МАПР"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Микропроцессорная техника",
+                        DisciplineShortName = "МТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Налоговое право",
+                        DisciplineShortName = "НП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Налогообложение",
+                        DisciplineShortName = "Налог."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Нормоконтроль",
+                        DisciplineShortName = "Норм"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Оборудование хранилищ и устройств для погрузочно-разгрузочных работ",
+                        DisciplineShortName = "ОХ и УПРР"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Общая теория права",
+                        DisciplineShortName = "ОТП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Обществоведение",
+                        DisciplineShortName = "Общество"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Объектно-ориентированное программирование",
+                        DisciplineShortName = "ООП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Операционные системы",
+                        DisciplineShortName = "ОС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация заготовок сельскохозяйственной продукции и сырья",
+                        DisciplineShortName = "ОЗСПИС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация заготовок сельскохозяйственной промышленности ",
+                        DisciplineShortName = "ОЗСХП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация и технология торговли",
+                        DisciplineShortName = "ОТТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация и функционирование ЭВМ",
+                        DisciplineShortName = "ОФЭВМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация производства",
+                        DisciplineShortName = "ОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация работы кадровой службы в организации",
+                        DisciplineShortName = "ОРКС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация торговли",
+                        DisciplineShortName = "ОТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Организация ЭВМ и систем",
+                        DisciplineShortName = "ОЭВМи сист"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы алгоритмизации и программирование",
+                        DisciplineShortName = "ОАП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы безопасной организации  труда программиста(факультативный курс",
+                        DisciplineShortName = "ОБОТПф"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы безопасной организации труда программиста",
+                        DisciplineShortName = "ОБОТП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы гендерной культуры",
+                        DisciplineShortName = "ОГК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы здорового и рационального питания",
+                        DisciplineShortName = "ОЗиРП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы идеологии белорусского государства",
+                        DisciplineShortName = "Осн.идеоло"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы инженерной графики",
+                        DisciplineShortName = "ОИГ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы конфликтологии",
+                        DisciplineShortName = "ОК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы конфликтологии(факультативный курс)",
+                        DisciplineShortName = "ОКф"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы кооперативного движения",
+                        DisciplineShortName = "ОКД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы маркетинга",
+                        DisciplineShortName = "ОМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы менеджмента",
+                        DisciplineShortName = "ОМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы мерчендайзинга",
+                        DisciplineShortName = "ОМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы мерчендайзинга (факультативный курс)",
+                        DisciplineShortName = "ОМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы организации торговли",
+                        DisciplineShortName = "ООТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы организации торговли(факультативный курс)",
+                        DisciplineShortName = "ООТф"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы охраны труда",
+                        DisciplineShortName = "ООТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы права",
+                        DisciplineShortName = "ОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы предпринимательской деятельности",
+                        DisciplineShortName = "Осн.предпр"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы предпринимательской деятельности и управление проектами",
+                        DisciplineShortName = "ОПДиУП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы предпринимательства",
+                        DisciplineShortName = "ОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы семейной жизни",
+                        DisciplineShortName = "ОСЖ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы социально-гуманитарных наук",
+                        DisciplineShortName = "ОСГН"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы социологии и политологии",
+                        DisciplineShortName = "ОСИП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы статистической обработки информации",
+                        DisciplineShortName = "ОСОИ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы технического нормирования и стандартизации",
+                        DisciplineShortName = "ОТНС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы товароведения",
+                        DisciplineShortName = "ОТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы управления интеллектуальной собственностью",
+                        DisciplineShortName = "ОУИС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы философии",
+                        DisciplineShortName = "ОФ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы финансового права",
+                        DisciplineShortName = "ОФП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы цифровой экономики",
+                        DisciplineShortName = "ОЦЭ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы экономики",
+                        DisciplineShortName = "ОЭ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы экономической теории",
+                        DisciplineShortName = "ОЭТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Основы языков программирования",
+                        DisciplineShortName = "ОЯП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Особенности организации труда юриста",
+                        DisciplineShortName = "ООТЮ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Особенности учета индивидуальных предпринимателей",
+                        DisciplineShortName = "ОЧИП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Офисное программирование",
+                        DisciplineShortName = "Офисное пр"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Оформление кадровой документации",
+                        DisciplineShortName = "ОКД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Охрана окружающей среды и энергосбережение",
+                        DisciplineShortName = "ООСЭ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Охрана труда",
+                        DisciplineShortName = "ОТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Порядок оформления документов для назначения пенсий",
+                        DisciplineShortName = "ПОДдНП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Правила дорожного движения",
+                        DisciplineShortName = "ПДД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Право социального обеспечения",
+                        DisciplineShortName = "ПСО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Правовое обеспечение",
+                        DisciplineShortName = "прав.обесп"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Правовое обеспечение коммерческой деятельности",
+                        DisciplineShortName = "ПОКД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Правовое регулирование предпринимательской деятельности",
+                        DisciplineShortName = "ПРПД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Преддипломная практика",
+                        DisciplineShortName = "ПП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Прикладая информатика",
+                        DisciplineShortName = "ПИ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Прикладное программное обеспечение",
+                        DisciplineShortName = "ППО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Проверка дипломных проектов",
+                        DisciplineShortName = "пров.дипл"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Проверка и контроль",
+                        DisciplineShortName = "ПиК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Проверка практики",
+                        DisciplineShortName = "пров.практ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Программные средства создания Internet – приложений",
+                        DisciplineShortName = "ПССИП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Производственное обучение",
+                        DisciplineShortName = "ПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Психологические аспекты эффективного делового общения",
+                        DisciplineShortName = "Псих асп.д"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Психология и этика деловых отношений",
+                        DisciplineShortName = "ПЭДО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Разработка Windows-приложений средствами WinAPI",
+                        DisciplineShortName = "РПСW"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Разработки приложений для мобильных устройств",
+                        DisciplineShortName = "РПдМУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Распределительная логистика",
+                        DisciplineShortName = "РЛ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Ревизия и контроль",
+                        DisciplineShortName = "РК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Рецензирование дипломных проектов",
+                        DisciplineShortName = "рец.дип"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Руководство практикой",
+                        DisciplineShortName = "рук.практ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Русская литература",
+                        DisciplineShortName = "РЯ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Русский язык",
+                        DisciplineShortName = "РЯ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Семейное право",
+                        DisciplineShortName = "СП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Сетевые операционные системы и сетевая безопасность",
+                        DisciplineShortName = "СОС и СБ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Система управления охраной труда в организации",
+                        DisciplineShortName = "Суот"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Система управления охраной труда в организации (факультативный курс)",
+                        DisciplineShortName = "СУОТвО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Системное программирование",
+                        DisciplineShortName = "СП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Системное программное обеспечение",
+                        DisciplineShortName = "СПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Системы управления базами данных",
+                        DisciplineShortName = "СУБД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Современные компьютерные офисные технологии",
+                        DisciplineShortName = "СКОТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Современные системы программирования",
+                        DisciplineShortName = "ССП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Социальное и медицинское право",
+                        DisciplineShortName = "СиМП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Способы обработки учетной информации с применением ПЭВМ",
+                        DisciplineShortName = "СОУИ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Стандартизация и сертификация",
+                        DisciplineShortName = "СиС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Стандартизация и сертификация программного обеспечения",
+                        DisciplineShortName = "СИСПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Статистика",
+                        DisciplineShortName = "Стасист."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Структуры и алгоритмы обработки данных ",
+                        DisciplineShortName = "САОД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Судебная практика по трудовым делам",
+                        DisciplineShortName = "СППТД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Судоустройство",
+                        DisciplineShortName = "С"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Таможенное право",
+                        DisciplineShortName = "ТП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Теоретические основы товароведения",
+                        DisciplineShortName = "ТОТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Теория бухгалтерского учета",
+                        DisciplineShortName = "ТБУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Теория вероятностей и математическая статистика",
+                        DisciplineShortName = "ТВиМС"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Тестирование и отладка программного обеспечения ",
+                        DisciplineShortName = "ТиОПБ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Тестирование программного обеспечения",
+                        DisciplineShortName = "ТПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Техника коммуникации и основы командообразования",
+                        DisciplineShortName = "ТКиОК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Технологическая практика",
+                        DisciplineShortName = "ТП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Технология разработки информационного обеспечения",
+                        DisciplineShortName = "ТРИО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Технология разработки программного обеспечения",
+                        DisciplineShortName = "ТРПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Товароведение",
+                        DisciplineShortName = "Товаровеен"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Товароведение непродовольственных товаров",
+                        DisciplineShortName = "ТНТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Товароведение продовольственных товаров",
+                        DisciplineShortName = "ТПТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Торговое оборудование",
+                        DisciplineShortName = "ТО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Торговые вычисления",
+                        DisciplineShortName = "ТВ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Транспортная логистика",
+                        DisciplineShortName = "ТЛ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Трудовое право",
+                        DisciplineShortName = "ТП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Трудовое право и право социального обеспечения",
+                        DisciplineShortName = "ТПиПСО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Уголовное право",
+                        DisciplineShortName = "УП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Уголовный процесс",
+                        DisciplineShortName = "УП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Упрвление зпасами в логистике",
+                        DisciplineShortName = "УЗ в Л"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика для получения профессии рабочего",
+                        DisciplineShortName = "УПППР"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по автоматизации учета",
+                        DisciplineShortName = "УПАУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по бухгалтерскому учету",
+                        DisciplineShortName = "УПБУ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по информационным технологиям",
+                        DisciplineShortName = "УПИТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по коммерческой деятельности",
+                        DisciplineShortName = "УПКД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по логистике",
+                        DisciplineShortName = "уп по логи"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по налогооблажению",
+                        DisciplineShortName = "УП Налог."
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по программированию",
+                        DisciplineShortName = "УП по прог"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по разработке и сопровождению программного обеспечения",
+                        DisciplineShortName = "УПпоСПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по системному программному обеспечению",
+                        DisciplineShortName = "УП по СПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по технологии разработки программного обеспечения",
+                        DisciplineShortName = "УП по ТРПО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по учёту и отчётности",
+                        DisciplineShortName = "УП по учет"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по экономике организации",
+                        DisciplineShortName = "УПЭО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учебная практика по юридической деятельности",
+                        DisciplineShortName = "УПЮД"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Учёт и отчётнось",
+                        DisciplineShortName = "уч и отч"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Факультатив 'Автоматизированная обработка учетной информации'",
+                        DisciplineShortName = "аоуи"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Факультативные занятия по Физической культуре и здоровью",
+                        DisciplineShortName = "ФКЗ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Физика",
+                        DisciplineShortName = "Физ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Физическая культура и здоровье",
+                        DisciplineShortName = "ФКиЗ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Финансовое право",
+                        DisciplineShortName = "ФП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Финансы и кредит",
+                        DisciplineShortName = "ФК"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Финансы организации",
+                        DisciplineShortName = "ФО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Формирование предпринимательского образа мышления",
+                        DisciplineShortName = "ФПОМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Формирование семейных ценностей",
+                        DisciplineShortName = "ФСЦ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Функциональная стилистика русского языка",
+                        DisciplineShortName = "ФСРЯ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Химия",
+                        DisciplineShortName = "Хим"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Хозяйственное право",
+                        DisciplineShortName = "ХП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Хозяйственный процесс",
+                        DisciplineShortName = "ХП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Ценообразование",
+                        DisciplineShortName = "ЦО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Человек в современном мире",
+                        DisciplineShortName = "ЧвСМ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Черчение",
+                        DisciplineShortName = "Черчение"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Экологическое право",
+                        DisciplineShortName = "ЭП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Экономика и организация производства",
+                        DisciplineShortName = "ЭИОП"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Экономика организации",
+                        DisciplineShortName = "ЭО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Экономика торговли",
+                        DisciplineShortName = "ЭТ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Этика деловых отношений",
+                        DisciplineShortName = "ЭДО"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Этика и психология профессиональной деятельности юриста",
+                        DisciplineShortName = "ЭиППДЮ"
+                    },
+                    new Discipline
+                    {
+                        DisciplineName = "Юридическая служба в организации",
+                        DisciplineShortName = "ЮСВО"
                     },
                 });
             }

@@ -12,19 +12,25 @@ namespace StudentOffice.Models.DataBase
     {
         public int SpecialtyId { get; set; }
 
-        [Required(ErrorMessage = "Не указано отделение")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Отделение")]
-        public Branch Branch { get; set; }
-
         [Required(ErrorMessage = "Не указана специальность")]
         [DataType(DataType.Text)]
         [Display(Name = "Специальность")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Не указан уровень образования")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Уровень образования*")]
+        public EducationType EducationType { get; set; }
+
+        [Required(ErrorMessage = "Не указано отделение")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Отделение")]
+        public Branch Branch { get; set; }
+
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
         public virtual ICollection<MainPlan> MainPlans { get; set; }
+        public virtual ICollection<Specialization> Specializations { get; set; }
 
 
         public string GetSpecialtyNameBranch

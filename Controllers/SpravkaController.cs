@@ -120,12 +120,12 @@ namespace StudentOffice.Controllers
                 var user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
                 Spravka spravka = new Spravka();
 
-                if (user != null)
-                {
-                    spravka.Name = user.Anketa.Name;
-                    spravka.Surname = user.Anketa.Surname;
-                    spravka.Middlename = user.Anketa.Middlename;
-                }
+                //if (user != null)
+                //{
+                //    spravka.Name = user.Anketa.Name;
+                //    spravka.Surname = user.Anketa.Surname;
+                //    spravka.Middlename = user.Anketa.Middlename;
+                //}
 
                 return View(spravka);
             }

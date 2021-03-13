@@ -2,7 +2,7 @@
 
 namespace StudentOffice.Models.DataBase
 {
-    public enum TypeAdmission
+    public enum EducationType
     {
         [Display(Name = "ССО")]
         CCO,
