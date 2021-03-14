@@ -63,6 +63,13 @@
                     <select asp-for="Sex" class="form-control" asp-items="Html.GetEnumSelectList<Sex>()"></select>
                     <span asp-validation-for="Sex" class="text-danger"></span>
                 </div>
+
+                <div class="form-group">
+                    <label asp-for="DocumentTypeId" class="control-label"></label>
+                    <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
+                    <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
+                </div>
+
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label asp-for="IdentityNumber" class="control-label"></label>
@@ -81,34 +88,39 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label asp-for="DateOfIssue" class="control-label"></label>
                         <input asp-for="DateOfIssue" value="@(Model.DateOfIssue.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfIssue.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                         <span asp-validation-for="DateOfIssue" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label asp-for="DateOfValidity" class="control-label"></label>
                         <input asp-for="DateOfValidity" value="@(Model.DateOfValidity.Date == Convert.ToDateTime("01.01.0001") ? DateTime.Now.ToString("yyyy-MM-dd") : Model.DateOfValidity.ToString("yyyy-MM-dd"))" min="1950-01-01" max="3000-12-31" class="form-control" />
                         <span asp-validation-for="DateOfValidity" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label asp-for="IssuedBy" class="control-label"></label>
-                        <input asp-for="IssuedBy" class="form-control" />
-                        <span asp-validation-for="IssuedBy" class="text-danger"></span>
-                    </div>
+
                 </div>
+
+                <div class="form-group">
+                    <label asp-for="IssuedBy" class="control-label"></label>
+                    <input asp-for="IssuedBy" class="form-control" />
+                    <span asp-validation-for="IssuedBy" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PlaceOfBirth" class="control-label"></label>
+                    <input asp-for="PlaceOfBirth" class="form-control" />
+                    <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+                </div>
+
                 <div class="row">
-                    <div class="form-group col-md-4">
-                        <label asp-for="PlaceOfBirth" class="control-label"></label>
-                        <input asp-for="PlaceOfBirth" class="form-control" />
-                        <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
-                    </div>
-                    <div class="form-group col-md-4">
+
+                    <div class="form-group col-md-6">
                         <label asp-for="Postcode" class="control-label"></label>
                         <input asp-for="Postcode" class="form-control" />
                         <span asp-validation-for="Postcode" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                         <label asp-for="Region" class="control-label"></label>
                         <select asp-for="Region" class="form-control" asp-items="Html.GetEnumSelectList<Region>()"></select>
                         <span asp-validation-for="Region" class="text-danger"></span>
@@ -142,31 +154,32 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label asp-for="HouseNumber" class="control-label"></label>
                         <input asp-for="HouseNumber" class="form-control" />
                         <span asp-validation-for="HouseNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label asp-for="HullNumber" class="control-label"></label>
                         <input asp-for="HullNumber" class="form-control" />
                         <span asp-validation-for="HullNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                         <label asp-for="ApartmentNumber" class="control-label"></label>
                         <input asp-for="ApartmentNumber" class="form-control" />
                         <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-group  col-md-3">
-                        <label asp-for="HomePhone" class="control-label"></label>
-                        <input asp-for="HomePhone" class="form-control" />
-                        <span asp-validation-for="HomePhone" class="text-danger"></span>
-                    </div>
+
                 </div>
 
+                <div class="form-group">
+                    <label asp-for="HomePhone" class="control-label"></label>
+                    <input asp-for="HomePhone" class="form-control" />
+                    <span asp-validation-for="HomePhone" class="text-danger"></span>
+                </div>
 
                 <div class="form-group">
-                    <label class="form-check-label" asp-for="SocialBehavior"></label><br />
+                    <label class="form-check-label" asp-for="SocialBehavior"></label>
                     <input type="checkbox" asp-for="SocialBehavior" />
                     <span asp-validation-for="SocialBehavior"></span>
                 </div>
@@ -194,6 +207,12 @@
                         <input asp-for="MiddlenameFather" class="form-control" />
                         <span asp-validation-for="MiddlenameFather" class="text-danger"></span>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PhoneFather" class="control-label"></label>
+                    <input asp-for="PhoneFather" class="form-control">
+                    <span asp-validation-for="PhoneFather" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -225,6 +244,12 @@
                         <input asp-for="MiddlenameMother" class="form-control" />
                         <span asp-validation-for="MiddlenameMother" class="text-danger"></span>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="PhoneMother" class="control-label"></label>
+                    <input asp-for="PhoneMother" class="form-control">
+                    <span asp-validation-for="PhoneMother" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -263,12 +288,6 @@
                         </select>
                         <span asp-validation-for="SpecialtyId" class="text-danger"></span>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="DocumentTypeId" class="control-label"></label>
-                    <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
-                    <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
                 </div>
 
                 <div class="row">
@@ -336,11 +355,17 @@
                     <span asp-validation-for="MedicalCertificateSecond" class="text-danger"></span>
                 </div>
 
-
-
                 <div class="form-group">
-                    <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
+                    <label class="control-label">* - поле обязательное для заполнения</label>
                 </div>
+
+
+                <div class="row justify-content-center">
+                    <div class="form-group col col-md-6">
+                        <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
@@ -358,17 +383,20 @@
         function SetOptions() {
             if (($('#sel2 option:selected').text() == "Дневное")) {
                 $('#sel3 option').remove();
-                $('#sel3').prepend('<option value="0">Нет</option>');
-                $('#sel3').prepend('<option value="3">Программное обеспечение информационных технологий</option>');
-                $('#sel3').prepend('<option value="5">Правоведение</option>');
-                $('#sel3').prepend('<option value="4">Операционная деятельность в логистике</option>');
+                $('#sel3').prepend('<option value="9">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="8">Правоведение</option>');
+                $('#sel3').prepend('<option value="7">Визуальный мерчендайзинг</option>');
+                $('#sel3').prepend('<option value="6">Программное обеспечение информационных технологий</option>');
+                $('#sel3').prepend('<option value="2">Операционная деятельность в логистике</option>');
                 $('#sel3').prepend('<option value="1">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="0">Нет</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное") {
                 $('#sel3 option').remove();
+                $('#sel3').prepend('<option value="5">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="4">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="3">Правоведение</option>');
                 $('#sel3').prepend('<option value="0">Нет</option>');
-                $('#sel3').prepend('<option value="6">Правоведение</option>');
-                $('#sel3').prepend('<option value="2">Бухгалтерский учёт, анализ и контроль</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {
                 $('#sel3 option').remove();

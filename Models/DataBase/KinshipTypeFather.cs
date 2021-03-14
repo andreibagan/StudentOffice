@@ -10,7 +10,13 @@ namespace StudentOffice.Models.DataBase
         Father,
         [Display(Name = "Отчим")]
         Stepfather,
+        [Display(Name = "Дедушка")]
+        Grandfather,
         [Display(Name = "Попечитель")]
         Trustee,
+        [Display(Name = "Брат")]
+        Brother,
+        [Display(Name = "Опекун")]
+        Guardian,
     }
 }

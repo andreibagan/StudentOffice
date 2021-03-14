@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using StudentOffice.Models.DataBase;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using StudentOffice.Models.DataBase;
 
 namespace StudentOffice.ViewModels
 {
@@ -155,6 +152,10 @@ namespace StudentOffice.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Адрес")]
         public string AddressFather { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Контактный телефон")]
+        public string PhoneFather { get; set; }
         //[Required(ErrorMessage = "Не указан тип родства")]
         [DataType(DataType.Text)]
         [Display(Name = "Тип родства")]
@@ -176,6 +177,10 @@ namespace StudentOffice.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Адрес")]
         public string AddressMother { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Контактный телефон")]
+        public string PhoneMother { get; set; }
         /// <summary>
         /// Сведения об образовании
         /// </summary>
@@ -210,7 +215,9 @@ namespace StudentOffice.ViewModels
         [Display(Name = "Стаж(по профилю избранной специальности)")]
         public string SeniorityProfileSpecialty { get; set; }
 
+        [Required(ErrorMessage = "Не указано отделение")]
         [Display(Name = "Отделение")]
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение2")]
         public Branch Branch { get; set; }
 
 
@@ -221,16 +228,16 @@ namespace StudentOffice.ViewModels
         [Display(Name = "Прописка")]
 
         public IFormFile Registration { get; set; }
-        [Display(Name = "Аттестат")]
+        [Display(Name = "Документ об образовании стр 1")]
   
         public IFormFile CertificateFirst { get; set; }
-        [Display(Name = "Аттестат (дополнительно)")]
+        [Display(Name = "Документ об образовании стр 2")]
 
         public IFormFile CertificateSecond { get; set; }
-        [Display(Name = "Медицинская справка")]
+        [Display(Name = "Медицинская справка (лицевая сторона)")]
   
         public IFormFile MedicalCertificateFirst { get; set; }
-        [Display(Name = "Медицинская справка (дополнительно)")]
+        [Display(Name = "Медицинская справка (оборотная сторона)")]
  
         public IFormFile MedicalCertificateSecond { get; set; }
 
@@ -261,7 +268,7 @@ namespace StudentOffice.ViewModels
         [Required(ErrorMessage = "Не указан вид документа")]
         [DataType(DataType.Text)]
         [Display(Name = "Вид документа*")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        [Range(2, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
         public int DocumentTypeId { get; set; }
 
     }

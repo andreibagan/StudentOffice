@@ -21,7 +21,7 @@ namespace StudentOffice.Controllers
         // GET: SelectionСommittee
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SelectionСommittee.ToListAsync());
+            return View(await _context.SelectionСommitties.ToListAsync());
         }
 
         // GET: SelectionСommittee/Details/5
@@ -32,7 +32,7 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var selectionСommittee = await _context.SelectionСommittee
+            var selectionСommittee = await _context.SelectionСommitties
                 .FirstOrDefaultAsync(m => m.SelectionСommitteeId == id);
             if (selectionСommittee == null)
             {
@@ -72,7 +72,7 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var selectionСommittee = await _context.SelectionСommittee.FindAsync(id);
+            var selectionСommittee = await _context.SelectionСommitties.FindAsync(id);
             if (selectionСommittee == null)
             {
                 return NotFound();
@@ -123,7 +123,7 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var selectionСommittee = await _context.SelectionСommittee
+            var selectionСommittee = await _context.SelectionСommitties
                 .FirstOrDefaultAsync(m => m.SelectionСommitteeId == id);
             if (selectionСommittee == null)
             {
@@ -138,15 +138,15 @@ namespace StudentOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var selectionСommittee = await _context.SelectionСommittee.FindAsync(id);
-            _context.SelectionСommittee.Remove(selectionСommittee);
+            var selectionСommittee = await _context.SelectionСommitties.FindAsync(id);
+            _context.SelectionСommitties.Remove(selectionСommittee);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool SelectionСommitteeExists(int id)
         {
-            return _context.SelectionСommittee.Any(e => e.SelectionСommitteeId == id);
+            return _context.SelectionСommitties.Any(e => e.SelectionСommitteeId == id);
         }
     }
 }

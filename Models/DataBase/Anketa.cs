@@ -156,6 +156,9 @@ namespace StudentOffice.Models.DataBase
         [DataType(DataType.Text)]
         [Display(Name = "Адрес")]
         public string AddressFather { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "Контактный телефон")]
+        public string PhoneFather { get; set; }
         //[Required(ErrorMessage = "Не указан тип родства")]
         [DataType(DataType.Text)]
         [Display(Name = "Тип родства")]
@@ -177,6 +180,10 @@ namespace StudentOffice.Models.DataBase
         [DataType(DataType.Text)]
         [Display(Name = "Адрес")]
         public string AddressMother { get; set; }
+
+        [DataType(DataType.Text)]
+        [Display(Name = "Контактный телефон")]
+        public string PhoneMother { get; set; }
         /// <summary>
         /// Сведения об образовании
         /// </summary>

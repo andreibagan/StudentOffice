@@ -26,11 +26,11 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "План приема*")]
         public virtual AdmissionPlan AdmissionPlan { get; set; }
 
-        public string GetEducationType
+        public string GetName
         {
             get
             {
-                return $"{EnumHelper<EducationType>.GetDisplayValue(Specialty.EducationType)} {AdmissionPlan.DateStart.ToShortDateString()}/{AdmissionPlan.DateEnd.ToShortDateString()}";
+                return $" {AdmissionPlan?.DateStart.ToShortDateString()}/{AdmissionPlan?.DateEnd.ToShortDateString()}";
             }
 
         }

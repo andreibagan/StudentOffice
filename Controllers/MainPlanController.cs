@@ -21,7 +21,7 @@ namespace StudentOffice.Controllers
         // GET: MainPlan
         public async Task<IActionResult> Index()
         {
-            var applicationContext = _context.MainPlan.Include(m => m.AdmissionPlan).Include(m => m.Specialty);
+            var applicationContext = _context.MainPlans.Include(m => m.AdmissionPlan).ThenInclude(i => i.SelectionСommittee).Include(m => m.Specialty);
             return View(await applicationContext.ToListAsync());
         }
 
@@ -33,8 +33,9 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var mainPlan = await _context.MainPlan
+            var mainPlan = await _context.MainPlans
                 .Include(m => m.AdmissionPlan)
+                .ThenInclude(i => i.SelectionСommittee)
                 .Include(m => m.Specialty)
                 .FirstOrDefaultAsync(m => m.MainPlanId == id);
             if (mainPlan == null)
@@ -48,7 +49,7 @@ namespace StudentOffice.Controllers
         // GET: MainPlan/Create
         public IActionResult Create()
         {
-            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlan, "AdmissionPlanId", "GetName");
+            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlans.Include(i => i.SelectionСommittee), "AdmissionPlanId", "GetName");
             ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "Name");
             return View();
         }
@@ -66,7 +67,7 @@ namespace StudentOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlan, "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
+            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlans.Include(i => i.SelectionСommittee), "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
             ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "Name", mainPlan.SpecialtyId);
             return View(mainPlan);
         }
@@ -79,12 +80,12 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var mainPlan = await _context.MainPlan.FindAsync(id);
+            var mainPlan = await _context.MainPlans.FindAsync(id);
             if (mainPlan == null)
             {
                 return NotFound();
             }
-            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlan, "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
+            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlans, "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
             ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "Name", mainPlan.SpecialtyId);
             return View(mainPlan);
         }
@@ -121,7 +122,7 @@ namespace StudentOffice.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlan, "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
+            ViewData["AdmissionPlanId"] = new SelectList(_context.AdmissionPlans, "AdmissionPlanId", "GetName", mainPlan.AdmissionPlanId);
             ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "Name", mainPlan.SpecialtyId);
             return View(mainPlan);
         }
@@ -134,8 +135,9 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var mainPlan = await _context.MainPlan
+            var mainPlan = await _context.MainPlans
                 .Include(m => m.AdmissionPlan)
+                .ThenInclude(i => i.SelectionСommittee)
                 .Include(m => m.Specialty)
                 .FirstOrDefaultAsync(m => m.MainPlanId == id);
             if (mainPlan == null)
@@ -151,15 +153,15 @@ namespace StudentOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var mainPlan = await _context.MainPlan.FindAsync(id);
-            _context.MainPlan.Remove(mainPlan);
+            var mainPlan = await _context.MainPlans.FindAsync(id);
+            _context.MainPlans.Remove(mainPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MainPlanExists(int id)
         {
-            return _context.MainPlan.Any(e => e.MainPlanId == id);
+            return _context.MainPlans.Any(e => e.MainPlanId == id);
         }
     }
 }

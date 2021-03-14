@@ -10,5 +10,11 @@ namespace StudentOffice.Models.DataBase
         Mother,
         [Display(Name = "Попечитель")]
         Trustee,
+        [Display(Name = "Бабушка")]
+        Grandmother,
+        [Display(Name = "Сестра")]
+        Sister,
+        [Display(Name = "Опекун")]
+        Guardian,
     }
 }

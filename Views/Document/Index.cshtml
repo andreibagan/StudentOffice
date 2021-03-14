@@ -11,10 +11,7 @@
             <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationOfApplicant">Заявление абитуриента</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="LetterOfIndemnity">Гарантийное письмо</button>
-        </div>
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="DormitoryApplication">Заявление на общежитие</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="Zav1" asp-route-id="@User.Identity.Name">Заявление на общежитие</button>
         </div>
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentInTwoSteps">Заявление на оплату в два этапа</button>

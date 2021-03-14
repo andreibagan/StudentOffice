@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DocumentFormat.OpenXml.Packaging;
@@ -32,75 +33,75 @@ namespace StudentOffice.Controllers
             return View();
         }
 
-        [HttpGet]
-        public async Task<FileResult> LetterOfIndemnity()
-        {
-            User user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+        //[HttpGet]
+        //public async Task<FileResult> LetterOfIndemnity()
+        //{
+        //    User user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            string path = string.Empty;
-            string file_name = string.Empty;
-            string file_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+        //    string path = string.Empty;
+        //    string file_name = string.Empty;
+        //    string file_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
-            if (user?.Anketa == null)
-            {
-                path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Гарантийное письмо.docx");
-                FileStream fs = new FileStream(path, FileMode.Open);
-                file_name = $"Гарантийное письмо.docx";
+        //    if (user?.Anketa == null)
+        //    {
+        //        path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Гарантийное письмо.docx");
+        //        FileStream fs = new FileStream(path, FileMode.Open);
+        //        file_name = $"Гарантийное письмо.docx";
 
-                return File(fs, file_type, file_name);
-            }
-            else
-            {
-                path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Гарантийное письмоPattern.docx");
-                file_name = $"Гарантийное письмо от {DateTime.Now.ToShortDateString()}.docx";
-                string docText = string.Empty;
+        //        return File(fs, file_type, file_name);
+        //    }
+        //    else
+        //    {
+        //        path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Гарантийное письмоPattern.docx");
+        //        file_name = $"Гарантийное письмо от {DateTime.Now.ToShortDateString()}.docx";
+        //        string docText = string.Empty;
 
-                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(path, true))
-                {
+        //        using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(path, true))
+        //        {
 
-                    using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
-                    {
-                        docText = await sr.ReadToEndAsync();
-                    }
+        //            using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+        //            {
+        //                docText = await sr.ReadToEndAsync();
+        //            }
 
-                    Regex ParentFullName = new Regex("ParentFullName");
-                    Regex ParentType = new Regex("ParentType");
-                    Regex Sexvalue = new Regex("Sex");
-                    Regex FullName = new Regex("FullName");
-                    Regex DateTimeNow = new Regex("DateTimeNow");
+        //            Regex ParentFullName = new Regex("ParentFullName");
+        //            Regex ParentType = new Regex("ParentType");
+        //            Regex Sexvalue = new Regex("Sex");
+        //            Regex FullName = new Regex("FullName");
+        //            Regex DateTimeNow = new Regex("DateTimeNow");
 
-                    if ((int)user.Anketa.KinshipTypeMother != 0)
-                    {
-                        docText = ParentFullName.Replace(docText, user.GetFullNameMother.ToUpper());
-                        docText = ParentType.Replace(docText, EnumHelper<KinshipTypeMother>.GetDisplayValue(user.Anketa.KinshipTypeMother).ToUpper());
-                    }
-                    else
-                    {
-                        docText = ParentFullName.Replace(docText, user.GetFullNameFather);
-                        docText = ParentType.Replace(docText, EnumHelper<KinshipTypeFather>.GetDisplayValue(user.Anketa.KinshipTypeFather));
-                    }
+        //            if ((int)user.Anketa.KinshipTypeMother != 0)
+        //            {
+        //                docText = ParentFullName.Replace(docText, user.GetFullNameMother.ToUpper());
+        //                docText = ParentType.Replace(docText, EnumHelper<KinshipTypeMother>.GetDisplayValue(user.Anketa.KinshipTypeMother).ToUpper());
+        //            }
+        //            else
+        //            {
+        //                docText = ParentFullName.Replace(docText, user.GetFullNameFather);
+        //                docText = ParentType.Replace(docText, EnumHelper<KinshipTypeFather>.GetDisplayValue(user.Anketa.KinshipTypeFather));
+        //            }
 
-                    docText = Sexvalue.Replace(docText, user.Anketa.Sex == Sex.Male ? "СВОЕГО СЫНА" : "СВОЕЙ ДОЧЕРИ");
-                    docText = FullName.Replace(docText, user.GetFullNameR.ToUpper());
-                    docText = DateTimeNow.Replace(docText, DateTime.Now.ToShortDateString());
-                }
+        //            docText = Sexvalue.Replace(docText, user.Anketa.Sex == Sex.Male ? "СВОЕГО СЫНА" : "СВОЕЙ ДОЧЕРИ");
+        //            docText = FullName.Replace(docText, user.GetFullNameR.ToUpper());
+        //            docText = DateTimeNow.Replace(docText, DateTime.Now.ToShortDateString());
+        //        }
 
-                using (MemoryStream mem = new MemoryStream())
-                {
-                    using (WordprocessingDocument wordDocNew = WordprocessingDocument.Create(mem, DocumentFormat.OpenXml.WordprocessingDocumentType.Document, true))
-                    {
-                        wordDocNew.AddMainDocumentPart();
+        //        using (MemoryStream mem = new MemoryStream())
+        //        {
+        //            using (WordprocessingDocument wordDocNew = WordprocessingDocument.Create(mem, DocumentFormat.OpenXml.WordprocessingDocumentType.Document, true))
+        //            {
+        //                wordDocNew.AddMainDocumentPart();
 
-                        using (StreamWriter sw = new StreamWriter(wordDocNew.MainDocumentPart.GetStream(FileMode.Create)))
-                        {
-                            await sw.WriteAsync(docText);
-                        }
-                    }
+        //                using (StreamWriter sw = new StreamWriter(wordDocNew.MainDocumentPart.GetStream(FileMode.Create)))
+        //                {
+        //                    await sw.WriteAsync(docText);
+        //                }
+        //            }
 
-                    return File(mem.ToArray(), file_type, file_name);
-                }
-            }
-        }
+        //            return File(mem.ToArray(), file_type, file_name);
+        //        }
+        //    }
+        //}
 
 
         [HttpGet]
@@ -215,66 +216,134 @@ namespace StudentOffice.Controllers
         }
 
         [HttpGet]
-        public async Task<FileResult> DormitoryApplication()
+        public async Task<IActionResult> Zav1(string id)
         {
-            User user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).Include(i => i.Anketa).ThenInclude(i => i.DocumentType).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            //User user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).Include(i => i.Anketa).ThenInclude(i => i.DocumentType).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
 
-            string path = string.Empty;
-            string file_name = string.Empty;
-            string file_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+            //string path = string.Empty;
+            //string file_name = string.Empty;
+            //string file_type = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+
+            //if (user?.Anketa == null)
+            //{
+            //    path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Заявление на общежитие.docx");
+            //    FileStream fs = new FileStream(path, FileMode.Open);
+            //    file_name = $"Заявление на общежитие.docx";
+
+            //    return File(fs, file_type, file_name);
+            //}
+            //else
+            //{
+            //    path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Заявление на общежитиеPattern.docx");
+            //    file_name = $"Заявление на общежитие от {DateTime.Now.ToShortDateString()}.docx";
+            //    string docText = string.Empty;
+
+            //    using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(path, true))
+            //    {
+
+            //        using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
+            //        {
+            //            docText = await sr.ReadToEndAsync();
+            //        }
+
+            //        Regex FullName = new Regex("FullName");
+            //        Regex Address = new Regex("Address");
+            //        Regex Specialty = new Regex("Specialty");
+            //        Regex DateTimeNow = new Regex("DateTimeNow");
+
+            //        docText = FullName.Replace(docText, user.GetFullName);
+            //        docText = Address.Replace(docText, user.Address);
+            //        docText = Specialty.Replace(docText, user.Anketa.Specialty.Name);
+            //        docText = DateTimeNow.Replace(docText, DateTime.Now.ToString("D"));
+
+            //    }
+
+            //    using (MemoryStream mem = new MemoryStream())
+            //    {
+            //        using (WordprocessingDocument wordDocNew = WordprocessingDocument.Create(mem, DocumentFormat.OpenXml.WordprocessingDocumentType.Document, true))
+            //        {
+            //            wordDocNew.AddMainDocumentPart();
+
+            //            using (StreamWriter sw = new StreamWriter(wordDocNew.MainDocumentPart.GetStream(FileMode.Create)))
+            //            {
+            //                await sw.WriteAsync(docText);
+            //            }
+            //        }
+
+            //        return File(mem.ToArray(), file_type, file_name);
+            //    }
+            //}
+
+            //Uri location = new Uri($"{Request.Scheme}://{Request.Host}/Reports/SavingReport/{id}");
+            //using (WebClient client = new WebClient())
+            //{
+            //    string file_type = "text/doc";
+            //    string file_name = $"Председатели райпо - резерв {DateTime.Now.ToString()}.doc";
+            //    return File(client.DownloadData(location), file_type, file_name);
+            //}
+
+            //string docText = string.Empty;
+
+
+            //using (StreamReader sr = new StreamReader(Path.Combine(_appEnvironment.ContentRootPath, "Zav.html")))
+            //{
+            //    docText = await sr.ReadToEndAsync();
+            //}
+
+            //Uri location = new Uri($"{Request.Scheme}://{Request.Host}/Reports/SavingReport/{id}");
+            //using (WebClient client = new WebClient())
+            //{
+            //    string file_type = "text/doc";
+            //    string file_name = $"Председатели райпо - резерв {DateTime.Now.ToString()}.doc";
+            //    return File(client.DownloadData(location), file_type, file_name);
+            //}
+
+            //using (WebClient client = new WebClient())
+            //{
+            //    Uri location = new Uri($"{Request.Scheme}://{Request.Host}/Document/Zav1");
+            //    string file_type = "text/doc";
+            //    string file_name = $"Заявление на общежитие от {DateTime.Now.ToShortDateString()}.doc";
+            //    return File(client.DownloadData(location), file_type, file_name);
+            //}
+            User user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == id);
 
             if (user?.Anketa == null)
             {
-                path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Заявление на общежитие.docx");
-                FileStream fs = new FileStream(path, FileMode.Open);
-                file_name = $"Заявление на общежитие.docx";
-
-                return File(fs, file_type, file_name);
+                return Content("Пожалуйста, заполните анкету");
             }
-            else
+
+            return View(user);
+
+        }
+
+        [HttpPost]
+        public async Task<FileResult> Zav1()
+        {
+            User user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            using (WebClient client = new WebClient())
             {
-                path = Path.Combine(_appEnvironment.ContentRootPath, "Files/Заявление на общежитиеPattern.docx");
-                file_name = $"Заявление на общежитие от {DateTime.Now.ToShortDateString()}.docx";
-                string docText = string.Empty;
-
-                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(path, true))
-                {
-
-                    using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
-                    {
-                        docText = await sr.ReadToEndAsync();
-                    }
-
-                    Regex FullName = new Regex("FullName");
-                    Regex Address = new Regex("Address");
-                    Regex Specialty = new Regex("Specialty");
-                    Regex DateTimeNow = new Regex("DateTimeNow");
-
-                    docText = FullName.Replace(docText, user.GetFullName);
-                    docText = Address.Replace(docText, user.Address);
-                    docText = Specialty.Replace(docText, user.Anketa.Specialty.Name);
-                    docText = DateTimeNow.Replace(docText, DateTime.Now.ToString("D"));
-
-                }
-
-                using (MemoryStream mem = new MemoryStream())
-                {
-                    using (WordprocessingDocument wordDocNew = WordprocessingDocument.Create(mem, DocumentFormat.OpenXml.WordprocessingDocumentType.Document, true))
-                    {
-                        wordDocNew.AddMainDocumentPart();
-
-                        using (StreamWriter sw = new StreamWriter(wordDocNew.MainDocumentPart.GetStream(FileMode.Create)))
-                        {
-                            await sw.WriteAsync(docText);
-                        }
-                    }
-
-                    return File(mem.ToArray(), file_type, file_name);
-                }
+                Uri location = new Uri($"{Request.Scheme}://{Request.Host}/Document/Zav1D/{user.UserName}");
+                string file_type = "text/doc";
+                string file_name = $"Заявление на общежитие от {DateTime.Now.ToShortDateString()}.doc";
+                return File(client.DownloadData(location), file_type, file_name);
             }
         }
 
         [HttpGet]
+        public async Task<IActionResult> Zav1D(string id)
+        {
+            User user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == id);
+
+            if (user?.Anketa == null)
+            {
+                return Content("Пожалуйста, заполните анкету");
+            }
+
+            return View(user);
+        }
+
+            [HttpGet]
         public async Task<FileResult> ApplicationForPaymentInTwoSteps()
         {
             User user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).ThenInclude(i => i.Groups).Include(i => i.Anketa).ThenInclude(i => i.DocumentType).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);

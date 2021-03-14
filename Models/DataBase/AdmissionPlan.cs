@@ -32,5 +32,13 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Приемная комиссия*")]
         public virtual SelectionСommittee SelectionСommittee { get; set; }
         public virtual ICollection<MainPlan> MainPlans { get; set; }
+
+        public string GetName
+        {
+            get
+            {
+                return $"{SelectionСommittee?.Name} {SelectionСommittee?.Year} {DateStart.ToShortDateString()}/{DateEnd.ToShortDateString()}";
+            }
+        }
     }
 }

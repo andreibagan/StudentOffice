@@ -31,6 +31,12 @@ namespace StudentOffice.Models.DataBase
         public DbSet<Image> Images { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
 
+        public DbSet<AdmissionPlan> AdmissionPlans { get; set; }
+
+        public DbSet<SelectionСommittee> SelectionСommitties { get; set; }
+
+        public DbSet<MainPlan> MainPlans { get; set; }
+
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options)
         {
@@ -61,10 +67,5 @@ namespace StudentOffice.Models.DataBase
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<StudentOffice.Models.DataBase.AdmissionPlan> AdmissionPlan { get; set; }
-
-        public DbSet<StudentOffice.Models.DataBase.SelectionСommittee> SelectionСommittee { get; set; }
-
-        public DbSet<StudentOffice.Models.DataBase.MainPlan> MainPlan { get; set; }
     }
 }

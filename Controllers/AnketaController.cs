@@ -113,14 +113,15 @@ namespace StudentOffice.Controllers
                 if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Дневное")
                 {
                     ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Daytime).ToList(), "SpecialtyId", "Name", Branch.Daytime);
+                    ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "1");
                 }
                 else
                 if (EnumHelper<Branch>.GetDisplayValue(anketa.Specialty.Branch) == "Заочное")
                 {
                     ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Correspondence).ToList(), "SpecialtyId", "Name", Branch.Correspondence);
+                    ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "2");
                 }
 
-                ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "2");
 
                 AnketaViewModel anketaViewModel = new AnketaViewModel();
 
@@ -170,6 +171,8 @@ namespace StudentOffice.Controllers
                 anketaViewModel.TypeOfSettlement = anketa.TypeOfSettlement;
                 anketaViewModel.YearOfEnding = anketa.YearOfEnding;
                 anketaViewModel.Branch = anketa.Specialty.Branch;
+                anketaViewModel.PhoneFather = anketa.PhoneFather;
+                anketaViewModel.PhoneMother = anketa.PhoneMother;
 
                 return View(anketaViewModel);
             }
@@ -177,8 +180,38 @@ namespace StudentOffice.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit(int id, [Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId,XeracopyPassportFirst,XeracopyPassportSecond,Registration,CertificateFirst,CertificateSecond,MedicalCertificateFirst,MedicalCertificateSecond")] AnketaViewModel anketaViewModel)
+        public async Task<IActionResult> AddOrEdit(int id, [Bind("AnketaId,Surname,Name,Middlename,SurnameR,NameR,MiddlenameR,Birthday,Sex,IdentityNumber,PassportSeries,PassportNumber,DateOfIssue,DateOfValidity,IssuedBy,PlaceOfBirth,Postcode,Region,TypeOfSettlement,NameOfSettlement,StreetType,StreetName,HouseNumber,HullNumber,ApartmentNumber,HomePhone,SocialBehavior,KinshipTypeFather,SurnameFather,NameFather,MiddlenameFather,AddressFather,KinshipTypeMother,SurnameMother,NameMother,MiddlenameMother,AddressMother,EducationLevel,Institution,YearOfEnding,PlaceOfWorkAndPosition,SeniorityGeneral,SeniorityProfileSpecialty,SpecialtyId,DocumentTypeId,XeracopyPassportFirst,XeracopyPassportSecond,Registration,CertificateFirst,CertificateSecond,MedicalCertificateFirst,MedicalCertificateSecond,Branch,PhoneMother,PhoneFather")] AnketaViewModel anketaViewModel)
         {
+            if ((DateTime.Now.Year - anketaViewModel.Birthday.Year) < 10 || (DateTime.Now.Year - anketaViewModel.Birthday.Year) > 100)
+            {
+                ModelState.AddModelError("Birthday", "Некорректная дата рождения");
+            }
+
+            if (anketaViewModel.DateOfIssue >= anketaViewModel.DateOfValidity || anketaViewModel.DateOfValidity <= DateTime.Now)
+            {
+                ModelState.AddModelError("DateOfValidity", "Некорректная дата срока действия");
+            }
+
+            if ((anketaViewModel.KinshipTypeFather == KinshipTypeFather.Not || string.IsNullOrEmpty(anketaViewModel.SurnameFather)
+                || string.IsNullOrEmpty(anketaViewModel.NameFather) || string.IsNullOrEmpty(anketaViewModel.MiddlenameFather)
+                || string.IsNullOrEmpty(anketaViewModel.AddressFather) || string.IsNullOrEmpty(anketaViewModel.PhoneFather))
+                && (anketaViewModel.KinshipTypeMother ==  KinshipTypeMother.Not || string.IsNullOrEmpty(anketaViewModel.SurnameMother)
+                || string.IsNullOrEmpty(anketaViewModel.NameMother) || string.IsNullOrEmpty(anketaViewModel.MiddlenameMother)
+                || string.IsNullOrEmpty(anketaViewModel.AddressMother) || string.IsNullOrEmpty(anketaViewModel.PhoneMother)))
+            {
+                ModelState.AddModelError("KinshipTypeFather", "Некорректный ввод данных");
+                ModelState.AddModelError("SurnameFather", "Некорректный ввод данных");
+                ModelState.AddModelError("NameFather", "Некорректный ввод данных");
+                ModelState.AddModelError("MiddlenameFather", "Некорректный ввод данных");
+                ModelState.AddModelError("AddressFather", "Некорректный ввод данных");
+                ModelState.AddModelError("KinshipTypeMother", "Некорректный ввод данных");
+                ModelState.AddModelError("SurnameMother", "Некорректный ввод данных");
+                ModelState.AddModelError("NameMother", "Некорректный ввод данных");
+                ModelState.AddModelError("MiddlenameMother", "Некорректный ввод данных");
+                ModelState.AddModelError("AddressMother", "Некорректный ввод данных");
+                ModelState.AddModelError("PhoneFather", "Некорректный ввод данных");
+                ModelState.AddModelError("PhoneMother", "Некорректный ввод данных");
+            }
 
             if (ModelState.IsValid)
             {
@@ -332,6 +365,8 @@ namespace StudentOffice.Controllers
                     anketa.XeracopyPassportFirstHash = anketaViewModel.XeracopyPassportFirstHash;
                     anketa.XeracopyPassportSecondHash = anketaViewModel.XeracopyPassportSecondHash;
                     anketa.YearOfEnding = anketaViewModel.YearOfEnding;
+                    anketa.PhoneMother = anketaViewModel.PhoneMother;
+                    anketa.PhoneFather = anketaViewModel.PhoneFather;
                     #endregion
 
                     await _context.AddAsync(anketa);
@@ -483,6 +518,8 @@ namespace StudentOffice.Controllers
                         anketa.SurnameR = anketaViewModel.SurnameR;
                         anketa.TypeOfSettlement = anketaViewModel.TypeOfSettlement;
                         anketa.YearOfEnding = anketaViewModel.YearOfEnding;
+                        anketa.PhoneFather = anketaViewModel.PhoneFather;
+                        anketa.PhoneMother = anketaViewModel.PhoneMother;
 
                         #endregion
 
@@ -504,8 +541,21 @@ namespace StudentOffice.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
+
             ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketaViewModel.DocumentTypeId);
-            //ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketa.SpecialtyId);
+
+            if (anketaViewModel.Branch == Branch.Daytime)
+            {
+                ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Daytime).ToList(), "SpecialtyId", "Name", Branch.Daytime);
+                ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "1");
+            }
+            else
+            if (anketaViewModel.Branch == Branch.Correspondence)
+            {
+                ViewData["SpecialtyId"] = new SelectList(_context.Specialties.Where(i => i.Branch == Branch.Correspondence).ToList(), "SpecialtyId", "Name", Branch.Correspondence);
+                ViewData["BranchId"] = new SelectList(Enum.GetNames(typeof(Branch)), "2");
+            }
+            //ViewData["SpecialtyId"] = new SelectList(_context.Specialties, "SpecialtyId", "GetSpecialtyNameBranch", anketaViewModel.SpecialtyId);
             return View(anketaViewModel);
         }
 

@@ -21,7 +21,7 @@ namespace StudentOffice.Controllers
         // GET: AdmissionPlan
         public async Task<IActionResult> Index()
         {
-            var admissionPlans = _context.AdmissionPlan.Include(a => a.SelectionСommittee);
+            var admissionPlans = _context.AdmissionPlans.Include(a => a.SelectionСommittee);
             return View(await admissionPlans.ToListAsync());
         }
 
@@ -33,7 +33,7 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var admissionPlan = await _context.AdmissionPlan
+            var admissionPlan = await _context.AdmissionPlans
                 .Include(a => a.SelectionСommittee)
                 .FirstOrDefaultAsync(m => m.AdmissionPlanId == id);
             if (admissionPlan == null)
@@ -47,7 +47,7 @@ namespace StudentOffice.Controllers
         // GET: AdmissionPlan/Create
         public IActionResult Create()
         {
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name");
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommitties, "SelectionСommitteeId", "Name");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace StudentOffice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AdmissionPlanId,TypeAdmission,DateStart,DateEnd,SelectionСommitteeId")] AdmissionPlan admissionPlan)
+        public async Task<IActionResult> Create([Bind("AdmissionPlanId,DateStart,DateEnd,SelectionСommitteeId")] AdmissionPlan admissionPlan)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace StudentOffice.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommitties, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 
@@ -76,12 +76,12 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var admissionPlan = await _context.AdmissionPlan.FindAsync(id);
+            var admissionPlan = await _context.AdmissionPlans.FindAsync(id);
             if (admissionPlan == null)
             {
                 return NotFound();
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommitties, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 
@@ -117,7 +117,7 @@ namespace StudentOffice.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommittee, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
+            ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommitties, "SelectionСommitteeId", "Name", admissionPlan.SelectionСommitteeId);
             return View(admissionPlan);
         }
 
@@ -129,7 +129,7 @@ namespace StudentOffice.Controllers
                 return NotFound();
             }
 
-            var admissionPlan = await _context.AdmissionPlan
+            var admissionPlan = await _context.AdmissionPlans
                 .Include(a => a.SelectionСommittee)
                 .FirstOrDefaultAsync(m => m.AdmissionPlanId == id);
             if (admissionPlan == null)
@@ -145,15 +145,15 @@ namespace StudentOffice.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var admissionPlan = await _context.AdmissionPlan.FindAsync(id);
-            _context.AdmissionPlan.Remove(admissionPlan);
+            var admissionPlan = await _context.AdmissionPlans.FindAsync(id);
+            _context.AdmissionPlans.Remove(admissionPlan);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AdmissionPlanExists(int id)
         {
-            return _context.AdmissionPlan.Any(e => e.AdmissionPlanId == id);
+            return _context.AdmissionPlans.Any(e => e.AdmissionPlanId == id);
         }
     }
 }

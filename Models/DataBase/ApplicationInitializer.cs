@@ -216,267 +216,6 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            await context.SaveChangesAsync();
-
-            if (!context.Specializations.Any())
-            {
-                await context.Specializations.AddRangeAsync(new List<Specialization>
-                {
-                    new Specialization
-                    {
-                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
-                        SpecialtyId = 1
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
-                        SpecialtyId = 6
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Информационное обеспечение бизнеса",
-                        SpecialtyId = 8
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
-                        SpecialtyId = 3
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
-                        SpecialtyId = 8
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Системное программирование",
-                        SpecialtyId = 4
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Программное обеспечение обработки экономической и деловой информации",
-                        SpecialtyId = 4
-                    },
-                });
-            }
-
-            if (!context.Groups.Any())
-            {
-                await context.Groups.AddRangeAsync(new List<Group>
-                {
-                    new Group
-                    {
-                        GroupName = "П1",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-
-                    },
-                    new Group
-                    {
-                        GroupName = "Б1",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "П2",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б2",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б3",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "К3",
-                        SpecialtyId = 3,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П3",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П310",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО209",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б301",
-                        SpecialtyId = 7,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П206",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП405",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 4,
-                    },
-
-                    new Group
-                    {
-                        GroupName = "СП105",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД103",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД303",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО309",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П306",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б101",
-                        SpecialtyId = 7,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП305",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ВМ201",
-                        SpecialtyId = 9,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "И312",
-                        SpecialtyId = 8,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП205",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД203",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "П106",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "П210",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО409",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 4,
-                    },
-                });
-            }
-
             if (!context.Semesters.Any())
             {
                 await context.Semesters.AddRangeAsync(new List<Semester>
@@ -2009,9 +1748,6 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            await context.SaveChangesAsync();
-
-
             if (!context.Omissions.Any())
             {
                 await context.Omissions.AddRangeAsync(new List<Omission>
@@ -2043,7 +1779,6 @@ namespace StudentOffice.Models.DataBase
                    },
                 });
             }
-
             if (!context.Exams.Any())
             {
                 await context.Exams.AddRangeAsync(new List<Exam>
@@ -2061,20 +1796,262 @@ namespace StudentOffice.Models.DataBase
 
             await context.SaveChangesAsync();
 
-            if (!context.GroupExams.Any())
+            if (!context.Specializations.Any())
             {
-                await context.GroupExams.AddRangeAsync(new List<GroupExam>
+                await context.Specializations.AddRangeAsync(new List<Specialization>
                 {
-                   new GroupExam
-                   {
-                       GroupId = 3,
-                       ExamId = 1
-                   },
-                   new GroupExam
-                   {
-                       GroupId = 3,
-                       ExamId = 2
-                   },
+                    new Specialization
+                    {
+                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
+                        SpecialtyId = 1
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
+                        SpecialtyId = 6
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Информационное обеспечение бизнеса",
+                        SpecialtyId = 8
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
+                        SpecialtyId = 3
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
+                        SpecialtyId = 8
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Системное программирование",
+                        SpecialtyId = 4
+                    },
+                    new Specialization
+                    {
+                        SpecializationName = "Программное обеспечение обработки экономической и деловой информации",
+                        SpecialtyId = 4
+                    },
+                });
+            }
+
+            if (!context.Groups.Any())
+            {
+                await context.Groups.AddRangeAsync(new List<Group>
+                {
+                    new Group
+                    {
+                        GroupName = "П1",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+
+                    },
+                    new Group
+                    {
+                        GroupName = "Б1",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П2",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б2",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б3",
+                        SpecialtyId = 2,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "К3",
+                        SpecialtyId = 3,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П3",
+                        SpecialtyId = 1,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П310",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО209",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б301",
+                        SpecialtyId = 7,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П206",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП405",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
+                    },
+
+                    new Group
+                    {
+                        GroupName = "СП105",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД103",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД303",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО309",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П306",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б101",
+                        SpecialtyId = 7,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП305",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ВМ201",
+                        SpecialtyId = 9,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "И312",
+                        SpecialtyId = 8,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП205",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД203",
+                        SpecialtyId = 5,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "П106",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П210",
+                        SpecialtyId = 6,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО409",
+                        SpecialtyId = 4,
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
+                    },
                 });
             }
 
@@ -2107,7 +2084,24 @@ namespace StudentOffice.Models.DataBase
                        OmissionId = 2,
                        MarkLogId = 1
                    },
-                }); 
+                });
+            }
+
+            if (!context.GroupExams.Any())
+            {
+                await context.GroupExams.AddRangeAsync(new List<GroupExam>
+                {
+                   new GroupExam
+                   {
+                       GroupId = 3,
+                       ExamId = 1
+                   },
+                   new GroupExam
+                   {
+                       GroupId = 3,
+                       ExamId = 2
+                   },
+                });
             }
 
             if (!context.GroupDisciplines.Any())
@@ -2292,6 +2286,7 @@ namespace StudentOffice.Models.DataBase
             }
 
             await context.SaveChangesAsync();
+
             //if (!context.TimeWindows.Any())
             //{
             //    await context.TimeWindows.AddRangeAsync(new List<TimeWindow>

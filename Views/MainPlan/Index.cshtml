@@ -29,7 +29,7 @@
                 @Html.DisplayFor(modelItem => item.Specialty.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdmissionPlan.GetName)
+                @Html.DisplayFor(modelItem => item.GetName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.MainPlanId">Edit</a> |

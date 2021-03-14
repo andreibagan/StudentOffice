@@ -15,11 +15,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AdmissionPlanId" />
             <div class="form-group">
-                <label asp-for="TypeAdmission" class="control-label"></label>
-                <select asp-for="TypeAdmission" class="form-control" asp-items="Html.GetEnumSelectList<TypeAdmission>()"></select>
-                <span asp-validation-for="TypeAdmission" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="DateStart" class="control-label"></label>
                 <input asp-for="DateStart" class="form-control" />
                 <span asp-validation-for="DateStart" class="text-danger"></span>
