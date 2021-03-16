@@ -35,23 +35,23 @@ namespace StudentOffice.Controllers
 
             var timeTableGroup = new List<TimeTableGroup>();
 
-            if (currentUser?.Anketa?.Specialty?.Groups.FirstOrDefault() != null)
-            {
-                timeTableGroup = await _context.TimeTableGroups
-                   .Include(i => i.TimeTable)
-                   .ThenInclude(i => i.Semester)
-                   .Include(i => i.Group)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.Discipline)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.Audience)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.TimeWindow)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.User)
-                   .Where(i => i.Group.GroupName == currentUser.Anketa.Specialty.Groups.FirstOrDefault().GroupName && i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
-            }
-            else
+            //if (currentUser?.Anketa?.Specialty?.Groups.FirstOrDefault() != null)
+            //{
+            //    timeTableGroup = await _context.TimeTableGroups
+            //       .Include(i => i.TimeTable)
+            //       .ThenInclude(i => i.Semester)
+            //       .Include(i => i.Group)
+            //       .Include(i => i.Couples)
+            //       .ThenInclude(i => i.Discipline)
+            //       .Include(i => i.Couples)
+            //       .ThenInclude(i => i.Audience)
+            //       .Include(i => i.Couples)
+            //       .ThenInclude(i => i.TimeWindow)
+            //       .Include(i => i.Couples)
+            //       .ThenInclude(i => i.User)
+            //       .Where(i => i.Group.GroupName == currentUser.Anketa.Specialty.Groups.FirstOrDefault().GroupName && i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
+            //}
+            //else
             {
                 timeTableGroup = await _context.TimeTableGroups
                    .Include(i => i.TimeTable)

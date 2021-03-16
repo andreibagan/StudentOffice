@@ -75,13 +75,13 @@ namespace StudentOffice.Models.DataBase
             }
         }
 
-        public string Address
+        public string GetAddress
         {
             get
             {
                 if (Anketa != null)
                 {
-                    return $"{Anketa.Postcode}, {EnumHelper<Region>.GetDisplayValue(Anketa.Region)}, {Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetDisplayValue(Anketa.TypeOfSettlement).ToLower()} {Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetDisplayValue(Anketa.StreetType).ToLower()} {Anketa.StreetName}, дом № {Anketa.HouseNumber}, квартира {Anketa.ApartmentNumber}";
+                    return $"{Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Anketa.Region)}, {Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetReduction(Anketa.TypeOfSettlement)} {Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Anketa.StreetType)} {Anketa.StreetName}, дом № {Anketa.HouseNumber}, квартира {Anketa.ApartmentNumber}";
                 }
 
                 return "";

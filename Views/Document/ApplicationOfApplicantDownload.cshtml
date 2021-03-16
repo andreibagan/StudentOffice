@@ -1,0 +1,532 @@
+﻿@using StudentOffice.Helpers;
+@model User
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+    <TITLE></TITLE>
+    <STYLE TYPE="text/css">
+
+
+        tr.R0 {
+            font-family: Arial;
+            font-size: 10pt;
+            font-style: normal;
+            height: 17px;
+        }
+
+            tr.R0 td.R0C0 {
+                font-family: Arial;
+                font-size: 10pt;
+                font-style: normal;
+                font-weight: bold;
+            }
+
+            tr.R0 td.R0C17 {
+                text-align: right;
+            }
+
+            tr.R0 td.R10C1 {
+                text-align: center;
+            }
+
+            tr.R0 td.R10C9 {
+                font-family: Arial;
+                font-size: 8pt;
+                font-style: normal;
+                text-align: center;
+            }
+
+            tr.R0 td.R11C1 {
+                font-family: Arial;
+                font-size: 10pt;
+                font-style: normal;
+                font-weight: bold;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R12C1 {
+                text-align: center;
+                border-top: #000000 1px solid;
+            }
+
+            tr.R0 td.R12C3 {
+                font-family: Arial;
+                font-size: 8pt;
+                font-style: normal;
+                text-align: center;
+                border-top: #000000 1px solid;
+            }
+
+            tr.R0 td.R14C0 {
+            }
+
+            tr.R0 td.R22C15 {
+                font-family: Arial;
+                font-size: 10pt;
+                font-style: normal;
+                font-weight: bold;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R29C0 {
+                text-align: left;
+                overflow: visible;
+            }
+
+            tr.R0 td.R2C16 {
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R34C0 {
+                font-family: Arial;
+                font-size: 8pt;
+                font-style: normal;
+                text-align: left;
+            }
+
+            tr.R0 td.R42C0 {
+                text-align: center;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R43C11 {
+                font-family: Arial;
+                font-size: 8pt;
+                font-style: normal;
+            }
+
+            tr.R0 td.R9C7 {
+                font-family: Arial;
+                font-size: 10pt;
+                font-style: normal;
+                border-bottom: #000000 1px solid;
+            }
+
+        tr.R13 {
+            font-family: Arial;
+            font-size: 10pt;
+            font-style: normal;
+            height: 33px;
+        }
+
+            tr.R13 td.R13C0 {
+            }
+
+            tr.R13 td.R13C12 {
+                font-family: Arial;
+                font-size: 10pt;
+                font-style: normal;
+                font-weight: bold;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R13 td.R33C0 {
+                text-align: left;
+                overflow: visible;
+            }
+
+        tr.R16 {
+            height: 15px;
+        }
+
+            tr.R16 td.R16C3 {
+                text-align: center;
+            }
+
+        tr.R17 {
+            font-family: Arial;
+            font-size: 14pt;
+            font-style: normal;
+            height: 25px;
+        }
+
+            tr.R17 td.R17C0 {
+                font-family: Arial;
+                font-size: 14pt;
+                font-style: normal;
+                font-weight: bold;
+                text-align: center;
+            }
+
+        tr.R18 {
+            font-family: Arial;
+            font-size: 10pt;
+            font-style: normal;
+            height: 49px;
+        }
+
+            tr.R18 td.R18C0 {
+            }
+
+        table {
+            table-layout: fixed;
+            padding: 0px;
+            padding-left: 2px;
+            vertical-align: bottom;
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial;
+            font-size: 8pt;
+            font-style: normal;
+            margin-left: -2cm;
+        }
+
+        td {
+            padding: 0px;
+            padding-left: 2px;
+            overflow: hidden;
+        }
+    </STYLE>
+</HEAD>
+<BODY>
+
+        <TABLE style="width:100%; height:0px; " CELLSPACING=0>
+            <COL WIDTH=11>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=7>
+            <COL WIDTH=23>
+            <COL WIDTH=11>
+            <COL WIDTH=13>
+            <COL WIDTH=47>
+            <COL WIDTH=44>
+            <COL WIDTH=24>
+            <COL WIDTH=24>
+            <COL WIDTH=93>
+            <COL WIDTH=121>
+            <COL WIDTH=177>
+            <COL>
+            <TR CLASS=R0>
+                <TD CLASS="R0C0" COLSPAN=16><SPAN STYLE="white-space:nowrap;max-width:0px;">Допустить&nbsp;к&nbsp;вступительным&nbsp;испытаниям</SPAN></TD>
+                <TD CLASS="R0C0"><SPAN STYLE="white-space:nowrap;max-width:0px;">Зачислить&nbsp;на&nbsp;______&nbsp;курс</SPAN></TD>
+          
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R0C0" COLSPAN=16><SPAN></SPAN></TD>
+                <TD><SPAN STYLE="white-space:nowrap;max-width:0px;">на&nbsp;специальность&nbsp;(направление&nbsp;специальности)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R0C0" COLSPAN=16><SPAN STYLE="white-space:nowrap;max-width:0px;">Директор&nbsp;(ректор)&nbsp;____________________________</SPAN></TD>
+                <TD CLASS="R2C16" COLSPAN=3><SPAN STYLE="max-width:0px">@Model.Anketa.Specialty.Name</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD CLASS="R2C16" COLSPAN=3><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=16><SPAN STYLE="white-space:nowrap;max-width:0px;">"____"_______________________________________&nbsp;г.</SPAN></TD>
+                <TD CLASS="R2C16" COLSPAN=3><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN STYLE="white-space:nowrap;max-width:0px;">Приказ&nbsp;"____"&nbsp;__________________________&nbsp;№______________</SPAN></TD>
+         
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=16><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">Директор&nbsp;(ректор)&nbsp;_____________________О.А.&nbsp;Черепович</SPAN></TD>
+           
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=4><SPAN STYLE="white-space:nowrap;max-width:0px;">Директору&nbsp;(ректору)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</SPAN></TD>
+                <TD CLASS="R9C7" COLSPAN=12><SPAN STYLE="white-space:nowrap;max-width:0px;">Учреждение&nbsp;образования&nbsp;"Молодечненский&nbsp;торгово-экономический&nbsp;колледж"&nbsp;Белкоопсоюза</SPAN></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R10C1" COLSPAN=2><SPAN></SPAN></TD>
+                <TD CLASS="R10C1" COLSPAN=3><SPAN></SPAN></TD>
+                <TD CLASS="R10C1" COLSPAN=3><SPAN></SPAN></TD>
+                <TD CLASS="R10C9" COLSPAN=10><SPAN STYLE="white-space:nowrap;max-width:0px;">(наименование&nbsp;учреждения&nbsp;образования)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN STYLE="white-space:nowrap;max-width:0px;">от&nbsp;</SPAN></TD>
+                <TD CLASS="R11C1" COLSPAN=18><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullNameR</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C1" COLSPAN=2><SPAN></SPAN></TD>
+                <TD CLASS="R12C3" COLSPAN=16><SPAN STYLE="white-space:nowrap;max-width:0px;">(фамилия,&nbsp;собственное&nbsp;имя,&nbsp;отчество,&nbsp;если&nbsp;таковое&nbsp;есть)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R13>
+                <TD CLASS="R13C0" COLSPAN=11>который проживает по адресу:</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R13C12" COLSPAN=7>@($"{Model.GetAddress}, {Model.Anketa.HomePhone}")</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R14C0"><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD CLASS="R10C9" COLSPAN=13><SPAN STYLE="white-space:nowrap;max-width:0px;">(почтовый&nbsp;индекс,&nbsp;адрес&nbsp;места&nbsp;жительства&nbsp;в&nbsp;соответствии&nbsp;со&nbsp;штампом&nbsp;о&nbsp;регистрации,&nbsp;домашний&nbsp;телефон)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R13>
+                <TD CLASS="R13C0" COLSPAN=5>и закончил</TD>
+                <TD CLASS="R13C12" COLSPAN=14>в @Model.Anketa.YearOfEnding.Year году @(Model.Anketa.EducationLevel == EducationLevel.Basic ? "9" : "11") Классов @Model.Anketa.Institution</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R16>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD CLASS="R16C3" COLSPAN=2><SPAN></SPAN></TD>
+                <TD CLASS="R16C3" COLSPAN=14><SPAN STYLE="white-space:nowrap;max-width:0px;">(год&nbsp;окончания,&nbsp;наименование&nbsp;учреждения&nbsp;образования)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R17>
+                <TD CLASS="R17C0" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">ЗАЯВЛЕНИЕ</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R18>
+                <TD CLASS="R18C0" COLSPAN=19>Прошу допустить меня к вступительным испытаниям и участию в конкурсе для получения среднего специального образования по специальности (направлению специальности)   ("@Model.Anketa.Specialty.Name") в @(Model.Anketa.Specialty.Branch == Branch.Daytime ? "дневной" : "заочной") форме получения образования.</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">Вступительные&nbsp;испытания&nbsp;буду&nbsp;сдавать&nbsp;на&nbsp;русском&nbsp;языке&nbsp;</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=13><SPAN STYLE="white-space:nowrap;max-width:0px;">О&nbsp;себе&nbsp;сообщаю&nbsp;следующие&nbsp;сведения:</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=10><SPAN STYLE="white-space:nowrap;max-width:0px;">число,&nbsp;месяц,&nbsp;год&nbsp;рождения</SPAN></TD>
+                <TD CLASS="R0C0" COLSPAN=9><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.Anketa.Birthday.ToString("D")</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=15><SPAN STYLE="white-space:nowrap;max-width:0px;">место&nbsp;работы,&nbsp;занимаемая&nbsp;должность&nbsp;(профессия)</SPAN></TD>
+                <TD CLASS="R22C15" COLSPAN=4><SPAN>@Model.Anketa.PlaceOfWorkAndPosition</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=16><SPAN STYLE="white-space:nowrap;max-width:0px;">трудовой&nbsp;стаж&nbsp;по&nbsp;профилю&nbsp;избранной&nbsp;специальности&nbsp;</SPAN></TD>
+                <TD CLASS="R22C15" COLSPAN=3><SPAN>@Model.Anketa.SeniorityProfileSpecialty</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=9><SPAN STYLE="white-space:nowrap;max-width:0px;">нуждаюсь&nbsp;в&nbsp;общежитии:</SPAN></TD>
+                <TD CLASS="R11C1" COLSPAN=2><SPAN STYLE="white-space:nowrap;max-width:0px;">@(Model.Anketa.SocialBehavior ? "Да" : "Нет")</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R14C0" COLSPAN=19>имею права на льготы Нет</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">родители:</SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=2><SPAN STYLE="white-space:nowrap;max-width:0px;">@(EnumHelper<KinshipTypeFather>.GetDisplayValue(Model.Anketa.KinshipTypeFather))</SPAN></TD>
+                <TD CLASS="R11C1" COLSPAN=17><SPAN>@Model.GetFullNameFather</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R10C9" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">(фамилия,&nbsp;собственное&nbsp;имя,&nbsp;отчество&nbsp;(если&nbsp;таковое&nbsp;имеется))</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R29C0" COLSPAN=9><SPAN STYLE="white-space:nowrap;max-width:0px;">проживает&nbsp;по&nbsp;адресу:</SPAN></TD>
+                <TD CLASS="R22C15" COLSPAN=10><SPAN>@Model.Anketa.AddressFather</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R10C9" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">(почтовый&nbsp;индекс,&nbsp;адрес&nbsp;места&nbsp;жительства&nbsp;в&nbsp;соответствии&nbsp;со&nbsp;штампом&nbsp;о&nbsp;регистрации)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=2><SPAN STYLE="white-space:nowrap;max-width:0px;">@(EnumHelper<KinshipTypeMother>.GetDisplayValue(Model.Anketa.KinshipTypeMother))</SPAN></TD>
+                <TD CLASS="R11C1" COLSPAN=17><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullNameMother</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R10C9" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">(фамилия,&nbsp;собственное&nbsp;имя,&nbsp;отчество&nbsp;(если&nbsp;таковое&nbsp;имеется))</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R13>
+                <TD CLASS="R33C0" COLSPAN=9><SPAN STYLE="white-space:nowrap;max-width:0px;">проживает&nbsp;по&nbsp;адресу:</SPAN></TD>
+                <TD CLASS="R13C12" COLSPAN=10>@Model.Anketa.AddressMother</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R34C0"><SPAN></SPAN></TD>
+                <TD CLASS="R34C0"><SPAN></SPAN></TD>
+                <TD CLASS="R34C0"><SPAN></SPAN></TD>
+                <TD CLASS="R34C0" COLSPAN=3><SPAN></SPAN></TD>
+                <TD CLASS="R34C0" COLSPAN=3><SPAN></SPAN></TD>
+                <TD CLASS="R10C9" COLSPAN=10><SPAN STYLE="white-space:nowrap;max-width:0px;">(почтовый&nbsp;индекс,&nbsp;адрес&nbsp;места&nbsp;жительства&nbsp;в&nbsp;соответствии&nbsp;со&nbsp;штампом&nbsp;о&nbsp;регистрации)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=14><SPAN STYLE="white-space:nowrap;max-width:0px;">данные&nbsp;документа,&nbsp;удостоверяющего&nbsp;личность</SPAN></TD>
+                <TD CLASS="R0C0" COLSPAN=5><SPAN STYLE="white-space:nowrap;max-width:0px;">@($"{Model.Anketa.DocumentType.Name} {Model.Anketa.PassportSeries}{Model.Anketa.PassportNumber}")</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C3" COLSPAN=5><SPAN STYLE="white-space:nowrap;max-width:0px;">(серия&nbsp;(при&nbsp;наличии),&nbsp;номер</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R0C0" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">выдан&nbsp;&nbsp;@Model.Anketa.DateOfIssue.ToShortDateString()&nbsp;@Model.Anketa.IssuedBy @Model.Anketa.IdentityNumber</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R12C3" COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">дата&nbsp;выдачи,&nbsp;наименование&nbsp;государственного&nbsp;органа,&nbsp;его&nbsp;выдавшего,&nbsp;идентификационный&nbsp;номер&nbsp;(при&nbsp;наличии))</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=3><SPAN></SPAN></TD>
+                <TD COLSPAN=4><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD COLSPAN=19><SPAN STYLE="white-space:nowrap;max-width:0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;С&nbsp;правилами&nbsp;приема&nbsp;и&nbsp;порядком&nbsp;подачи&nbsp;апелляции&nbsp;в&nbsp;учреждение&nbsp;образования&nbsp;ознакомлен(а)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R42C0" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">@DateTime.Now.ToString("D")</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=2><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R2C16"><SPAN></SPAN></TD>
+                <TD CLASS="R2C16"><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD CLASS="R10C9" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">(дата&nbsp;заполнения&nbsp;заявления)</SPAN></TD>
+                <TD CLASS="R43C11"><SPAN></SPAN></TD>
+                <TD CLASS="R43C11"><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R10C1" COLSPAN=2><SPAN STYLE="white-space:nowrap;max-width:0px;">(подпись)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+        </TABLE>
+
+</BODY>
+</HTML>

@@ -1,4 +1,5 @@
-﻿@model User
+﻿@using StudentOffice.Helpers;
+@model User
 
 @{
     Layout = null;
@@ -86,6 +87,7 @@
             font-family: Arial;
             font-size: 8pt;
             font-style: normal;
+            margin-left: -2cm;
         }
 
         td {
@@ -97,9 +99,6 @@
 </HEAD>
 <BODY STYLE="background: #ffffff; margin: 0; font-family: Arial; font-size: 8pt; font-style: normal; ">
 
-    <form method="post" asp-controller="Document" asp-action="Zav1">
-        <input type="submit" value="Скачать" />
-    </form>
 
 
 
@@ -124,11 +123,12 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R0C6" COLSPAN=6>Директору учреждения образования "Молодечненский торгово-экономический колледж" Белкоопсоюза</TD>
-            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN></SPAN>Директору учреждения образования<br>"Молодечненский торгово-экономический<br>колледж" Белкоопсоюза</TD>
             <TD></TD>
         </TR>
         <TR CLASS=R1>
+            <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
@@ -136,7 +136,6 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">Череповичу&nbsp;О.А.</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
         <TR CLASS=R1>
@@ -146,19 +145,43 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullName</SPAN></TD>
             <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullName</SPAN></TD>
             <TD></TD>
         </TR>
-        <TR CLASS=R0>
+        <TR CLASS=R1>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R3C6" COLSPAN=6>222310, Минская обл., Молодечненский р-н, г. Молодечно, ул. Тамары Дудко, дом № 23, квартира 37</TD>
             <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">@($"{Model.Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Model.Anketa.Region)}, {Model.Anketa.PlaceOfBirth},")</SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R1>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">@($"{EnumHelper<TypeOfSettlement>.GetReduction(Model.Anketa.TypeOfSettlement)} {Model.Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Model.Anketa.StreetType)} {Model.Anketa.StreetName}, дом № {Model.Anketa.HouseNumber},")</SPAN></TD>
+
+            <TD></TD>
+        </TR>
+        <TR CLASS=R1>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">квартира @Model.Anketa.ApartmentNumber</SPAN></TD>
+
             <TD></TD>
         </TR>
         <TR CLASS=R1>
@@ -234,7 +257,7 @@
         </TR>
         <TR CLASS=R0>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R10C1" COLSPAN=11>Работаю (прохожу службу, учусь) в учреждении образования "Молодечненский торгово-экономический колледж" Белкоопсоюза,  специальность Программное обеспечение информационных технологий, 2 курс</TD>
+            <TD CLASS="R10C1" COLSPAN=11>Работаю (прохожу службу, учусь) в учреждении образования "Молодечненский торгово-экономический колледж" Белкоопсоюза,  специальность @Model.Anketa.Specialty.Name, @Model.Anketa.Specialty.Groups.FirstOrDefault().Course курс</TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -285,7 +308,7 @@
         </TR>
         <TR CLASS=R1>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R16C1" COLSPAN=11>по адресу 222310 Минская обл.,Молодечненский р-н,г. Молодечно,ул. Тамары Дудко</TD>
+            <TD CLASS="R16C1" COLSPAN=11>@($"по адресу {Model.Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Model.Anketa.Region)}, {Model.Anketa.PlaceOfBirth},")@($"{EnumHelper<TypeOfSettlement>.GetReduction(Model.Anketa.TypeOfSettlement)} {Model.Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Model.Anketa.StreetType)} {Model.Anketa.StreetName}, дом № {Model.Anketa.HouseNumber}, квартира {Model.Anketa.ApartmentNumber}")</TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -297,7 +320,7 @@
         </TR>
         <TR CLASS=R1>
             <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">дом&nbsp;№&nbsp;23,квартира&nbsp;37</SPAN></TD>
+            @*<TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">дом&nbsp;№&nbsp;23,квартира&nbsp;37</SPAN></TD>*@
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>

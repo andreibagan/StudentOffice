@@ -8,22 +8,22 @@
     <div class="container overflow-hidden">
         <h2 align="center">Документы</h2>
         <div>
-            <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationOfApplicant">Заявление абитуриента</button>
+            <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationOfApplicant" asp-route-id="@User.Identity.Name">Заявление абитуриента</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="Zav1" asp-route-id="@User.Identity.Name">Заявление на общежитие</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="DormitoryApplication" asp-route-id="@User.Identity.Name">Заявление на общежитие</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentInTwoSteps">Заявление на оплату в два этапа</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentInTwoSteps" asp-route-id="@User.Identity.Name">Заявление на оплату в два этапа</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentInSeveralStages">Заявление на оплату в несколько этапов</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentInSeveralStages" asp-route-id="@User.Identity.Name">Заявление на оплату в несколько этапов</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentMonthly">Заявление на оплату ежемесячно</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentMonthly" asp-route-id="@User.Identity.Name">Заявление на оплату ежемесячно</button>
         </div>
         <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentForThePeriod">Заявление на оплату за период</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="ApplicationForPaymentForThePeriod" asp-route-id="@User.Identity.Name">Заявление на оплату за период</button>
         </div>
     </div>
 </form>

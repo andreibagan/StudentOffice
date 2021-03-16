@@ -1,0 +1,503 @@
+﻿@using StudentOffice.Helpers;
+@model User
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.0 Transitional//EN">
+<HTML>
+<HEAD>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=utf-8">
+    <TITLE></TITLE>
+    <STYLE TYPE="text/css">
+
+
+        tr.R0 {
+            font-family: Arial;
+            font-size: 12pt;
+            font-style: normal;
+            height: 21px;
+        }
+
+            tr.R0 td.R0C6 {
+                text-align: justify;
+            }
+
+            tr.R0 td.R17C0 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                text-align: justify;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R19C0 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+            }
+
+            tr.R0 td.R19C1 {
+            }
+
+            tr.R0 td.R3C6 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                text-align: justify;
+            }
+
+            tr.R0 td.R6C9 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                text-align: center;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R0 td.R7C6 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                border-bottom: #000000 1px solid;
+            }
+
+        tr.R16 {
+            font-family: Arial;
+            font-size: 12pt;
+            font-style: normal;
+            height: 59px;
+        }
+
+            tr.R16 td.R16C0 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                text-align: justify;
+            }
+
+        tr.R5 {
+            font-family: Arial;
+            font-size: 12pt;
+            font-style: normal;
+            height: 40px;
+        }
+
+            tr.R5 td.R10C6 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                border-bottom: #000000 1px solid;
+            }
+
+            tr.R5 td.R5C6 {
+                font-family: Arial;
+                font-size: 12pt;
+                font-style: normal;
+                text-align: justify;
+                border-bottom: #000000 1px solid;
+            }
+
+        table {
+            table-layout: fixed;
+            padding: 0px;
+            padding-left: 2px;
+            vertical-align: bottom;
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial;
+            font-size: 8pt;
+            font-style: normal;
+        }
+
+        td {
+            padding: 0px;
+            padding-left: 2px;
+            overflow: hidden;
+        }
+    </STYLE>
+</HEAD>
+<BODY>
+
+    <form method="post" asp-controller="Document" asp-action="ApplicationForPaymentInSeveralStages">
+        <input type="submit" value="Скачать" />
+    </form>
+
+    <TABLE style="width:100%; height:0px; " CELLSPACING=0>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL WIDTH=63>
+        <COL>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Директору  УО «Молодечненский торгово-</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">экономический колледж» Белкоопсоюза</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Череповичу Олегу Антоновичу</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R3C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Учащейся (-гося)______курса, группы__________</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Дневного отделения по специальности:</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R5>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R5C6" COLSPAN=6>@Model.Anketa.Specialty.Name</TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">Ф.И.О.(полностью)&nbsp;</SPAN></TD>
+            <TD CLASS="R6C9" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.Anketa.SurnameMother&nbsp;@Model.Anketa.NameMother&nbsp;</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R7C6" COLSPAN=6>@Model.Anketa.MiddlenameMother</TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">Форма&nbsp;обучения&nbsp;&nbsp;-&nbsp;платная</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN STYLE="white-space:nowrap;max-width:0px;">Адрес:</SPAN></TD>
+            <TD CLASS="R6C9" COLSPAN=5><SPAN STYLE="white-space:nowrap;max-width:0px;">@($"{Model.Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Model.Anketa.Region)}")</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R5>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R10C6" COLSPAN=6>@($"{Model.Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetReduction(Model.Anketa.TypeOfSettlement)} {Model.Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Model.Anketa.StreetType)} {Model.Anketa.StreetName}, дом № {Model.Anketa.HouseNumber}, квартира {Model.Anketa.ApartmentNumber}")</TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=2><SPAN STYLE="white-space:nowrap;max-width:0px;">Телефоны:</SPAN></TD>
+            <TD CLASS="R6C9" COLSPAN=4><SPAN STYLE="white-space:nowrap;max-width:0px;">раб.&nbsp;&nbsp;моб.&nbsp;</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R7C6" COLSPAN=6>+@Model.Anketa.PhoneMother</TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=8><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">ЗАЯВЛЕНИЕ</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R16>
+            <TD CLASS="R16C0" COLSPAN=12>                     Прошу разрешить произвести оплату за обучение за период сентябрь – декабрь @DateTime.Now.Year/@(DateTime.Now.Year + 1) учебного года в несколько этапов в связи со сложным материальным положением по причине</TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R17C0" COLSPAN=12><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R17C0" COLSPAN=12><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C1" COLSPAN=2>1 этап в сумме</TD>
+            <TD CLASS="R7C6" COLSPAN=2><SPAN></SPAN></TD>
+            <TD CLASS="R19C0" COLSPAN=3>обязуюсь произвести до</TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0">@(DateTime.Now.Year)г.,</TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C1" COLSPAN=2>2 этап в сумме</TD>
+            <TD CLASS="R7C6" COLSPAN=2><SPAN></SPAN></TD>
+            <TD CLASS="R19C0" COLSPAN=3>обязуюсь произвести до</TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0">@(DateTime.Now.Year)г.,</TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C1" COLSPAN=2>3 этап в сумме</TD>
+            <TD CLASS="R7C6" COLSPAN=2><SPAN></SPAN></TD>
+            <TD CLASS="R19C0" COLSPAN=3>обязуюсь произвести до</TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R7C6"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0">@(DateTime.Now.Year)г.,</TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0" COLSPAN=12><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0" COLSPAN=12>Дата __________@DateTime.Now.Year                  Подпись________________ (_____________)                 </TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0" COLSPAN=12>                                                         Подпись родителей________ (____________)       </TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD CLASS="R19C0" COLSPAN=3>Согласование:</TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD CLASS="R19C0"><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD COLSPAN=12><SPAN STYLE="white-space:nowrap;max-width:0px;">Главный&nbsp;&nbsp;бухгалтер:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;___________________&nbsp;(Т.М.Шорец)</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD>&nbsp;</TD>
+        </TR>
+        <TR CLASS=R0>
+            <TD COLSPAN=12><SPAN STYLE="white-space:nowrap;max-width:0px;">Юрисконсульт&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;___________________&nbsp;&nbsp;(А.И.Жук)</SPAN></TD>
+            <TD><SPAN></SPAN></TD>
+            <TD></TD>
+        </TR>
+    </TABLE>
+</BODY>
+</HTML>

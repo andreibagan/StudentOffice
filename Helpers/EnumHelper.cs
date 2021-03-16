@@ -77,7 +77,7 @@ namespace StudentOffice.Helpers
 
             foreach (var word in CurrentValueArray)
             {
-                ReductionValue += (word[0] + '.');
+                ReductionValue += word[0] + ".";
             }
 
             return ReductionValue;
@@ -88,9 +88,9 @@ namespace StudentOffice.Helpers
             string ReductionValue = string.Empty;
             string CurrentValue = GetDisplayValue(value);
 
-            string[] CurrentValueArray = CurrentValue.ToLower().Split(' ');
+            string[] CurrentValueArray = CurrentValue.Split(' ');
 
-            return ReductionValue = CurrentValue[0] + " обл.";
+            return ReductionValue = CurrentValueArray[0] + " обл.";
         }
 
         public static string GetReductionStreet(StreetType value)
