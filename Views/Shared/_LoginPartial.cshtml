@@ -3,18 +3,32 @@
 
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
-
-<ul class="navbar-nav">
+@*<ul class="navbar-nav">*@
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a id="manage" class="btn btn-primary" asp-controller="Home" asp-action="Index" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
-    </li>
+    @*<li class="nav-item float-right">*@
 
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+    @*<form id="logoutForm" class="form-inline navbar-brand col-md-12" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <a id="manage" style="white-space: nowrap" class="btn btn-primary" asp-controller="Home" asp-action="Index" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
+            <button type="button" class="btn btn-warning">Роль: @UserManager.GetRolesAsync(await UserManager.GetUserAsync(User)).Result.FirstOrDefault()</button>
             <button id="logout" type="submit" class="btn btn-danger">Выйти</button>
+        </form>*@
+    <form id="logoutForm" class="form-inline navbar-brand float-right" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <div class="row float-right">
+            <a style="white-space: nowrap" class="btn btn-primary col mr-lg-1" asp-controller="Home" asp-action="Index">Привет, @UserManager.GetUserName(User)!</a>
+            <button style="white-space: nowrap" type="button" class="btn btn-warning col mr-lg-1">Роль: @UserManager.GetRolesAsync(await UserManager.GetUserAsync(User)).Result.FirstOrDefault()</button>
+            <button id="logout" type="submit" class="btn btn-danger col">Выйти</button>
+        </div>
+    </form>
+
+    @*</ li > *@
+
+    @*< a class="navbar-brand" href="#">Navbar</a>*@
+
+    @*<li class="nav-item">
+        <form id = "logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id = "logout" type="submit" class="btn btn-danger">Выйти</button>
         </form>
-    </li>
+        </li>*@
 }
-</ul>
+@*</ul>*@
