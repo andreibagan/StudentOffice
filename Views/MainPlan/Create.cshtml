@@ -5,31 +5,36 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Главный план</h1>
+<h1>Create</h1>
 
-<h4>Добавление</h4>
+<h4>MainPlan</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SpecialtyId" class="control-label"></label>
-                <select asp-for="SpecialtyId" class ="form-control" asp-items="ViewBag.SpecialtyId"></select>
-            </div>
-            <div class="form-group">
                 <label asp-for="AdmissionPlanId" class="control-label"></label>
                 <select asp-for="AdmissionPlanId" class ="form-control" asp-items="ViewBag.AdmissionPlanId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Добавить" class="btn btn-primary" />
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input asp-for="DateTime" class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">вернуться к списку</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

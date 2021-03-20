@@ -25,15 +25,104 @@ namespace StudentOffice.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? groupId, DateTime date)
         {
-            var currentUser = await _userManager.Users
-                .Include(i => i.Anketa)
-                .ThenInclude(i => i.Specialty)
-                .ThenInclude(i => i.Groups)
-                .FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
+            List<Group> groups = await _context.Groups.ToListAsync();
+            List<TimeTableGroup> currentTimeTableGroups = new List<TimeTableGroup>();
+            TimeTableViewModel timeTableViewModel = new TimeTableViewModel();
 
-            var timeTableGroup = new List<TimeTableGroup>();
+            groups.Insert(0, new Group { GroupId = 0, GroupName = "Все" });
+
+            if (date.ToShortDateString() != "01.01.0001")
+            {
+                if (groupId != null && groupId > 0)
+                {
+                    currentTimeTableGroups = await _context.TimeTableGroups
+                      .Include(i => i.TimeTable)
+                      .ThenInclude(i => i.Semester)
+                      .Include(i => i.Group)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Discipline)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Audience)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.TimeWindow)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.User)
+                      .Where(i => i.TimeTable.DateTime.Date == date.Date && i.GroupId == groupId)
+                      .ToListAsync();
+                }
+                else
+                {
+                    currentTimeTableGroups = await _context.TimeTableGroups
+                      .Include(i => i.TimeTable)
+                      .ThenInclude(i => i.Semester)
+                      .Include(i => i.Group)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Discipline)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Audience)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.TimeWindow)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.User)
+                      .Where(i => i.TimeTable.DateTime.Date == date.Date)
+                      .ToListAsync();
+                }
+            }
+            else
+            {
+                if (groupId != null && groupId > 0)
+                {
+                    currentTimeTableGroups = await _context.TimeTableGroups
+                      .Include(i => i.TimeTable)
+                      .ThenInclude(i => i.Semester)
+                      .Include(i => i.Group)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Discipline)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.Audience)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.TimeWindow)
+                      .Include(i => i.Couples)
+                      .ThenInclude(i => i.User)
+                      .Where(i => i.GroupId == groupId)
+                      .ToListAsync();
+                }
+                else
+                {
+                    //TODO: если пользователь имеет группу вывести ему сегодняшнюю
+                    currentTimeTableGroups = await _context.TimeTableGroups
+                     .Include(i => i.TimeTable)
+                     .ThenInclude(i => i.Semester)
+                     .Include(i => i.Group)
+                     .Include(i => i.Couples)
+                     .ThenInclude(i => i.Discipline)
+                     .Include(i => i.Couples)
+                     .ThenInclude(i => i.Audience)
+                     .Include(i => i.Couples)
+                     .ThenInclude(i => i.TimeWindow)
+                     .Include(i => i.Couples)
+                     .ThenInclude(i => i.User)
+                     .ToListAsync();
+                }
+            }
+
+            timeTableViewModel.TimeTableGroups = currentTimeTableGroups;
+            timeTableViewModel.Groups = groups;
+
+            return View(timeTableViewModel);
+
+
+            
+
+            //////var currentUser = await _userManager.Users
+            //////    .Include(i => i.Anketa)
+            //////    .ThenInclude(i => i.Specialty)
+            //////    .ThenInclude(i => i.Groups)
+            //////    .FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
+
+            //////var timeTableGroup = new List<TimeTableGroup>();
 
             //if (currentUser?.Anketa?.Specialty?.Groups.FirstOrDefault() != null)
             //{
@@ -52,21 +141,21 @@ namespace StudentOffice.Controllers
             //       .Where(i => i.Group.GroupName == currentUser.Anketa.Specialty.Groups.FirstOrDefault().GroupName && i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
             //}
             //else
-            {
-                timeTableGroup = await _context.TimeTableGroups
-                   .Include(i => i.TimeTable)
-                   .ThenInclude(i => i.Semester)
-                   .Include(i => i.Group)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.Discipline)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.Audience)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.TimeWindow)
-                   .Include(i => i.Couples)
-                   .ThenInclude(i => i.User)
-                   .Where(i => i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
-            }
+            //////{
+            //////    timeTableGroup = await _context.TimeTableGroups
+            //////       .Include(i => i.TimeTable)
+            //////       .ThenInclude(i => i.Semester)
+            //////       .Include(i => i.Group)
+            //////       .Include(i => i.Couples)
+            //////       .ThenInclude(i => i.Discipline)
+            //////       .Include(i => i.Couples)
+            //////       .ThenInclude(i => i.Audience)
+            //////       .Include(i => i.Couples)
+            //////       .ThenInclude(i => i.TimeWindow)
+            //////       .Include(i => i.Couples)
+            //////       .ThenInclude(i => i.User)
+            //////       .Where(i => i.TimeTable.DateTime.Date == DateTime.Now.Date).ToListAsync();
+            //////}
             //--------------------------------------------------
             //timeTable = await _context.TimeTables
             //    .Include(i => i.Semester)
@@ -87,7 +176,7 @@ namespace StudentOffice.Controllers
             ////.FirstOrDefaultAsync(i => i.DateTime.Date == DateTime.Now.Date);
             ///-----------------------------------------------------
 
-            return View(timeTableGroup);
+
         }
 
         [HttpGet]

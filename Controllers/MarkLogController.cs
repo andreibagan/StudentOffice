@@ -39,6 +39,28 @@ namespace StudentOffice.Controllers
             return View(markLog);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> qwe()
+        {
+            MarkLog markLog = await _context.MarkLogs
+                .Include(i => i.MarkUsers)
+                .ThenInclude(i => i.MarkExams)
+                .ThenInclude(i => i.GroupExam)
+                .ThenInclude(i => i.Exam)
+                .Include(i => i.MarkUsers)
+                .ThenInclude(i => i.Marks)
+                .ThenInclude(i => i.GroupDiscipline)
+                .ThenInclude(i => i.Discipline)
+                .Include(i => i.MarkUsers)
+                .ThenInclude(i => i.User)
+                .ThenInclude(i => i.Anketa)
+                .Include(i => i.MarkUsers)
+                .ThenInclude(i => i.Omission)
+                .FirstOrDefaultAsync();
+
+            return Json(markLog);
+        }
+
 
         //[HttpGet]
         //public IActionResult Create()

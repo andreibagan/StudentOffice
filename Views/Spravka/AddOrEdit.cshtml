@@ -6,7 +6,7 @@
 
 @*<h1>Редактирование</h1>*@
 
-<h4 align="center">Справка</h4>
+<h4 align="center">Заказ справки об обучении</h4>
 <hr />
 <div class="row">
     <div class="col-md-12">
@@ -67,13 +67,23 @@
                     <input type="submit" value="Заказать" class="btn btn-primary btn-block" />
                 </div>
             </div>
+
+            
+
         </form>
+
+        <form>
+            <button class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>    
+        </form>
+            @*<button value="Вернуться на главную страницу" class="btn btn-primary" asp-controller="Home" asp-action="Index" />*@
+            @*<button class="btn btn-primary" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>*@
+   
     </div>
 </div>
 
-<div>
+@*<div>
     <a asp-action="Index" asp-controller="Home">Вернуться на главную страницу</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

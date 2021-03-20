@@ -15,7 +15,7 @@ namespace StudentOffice.ViewModels
         [Required(ErrorMessage = "Не указана группа")]
         [DataType(DataType.Text)]
         [Display(Name = "Группа")]
-        [Range(1, Int32.MaxValue)]
+        [Range(0, Int32.MaxValue)]
         public int GroupId { get; set; }
 
         //[Required(ErrorMessage = "Не указано кол-во занятий")]
@@ -23,6 +23,8 @@ namespace StudentOffice.ViewModels
         //[Range(1, 20, ErrorMessage = "Неверно указано кол-во занятий")]
         //[Display(Name = "Кол-во занятий")]
         //public int? CoupleCount { get; set; }
+
+        public List<TimeTableGroup> TimeTableGroups { get; set; }
 
         public List<CoupleViewModel> Couples { get; set; }
 

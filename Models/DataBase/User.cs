@@ -26,6 +26,9 @@ namespace StudentOffice.Models.DataBase
         public int? AnketaId { get; set; }
         [JsonIgnore]
         public virtual Anketa Anketa { get; set; }
+
+        public virtual ICollection<MainPlan> MainPlans { get; set; }
+
         [JsonIgnore]
         public virtual ICollection<MarkUser> MarkUsers { get; set; }
         public string GetFullNameMother

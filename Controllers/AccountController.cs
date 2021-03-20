@@ -21,10 +21,10 @@ namespace StudentOffice.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpGet]
-        public IActionResult Login(string returnUrl = null)
+      
+        public IActionResult Login()
         {
-            return View(new LoginViewModel { ReturnUrl = returnUrl });
+            return View(new LoginViewModel());
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace StudentOffice.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -92,8 +92,8 @@ namespace StudentOffice.Controllers
                         protocol: HttpContext.Request.Scheme);
 
                     EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(model.Email, "Confirm your account",
-                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+                    await emailService.SendEmailAsync(model.Email, "Подтвердите ваш аккаунт",
+                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>ссылка</a>"); //TODO: Сделать красивый вывод
 
                     return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
                 }
@@ -124,7 +124,7 @@ namespace StudentOffice.Controllers
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PasswordConfirm", "Account");
             }
             else
             {
@@ -168,7 +168,7 @@ namespace StudentOffice.Controllers
 
                 EmailService emailService = new EmailService();
 
-                await emailService.SendEmailAsync(model.Email, "Reset Password",
+                await emailService.SendEmailAsync(model.Email, "Сбросить пароль",
                     $"Для сброса пароля пройдите по ссылке: <a href='{callbackUrl}'>link</a>");
 
                 return View("ForgotPasswordConfirmation");
@@ -214,6 +214,12 @@ namespace StudentOffice.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult PasswordConfirm()
+        {
+            return View();
         }
     }
 }

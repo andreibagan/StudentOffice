@@ -1,103 +1,110 @@
 ﻿@model MarkLog
 
-<a asp-action="Create" asp-controller="MarkLog">Добавить</a>
+@*<a asp-action="Create" asp-controller="MarkLog">Добавить</a>*@
 
-<table cellpadding="0" cellspacing="0" align="center">
-    <tr>
 
-        <td rowspan="2">
-            №
-        </td>
-
-        <td rowspan="2">
-            ФИО
-        </td>
-
-        <td colspan="@Model.MarkUsers.FirstOrDefault().Marks.Count()">
-            Наименование дисциплин / Отметки
-        </td>
-
-        <td colspan="@Model.MarkUsers.FirstOrDefault().MarkExams.Count()">
-            Экзамены / Отметки
-        </td>
-
-        <td class="rotate" rowspan="2">
-            <div>Средний балл</div>
-        </td>
-
-        <td colspan="2">
-            Пропуски
-        </td>
-
-    </tr>
-
-    <tr style="height: 400px">
-
-        @foreach (var mark in Model.MarkUsers.FirstOrDefault().Marks)
-        {
-            <td class="rotate">
-                <div>@mark.GroupDiscipline.Discipline.DisciplineName</div>
-            </td>
-        }
-
-        @foreach (var mark in Model.MarkUsers.FirstOrDefault().MarkExams)
-        {
-            <td class="rotate">
-                <div>@mark.GroupExam.Exam.ExamName</div>
-            </td>
-        }
-
-        <td class="rotate">
-            <div>Всего</div>
-        </td>
-
-        <td class="rotate">
-            <div>Неуважительных</div>
-        </td>
-
-    </tr>
-
-    @foreach (var markUser in Model.MarkUsers.Select((value, iterator) => new { value, iterator }))
-    {
+@if (Model?.MarkUsers != null)
+{
+    <table cellpadding="0" cellspacing="0" align="center">
         <tr>
 
-            <td>
-                @(markUser.iterator + 1)
+            <td rowspan="2">
+                №
             </td>
 
-            <td>
-                @markUser.value.User.GetInitial
+            <td rowspan="2">
+                ФИО
             </td>
 
-            @foreach (var mark in markUser.value.Marks)
-            {
-                <td>
-                    @mark.MarkValue
-                </td>
-            }
-
-            @foreach (var markExam in markUser.value.MarkExams)
-            {
-                <td>
-                    @markExam.MarkValue
-                </td>
-            }
-
-            <td>
-                @markUser.value.AverangeMark
+            <td colspan="@Model?.MarkUsers?.FirstOrDefault()?.Marks?.Count()">
+                Наименование дисциплин / Отметки
             </td>
 
-            <td>
-                @markUser.value.Omission.Total
+            <td colspan="@Model?.MarkUsers?.FirstOrDefault()?.MarkExams?.Count()">
+                Экзамены / Отметки
             </td>
-            <td>
-                @markUser.value.Omission.Disrespectful
+
+            <td class="rotate" rowspan="2">
+                <div>Средний балл</div>
+            </td>
+
+            <td colspan="2">
+                Пропуски
             </td>
 
         </tr>
-    }
 
-</table>
+        <tr style="height: 400px">
+
+            @foreach (var mark in Model?.MarkUsers?.FirstOrDefault()?.Marks)
+            {
+            <td class="rotate">
+                <div>@mark?.GroupDiscipline?.Discipline?.DisciplineName</div>
+            </td>
+            }
+
+            @foreach (var mark in Model.MarkUsers?.FirstOrDefault()?.MarkExams)
+            {
+                <td class="rotate">
+                    <div>@mark?.GroupExam?.Exam?.ExamName</div>
+                </td>
+            }
+
+            <td class="rotate">
+                <div>Всего</div>
+            </td>
+
+            <td class="rotate">
+                <div>Неуважительных</div>
+            </td>
+
+        </tr>
+
+        @foreach (var markUser in Model?.MarkUsers?.Select((value, iterator) => new { value, iterator }))
+        {
+            <tr>
+
+                <td>
+                    @(markUser.iterator + 1)
+                </td>
+
+                <td>
+                    @markUser.value.User.GetInitial
+                </td>
+
+                @foreach (var mark in markUser.value.Marks)
+                {
+                    <td>
+                        @mark.MarkValue
+                    </td>
+                }
+
+                @foreach (var markExam in markUser.value.MarkExams)
+                {
+                    <td>
+                        @markExam.MarkValue
+                    </td>
+                }
+
+                <td>
+                    @markUser.value.AverangeMark
+                </td>
+
+                <td>
+                    @markUser.value.Omission.Total
+                </td>
+                <td>
+                    @markUser.value.Omission.Disrespectful
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+
+
+
 
 
 <style type="text/css">

@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Spire.Doc;
 using StudentOffice.Models;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
@@ -49,6 +48,25 @@ namespace StudentOffice.Controllers
 
             return View();
         }
+        public async Task<IActionResult> qwe()
+        {
+            TimeTable timeTable = await _context.TimeTables
+                .Include(i => i.Semester)
+                .Include(i => i.TimeTableGroups)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.Discipline)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.Audience)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.TimeWindow)
+                .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Couples)
+                .FirstOrDefaultAsync();
+            return Json(timeTable);
+        }
 
         public IActionResult About()
         {
@@ -67,55 +85,8 @@ namespace StudentOffice.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        [Authorize(Roles = "учащийся, admin")]
-        [HttpGet]
-        public async Task<IActionResult> Spravka()
-        {
-            SpravkaViewModel model = new SpravkaViewModel();
-
-            model.TypeOfSpravkas = await _context.TypeOfSpravkas.ToListAsync();
-            model.Groups = await _context.Groups.ToListAsync();
-
-            return View(model);
-        }
-
-        [Authorize(Roles = "учащийся, admin")]
-        [HttpPost]
-        public async Task<IActionResult> Spravka(SpravkaViewModel model)
-        {
-
-            if (ModelState.IsValid)
-            {
-                User user = await _context.Users.FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
-
-                if (model.Spravka != null && user != null)
-                {
-                    await _context.Spravkas.AddAsync(model.Spravka);
-                    await _context.SaveChangesAsync();
-
-                    SpravkaOrder spravkaOrder = new SpravkaOrder()
-                    {
-                        UserId = user.Id,
-                        SpravkaId = model.Spravka.SpravkaId,
-                        DateTimeNow = DateTime.Now
-                    };
-
-                    await _context.SpravkaOrders.AddAsync(spravkaOrder);
-                    await _context.SaveChangesAsync();
-
-                    return RedirectToAction("Index", "Home");
-                }
-
-                return NotFound();
-            }
-
-            model.TypeOfSpravkas = await _context.TypeOfSpravkas.ToListAsync();
-            model.Groups = await _context.Groups.ToListAsync();
-
-            return View(model);
-
-        }
-
+       
+       
         public async Task<FileResult> qwerty123()
         {
             WebRequest request = WebRequest.Create("https://www.google.com/");
@@ -141,126 +112,10 @@ namespace StudentOffice.Controllers
                 }
             }
         }
+ 
+       
 
-
-
-        //public FileResult GetFile()
-        //{
-        //    //string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\Unity1.pdf");
-
-        //    //string file_type = "application/pdf";
-
-        //    //string file_name = "Unity1.pdf";
-
-        //    //return PhysicalFile(file_path, file_type, file_name);
-
-
-        //    //WordDocument document = new WordDocument();
-        //    //WSection section = document.AddSection() as WSection;
-        //    //MemoryStream stream = new MemoryStream();
-        //    //document.Save(stream, FormatType.Docx);
-        //    //stream.Position = 0;
-        //    //return File(stream, "application/msword", "Sample.docx");
-
-
-
-
-
-
-
-
-        //}
-
-        public async Task<IActionResult> GetFile1()
-        {
-            User user = await _context.Users.Include(i => i.Anketa).FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-
-            if (user.Anketa == null)
-            {
-                return Content("Вы не заполнили анкету!");
-            }
-            else
-            {
-                string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\123.docx");
-
-                Spire.Doc.Document document = new Spire.Doc.Document();
-                document.LoadFromFile(file_path);
-
-                document.Replace("ParentFullName", user.GetFullNameMother.ToUpper(), false, true);
-                document.Replace("ParentType", user.Anketa.KinshipTypeMother.ToString().ToUpper(), false, true);
-                document.Replace("Sex", user.Anketa.Sex == Sex.Male ? "СВОЕГО СЫНА" : "СВОЕЙ ДОЧЕРИ", false, true);
-                document.Replace("FullName", user.GetFullNameR.ToUpper(), false, true);
-                document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
-
-                document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\123123.docx"), FileFormat.Docx);
-
-
-                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(Path.Combine(_appEnvironment.ContentRootPath, "Files\\123123.docx"), true))
-                {
-                    string docText = null;
-                    using (StreamReader sr = new StreamReader(wordDoc.MainDocumentPart.GetStream()))
-                    {
-                        docText = sr.ReadToEnd();
-                    }
-
-                    Regex regexText = new Regex("Evaluation Warning: The document was created with Spire.Doc for .NET.");
-                    docText = regexText.Replace(docText, "");
-
-                    using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
-                    {
-                        sw.Write(docText);
-                    }
-                }
-
-
-                return RedirectToAction("index");
-            }
-        }
-
-        public async Task<IActionResult> GetFile2()
-        {
-            User user = await _context.Users
-                .Include(i => i.Anketa).ThenInclude(i => i.Specialty)
-                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-
-            if (user.Anketa == null)
-            {
-                return Content("Вы не заполнили анкету!");
-            }
-            else
-            {
-                string file_path = Path.Combine(_appEnvironment.ContentRootPath, "Files\\zav.docx");
-
-                Spire.Doc.Document document = new Spire.Doc.Document();
-                document.LoadFromFile(file_path);
-
-                document.Replace("SpecialtyName", user.Anketa.Specialty.Name, false, true);
-                document.Replace("PostCode", user.Anketa.Postcode.ToString(), false, true);
-                document.Replace("Area", user.Anketa.Region.ToString(), false, true);
-                document.Replace("District", user.Anketa.HullNumber, false, true);
-                document.Replace("Town", user.Anketa.NameOfSettlement, false, true);
-                document.Replace("Street", user.Anketa.StreetName, false, true);
-                document.Replace("HomeNumber", user.Anketa.HouseNumber, false, true);
-                document.Replace("Apartment", user.Anketa.ApartmentNumber, false, true);
-                document.Replace("Phone", user.Anketa.HomePhone, false, true);
-                document.Replace("YearOfEnding", user.Anketa.YearOfEnding.ToShortDateString(), false, true);
-                document.Replace("EducationLevel", user.Anketa.EducationLevel.ToString(), false, true);
-                document.Replace("Institution ", user.Anketa.Institution, false, true);
-                document.Replace("Birthday", user.Anketa.Birthday.ToLongDateString(), false, true);
-                document.Replace("FatherFullName", user.GetFullNameFather, false, true);
-                document.Replace("FullName", user.GetFullNameR, false, true);
-                document.Replace("MotherFullName", user.GetFullNameMother, false, true);
-                document.Replace("DocumentType", user.Anketa.DocumentType.Name, false, true);
-                document.Replace("Passport", user.Anketa.PassportSeries + user.Anketa.PassportNumber, false, true);
-                document.Replace("DateOfIssue", user.Anketa.DateOfIssue.ToShortDateString(), false, true);
-                document.Replace("IssuedBy", user.Anketa.IssuedBy, false, true);
-                document.Replace("IdentityNumber", user.Anketa.IdentityNumber, false, true);
-                document.Replace("DateTimeNow", DateTime.Now.ToShortDateString(), false, true);
-                document.SaveToFile(Path.Combine(_appEnvironment.ContentRootPath, "Files\\zav123.docx"), FileFormat.Docx);
-
-                return RedirectToAction("index");
-            }
-        }
+     
 
         public async Task<IActionResult> SerializeUser()
         {
@@ -308,22 +163,9 @@ namespace StudentOffice.Controllers
             return Content("Объект был успешно сериализован");
         }
 
-        //public void Reser()
-        //{
-        //    using (var client = new WebClient())
-        //    {
-        //        string html = client.DownloadString("https://google.com");
 
+        
 
-        //        using (FileStream fstream = new FileStream($"google.html", FileMode.OpenOrCreate))
-        //        {
-        //            // преобразуем строку в байты
-        //            byte[] array = System.Text.Encoding.Default.GetBytes(html);
-        //            // запись массива байтов в файл
-        //            fstream.Write(array, 0, array.Length);
-        //        }
-        //    }
-        //}
     }
 }
 

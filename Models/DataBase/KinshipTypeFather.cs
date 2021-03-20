@@ -14,8 +14,6 @@ namespace StudentOffice.Models.DataBase
         Grandfather,
         [Display(Name = "Попечитель")]
         Trustee,
-        [Display(Name = "Брат")]
-        Brother,
         [Display(Name = "Опекун")]
         Guardian,
     }

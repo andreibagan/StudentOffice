@@ -112,7 +112,7 @@ namespace StudentOffice.Controllers
         [HttpGet]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
-            ViewData["GroupId"] = new SelectList(_context.Groups, "GroupId", "GroupName");
+            ViewData["GroupId"] = new SelectList(_context.Groups.OrderBy(i => i.GroupName), "GroupId", "GroupName");
             ViewData["TypeOfSpravkaId"] = new SelectList(_context.TypeOfSpravkas, "TypeOfSpravkaId", "TypeOfSpravkaName");
 
             if (id == 0)
@@ -120,12 +120,12 @@ namespace StudentOffice.Controllers
                 var user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
                 Spravka spravka = new Spravka();
 
-                //if (user != null)
-                //{
-                //    spravka.Name = user.Anketa.Name;
-                //    spravka.Surname = user.Anketa.Surname;
-                //    spravka.Middlename = user.Anketa.Middlename;
-                //}
+                if (user?.Anketa != null)
+                {
+                    spravka.Name = user.Anketa.Name;
+                    spravka.Surname = user.Anketa.Surname;
+                    spravka.Middlename = user.Anketa.Middlename;
+                }
 
                 return View(spravka);
             }
@@ -182,46 +182,11 @@ namespace StudentOffice.Controllers
 
                     await _context.SpravkaOrders.AddAsync(spravkaOrder);
                     await _context.SaveChangesAsync();
-                    //Spravka spravka = new Spravka();
-                    //spravka.Name = model.Name;
-                    //spravka.Surname = model.Surname;
-                    //spravka.Middlename = model.Middlename;
-                    //spravka.OrganizationName = model.OrganizationName;
-                    //spravka.GroupId = model.GroupId;
-                    //spravka.TypeOfSpravkaId = model.TypeOfSpravkaId;
-                    //spravka.AdditionalInformation = model.AdditionalInformation;
-
-
-                    //SpravkaOrder spravkaOrder = new SpravkaOrder();
-
-                    //spravkaOrder.UserId = user.Id;
-                    //spravkaOrder.SpravkaId = spravka.SpravkaId;
-                    //spravkaOrder.DateTimeNow = DateTime.Now;
-
-
-                    //await _context.AddAsync(spravka);
-                    //await _context.SaveChangesAsync();
-
-                    //await _context.AddAsync(spravkaOrder);
-                    //await _context.SaveChangesAsync();
                 }
                 else
                 {
                     try
                     {
-                        //var spravkaOrderUpdate = await _context.SpravkaOrders.FindAsync(id);
-
-                        //spravkaOrderUpdate.DateTimeNow = DateTime.Now;
-                        //spravkaOrderUpdate.Spravka.Name = model.Name;
-                        //spravkaOrderUpdate.Spravka.Surname = model.Surname;
-                        //spravkaOrderUpdate.Spravka.Middlename = model.Middlename;
-                        //spravkaOrderUpdate.Spravka.OrganizationName = model.OrganizationName;
-                        //spravkaOrderUpdate.Spravka.GroupId = model.GroupId;
-                        //spravkaOrderUpdate.Spravka.TypeOfSpravkaId = model.TypeOfSpravkaId;
-                        //spravkaOrderUpdate.Spravka.AdditionalInformation = model.AdditionalInformation;
-
-                        //_context.Update(spravkaOrderUpdate);
-                        //await _context.SaveChangesAsync();
                         SpravkaOrder spravkaOrder = await _context.SpravkaOrders.FirstOrDefaultAsync(i => i.SpravkaId == model.SpravkaId);
                         spravkaOrder.DateTimeNow = DateTime.Now;
 
@@ -242,9 +207,9 @@ namespace StudentOffice.Controllers
                     }
                 }
 
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
-            ViewData["GroupId"] = new SelectList(_context.Groups, "GroupId", "GroupName");
+            ViewData["GroupId"] = new SelectList(_context.Groups.OrderBy(i => i.GroupName), "GroupId", "GroupName");
             ViewData["TypeOfSpravkaId"] = new SelectList(_context.TypeOfSpravkas, "TypeOfSpravkaId", "TypeOfSpravkaName");
             return View(model);
         }

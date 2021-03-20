@@ -56,7 +56,7 @@ namespace StudentOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email };
+                User user = new User { Email = model.Email, UserName = model.Email, EmailConfirmed = true };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
@@ -184,39 +184,18 @@ namespace StudentOffice.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Unload(UnloadUserViewModel model, IEnumerable<string> roles)
+        public async Task<IActionResult> Unload(string Json)
         {
-            string json = string.Empty;
 
-            using (var fs = System.IO.File.OpenRead(model.Path))
-            {
-                using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
-                {
-                    json = sr.ReadToEnd();
-                }
-            }
-
-            var usersviewmodel = JsonConvert.DeserializeObject<List<UserUnloadModel>>(json);
+            var usersviewmodel = JsonConvert.DeserializeObject<List<TimeTable>>(Json);
 
             if (usersviewmodel == null)
             {
                 return Content("Ошибка чтения файла");
             }
 
-            foreach (var user in usersviewmodel)
-            {
-                var currentuser = new User
-                {
-                    Email = user.Email,
-                    UserName = user.Email,
-                    EmailConfirmed = model.IsConfirmedEmail
-                };
-
-                await _userManager.CreateAsync(currentuser, user.Password);
-
-                await _userManager.AddToRolesAsync(currentuser, roles);
-            }
-
+            await _context.TimeTables.AddRangeAsync(usersviewmodel);
+            await _context.SaveChangesAsync();
             return RedirectToAction("Unload");
         }
     }

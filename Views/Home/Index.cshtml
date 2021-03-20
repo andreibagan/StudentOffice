@@ -6,7 +6,7 @@
 
 <form>
     <div class="container overflow-hidden">
-        <h2 align="center">Кабинет абитуриента</h2>
+        <h2 align="center">Главная страница</h2>
         <div>
             <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету абитуриента</button>
         </div>
@@ -16,15 +16,21 @@
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
         </div>
-        <div>
+        @*<div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Marklog" asp-action="Index">Отметки учащегося</button>
-        </div>
+        </div>*@
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="Index">Документы</button>
         </div>
         <div>
-                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="AdmissionPlan" asp-action="Index">Записаться на подачу документов</button>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="User" asp-action="Index">Пользователи</button>
         </div>
+        <div>
+            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Role" asp-action="UserList">Роли</button>
+        </div>
+        @*<div>
+                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="MainPlan" asp-action="AddOrEdit">Записаться на подачу документов</button>
+        </div>*@
 
 
     </div>

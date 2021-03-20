@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using StudentOffice.Helpers;
 
 namespace StudentOffice.Models.DataBase
@@ -10,14 +12,6 @@ namespace StudentOffice.Models.DataBase
     {
         public int MainPlanId { get; set; }
 
-        [Required(ErrorMessage = "Не указана специальность")]
-        [DataType(DataType.Text)]
-        [Display(Name = "Специальность*")]
-        public int SpecialtyId { get; set; }
-
-        [Display(Name = "Специальность*")]
-        public virtual Specialty Specialty { get; set; }
-
         [Required(ErrorMessage = "Не указан план приема")]
         [DataType(DataType.Text)]
         [Display(Name = "План приема*")]
@@ -25,6 +19,12 @@ namespace StudentOffice.Models.DataBase
 
         [Display(Name = "План приема*")]
         public virtual AdmissionPlan AdmissionPlan { get; set; }
+
+        public string UserId { get; set; }
+        public virtual User User { get; set; }
+
+     
+        public DateTime DateTime { get; set; }
 
         public string GetName
         {

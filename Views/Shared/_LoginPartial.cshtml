@@ -8,11 +8,12 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
-        <a id="manage" class="nav-link text-dark" asp-controller="Home" asp-action="Index" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
+        <a id="manage" class="btn btn-primary" asp-controller="Home" asp-action="Index" title="Manage">Привет, @UserManager.GetUserName(User)!</a>
     </li>
+
     <li class="nav-item">
         <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
+            <button id="logout" type="submit" class="btn btn-danger">Выйти</button>
         </form>
     </li>
 }

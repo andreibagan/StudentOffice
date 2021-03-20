@@ -5,7 +5,7 @@
 
 <a asp-action="Create">Добавить пользователя</a>
 
-<form class="form-inline">
+@*<form class="form-inline">
     <label>Выберите группу:</label>
     <select name="groupId" class="form-control">
         @foreach (GroupModel group in Model.Groups)
@@ -13,25 +13,25 @@
             <option value="@group.GroupId">@group.GroupName</option>
         }
     </select>
-    <input type="submit" />
-</form>
+    <input style="margin-left: 50px" type="submit" value="Применить" class="btn btn-success" />
+</form>*@
 
 <table class="table">
     <tr>
         <th>Email</th>
-        <th>Группа</th>
-        <th>Анкета</th>
+        @*<th>Группа</th>*@
+        @*<th>Анкета</th>*@
         <th></th>
     </tr>
     @foreach (var user in Model.Users)
     {
         <tr>
             <td>@user.Email</td>
-            <td>@user.Anketa?.Specialty?.Groups?.FirstOrDefault()?.GroupName</td>
-            <td><a asp-action="Anketa" asp-controller="Home" asp-route-id="@user.Id">Анкета</a></td>
+            @*<td>@user.Anketa?.Specialty?.Groups?.FirstOrDefault()?.GroupName</td>*@
+            @*<td><a asp-action="Anketa" asp-controller="Home" asp-route-id="@user.Id">Анкета</a></td>*@
             <td>
                 <form asp-action="Delete" asp-route-id="@user.Id" method="post">
-                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>
+                    <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить email</a>
                     <a class="btn btn-sm btn-primary" asp-action="ChangePassword" asp-route-id="@user.Id">Сменить пароль</a>
                     <button type="submit" class="btn btn-sm btn-danger">
                         Удалить
@@ -41,3 +41,5 @@
         </tr>
     }
 </table>
+
+<a asp-controller="User" asp-action="Unload">Выгрузка пользователей</a>

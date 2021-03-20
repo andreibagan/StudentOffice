@@ -5,19 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Главный план</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Добавить новый</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Specialty)
+                @Html.DisplayNameFor(model => model.AdmissionPlan)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdmissionPlan)
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
             </th>
             <th></th>
         </tr>
@@ -26,15 +29,18 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Specialty.Name)
+                @Html.DisplayFor(modelItem => item.AdmissionPlan.AdmissionPlanId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GetName)
+                @Html.DisplayFor(modelItem => item.User.Id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MainPlanId">Редактировать</a><br>
-                <a asp-action="Details" asp-route-id="@item.MainPlanId">Подробнее</a><br>
-                <a asp-action="Delete" asp-route-id="@item.MainPlanId">Удалить</a>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MainPlanId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MainPlanId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MainPlanId">Delete</a>
             </td>
         </tr>
 }

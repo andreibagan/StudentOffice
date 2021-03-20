@@ -1794,7 +1794,32 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
+            if (!context.SelectionСommitties.Any())
+            {
+                await context.SelectionСommitties.AddRangeAsync(new List<SelectionСommittee>
+                {
+                    new SelectionСommittee
+                    {
+                        Name = "Приемная комиссия",
+                        Year = 2021
+                    },
+                });
+            }
+
             await context.SaveChangesAsync();
+
+            if (!context.AdmissionPlans.Any())
+            {
+                await context.AdmissionPlans.AddRangeAsync(new List<AdmissionPlan>
+                {
+                    new AdmissionPlan
+                    {
+                        SelectionСommitteeId = 1,
+                        DateStart = new DateTime(2021, 07, 01),
+                        DateEnd = new DateTime(2021, 08, 28)
+                    },
+                });
+            }
 
             if (!context.Specializations.Any())
             {
@@ -2055,237 +2080,239 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            if (!context.MarkLogs.Any())
-            {
-                await context.MarkLogs.AddRangeAsync(new List<MarkLog>
-                {
-                   new MarkLog
-                   {
-                       SemesterId = 1,
-                   },
-                });
-            }
-
             await context.SaveChangesAsync();
 
-            if (!context.MarkUsers.Any())
-            {
-                await context.MarkUsers.AddRangeAsync(new List<MarkUser>
-                {
-                   new MarkUser
-                   {
-                       UserId = "4ac1a332-7bc9-4592-a955-8128cac4b874",
-                       OmissionId = 1,
-                       MarkLogId = 1
-                   },
-                   new MarkUser
-                   {
-                       UserId = "1d8820a0-6ac9-4bd2-b95c-917d6616751b",
-                       OmissionId = 2,
-                       MarkLogId = 1
-                   },
-                });
-            }
+            //if (!context.MarkLogs.Any())
+            //{
+            //    await context.MarkLogs.AddRangeAsync(new List<MarkLog>
+            //    {
+            //       new MarkLog
+            //       {
+            //           SemesterId = 1,
+            //       },
+            //    });
+            //}
 
-            if (!context.GroupExams.Any())
-            {
-                await context.GroupExams.AddRangeAsync(new List<GroupExam>
-                {
-                   new GroupExam
-                   {
-                       GroupId = 3,
-                       ExamId = 1
-                   },
-                   new GroupExam
-                   {
-                       GroupId = 3,
-                       ExamId = 2
-                   },
-                });
-            }
+            //await context.SaveChangesAsync();
 
-            if (!context.GroupDisciplines.Any())
-            {
-                await context.GroupDisciplines.AddRangeAsync(new List<GroupDiscipline>
-                {
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 1,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 2,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 3,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 4,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 5,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 6,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 7,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 8,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 9,
-                   },
-                   new GroupDiscipline
-                   {
-                       GroupId = 3,
-                       DisciplineId = 10,
-                   },
-                });
-            }
+            //if (!context.MarkUsers.Any())
+            //{
+            //    await context.MarkUsers.AddRangeAsync(new List<MarkUser>
+            //    {
+            //       new MarkUser
+            //       {
+            //           UserId = "4ac1a332-7bc9-4592-a955-8128cac4b874",
+            //           OmissionId = 1,
+            //           MarkLogId = 1
+            //       },
+            //       new MarkUser
+            //       {
+            //           UserId = "1d8820a0-6ac9-4bd2-b95c-917d6616751b",
+            //           OmissionId = 2,
+            //           MarkLogId = 1
+            //       },
+            //    });
+            //}
 
-            await context.SaveChangesAsync();
+            //if (!context.GroupExams.Any())
+            //{
+            //    await context.GroupExams.AddRangeAsync(new List<GroupExam>
+            //    {
+            //       new GroupExam
+            //       {
+            //           GroupId = 3,
+            //           ExamId = 1
+            //       },
+            //       new GroupExam
+            //       {
+            //           GroupId = 3,
+            //           ExamId = 2
+            //       },
+            //    });
+            //}
 
-            if (!context.Marks.Any())
-            {
-                await context.Marks.AddRangeAsync(new List<Mark>
-                {
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 1,
-                       MarkValue = "5"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 2,
-                       MarkValue = "7"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 3,
-                       MarkValue = "6"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 4,
-                       MarkValue = "8"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 5,
-                       MarkValue = "2"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 6,
-                       MarkValue = "8"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 1,
-                       GroupDisciplineId = 7,
-                       MarkValue = "5"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 1,
-                       MarkValue = "3"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 2,
-                       MarkValue = "7"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 3,
-                       MarkValue = "9"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 4,
-                       MarkValue = "5"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 5,
-                       MarkValue = "4"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 6,
-                       MarkValue = "4"
-                   },
-                   new Mark
-                   {
-                       MarkUserId = 2,
-                       GroupDisciplineId = 7,
-                       MarkValue = "6"
-                   },
-                });
-            }
+            //if (!context.GroupDisciplines.Any())
+            //{
+            //    await context.GroupDisciplines.AddRangeAsync(new List<GroupDiscipline>
+            //    {
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 1,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 2,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 3,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 4,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 5,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 6,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 7,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 8,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 9,
+            //       },
+            //       new GroupDiscipline
+            //       {
+            //           GroupId = 3,
+            //           DisciplineId = 10,
+            //       },
+            //    });
+            //}
 
-            if (!context.MarkExams.Any())
-            {
-                await context.MarkExams.AddRangeAsync(new List<MarkExam>
-                {
-                   new MarkExam
-                   {
-                       MarkValue = 7,
-                       MarkUserId = 1,
-                       GroupExamId = 1
-                   },
-                   new MarkExam
-                   {
-                       MarkValue = 5,
-                       MarkUserId = 1,
-                       GroupExamId = 2
-                   },
-                   new MarkExam
-                   {
-                       MarkValue = 8,
-                       MarkUserId = 2,
-                       GroupExamId = 1
-                   },
-                   new MarkExam
-                   {
-                       MarkValue = 9,
-                       MarkUserId = 2,
-                       GroupExamId = 2
-                   },
-                });
-            }
+            //await context.SaveChangesAsync();
 
-            await context.SaveChangesAsync();
+            //if (!context.Marks.Any())
+            //{
+            //    await context.Marks.AddRangeAsync(new List<Mark>
+            //    {
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 1,
+            //           MarkValue = "5"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 2,
+            //           MarkValue = "7"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 3,
+            //           MarkValue = "6"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 4,
+            //           MarkValue = "8"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 5,
+            //           MarkValue = "2"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 6,
+            //           MarkValue = "8"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 1,
+            //           GroupDisciplineId = 7,
+            //           MarkValue = "5"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 1,
+            //           MarkValue = "3"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 2,
+            //           MarkValue = "7"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 3,
+            //           MarkValue = "9"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 4,
+            //           MarkValue = "5"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 5,
+            //           MarkValue = "4"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 6,
+            //           MarkValue = "4"
+            //       },
+            //       new Mark
+            //       {
+            //           MarkUserId = 2,
+            //           GroupDisciplineId = 7,
+            //           MarkValue = "6"
+            //       },
+            //    });
+            //}
+
+            //if (!context.MarkExams.Any())
+            //{
+            //    await context.MarkExams.AddRangeAsync(new List<MarkExam>
+            //    {
+            //       new MarkExam
+            //       {
+            //           MarkValue = 7,
+            //           MarkUserId = 1,
+            //           GroupExamId = 1
+            //       },
+            //       new MarkExam
+            //       {
+            //           MarkValue = 5,
+            //           MarkUserId = 1,
+            //           GroupExamId = 2
+            //       },
+            //       new MarkExam
+            //       {
+            //           MarkValue = 8,
+            //           MarkUserId = 2,
+            //           GroupExamId = 1
+            //       },
+            //       new MarkExam
+            //       {
+            //           MarkValue = 9,
+            //           MarkUserId = 2,
+            //           GroupExamId = 2
+            //       },
+            //    });
+            //}
+
+
 
             //if (!context.TimeWindows.Any())
             //{

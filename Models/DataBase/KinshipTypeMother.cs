@@ -12,8 +12,6 @@ namespace StudentOffice.Models.DataBase
         Trustee,
         [Display(Name = "Бабушка")]
         Grandmother,
-        [Display(Name = "Сестра")]
-        Sister,
         [Display(Name = "Опекун")]
         Guardian,
     }

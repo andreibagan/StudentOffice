@@ -17,30 +17,27 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="AnketaId" />
 
-                <fieldset>
-                    <legend>
-                        ФИО
-                    </legend>
-                 <div class="row">
-                        <div class="form-group col-md-4">
-                            <label asp-for="Surname" class="control-label"></label>
-                            <input asp-for="Surname" class="form-control" />
-                            <span asp-validation-for="Surname" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="Name" class="control-label"></label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="Middlename" class="control-label"></label>
-                            <input asp-for="Middlename" class="form-control" />
-                            <span asp-validation-for="Middlename" class="text-danger"></span>
-                        </div>
-                    </div>
-                </fieldset>
 
-               
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="Surname" class="control-label"></label>
+                        <input asp-for="Surname" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="Middlename" class="control-label"></label>
+                        <input asp-for="Middlename" class="form-control" />
+                        <span asp-validation-for="Middlename" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
 
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -191,8 +188,8 @@
                     <span asp-validation-for="SocialBehavior"></span>
                 </div>
                 @*<hr />
-        <h3 align="center">Информация об отце</h3>
-        <hr />*@
+            <h3 align="center">Информация об отце</h3>
+            <hr />*@
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label asp-for="KinshipTypeFather" class="control-label"></label>
@@ -228,8 +225,8 @@
                     <span asp-validation-for="AddressFather" class="text-danger"></span>
                 </div>
                 @*<hr />
-        <h3 align="center">Информация о матери</h3>
-        <hr />*@
+            <h3 align="center">Информация о матери</h3>
+            <hr />*@
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label asp-for="KinshipTypeMother" class="control-label"></label>
@@ -372,7 +369,9 @@
                         <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
                     </div>
                 </div>
-
+            </form>
+            <form>
+                <button class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
             </form>
         </div>
     </div>
@@ -390,19 +389,19 @@
         function SetOptions() {
             if (($('#sel2 option:selected').text() == "Дневное")) {
                 $('#sel3 option').remove();
-                $('#sel3').prepend('<option value="9">Коммерческая деятельность</option>');
-                $('#sel3').prepend('<option value="8">Правоведение</option>');
-                $('#sel3').prepend('<option value="7">Визуальный мерчендайзинг</option>');
-                $('#sel3').prepend('<option value="6">Программное обеспечение информационных технологий</option>');
-                $('#sel3').prepend('<option value="2">Операционная деятельность в логистике</option>');
-                $('#sel3').prepend('<option value="1">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="7">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="1">Правоведение</option>');
+                $('#sel3').prepend('<option value="3">Визуальный мерчендайзинг</option>');
+                $('#sel3').prepend('<option value="2">Программное обеспечение информационных технологий</option>');
+                $('#sel3').prepend('<option value="8">Операционная деятельность в логистике</option>');
+                $('#sel3').prepend('<option value="9">Бухгалтерский учёт, анализ и контроль</option>');
                 $('#sel3').prepend('<option value="0">Нет</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное") {
                 $('#sel3 option').remove();
-                $('#sel3').prepend('<option value="5">Коммерческая деятельность</option>');
-                $('#sel3').prepend('<option value="4">Бухгалтерский учёт, анализ и контроль</option>');
-                $('#sel3').prepend('<option value="3">Правоведение</option>');
+                $('#sel3').prepend('<option value="6">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="5">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="4">Правоведение</option>');
                 $('#sel3').prepend('<option value="0">Нет</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {

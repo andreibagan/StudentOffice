@@ -1,57 +1,91 @@
-﻿@model List<TimeTableGroup>
+﻿@model TimeTableViewModel
 
-<h2>Расписание</h2>
+<h4 align="center">Расписание</h4>
+<hr />
 
-<a asp-action="Create" asp-controller="TimeTable">Добавить</a>
+@*<a asp-action="Create" asp-controller="TimeTable">Добавить</a>*@
+@*<input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />*@
+
+<form class="form">
+    <div align="center">
+        <div>
+            <button style="margin-bottom: 20px;" class="btn btn-info" asp-controller="TimeTable" asp-action="Create">Добавить расписание</button><br />
+        </div>
+        <div>
+            <label>Выберите группу:</label>
+            <select style="width: 200px;" name="groupId" class="form-control">
+                @foreach (Group group in Model.Groups)
+                {
+                    <option value="@group.GroupId">@group.GroupName</option>
+                }
+            </select>
+        </div>
+
+        <br />
+
+
+        <label>Выберите дату:</label>
+        <input style="margin-bottom: 10px;width: 200px;" type="date" name="date" min="1950-01-01" max="3000-12-31" value="@DateTime.Now.Date" class="form-control" />
+
+
+        <input type="submit" class="btn btn-primary" value="Сформировать расписание" />
+    </div>
+   
+</form>
+
+<br>
 
 <table align="center">
 
     @*@foreach (var timeTableGroup in Model.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
-    {*@
+        {*@
 
-        @foreach (var timeTableGroup in Model.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
+
+    @foreach (var timeTableGroup in Model.TimeTableGroups.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
+    {
+        <tr>
+
+            <td>
+                День
+            </td>
+
+            <td>
+                ПАРА
+            </td>
+
+            <td>@timeTableGroup.timeTableGroupValue.Group.GroupName</td>
+
+        </tr>
+        foreach (var couple in timeTableGroup.timeTableGroupValue.Couples.Select((value, i) => new { value, i }))
         {
             <tr>
 
-                <td>
-                    День
-                </td>
+                @if (couple.i == 0)
+                {
+                    <td id="rotate" rowspan="@Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                        @Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
+                    </td>
+                }
 
                 <td>
-                    ПАРА
+                    @(couple.i + 1)
                 </td>
 
-                <td>@timeTableGroup.timeTableGroupValue.Group.GroupName</td>
+                <td style="text-align: left">
+                    @Html.Raw($"Дисциплина: {couple.value.Discipline.DisciplineName}</br>Преподаватель: {couple.value.User.FullName}</br>Аудитория: {couple.value.Audience.AudienceNameShort}")
+                </td>
 
             </tr>
-            foreach (var couple in timeTableGroup.timeTableGroupValue.Couples.Select((value, i) => new { value, i }))
-            {
-                <tr>
-
-                    @if (couple.i == 0)
-                    {
-                        <td id="rotate" rowspan="@Model.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
-                            @Model.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
-                        </td>
-                    }
-
-                    <td>
-                        @(couple.i + 1)
-                    </td>
-
-                    <td style="text-align: left">
-                        @Html.Raw($"Дисциплина: {couple.value.Discipline.DisciplineShortName}</br>Преподаватель: {couple.value.User.FullName}</br>Аудитория: {couple.value.Audience.AudienceNameShort}")
-                    </td>
-
-                </tr>
-            }
-
         }
-    
+
+    }
+
 
 </table>
 
-
+<form>
+    <button style="margin-top: 50px" class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+</form>
 
 <style type="text/css">
     td {
