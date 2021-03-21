@@ -120,9 +120,9 @@ namespace StudentOffice.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Номер квартиры*")]
         public string ApartmentNumber { get; set; }
-        [Required(ErrorMessage = "Не указан домашний телефон")]
+        [Required(ErrorMessage = "Не указан телефон")]
         [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Домашний телефон*")]
+        [Display(Name = "Телефон*")]
         public string HomePhone { get; set; }
         [Required(ErrorMessage = "Ошибка валидации")]
         [DataType(DataType.Text)]

@@ -20,6 +20,7 @@ namespace StudentOffice.Models.DataBase
         [JsonIgnore]
         public virtual TimeTable TimeTable { get; set; }
 
+
         public virtual ICollection<Couple> Couples { get; set; }
     }
 }

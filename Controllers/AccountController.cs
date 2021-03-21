@@ -95,7 +95,7 @@ namespace StudentOffice.Controllers
                     await emailService.SendEmailAsync(model.Email, "Подтвердите ваш аккаунт",
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>ссылка</a>"); //TODO: Сделать красивый вывод
 
-                    return Content("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме"); //TODO: Сделать красивый вывод
+                    return View("PasswordConfirmation");
                 }
                 else
                 {

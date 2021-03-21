@@ -17,7 +17,8 @@ namespace StudentOffice.Models.DataBase
 
         public int? SemesterId { get; set; }
         [JsonIgnore]
-        public virtual Semester Semester { get; set; } //TODO: 
+        public virtual Semester Semester { get; set; } 
+
 
         public virtual ICollection<TimeTableGroup> TimeTableGroups { get; set; }
     }

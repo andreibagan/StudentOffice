@@ -53,6 +53,7 @@ namespace StudentOffice.Controllers
             TimeTable timeTable = await _context.TimeTables
                 .Include(i => i.Semester)
                 .Include(i => i.TimeTableGroups)
+                .ThenInclude(i => i.Group)
                 .Include(i => i.TimeTableGroups)
                 .ThenInclude(i => i.Couples)
                 .ThenInclude(i => i.Discipline)
@@ -64,8 +65,44 @@ namespace StudentOffice.Controllers
                 .ThenInclude(i => i.TimeWindow)
                 .Include(i => i.TimeTableGroups)
                 .ThenInclude(i => i.Couples)
+                .ThenInclude(i => i.User)
+                .OrderByDescending(i => i.TimeTableId)
                 .FirstOrDefaultAsync();
-            return Json(timeTable);
+
+            return new ObjectResult(timeTable);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TimeTableJson(string Json)
+        {
+            if (string.IsNullOrEmpty(Json))
+            {
+                return Content("Пустая строка");
+            }
+
+            var timeTable = JsonConvert.DeserializeObject<TimeTable>(Json);
+
+            await _context.TimeTables.AddAsync(timeTable);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(timeTable);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> TimeTableJson1([FromBody]TimeTable timeTable)
+        {
+            if (timeTable == null)
+            {
+                return Content("Null");
+            }
+
+            await _context.TimeTables.AddAsync(timeTable);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(timeTable);
         }
 
         public IActionResult About()

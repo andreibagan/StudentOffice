@@ -11,6 +11,7 @@ namespace StudentOffice.Models.DataBase
         public int SemesterNumber { get; set; }
         [JsonIgnore]
         public virtual ICollection<TimeTable> TimeTables { get; set; }
+        [JsonIgnore]
         public virtual ICollection<MarkLog> MarkLogs { get; set; }
     }
 }

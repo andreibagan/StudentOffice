@@ -1,0 +1,31 @@
+﻿@model IEnumerable<StudentOffice.Models.DataBase.TypeOfSpravka>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeOfSpravkaName)
+            </th>
+            <th>
+                <a onclick="showInPoppup('@Url.Action("AddOrEdit", "TypeOfSpravka", null, Context.Request.Scheme)', 'Добавить вид справки')" class="btn btn-success text-white"><i class="fas fa-random"></i> Добавить вид справки</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeOfSpravkaName)
+                </td>
+                <td>
+                    <a onclick="showInPoppup('@Url.Action("AddOrEdit", "TypeOfSpravka", new { id = item.TypeOfSpravkaId }, Context.Request.Scheme)', 'Изменить вид справки')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Изменить</a>
+                    <form asp-action="Delete" asp-route-id="@item.TypeOfSpravkaId" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="Удалить" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
