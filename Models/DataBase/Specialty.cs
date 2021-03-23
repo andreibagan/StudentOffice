@@ -27,10 +27,11 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Отделение")]
         public Branch Branch { get; set; }
 
-        public virtual ICollection<Group> Groups { get; set; }
+        public int? GroupId { get; set; }
+        public virtual Group Group { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
-        public virtual ICollection<MainPlan> MainPlans { get; set; }
-        public virtual ICollection<Specialization> Specializations { get; set; }
+        public int SpecializationId { get; set; }
+        public virtual Specialization Specialization { get; set; }
 
 
         public string GetSpecialtyNameBranch

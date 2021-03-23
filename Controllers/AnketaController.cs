@@ -94,7 +94,7 @@ namespace StudentOffice.Controllers
         public async Task<IActionResult> AddOrEdit()
         {
             ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name");
-
+            ViewData["SpecializationId"] = new SelectList(_context.Specializations, "SpecializationId", "SpecializationName");
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             if (user?.AnketaId == null)
@@ -103,7 +103,7 @@ namespace StudentOffice.Controllers
             }
             else
             {
-                var anketa = await _context.Anketas.Include(i => i.Specialty).FirstOrDefaultAsync(i => i.AnketaId == user.AnketaId);
+                var anketa = await _context.Anketas.Include(i => i.Specialty).ThenInclude(i => i.Specialization).FirstOrDefaultAsync(i => i.AnketaId == user.AnketaId);
 
                 if (anketa == null)
                 {
@@ -173,6 +173,7 @@ namespace StudentOffice.Controllers
                 anketaViewModel.Branch = anketa.Specialty.Branch;
                 anketaViewModel.PhoneFather = anketa.PhoneFather;
                 anketaViewModel.PhoneMother = anketa.PhoneMother;
+                anketaViewModel.SpecializationId = anketa.Specialty.SpecializationId;
 
                 return View(anketaViewModel);
             }
@@ -543,6 +544,7 @@ namespace StudentOffice.Controllers
             }
 
             ViewData["DocumentTypeId"] = new SelectList(_context.DocumentTypes, "DocumentTypeId", "Name", anketaViewModel.DocumentTypeId);
+            ViewData["SpecializationId"] = new SelectList(_context.Specializations, "SpecializationId", "SpecializationName", anketaViewModel.SpecializationId);
 
             if (anketaViewModel.Branch == Branch.Daytime)
             {

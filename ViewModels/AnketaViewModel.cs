@@ -194,9 +194,9 @@ namespace StudentOffice.ViewModels
         [DataType(DataType.Text)]
         [Display(Name = "Учреждение*")]
         public string Institution { get; set; }
-        [Required(ErrorMessage = "Не указан год окончания")]
+        [Required(ErrorMessage = "Не указана дата окончания")]
         [DataType(DataType.Date)]
-        [Display(Name = "Год окончания*")]
+        [Display(Name = "Дата окончания*")]
         public DateTime YearOfEnding { get; set; }
         /// <summary>
         /// Сведения о трудовой деятельности
@@ -263,6 +263,12 @@ namespace StudentOffice.ViewModels
         [Display(Name = "Специальность*")]
         [Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
         public int SpecialtyId { get; set; }
+
+        [Required(ErrorMessage = "Не указана специализация")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Специализация*")]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        public int SpecializationId { get; set; }
 
 
         [Required(ErrorMessage = "Не указан вид документа")]

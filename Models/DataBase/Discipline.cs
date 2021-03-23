@@ -12,9 +12,9 @@ namespace StudentOffice.Models.DataBase
         public string DisciplineShortName { get; set; }
 
         [JsonIgnore]
-        public virtual ICollection<Couple> Couples { get; set; }
+        public virtual ICollection<Mark> Marks { get; set; }
         [JsonIgnore]
-        public virtual ICollection<GroupDiscipline> GroupDisciplines { get; set; }
-        
+        public virtual ICollection<Lesson> Lessons { get; set; }
+
     }
 }

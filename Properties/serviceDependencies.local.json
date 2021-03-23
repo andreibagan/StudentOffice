@@ -1,13 +1,15 @@
 {
   "dependencies": {
-    "secrets1": {
-      "type": "secrets.user"
-    },
-    "mssql2": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/studentofficediplomdbserver/databases/StudentOfficeDiplom_db",
-      "type": "mssql.azure",
+    "mssql1": {
+      "type": "mssql.onprem",
       "connectionId": "DefaultConnection",
       "secretStore": "LocalSecretsFile"
+    },
+    "secrets1": {
+      "resourceId": null,
+      "type": "secrets.user",
+      "connectionId": null,
+      "secretStore": null
     }
   }
 }

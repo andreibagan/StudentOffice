@@ -3,8 +3,8 @@
 <h4 align="center">Расписание</h4>
 <hr />
 
-@*<a asp-action="Create" asp-controller="TimeTable">Добавить</a>*@
-@*<input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />*@
+<a asp-action="Create" asp-controller="TimeTable">Добавить</a>
+<input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />
 
 <form class="form">
     <div align="center">
@@ -56,26 +56,30 @@
             <td>@timeTableGroup.timeTableGroupValue.Group.GroupName</td>
 
         </tr>
-        foreach (var couple in timeTableGroup.timeTableGroupValue.Couples.Select((value, i) => new { value, i }))
+        @foreach (var couple in timeTableGroup.timeTableGroupValue.Couples.Select((value, i) => new { value, i }))
         {
-            <tr>
+            @foreach (var lesson in couple.value.Lessons.Select((value, i) => new { value, i }))
+            {
+                <tr>
 
-                @if (couple.i == 0)
-                {
-                    <td id="rotate" rowspan="@Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
-                        @Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
+                    @if (lesson.i == 0)
+                    {
+                        <td id="rotate" rowspan="@Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                            @Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
+                        </td>
+                    }
+
+                    <td>
+                        @(lesson.i + 1)
                     </td>
-                }
 
-                <td>
-                    @(couple.i + 1)
-                </td>
+                    <td style="text-align: left">
+                        @Html.Raw($"Дисциплина: {lesson.value.Discipline.DisciplineName}<br/>Преподаватель: {lesson.value.User.FullName}<br/>Аудитория: {lesson.value.Audience.AudienceNameShort}")
+                    </td>
 
-                <td style="text-align: left">
-                    @Html.Raw($"Дисциплина: {couple.value.Discipline.DisciplineName}</br>Преподаватель: {couple.value.User.FullName}</br>Аудитория: {couple.value.Audience.AudienceNameShort}")
-                </td>
+                </tr>
+            }
 
-            </tr>
         }
 
     }

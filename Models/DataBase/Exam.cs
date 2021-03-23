@@ -9,6 +9,6 @@ namespace StudentOffice.Models.DataBase
     {
         public int ExamId { get; set; }
         public string ExamName { get; set; }
-        public virtual ICollection<GroupExam> GroupExams { get; set; }
+        public virtual ICollection<MarkExam> MarkExams { get; set; }
     }
 }

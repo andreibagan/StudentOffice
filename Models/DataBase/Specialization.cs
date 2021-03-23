@@ -10,7 +10,6 @@ namespace StudentOffice.Models.DataBase
         public int SpecializationId { get; set; }
         public string SpecializationName { get; set; }
 
-        public int SpecialtyId { get; set; }
-        public virtual Specialty Specialty { get; set; }
+        public virtual ICollection<Specialty> Specialties { get; set; }
     }
 }

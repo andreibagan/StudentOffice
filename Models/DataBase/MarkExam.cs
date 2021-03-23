@@ -9,8 +9,8 @@ namespace StudentOffice.Models.DataBase
     {
         public int MarkExamId { get; set; }
         public int MarkValue { get; set; }
-        public int GroupExamId { get; set; }
-        public virtual GroupExam GroupExam { get; set; }
+        public int ExamId { get; set; }
+        public virtual Exam Exam { get; set; }
         public int MarkUserId { get; set; }
         public virtual MarkUser MarkUser { get; set; }
 

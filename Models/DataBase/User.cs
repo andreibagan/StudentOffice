@@ -21,7 +21,7 @@ namespace StudentOffice.Models.DataBase
         [JsonIgnore]
         public virtual ICollection<SpravkaOrder> SpravkaOrders { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Couple> Couples { get; set; }
+        public virtual ICollection<Lesson> Lessons { get; set; }
         [JsonIgnore]
         public int? AnketaId { get; set; }
         [JsonIgnore]

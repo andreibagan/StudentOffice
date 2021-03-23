@@ -20,6 +20,24 @@ namespace StudentOffice.Models.DataBase
         [DataType(DataType.Text)]
         [Display(Name = "Год приема*")]
         public int Year { get; set; }
-        public virtual ICollection<AdmissionPlan> AdmissionPlans { get; set; }
+
+        [Required(ErrorMessage = "Не указана дата начала")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата начала*")]
+        public DateTime DateStart { get; set; }
+
+        [Required(ErrorMessage = "Не указана дата окончания")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Дата окончания*")]
+        public DateTime DateEnd { get; set; }
+        public virtual ICollection<MainPlan> MainPlans { get; set; }
+
+        //public string GetName
+        //{
+        //    get
+        //    {
+        //        return $"{SelectionСommittee?.Name} {SelectionСommittee?.Year} {DateStart.ToShortDateString()}/{DateEnd.ToShortDateString()}";
+        //    }
+        //}
     }
 }

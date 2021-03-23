@@ -12,27 +12,29 @@ namespace StudentOffice.Models.DataBase
     {
         public int MainPlanId { get; set; }
 
-        [Required(ErrorMessage = "Не указан план приема")]
+        [Required(ErrorMessage = "Не указана приемная комиссия")]
         [DataType(DataType.Text)]
-        [Display(Name = "План приема*")]
-        public int AdmissionPlanId { get; set; }
-
-        [Display(Name = "План приема*")]
-        public virtual AdmissionPlan AdmissionPlan { get; set; }
+        [Display(Name = "Приемная комиссия*")]
+        public int SelectionСommitteeId { get; set; }
+        [Display(Name = "Приемная комиссия*")]
+        public virtual SelectionСommittee GetSelectionСommittee { get; set; }
 
         public string UserId { get; set; }
         public virtual User User { get; set; }
 
-     
+
+        [Required(ErrorMessage = "Не выбрана дата прихода")]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Дата прихода*")]
         public DateTime DateTime { get; set; }
 
-        public string GetName
-        {
-            get
-            {
-                return $" {AdmissionPlan?.DateStart.ToShortDateString()}/{AdmissionPlan?.DateEnd.ToShortDateString()}";
-            }
+        //public string GetName
+        //{
+        //    get
+        //    {
+        //        return $" {AdmissionPlan?.DateStart.ToShortDateString()}/{AdmissionPlan?.DateEnd.ToShortDateString()}";
+        //    }
 
-        }
+        //}
     }
 }

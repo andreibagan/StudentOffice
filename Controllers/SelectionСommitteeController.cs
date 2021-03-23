@@ -53,7 +53,7 @@ namespace StudentOffice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SelectionСommitteeId,Name,Year")] SelectionСommittee selectionСommittee)
+        public async Task<IActionResult> Create([Bind("SelectionСommitteeId,Name,Year,DateStart,DateEnd")] SelectionСommittee selectionСommittee)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace StudentOffice.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SelectionСommitteeId,Name,Year")] SelectionСommittee selectionСommittee)
+        public async Task<IActionResult> Edit(int id, [Bind("SelectionСommitteeId,Name,Year,DateStart,DateEnd")] SelectionСommittee selectionСommittee)
         {
             if (id != selectionСommittee.SelectionСommitteeId)
             {

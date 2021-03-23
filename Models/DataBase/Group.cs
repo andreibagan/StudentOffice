@@ -14,15 +14,12 @@ namespace StudentOffice.Models.DataBase
         public DateTime ExpirationDate { get; set; }
         public int Course { get; set; }
 
-        public int? SpecialtyId { get; set; }
         [JsonIgnore]
-        public virtual Specialty Specialty { get; set; }
+        public virtual ICollection<Specialty> Specialties { get; set; }
         [JsonIgnore]
         public virtual ICollection<TimeTableGroup> TimeTableGroups { get; set; }
         [JsonIgnore]
-        public virtual ICollection<GroupDiscipline> GroupDisciplines { get; set; }
-        [JsonIgnore]
-        public virtual ICollection<GroupExam> GroupExams { get; set; }
-        
+        public virtual ICollection<MarkLog> MarkLogs { get; set; }
+
     }
 }

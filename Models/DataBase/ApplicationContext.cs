@@ -10,7 +10,6 @@ namespace StudentOffice.Models.DataBase
         public DbSet<Discipline> Disciplines { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Couple> Couples { get; set; }
-        public DbSet<TimeWindow> TimeWindows { get; set; }
         public DbSet<Specialty> Specialties { get; set; }
         public DbSet<Spravka> Spravkas { get; set; }
         public DbSet<SpravkaOrder> SpravkaOrders { get; set; }
@@ -20,17 +19,12 @@ namespace StudentOffice.Models.DataBase
         public DbSet<TimeTable> TimeTables { get; set; }
         public DbSet<Semester> Semesters { get; set; }
         public DbSet<Exam> Exams { get; set; }
-        public DbSet<GroupDiscipline> GroupDisciplines { get; set; }
-        public DbSet<GroupExam> GroupExams { get; set; }
         public DbSet<Mark> Marks { get; set; }
         public DbSet<MarkExam> MarkExams { get; set; }
         public DbSet<MarkLog> MarkLogs { get; set; }
         public DbSet<MarkUser> MarkUsers { get; set; }
-        public DbSet<Omission> Omissions { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
-
-        public DbSet<AdmissionPlan> AdmissionPlans { get; set; }
 
         public DbSet<SelectionСommittee> SelectionСommitties { get; set; }
 

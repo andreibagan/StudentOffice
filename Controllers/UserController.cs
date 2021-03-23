@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using StudentOffice.Models.DataBase;
 using StudentOffice.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace StudentOffice.Controllers
 {
@@ -36,11 +33,11 @@ namespace StudentOffice.Controllers
 
             if (groupId != null && groupId > 0)
             {
-                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Groups).Where(i => i.Anketa.Specialty.Groups.FirstOrDefault().GroupId == groupId).ToListAsync();
+                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Group).Where(i => i.Anketa.Specialty.Group.GroupId == groupId).ToListAsync();
             }
             else
             {
-                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Groups).ToListAsync();
+                users = await _userManager.Users.Include(i => i.Anketa.Specialty.Group).ToListAsync();
             }
 
             UserViewModel model = new UserViewModel { Users = users, Groups = groups };

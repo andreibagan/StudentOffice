@@ -21,57 +21,59 @@ namespace StudentOffice.Controllers
         public async Task<IActionResult> Index()
         {
             MarkLog markLog = await _context.MarkLogs
+                .Include(i => i.Semester)
+                .Include(i => i.Group)
+                .Include(i => i.MarkUsers)
+                .ThenInclude(i => i.User)
                 .Include(i => i.MarkUsers)
                 .ThenInclude(i => i.MarkExams)
-                .ThenInclude(i => i.GroupExam)
                 .ThenInclude(i => i.Exam)
                 .Include(i => i.MarkUsers)
                 .ThenInclude(i => i.Marks)
-                .ThenInclude(i => i.GroupDiscipline)
                 .ThenInclude(i => i.Discipline)
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.User)
-                .ThenInclude(i => i.Anketa)
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.Omission)
                 .FirstOrDefaultAsync();
 
             return View(markLog);
         }
 
         [HttpGet]
-        public async Task<IActionResult> qwe()
+        public async Task<IActionResult> Get(int id = 0)
         {
-            MarkLog markLog = await _context.MarkLogs
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.MarkExams)
-                .ThenInclude(i => i.GroupExam)
-                .ThenInclude(i => i.Exam)
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.Marks)
-                .ThenInclude(i => i.GroupDiscipline)
-                .ThenInclude(i => i.Discipline)
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.User)
-                .ThenInclude(i => i.Anketa)
-                .Include(i => i.MarkUsers)
-                .ThenInclude(i => i.Omission)
-                .FirstOrDefaultAsync();
+            if (id == 0)
+            {
+                List<MarkLog> markLogs = await _context.MarkLogs
+                    .Include(i => i.Semester)
+                    .Include(i => i.Group)
+                    .Include(i => i.MarkUsers)
+                    .ThenInclude(i => i.User)
+                    .Include(i => i.MarkUsers)
+                    .ThenInclude(i => i.MarkExams)
+                    .ThenInclude(i => i.Exam)
+                    .Include(i => i.MarkUsers)
+                    .ThenInclude(i => i.Marks)
+                    .ThenInclude(i => i.Discipline)
+                    .ToListAsync();
 
-            return Json(markLog);
+                return Json(markLogs);
+            }
+            else
+            {
+                MarkLog markLog = await _context.MarkLogs
+                  .Include(i => i.Semester)
+                  .Include(i => i.Group)
+                  .Include(i => i.MarkUsers)
+                  .ThenInclude(i => i.User)
+                  .Include(i => i.MarkUsers)
+                  .ThenInclude(i => i.MarkExams)
+                  .ThenInclude(i => i.Exam)
+                  .Include(i => i.MarkUsers)
+                  .ThenInclude(i => i.Marks)
+                  .ThenInclude(i => i.Discipline)
+                  .FirstOrDefaultAsync(i => i.MarkLogId == id);
+
+                return Json(markLog);
+            }
+
         }
-
-
-        //[HttpGet]
-        //public IActionResult Create()
-        //{
-
-        //}
-
-        //[HttpPost]
-        //public IActionResult Create()
-        //{
-
-        //}
     }
 }

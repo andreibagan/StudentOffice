@@ -1,6 +1,5 @@
 ﻿@model MarkLog
-
-@*<a asp-action="Create" asp-controller="MarkLog">Добавить</a>*@
+<a asp-action="Create" asp-controller="MarkLog">Добавить</a>
 
 
 @if (Model?.MarkUsers != null)
@@ -39,14 +38,14 @@
             @foreach (var mark in Model?.MarkUsers?.FirstOrDefault()?.Marks)
             {
             <td class="rotate">
-                <div>@mark?.GroupDiscipline?.Discipline?.DisciplineName</div>
+                <div>@mark?.Discipline?.DisciplineName</div>
             </td>
             }
 
             @foreach (var mark in Model.MarkUsers?.FirstOrDefault()?.MarkExams)
             {
                 <td class="rotate">
-                    <div>@mark?.GroupExam?.Exam?.ExamName</div>
+                    <div>@mark?.Exam?.ExamName</div>
                 </td>
             }
 
@@ -91,10 +90,10 @@
                 </td>
 
                 <td>
-                    @markUser.value.Omission.Total
+                    @markUser.value.OmissionTotal
                 </td>
                 <td>
-                    @markUser.value.Omission.Disrespectful
+                    @markUser.value.OmissionDisrespectful
                 </td>
 
             </tr>

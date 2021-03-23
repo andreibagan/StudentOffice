@@ -85,9 +85,6 @@ namespace StudentOffice.Models.DataBase
                     await userManager.AddToRoleAsync(admin, "admin");
                 }           
             }
-
-            
-
             if (!context.DocumentTypes.Any())
             {
                 await context.DocumentTypes.AddRangeAsync(new List<DocumentType>
@@ -132,63 +129,232 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            if (!context.Specialties.Any())
+            if (!context.Specializations.Any())
             {
-                await context.Specialties.AddRangeAsync(new List<Specialty>
+                await context.Specializations.AddRangeAsync(new List<Specialization>
                 {
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Правоведение",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Correspondence
+                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Бухгалтерский учёт, анализ и контроль",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Correspondence
+                        SpecializationName = "Информационное обеспечение бизнеса",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Коммерческая деятельность",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Correspondence
+                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Программное обеспечение информационных технологий",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        SpecializationName = "Системное программирование",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Операционная деятельность в логистике",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        SpecializationName = "Программное обеспечение обработки экономической и деловой информации",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Правоведение",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        SpecializationName = "Операционная деятельность в логистике",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Бухгалтерский учёт, анализ и контроль",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        SpecializationName = "Бухгалтерский учет, анализ и контроль",
                     },
-                    new Specialty
+                    new Specialization
                     {
-                        Name = "Коммерческая деятельность",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        SpecializationName = "Визуальный мерчендайзинг",
                     },
-                    new Specialty
+                });
+            }
+
+            if (!context.Groups.Any())
+            {
+                await context.Groups.AddRangeAsync(new List<Group>
+                {
+                    new Group
                     {
-                        Name = "Визуальный мерчендайзинг",
-                        EducationType = EducationType.CCO,
-                        Branch = Branch.Daytime
+                        GroupName = "П1",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+
+                    },
+                    new Group
+                    {
+                        GroupName = "Б1",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П2",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б2",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б3",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "К3",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П3",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П310",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО209",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б301",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П206",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП405",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
+                    },
+
+                    new Group
+                    {
+                        GroupName = "СП105",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД103",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД303",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО309",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "П306",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "Б101",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП305",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "ВМ201",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "И312",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 3,
+                    },
+                    new Group
+                    {
+                        GroupName = "СП205",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ОД203",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "П106",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 1,
+                    },
+                    new Group
+                    {
+                        GroupName = "П210",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 2,
+                    },
+                    new Group
+                    {
+                        GroupName = "ПО409",
+                        YearOfFormation = new DateTime(2020, 09, 01),
+                        ExpirationDate = new DateTime(2023, 06, 23),
+                        Course = 4,
                     },
                 });
             }
@@ -1748,37 +1914,6 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            if (!context.Omissions.Any())
-            {
-                await context.Omissions.AddRangeAsync(new List<Omission>
-                {
-                   new Omission
-                   {
-                       Total = 33,
-                       Disrespectful = 0
-                   },
-                   new Omission
-                   {
-                       Total = 40,
-                       Disrespectful = 5
-                   },
-                   new Omission
-                   {
-                       Total = 1,
-                       Disrespectful = 1
-                   },
-                   new Omission
-                   {
-                       Total = 0,
-                       Disrespectful = 0
-                   },
-                   new Omission
-                   {
-                       Total = 2,
-                       Disrespectful = 0
-                   },
-                });
-            }
             if (!context.Exams.Any())
             {
                 await context.Exams.AddRangeAsync(new List<Exam>
@@ -1794,291 +1929,252 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            if (!context.SelectionСommitties.Any())
-            {
-                await context.SelectionСommitties.AddRangeAsync(new List<SelectionСommittee>
-                {
-                    new SelectionСommittee
-                    {
-                        Name = "Приемная комиссия",
-                        Year = 2021
-                    },
-                });
-            }
+            //if (!context.SelectionСommitties.Any())
+            //{
+            //    await context.SelectionСommitties.AddRangeAsync(new List<SelectionСommittee>
+            //    {
+            //        new SelectionСommittee
+            //        {
+            //            Name = "Приемная комиссия",
+            //            Year = 2021
+            //        },
+            //    });
+            //}
 
             await context.SaveChangesAsync();
 
-            if (!context.AdmissionPlans.Any())
+            if (!context.Specialties.Any())
             {
-                await context.AdmissionPlans.AddRangeAsync(new List<AdmissionPlan>
+                await context.Specialties.AddRangeAsync(new List<Specialty>
                 {
-                    new AdmissionPlan
+                    new Specialty
                     {
-                        SelectionСommitteeId = 1,
-                        DateStart = new DateTime(2021, 07, 01),
-                        DateEnd = new DateTime(2021, 08, 28)
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П1").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "Б1").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Бухгалтерский учет, анализ и контроль").SpecializationId
+
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П2").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "Б2").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Бухгалтерский учет, анализ и контроль").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "Б3").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Бухгалтерский учет, анализ и контроль").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "К3").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Товароведение продовольственных и непродовольственных товаров").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Correspondence,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П3").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П310").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ПО209").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Программное обеспечение обработки экономической и деловой информации").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "Б301").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Бухгалтерский учет, анализ и контроль").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П206").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "СП405").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Системное программирование").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "СП105").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Системное программирование").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Операционная деятельность в логистике",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ОД103").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Операционная деятельность в логистике").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Операционная деятельность в логистике",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ОД303").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Операционная деятельность в логистике").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ПО309").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Программное обеспечение обработки экономической и деловой информации").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П306").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Бухгалтерский учёт, анализ и контроль",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "Б101").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Бухгалтерский учет, анализ и контроль").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "СП305").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Системное программирование").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Визуальный мерчендайзинг",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ВМ201").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Визуальный мерчендайзинг").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "И312").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Информационное обеспечение бизнеса").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "И312").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Товароведение продовольственных и непродовольственных товаров").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Коммерческая деятельность",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "И312").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Информационное обеспечение бизнеса").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "СП205").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Системное программирование").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Операционная деятельность в логистике",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ОД203").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Операционная деятельность в логистике").SpecializationId    
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П106").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Правоведение",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "П210").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Хозяйственно-правовая и кадровая работа").SpecializationId
+                    },
+                    new Specialty
+                    {
+                        Name = "Программное обеспечение информационных технологий",
+                        EducationType = EducationType.CCO,
+                        Branch = Branch.Daytime,
+                        GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ПО409").GroupId,
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Программное обеспечение обработки экономической и деловой информации").SpecializationId
                     },
                 });
             }
 
-            if (!context.Specializations.Any())
-            {
-                await context.Specializations.AddRangeAsync(new List<Specialization>
-                {
-                    new Specialization
-                    {
-                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
-                        SpecialtyId = 1
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Хозяйственно-правовая и кадровая работа",
-                        SpecialtyId = 6
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Информационное обеспечение бизнеса",
-                        SpecialtyId = 8
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
-                        SpecialtyId = 3
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Товароведение продовольственных и непродовольственных товаров",
-                        SpecialtyId = 8
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Системное программирование",
-                        SpecialtyId = 4
-                    },
-                    new Specialization
-                    {
-                        SpecializationName = "Программное обеспечение обработки экономической и деловой информации",
-                        SpecialtyId = 4
-                    },
-                });
-            }
-
-            if (!context.Groups.Any())
-            {
-                await context.Groups.AddRangeAsync(new List<Group>
-                {
-                    new Group
-                    {
-                        GroupName = "П1",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-
-                    },
-                    new Group
-                    {
-                        GroupName = "Б1",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "П2",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б2",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б3",
-                        SpecialtyId = 2,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "К3",
-                        SpecialtyId = 3,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П3",
-                        SpecialtyId = 1,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П310",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО209",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б301",
-                        SpecialtyId = 7,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П206",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП405",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 4,
-                    },
-
-                    new Group
-                    {
-                        GroupName = "СП105",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД103",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД303",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО309",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "П306",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "Б101",
-                        SpecialtyId = 7,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП305",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "ВМ201",
-                        SpecialtyId = 9,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "И312",
-                        SpecialtyId = 8,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 3,
-                    },
-                    new Group
-                    {
-                        GroupName = "СП205",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "ОД203",
-                        SpecialtyId = 5,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "П106",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 1,
-                    },
-                    new Group
-                    {
-                        GroupName = "П210",
-                        SpecialtyId = 6,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 2,
-                    },
-                    new Group
-                    {
-                        GroupName = "ПО409",
-                        SpecialtyId = 4,
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
-                        Course = 4,
-                    },
-                });
-            }
 
             await context.SaveChangesAsync();
 
@@ -2114,79 +2210,6 @@ namespace StudentOffice.Models.DataBase
             //    });
             //}
 
-            //if (!context.GroupExams.Any())
-            //{
-            //    await context.GroupExams.AddRangeAsync(new List<GroupExam>
-            //    {
-            //       new GroupExam
-            //       {
-            //           GroupId = 3,
-            //           ExamId = 1
-            //       },
-            //       new GroupExam
-            //       {
-            //           GroupId = 3,
-            //           ExamId = 2
-            //       },
-            //    });
-            //}
-
-            //if (!context.GroupDisciplines.Any())
-            //{
-            //    await context.GroupDisciplines.AddRangeAsync(new List<GroupDiscipline>
-            //    {
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 1,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 2,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 3,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 4,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 5,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 6,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 7,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 8,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 9,
-            //       },
-            //       new GroupDiscipline
-            //       {
-            //           GroupId = 3,
-            //           DisciplineId = 10,
-            //       },
-            //    });
-            //}
 
             //await context.SaveChangesAsync();
 
@@ -2313,20 +2336,6 @@ namespace StudentOffice.Models.DataBase
             //}
 
 
-
-            //if (!context.TimeWindows.Any())
-            //{
-            //    await context.TimeWindows.AddRangeAsync(new List<TimeWindow>
-            //    {
-            //        new TimeWindow
-            //        {
-            //            TimeWindowName = "123",
-            //            FirstHalf = true,
-            //            SecondHalf = false
-            //        },
-            //    });
-            //}
-
             //await context.SaveChangesAsync();
 
             //if (!context.TimeTables.Any())
@@ -2450,123 +2459,6 @@ namespace StudentOffice.Models.DataBase
             //        },
             //    });
             //}
-
-
-            //await context.SaveChangesAsync();
-            //if (!context.StreetTypes.Any())
-            //{
-            //    await context.StreetTypes.AddRangeAsync(new List<StreetType>
-            //    {
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Аллея"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Бульвар"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Въезд"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Квартал"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Микрорайон"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Набережная"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Переулок"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Площадь"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Проезд"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Станция"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Территория"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Тракт"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Тупик"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Улица"
-            //        },
-            //        new StreetType
-            //        {
-            //            StreetTypeName = "Шоссе"
-            //        },
-            //    });
-            //}
-
-            //if (!context.TypeLocalities.Any())
-            //{
-            //    await context.TypeLocalities.AddRangeAsync(new List<TypeLocality>
-            //    {
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Агрогородок"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Город"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Городской поселок"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Деревня"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Курортный поселок"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Поселок"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Рабочий поселок"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Село"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Сельский населенный пункт"
-            //        },
-            //        new TypeLocality
-            //        {
-            //            TypeLocalityName = "Хутор"
-            //        },
-            //    }); 
-            //}
-
 
         }
     }

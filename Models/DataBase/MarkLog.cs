@@ -10,6 +10,8 @@ namespace StudentOffice.Models.DataBase
         public int MarkLogId { get; set; }
         public int SemesterId { get; set; }
         public virtual Semester Semester { get; set; }
+        public int GroupId { get; set; }
+        public virtual Group Group { get; set; }
         public virtual ICollection<MarkUser> MarkUsers { get; set; }
     }
 }

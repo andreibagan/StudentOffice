@@ -33,22 +33,6 @@ namespace StudentOffice.Controllers
 
             if(await _userManager.IsInRoleAsync(user, "admin"))
             {
-                //model = await _context.SpravkaOrders
-                //      .Include(s => s.Spravka).ThenInclude(s => s.TypeOfSpravka)
-                //      .Include(s => s.Spravka).ThenInclude(s => s.Group)
-                //      .Include(s => s.User).Select(i => new SpravkaViewModel1
-                //      {
-                //          SpravkaId = i.SpravkaId,
-                //          Name = i.Spravka.Name,
-                //          Surname = i.Spravka.Surname,
-                //          Middlename = i.Spravka.Middlename,
-                //          OrganizationName = i.Spravka.OrganizationName,
-                //          GroupId = i.Spravka.GroupId,
-                //          AdditionalInformation = i.Spravka.AdditionalInformation,
-                //          TypeOfSpravkaId = i.Spravka.TypeOfSpravkaId,
-                //          DateTime = i.DateTimeNow
-                //      }).ToListAsync();
-
                 model = await _context.Spravkas
                     .Include(i => i.Group)
                     .Include(i => i.TypeOfSpravka)
@@ -58,21 +42,6 @@ namespace StudentOffice.Controllers
             }
             else
             {
-                //model = await _context.SpravkaOrders
-                //       .Include(s => s.Spravka).ThenInclude(s => s.TypeOfSpravka)
-                //      .Include(s => s.Spravka).ThenInclude(s => s.Group)
-                //      .Include(s => s.User).Select(i => new SpravkaViewModel1
-                //      {
-                //          SpravkaId = i.SpravkaId,
-                //          Name = i.Spravka.Name,
-                //          Surname = i.Spravka.Surname,
-                //          Middlename = i.Spravka.Middlename,
-                //          OrganizationName = i.Spravka.OrganizationName,
-                //          GroupId = i.Spravka.GroupId,
-                //          AdditionalInformation = i.Spravka.AdditionalInformation,
-                //          TypeOfSpravkaId = i.Spravka.TypeOfSpravkaId,
-                //          DateTime = i.DateTimeNow
-                //      }).ToListAsync();
                 model = await _context.Spravkas
                    .Include(i => i.Group)
                    .Include(i => i.TypeOfSpravka)
@@ -137,21 +106,6 @@ namespace StudentOffice.Controllers
                 {
                     return NotFound("Не удалось найти справку");
                 }
-
-                //SpravkaViewModel1 model = new SpravkaViewModel1();
-                //model.SpravkaId = spravkaOrder.SpravkaId;
-                //model.Name = spravkaOrder.Spravka.Name;
-                //model.Surname = spravkaOrder.Spravka.Surname;
-                //model.Middlename = spravkaOrder.Spravka.Middlename;
-                //model.OrganizationName = spravkaOrder.Spravka.OrganizationName;
-                //model.GroupId = spravkaOrder.Spravka.GroupId;
-                //model.AdditionalInformation = spravkaOrder.Spravka.AdditionalInformation;
-                //model.TypeOfSpravkaId = spravkaOrder.Spravka.TypeOfSpravkaId;
-                //model.DateTime = spravkaOrder.DateTimeNow;
-
-
-
-
                 return View(spravka);
             }
         }

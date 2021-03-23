@@ -8,10 +8,10 @@ namespace StudentOffice.Models.DataBase
     public class MarkUser
     {
         public int MarkUserId { get; set; }
+        public int OmissionTotal { get; set; }
+        public int OmissionDisrespectful { get; set; }
         public string UserId { get; set; }
         public virtual User User { get; set; }
-        public int OmissionId { get; set; }
-        public virtual Omission Omission { get; set; }
         public int MarkLogId { get; set; }
         public virtual MarkLog MarkLog { get; set; }
         public virtual ICollection<Mark> Marks { get; set; }
