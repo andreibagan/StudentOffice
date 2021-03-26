@@ -17,7 +17,7 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="AnketaId" />
 
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Основные сведения</h4>
                         <hr />
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Паспортные данные</h4>
                         <hr />
@@ -322,20 +322,20 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label asp-for="SpecialtyId" class="control-label"></label>
-                            <select id="sel3" asp-for="SpecialtyId" class="form-control" asp-items="ViewBag.SpecialtyId"  onchange="SetOptions2();">
+                            <label asp-for="Specialty" class="control-label"></label>
+                            <select id="sel3" asp-for="Specialty" class="form-control" asp-items="ViewBag.SpecialtyId"  onchange="SetOptions2();">
                                 <option value="0">Нет</option>
                             </select>
-                            <span asp-validation-for="SpecialtyId" class="text-danger"></span>
+                            <span asp-validation-for="Specialty" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-12">
-                            <label asp-for="SpecializationId" class="control-label"></label>
-                            <select id="sel4" asp-for="SpecializationId" class="form-control" asp-items="ViewBag.SpecializationId">
+                            <label asp-for="Specialization" class="control-label"></label>
+                            <select id="sel4" asp-for="Specialization" class="form-control" asp-items="ViewBag.SpecializationId">
                                 <option value="0">Нет</option>
                             </select>
-                            <span asp-validation-for="SpecializationId" class="text-danger"></span>
+                            <span asp-validation-for="Specialization" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -453,19 +453,19 @@
         function SetOptions() {
             if (($('#sel2 option:selected').text() == "Дневное")) {
                 $('#sel3 option').remove();
-                $('#sel3').prepend('<option value="7">Коммерческая деятельность</option>');
-                $('#sel3').prepend('<option value="1">Правоведение</option>');
-                $('#sel3').prepend('<option value="3">Визуальный мерчендайзинг</option>');
-                $('#sel3').prepend('<option value="2">Программное обеспечение информационных технологий</option>');
-                $('#sel3').prepend('<option value="8">Операционная деятельность в логистике</option>');
-                $('#sel3').prepend('<option value="9">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="Коммерческая деятельность">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="Правоведение">Правоведение</option>');
+                $('#sel3').prepend('<option value="Визуальный мерчендайзинг">Визуальный мерчендайзинг</option>');
+                $('#sel3').prepend('<option value="Программное обеспечение информационных технологий">Программное обеспечение информационных технологий</option>');
+                $('#sel3').prepend('<option value="Операционная деятельность в логистике">Операционная деятельность в логистике</option>');
+                $('#sel3').prepend('<option value="Бухгалтерский учёт, анализ и контроль">Бухгалтерский учёт, анализ и контроль</option>');
                 $('#sel3').prepend('<option value="0">Нет</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное") {
                 $('#sel3 option').remove();
-                $('#sel3').prepend('<option value="6">Коммерческая деятельность</option>');
-                $('#sel3').prepend('<option value="5">Бухгалтерский учёт, анализ и контроль</option>');
-                $('#sel3').prepend('<option value="4">Правоведение</option>');
+                $('#sel3').prepend('<option value="Коммерческая деятельность">Коммерческая деятельность</option>');
+                $('#sel3').prepend('<option value="Бухгалтерский учёт, анализ и контроль">Бухгалтерский учёт, анализ и контроль</option>');
+                $('#sel3').prepend('<option value="Правоведение">Правоведение</option>');
                 $('#sel3').prepend('<option value="0">Нет</option>');
             }
             if ($('#sel2 option:selected').text() == "Заочное" && $('#sel1 option:selected').text() == "Базовое") {
@@ -478,88 +478,90 @@
         function SetOptions2() {
             if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Правоведение') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Хозяйственно-правовая и кадровая работа</option>');
+                $('#sel4').prepend('<option value="Хозяйственно-правовая и кадровая работа">Хозяйственно-правовая и кадровая работа</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
             if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Коммерческая деятельность') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Товароведение продовольственных и непродовольственных товаров</option>');
-                $('#sel4').prepend('<option value="6">Информационное обеспечение бизнеса</option>');
+                $('#sel4').prepend('<option value="Товароведение продовольственных и непродовольственных товаров">Товароведение продовольственных и непродовольственных товаров</option>');
+                $('#sel4').prepend('<option value="Информационное обеспечение бизнеса">Информационное обеспечение бизнеса</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Бухгалтерский учет, анализ и контроль') {
+            if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Бухгалтерский учёт, анализ и контроль') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Бухгалтерский учет, анализ и контроль</option>');
+                $('#sel4').prepend('<option value="Бухгалтерский учет, анализ и контроль">Бухгалтерский учет, анализ и контроль</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
             if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Операционная деятельность в логистике') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Операционная деятельность в логистике</option>');
+                $('#sel4').prepend('<option value="Операционная деятельность в логистике">Операционная деятельность в логистике</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Визуальный мерчендайзинг') {
+            if ($('#sel3 option:selected').text() == 'Визуальный мерчендайзинг') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Визуальный мерчендайзинг</option>');
+                $('#sel4').prepend('<option value="Визуальный мерчендайзинг">Визуальный мерчендайзинг</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
             if ($('#sel1 option:selected').text() == 'Базовое' && $('#sel3 option:selected').text() == 'Программное обеспечение информационных технологий') {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Системное программирование</option>');
+                $('#sel4').prepend('<option value="Системное программирование">Системное программирование</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Правоведение') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Правоведение')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Хозяйственно-правовая и кадровая работа</option>');
+                $('#sel4').prepend('<option value="Хозяйственно-правовая и кадровая работа">Хозяйственно-правовая и кадровая работа</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Коммерческая деятельность') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Коммерческая деятельность')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Товароведение продовольственных и непродовольственных товаров</option>');
+                $('#sel4').prepend('<option value="Товароведение продовольственных и непродовольственных товаров">Товароведение продовольственных и непродовольственных товаров</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Бухгалтерский учет, анализ и контроль') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Заочное' && $('#sel3 option:selected').text() == 'Бухгалтерский учёт, анализ и контроль')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Бухгалтерский учет, анализ и контроль</option>');
+                $('#sel4').prepend('<option value="Бухгалтерский учет, анализ и контроль">Бухгалтерский учет, анализ и контроль</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Правоведение') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Правоведение')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Хозяйственно-правовая и кадровая работа</option>');
+                $('#sel4').prepend('<option value="Хозяйственно-правовая и кадровая работа">Хозяйственно-правовая и кадровая работа</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Коммерческая деятельность') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Коммерческая деятельность')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Информационное обеспечение бизнеса</option>');
+                $('#sel4').prepend('<option value="Информационное обеспечение бизнеса">Информационное обеспечение бизнеса</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Бухгалтерский учет, анализ и контроль') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Бухгалтерский учёт, анализ и контроль')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Бухгалтерский учет, анализ и контроль</option>');
+                $('#sel4').prepend('<option value="Бухгалтерский учет, анализ и контроль">Бухгалтерский учет, анализ и контроль</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Операционная деятельность в логистике') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Операционная деятельность в логистике')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Операционная деятельность в логистике</option>');
+                $('#sel4').prepend('<option value="Операционная деятельность в логистике">Операционная деятельность в логистике</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
 
-            if ($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое' && $('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Программное обеспечение информационных технологий') {
+            if (($('#sel1 option:selected').text() == 'Среднее' || $('#sel1 option:selected').text() == 'Высшее' || $('#sel1 option:selected').text() == 'Средне-специальное' || $('#sel1 option:selected').text() == 'Среднее профессиональное' || $('#sel1 option:selected').text() == 'Профессионально-техническое') && ($('#sel2 option:selected').text() == 'Дневное' && $('#sel3 option:selected').text() == 'Программное обеспечение информационных технологий')) {
                 $('#sel4 option').remove();
-                $('#sel4').prepend('<option value="6">Программное обеспечение обработки экономической и деловой информации</option>');
+                $('#sel4').prepend('<option value="Программное обеспечение обработки экономической и деловой информации">Программное обеспечение обработки экономической и деловой информации</option>');
                 $('#sel4').prepend('<option value="0">Нет</option>');
             }
+
+
         }
     </script>
 }

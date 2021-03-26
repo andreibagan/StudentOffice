@@ -27,7 +27,7 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Отделение")]
         public Branch Branch { get; set; }
 
-        public int? GroupId { get; set; }
+        public int GroupId { get; set; }
         public virtual Group Group { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
         public int SpecializationId { get; set; }

@@ -81,12 +81,12 @@ namespace StudentOffice.Controllers
         [HttpGet]
         public async Task<IActionResult> AddOrEdit(int id = 0)
         {
-            ViewData["GroupId"] = new SelectList(_context.Groups.OrderBy(i => i.GroupName), "GroupId", "GroupName");
             ViewData["TypeOfSpravkaId"] = new SelectList(_context.TypeOfSpravkas, "TypeOfSpravkaId", "TypeOfSpravkaName");
+            ViewData["GroupId"] = new SelectList(_context.Groups.OrderBy(i => i.GroupName), "GroupId", "GroupName");
 
             if (id == 0)
             {
-                var user = await _userManager.Users.Include(i => i.Anketa).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
+                var user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
                 Spravka spravka = new Spravka();
 
                 if (user?.Anketa != null)
@@ -94,6 +94,7 @@ namespace StudentOffice.Controllers
                     spravka.Name = user.Anketa.Name;
                     spravka.Surname = user.Anketa.Surname;
                     spravka.Middlename = user.Anketa.Middlename;
+                    spravka.GroupId = user.Anketa.Specialty.GroupId;
                 }
 
                 return View(spravka);

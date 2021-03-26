@@ -258,17 +258,29 @@ namespace StudentOffice.ViewModels
         public byte[] MedicalCertificateSecondHash { get; set; }
 
 
+        //[Required(ErrorMessage = "Не указана специальнось")]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Специальность*")]
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        //public int SpecialtyId { get; set; }
+
+        //[Required(ErrorMessage = "Не указана специализация")]
+        //[DataType(DataType.Text)]
+        //[Display(Name = "Специализация*")]
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        //public int SpecializationId { get; set; }
+
         [Required(ErrorMessage = "Не указана специальнось")]
         [DataType(DataType.Text)]
         [Display(Name = "Специальность*")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
-        public int SpecialtyId { get; set; }
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        public string Specialty { get; set; }
 
         [Required(ErrorMessage = "Не указана специализация")]
         [DataType(DataType.Text)]
         [Display(Name = "Специализация*")]
-        [Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
-        public int SpecializationId { get; set; }
+        //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение")]
+        public string Specialization { get; set; }
 
 
         [Required(ErrorMessage = "Не указан вид документа")]

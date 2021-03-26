@@ -41,12 +41,12 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label asp-for="TypeOfSpravkaId" class="control-label"></label>
-                    <select asp-for="TypeOfSpravkaId" class="form-control" asp-items="ViewBag.TypeOfSpravkaId"></select>
+                    <select asp-for="TypeOfSpravkaId" class="custom-select" asp-items="ViewBag.TypeOfSpravkaId"></select>
                     <span asp-validation-for="TypeOfSpravkaId" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label asp-for="GroupId" class="control-label"></label>
-                    <select asp-for="GroupId" class="form-control" asp-items="ViewBag.GroupId"></select>
+                    <select asp-for="GroupId" class="custom-select" asp-items="ViewBag.GroupId"></select>
                     <span asp-validation-for="GroupId" class="text-danger"></span>
                 </div>
             </div>
