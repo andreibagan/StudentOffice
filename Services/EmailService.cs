@@ -22,7 +22,7 @@ namespace StudentOffice.Services
             using(var client = new SmtpClient())
             {
                 await client.ConnectAsync("smtp.mail.ru", 465, true);
-                await client.AuthenticateAsync("andrei.bagan2@mail.ru", "Ez9XFrrZS1Xyay5W1wkK");
+                await client.AuthenticateAsync("andrei.bagan2@mail.ru", "PiH6iSD56sihdp7oskVf");
                 try
                 {
                     await client.SendAsync(emailMessage);

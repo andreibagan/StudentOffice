@@ -25,7 +25,7 @@ namespace StudentOffice.Models.DataBase
         public DbSet<MarkUser> MarkUsers { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
-
+        public DbSet<Lesson> Lessons { get; set; }
         public DbSet<SelectionСommittee> SelectionСommitties { get; set; }
 
         public DbSet<MainPlan> MainPlans { get; set; }

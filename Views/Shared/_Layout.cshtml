@@ -29,54 +29,54 @@
         @if (SignInManager.IsSignedIn(User))
         {
 
-        <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+            <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
 
-            <nav class="navbar navbar-expand-sm navbar-light bg-light rounded mb-3" aria-label="Eleventh navbar example">
+                <nav class="navbar navbar-expand-sm navbar-light bg-light rounded mb-3" aria-label="Eleventh navbar example">
 
-                <div class="container-fluid">
+                    <div class="container-fluid">
 
 
-                    <div class="col-sm-0">
-                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </div>
-
-                    <div class="col-sm-5">
-                        <div class="navbar-collapse collapse" id="navbarsExample09" style="">
-                            <ul class="navbar-nav mb-2 mb-lg-0">
-                                <li class="nav-item active">
-                                    <a class="nav-link" aria-current="page" href="#">Главная</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Панель администратора</a>
-                                </li>
-                                @*<li class="nav-item">
-                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                                </li>*@
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown09">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </li>
-
-                            </ul>
+                        <div class="col-sm-0">
+                            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
                         </div>
+
+                        <div class="col-sm-5">
+                            <div class="navbar-collapse collapse" id="navbarsExample09" style="">
+                                <ul class="navbar-nav mb-2 mb-lg-0">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" aria-current="page" href="#">Главная</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Панель администратора</a>
+                                    </li>
+                                    @*<li class="nav-item">
+                                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                    </li>*@
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdown09">
+                                            <li><a class="dropdown-item" href="#">Action</a></li>
+                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <partial name="_LoginPartial"></partial>
+                        </div>
+
                     </div>
-                    <div class="col-sm-7">
-                        <partial name="_LoginPartial"></partial>
-                    </div>
-
-                </div>
 
 
 
-            </nav>
+                </nav>
 
-        </div>
+            </div>
 
 
         }

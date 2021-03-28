@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.ViewModels
 {
-    public class CoupleViewModel
+    public class LessonViewModel
     {
         [Required(ErrorMessage = "Не указана дисциплина")]
         [DataType(DataType.Text)]

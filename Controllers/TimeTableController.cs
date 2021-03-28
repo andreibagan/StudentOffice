@@ -197,13 +197,18 @@ namespace StudentOffice.Controllers
                 model.Groups = await _context.Groups.ToListAsync();
                 model.Teachers = await _userManager.GetUsersInRoleAsync("преподаватель");
 
-                for (int i = 0; i < CoupleCount; i++)
+                //for (int i = 0; i < CoupleCount; i++)
+                //{
+                //    model.TimeTableGroup.Couples.Add(new Couple());
+                //    for (int j = 0; j < 2; j++)
+                //    {
+                //        model.TimeTableGroup.Couples.ElementAt(i).Lessons.Add(new Lesson());
+                //    }
+                //}
+
+                for (int i = 0; i < CoupleCount * 2; i++)
                 {
-                    model.TimeTableGroup.Couples.Add(new Couple());
-                    for (int j = 0; j < 2; j++)
-                    {
-                        model.TimeTableGroup.Couples.ElementAt(i).Lessons.Add(new Lesson());
-                    }
+                    model.Lessons.Add(new LessonViewModel());
                 }
             }
             return View(model);
@@ -225,17 +230,33 @@ namespace StudentOffice.Controllers
                 await _context.TimeTables.AddAsync(timeTable);
                 await _context.SaveChangesAsync();
 
-                model.TimeTableGroup.GroupId = model.GroupId;
-                model.TimeTableGroup.TimeTableId = timeTable.TimeTableId;
+                //model.TimeTableGroup.GroupId = model.GroupId;
+                //model.TimeTableGroup.TimeTableId = timeTable.TimeTableId;
 
-                //TimeTableGroup timeTableGroup = new TimeTableGroup
-                //{
-                //    GroupId = model.GroupId,
-                //    TimeTableId = timeTable.TimeTableId
-                //};
+                TimeTableGroup timeTableGroup = new TimeTableGroup
+                {
+                    GroupId = model.GroupId,
+                    TimeTableId = timeTable.TimeTableId
+                };
 
-                await _context.TimeTableGroups.AddAsync(model.TimeTableGroup);
+                await _context.TimeTableGroups.AddAsync(timeTableGroup);
                 await _context.SaveChangesAsync();
+
+                for (int i = 0; i < model.Lessons.Count() / 2; i++)
+                {
+                    Couple couple = new Couple() { TimeTableGroupId = timeTableGroup.TimeTableGroupId };
+                    await _context.Couples.AddAsync(couple);
+                    await _context.SaveChangesAsync();
+                    List<Lesson> lessons = model.Lessons.GetRange(i * 2, 2).Select(i => new Lesson
+                    {
+                        CoupleId = couple.CoupleId,
+                        AudienceId = i.AudienceId,
+                        DisciplineId = i.DisciplineId,
+                        UserId = i.TeacherId
+                    }).ToList();
+                    await _context.Lessons.AddRangeAsync(lessons);
+                    await _context.SaveChangesAsync();
+                }
 
                 //List<Couple> Couples = model.Couples.Select(i => new Couple
                 //{
@@ -246,9 +267,6 @@ namespace StudentOffice.Controllers
                 //    UserId = i.TeacherId,
                 //    TimeTableGroupId = timeTableGroup.TimeTableGroupId
                 //}).ToList();
-
-                //await _context.Couples.AddRangeAsync(Couples);
-                //await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
             }

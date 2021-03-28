@@ -64,6 +64,7 @@ namespace StudentOffice.Controllers
             return View(user);
         }
 
+
         [HttpGet]
         public async Task<IActionResult> DormitoryApplication(string id)
         {
