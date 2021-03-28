@@ -22,5 +22,10 @@ namespace StudentOffice.Models.DataBase
 
 
         public virtual ICollection<Couple> Couples { get; set; }
+
+        public TimeTableGroup()
+        {
+            Couples = new List<Couple>();
+        }
     }
 }

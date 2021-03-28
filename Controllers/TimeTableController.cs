@@ -199,64 +199,69 @@ namespace StudentOffice.Controllers
 
                 for (int i = 0; i < CoupleCount; i++)
                 {
-                    model.Couples.Add(new CoupleViewModel());
+                    model.TimeTableGroup.Couples.Add(new Couple());
+                    for (int j = 0; j < 2; j++)
+                    {
+                        model.TimeTableGroup.Couples.ElementAt(i).Lessons.Add(new Lesson());
+                    }
                 }
             }
-
             return View(model);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Create(TimeTableViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        TimeTable timeTable = new TimeTable
-        //        {
-        //            DateTime = model.DateTime,
-        //            DayNumber = model.DateTime.Day,
-        //            PatternType = "Рабочий",
-        //            SemesterId = null, //TODO: Нужен ли семестр?
-        //        };
+        [HttpPost]
+        public async Task<IActionResult> Create(TimeTableViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                TimeTable timeTable = new TimeTable
+                {
+                    DateTime = model.DateTime,
+                    DayNumber = model.DateTime.Day,
+                    PatternType = "Рабочий",
+                    SemesterId = null, //TODO: Нужен ли семестр? || НЕ НУЖЕН)
+                };
 
-        //        await _context.TimeTables.AddAsync(timeTable);
-        //        await _context.SaveChangesAsync();
+                await _context.TimeTables.AddAsync(timeTable);
+                await _context.SaveChangesAsync();
 
-        //        TimeTableGroup timeTableGroup = new TimeTableGroup
-        //        {
-        //            GroupId = model.GroupId,
-        //            TimeTableId = timeTable.TimeTableId
-        //        };
+                model.TimeTableGroup.GroupId = model.GroupId;
+                model.TimeTableGroup.TimeTableId = timeTable.TimeTableId;
 
-        //        await _context.TimeTableGroups.AddAsync(timeTableGroup);
-        //        await _context.SaveChangesAsync();
+                //TimeTableGroup timeTableGroup = new TimeTableGroup
+                //{
+                //    GroupId = model.GroupId,
+                //    TimeTableId = timeTable.TimeTableId
+                //};
 
-        //        List<Couple> Couples = model.Couples.Select(i => new Couple
-        //        {
-        //            IsSubgroups = false,
-        //            Subgroups = 0,
-        //            DisciplineId = i.DisciplineId,
-        //            AudienceId = i.AudienceId,
-        //            TimeWindowId = null, //TODO: Временное окно?
-        //            UserId = i.TeacherId,
-        //            TimeTableGroupId = timeTableGroup.TimeTableGroupId
-        //        }).ToList();
+                await _context.TimeTableGroups.AddAsync(model.TimeTableGroup);
+                await _context.SaveChangesAsync();
 
-        //        await _context.Couples.AddRangeAsync(Couples);
-        //        await _context.SaveChangesAsync();
+                //List<Couple> Couples = model.Couples.Select(i => new Couple
+                //{
+                //    IsSubgroups = false,
+                //    Subgroups = 0,
+                //    DisciplineId = i.DisciplineId,
+                //    AudienceId = i.AudienceId,
+                //    UserId = i.TeacherId,
+                //    TimeTableGroupId = timeTableGroup.TimeTableGroupId
+                //}).ToList();
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        model.Audiences = await _context.Audiences.ToListAsync();
-        //        model.Disciplines = await _context.Disciplines.ToListAsync();
-        //        model.Groups = await _context.Groups.ToListAsync();
-        //        model.Teachers = await _userManager.GetUsersInRoleAsync("преподаватель");
+                //await _context.Couples.AddRangeAsync(Couples);
+                //await _context.SaveChangesAsync();
 
-        //        return View(model);
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                model.Audiences = await _context.Audiences.ToListAsync();
+                model.Disciplines = await _context.Disciplines.ToListAsync();
+                model.Groups = await _context.Groups.ToListAsync();
+                model.Teachers = await _userManager.GetUsersInRoleAsync("преподаватель");
+
+                return View(model);
+            }
+        }
 
         [HttpGet]
         [Authorize(Roles = "admin")]

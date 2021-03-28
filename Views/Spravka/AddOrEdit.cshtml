@@ -62,8 +62,8 @@
                 <label class="control-label">* - поле обязательное для заполнения</label>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="form-group col col-md-6">
+            <div class="row justify-content-center mb-2">
+                <div class="col col-md-6">
                     <input type="submit" value="Заказать" class="btn btn-primary btn-block" />
                 </div>
             </div>
@@ -73,7 +73,11 @@
         </form>
 
         <form>
-            <button class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>    
+            <div class="row justify-content-center">
+                <div class="col col-md-6">
+                    <button class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+                </div>
+            </div>
         </form>
             @*<button value="Вернуться на главную страницу" class="btn btn-primary" asp-controller="Home" asp-action="Index" />*@
             @*<button class="btn btn-primary" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>*@

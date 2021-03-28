@@ -216,7 +216,7 @@ namespace StudentOffice.ViewModels
         public string SeniorityProfileSpecialty { get; set; }
 
         [Required(ErrorMessage = "Не указано отделение")]
-        [Display(Name = "Отделение")]
+        [Display(Name = "Отделение*")]
         //[Range(1, Int32.MaxValue, ErrorMessage = "Недопустимое значение2")]
         public Branch Branch { get; set; }
 

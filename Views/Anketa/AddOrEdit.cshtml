@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h1>Edit</h1>*@
-
 <h3 align="center">Анкета абитуриента</h3>
 <hr />
 
@@ -66,7 +64,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="Sex" class="control-label"></label>
-                        <select asp-for="Sex" class="form-control" asp-items="Html.GetEnumSelectList<Sex>()"></select>
+                        <select asp-for="Sex" class="custom-select" asp-items="Html.GetEnumSelectList<Sex>()"></select>
                         <span asp-validation-for="Sex" class="text-danger"></span>
                     </div>
                 </div>
@@ -78,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="DocumentTypeId" class="control-label"></label>
-                        <select asp-for="DocumentTypeId" class="form-control" asp-items="ViewBag.DocumentTypeId"></select>
+                        <select asp-for="DocumentTypeId" class="custom-select" asp-items="ViewBag.DocumentTypeId"></select>
                         <span asp-validation-for="DocumentTypeId" class="text-danger"></span>
                     </div>
 
@@ -125,7 +123,7 @@
                         <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
                     </div>
                 </div>
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Сведения о месте проживания</h4>
                         <hr />
@@ -139,7 +137,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label asp-for="Region" class="control-label"></label>
-                            <select asp-for="Region" class="form-control" asp-items="Html.GetEnumSelectList<Region>()"></select>
+                            <select asp-for="Region" class="custom-select" asp-items="Html.GetEnumSelectList<Region>()"></select>
                             <span asp-validation-for="Region" class="text-danger"></span>
                         </div>
                     </div>
@@ -147,7 +145,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="TypeOfSettlement" class="control-label"></label>
-                            <select asp-for="TypeOfSettlement" class="form-control" asp-items="Html.GetEnumSelectList<TypeOfSettlement>()"></select>
+                            <select asp-for="TypeOfSettlement" class="custom-select" asp-items="Html.GetEnumSelectList<TypeOfSettlement>()"></select>
                             <span asp-validation-for="TypeOfSettlement" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
@@ -161,7 +159,7 @@
 
                         <div class="form-group col-md-6">
                             <label asp-for="StreetType" class="control-label"></label>
-                            <select asp-for="StreetType" class="form-control" asp-items="Html.GetEnumSelectList<StreetType>()"></select>
+                            <select asp-for="StreetType" class="custom-select" asp-items="Html.GetEnumSelectList<StreetType>()"></select>
                             <span asp-validation-for="StreetType" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
@@ -201,10 +199,7 @@
                         <span asp-validation-for="SocialBehavior"></span>
                     </div>
                 </div>
-                @*<hr />
-                    <h3 align="center">Информация об отце</h3>
-                    <hr />*@
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Сведения о родителях</h4>
                         <hr />
@@ -212,7 +207,7 @@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label asp-for="KinshipTypeFather" class="control-label"></label>
-                            <select asp-for="KinshipTypeFather" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeFather>()"></select>
+                            <select asp-for="KinshipTypeFather" class="custom-select" asp-items="Html.GetEnumSelectList<KinshipTypeFather>()"></select>
                             <span asp-validation-for="KinshipTypeFather" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-3">
@@ -244,12 +239,10 @@
                         <span asp-validation-for="AddressFather" class="text-danger"></span>
                     </div>
                     <hr />
-                    @*<h3 align="center">Информация о матери</h3>
-                        <hr />*@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label asp-for="KinshipTypeMother" class="control-label"></label>
-                            <select asp-for="KinshipTypeMother" class="form-control" asp-items="Html.GetEnumSelectList<KinshipTypeMother>()"></select>
+                            <select asp-for="KinshipTypeMother" class="custom-select" asp-items="Html.GetEnumSelectList<KinshipTypeMother>()"></select>
                             <span asp-validation-for="KinshipTypeMother" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-3">
@@ -282,7 +275,7 @@
                     </div>
                 </div>
 
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Сведения об образовании</h4>
                         <hr />
@@ -290,7 +283,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="EducationLevel" class="control-label"></label>
-                            <select id="sel1" asp-for="EducationLevel" class="form-control" asp-items="Html.GetEnumSelectList<EducationLevel>()" onchange="SetOptions();"></select>
+                            <select id="sel1" asp-for="EducationLevel" class="custom-select" asp-items="Html.GetEnumSelectList<EducationLevel>()" onchange="SetOptions();"></select>
                             <span asp-validation-for="EducationLevel" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
@@ -306,10 +299,10 @@
                             <span asp-validation-for="Institution" class="text-danger"></span>
                         </div>
                     </div>
-                    
+
                 </div>
 
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">Сведения о специальности</h4>
                         <hr />
@@ -317,13 +310,13 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label asp-for="Branch" class="control-label"></label>
-                            <select asp-for="Branch" id="sel2" class="form-control" asp-items="Html.GetEnumSelectList<Branch>()" onchange="SetOptions();"></select>
+                            <select asp-for="Branch" id="sel2" class="custom-select" asp-items="Html.GetEnumSelectList<Branch>()" onchange="SetOptions();"></select>
                             <span asp-validation-for="Branch" class="text-danger"></span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label asp-for="Specialty" class="control-label"></label>
-                            <select id="sel3" asp-for="Specialty" class="form-control" asp-items="ViewBag.SpecialtyId"  onchange="SetOptions2();">
+                            <select id="sel3" asp-for="Specialty" class="custom-select" asp-items="ViewBag.SpecialtyId" onchange="SetOptions2();">
                                 <option value="0">Нет</option>
                             </select>
                             <span asp-validation-for="Specialty" class="text-danger"></span>
@@ -332,46 +325,47 @@
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label asp-for="Specialization" class="control-label"></label>
-                            <select id="sel4" asp-for="Specialization" class="form-control" asp-items="ViewBag.SpecializationId">
+                            <select id="sel4" asp-for="Specialization" class="custom-select" asp-items="ViewBag.SpecializationId">
                                 <option value="0">Нет</option>
                             </select>
                             <span asp-validation-for="Specialization" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div id="hider" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">
                             Сведения о трудовой деятельности<br>
                             (заполняется только учащимися заочного отделения)
                         </h4>
                         <hr />
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label asp-for="PlaceOfWorkAndPosition" class="control-label"></label>
-                            <input asp-for="PlaceOfWorkAndPosition" class="form-control" />
-                            <span asp-validation-for="PlaceOfWorkAndPosition" class="text-danger"></span>
+              
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label asp-for="PlaceOfWorkAndPosition" class="control-label"></label>
+                                <input asp-for="PlaceOfWorkAndPosition" class="form-control" />
+                                <span asp-validation-for="PlaceOfWorkAndPosition" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="SeniorityGeneral" class="control-label"></label>
+                                <input asp-for="SeniorityGeneral" class="form-control" />
+                                <span asp-validation-for="SeniorityGeneral" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label asp-for="SeniorityGeneral" class="control-label"></label>
-                            <input asp-for="SeniorityGeneral" class="form-control" />
-                            <span asp-validation-for="SeniorityGeneral" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="SeniorityProfileSpecialty" class="control-label"></label>
+                            <input asp-for="SeniorityProfileSpecialty" class="form-control" />
+                            <span asp-validation-for="SeniorityProfileSpecialty" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="SeniorityProfileSpecialty" class="control-label"></label>
-                        <input asp-for="SeniorityProfileSpecialty" class="form-control" />
-                        <span asp-validation-for="SeniorityProfileSpecialty" class="text-danger"></span>
-                    </div>
+                    
 
                 </div>
 
-                <div style="border: 4px solid black; padding: 10px; margin-bottom: 10px;" class="bg-warning">
+                <div style="border: 1px solid black; padding: 10px; margin-bottom: 10px;background-color: #f0f0f0">
                     <div>
                         <h4 align="center">
-                            Сведения о трудовой деятельности<br>
-                            (заполняется только учащимися заочного отделения)
+                            Дополнителные сведения
                         </h4>
                         <hr />
                     </div>
@@ -429,22 +423,23 @@
 
 
                 <div class="row justify-content-center">
-                    <div class="form-group col col-md-6">
+                    <div class="col col-md-6 mb-2">
                         <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
                     </div>
                 </div>
             </form>
             <form>
-                <button class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+                <div class="row justify-content-center">
+                    <div class="col col-md-6">
+                        <button class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
 
 </div>
-@*<div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -563,5 +558,42 @@
 
 
         }
+
+
+        //$("#sel2").on('change', function () {
+        //    if ($('#sel2 option:selected').text() != "Заочное") {
+        //        $("#hider").hide();
+        //    }
+        //    else {
+        //        $("#hider").show();
+        //    }
+
+        //});
+
+        //$(document).ready(function () {
+        //    if ($('#sel2 option:selected').text() != "Заочное") {
+        //        $("#hider").hide();
+        //    }
+        //    else {
+        //        $("#hider").show();
+        //    }
+        //}
+
+        $(document).ready(function () {
+            $("#sel2").change(function () {
+                if ($('#sel2 option:selected').text() == "Заочное") {
+                    $("#hider").show();
+                }
+                else {
+                    $("#hider").hide();
+                }
+            });
+            if ($('#sel2 option:selected').text() == "Заочное") {
+                $("#hider").show();
+            }
+            else {
+                $("#hider").hide();
+            }
+        });
     </script>
 }

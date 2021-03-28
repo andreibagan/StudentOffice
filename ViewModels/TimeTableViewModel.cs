@@ -15,7 +15,7 @@ namespace StudentOffice.ViewModels
         [Required(ErrorMessage = "Не указана группа")]
         [DataType(DataType.Text)]
         [Display(Name = "Группа")]
-        [Range(0, Int32.MaxValue)]
+        [Range(1, Int32.MaxValue)]
         public int GroupId { get; set; }
 
         //[Required(ErrorMessage = "Не указано кол-во занятий")]
@@ -26,16 +26,18 @@ namespace StudentOffice.ViewModels
 
         public List<TimeTableGroup> TimeTableGroups { get; set; }
 
-        public List<CoupleViewModel> Couples { get; set; }
+        //public List<CoupleViewModel> Couples { get; set; }
+        public TimeTableGroup TimeTableGroup { get; set; }
 
         public IEnumerable<Audience> Audiences { get; set; }
         public IEnumerable<Discipline> Disciplines { get; set; }
         public IEnumerable<Group> Groups { get; set; }
         public IEnumerable<User> Teachers { get; set; }
 
+
         public TimeTableViewModel()
         {
-            Couples = new List<CoupleViewModel>();
+            TimeTableGroup = new TimeTableGroup();
         }
     }
 }

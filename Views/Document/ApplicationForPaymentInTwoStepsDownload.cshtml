@@ -180,7 +180,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R3C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Учащейся (-гося)______курса, группы__________</SPAN></TD>
+            <TD CLASS="R3C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Учащейся (-гося)<span class="R5C6">  @Model.Anketa.Specialty.Group.Course   </span>курса, группы  @Model.Anketa.Specialty.Group.GroupName</SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -191,7 +191,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">Дневного отделения по специальности:</SPAN></TD>
+            <TD CLASS="R0C6" COLSPAN=6><SPAN STYLE="max-width:0px;">@(EnumHelper<Branch>.GetDisplayValue(Model.Anketa.Specialty.Branch) == "Дневное" ? "Дневного" : "Заочного") отделения по специальности:</SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -202,7 +202,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R5C6" COLSPAN=6>@Model.Anketa.Specialty.Name</TD>
+            <TD CLASS="R5C6" COLSPAN=6>«@Model.Anketa.Specialty.Name»</TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -214,7 +214,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">Ф.И.О.(полностью)&nbsp;</SPAN></TD>
-            <TD CLASS="R6C9" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.Anketa.SurnameMother&nbsp;@Model.Anketa.NameMother&nbsp;</SPAN></TD>
+            <TD CLASS="R6C9" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">@(Model.Anketa.KinshipTypeMother != KinshipTypeMother.Not ? $"{Model.Anketa.SurnameMother} {Model.Anketa.NameMother}" : $"{Model.Anketa.SurnameFather} {Model.Anketa.NameFather}")</SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -225,7 +225,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R6C9" COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.Anketa.MiddlenameMother</SPAN></TD>
+            <TD CLASS="R6C9" COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">@(Model.Anketa.KinshipTypeMother != KinshipTypeMother.Not ? $"{Model.Anketa.MiddlenameMother}" : $"{Model.Anketa.MiddlenameFather}")</SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>
@@ -282,7 +282,7 @@
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
             <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C6" COLSPAN=6>@Model.Anketa.PhoneMother</TD>
+            <TD CLASS="R12C6" COLSPAN=6>@(Model.Anketa.KinshipTypeMother != KinshipTypeMother.Not ? $"{Model.Anketa.PhoneMother}" : $"{Model.Anketa.PhoneFather}")</TD>
             <TD><SPAN></SPAN></TD>
             <TD></TD>
         </TR>

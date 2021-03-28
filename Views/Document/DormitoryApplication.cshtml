@@ -88,351 +88,333 @@
     </STYLE>
 </HEAD>
 <BODY >
+    <div class="justify-content-center">
 
-    <form method="post" asp-controller="Document" asp-action="DormitoryApplication">
-        <input style="margin-bottom: 50px" class="btn btn-outline-success" type="submit" value="Скачать" />
-    </form>
+        <h3 align="center">Заявление на общежитие</h3>
+        <hr />
 
 
+        <form method="post" asp-controller="Document" asp-action="DormitoryApplication">
+            <div class="row justify-content-center">
+                <div class="col col-md-2">
+                    <input style="margin-bottom: 20px" class="btn btn-outline-success btn-block" type="submit" value="Скачать" />
+                </div>
+            </div>
+        </form>
 
-    <TABLE style="width:100%; height:0px; " CELLSPACING=0>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL WIDTH=63>
-        <COL>
-        <TR CLASS=R0>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R0C6" COLSPAN=6>Директору учреждения образования "Молодечненский торгово-экономический колледж" Белкоопсоюза</TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">Череповичу&nbsp;О.А.</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullName</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R0>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R3C6" COLSPAN=6>@Model.GetAddress</TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R6C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">ЗАЯВЛЕНИЕ</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=6><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R9C1" COLSPAN=11>           Прошу принять меня на учёт желающих получить жилое помещение в общежитии. </TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R0>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R10C1" COLSPAN=11>Работаю (прохожу службу, учусь) в учреждении образования "Молодечненский торгово-экономический колледж" Белкоопсоюза,  специальность @Model.Anketa.Specialty.Name, @Model.Anketa.Specialty.Group.Course курс</TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В&nbsp;настоящее&nbsp;время&nbsp;проживаю&nbsp;в&nbsp;качестве</SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C7" COLSPAN=11><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R14>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R14C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">(нанимателя,&nbsp;поднанимателя,&nbsp;члена&nbsp;семьи&nbsp;нанимателя,&nbsp;собственника,&nbsp;члена&nbsp;организации&nbsp;граждан-застройщиков&nbsp;и&nbsp;др.&nbsp;)</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R15C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;в&nbsp;жилом&nbsp;помещении&nbsp;общей&nbsp;площадью&nbsp;___&nbsp;кв.&nbsp;метров,&nbsp;всего&nbsp;проживает&nbsp;___&nbsp;человек,</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R16C1" COLSPAN=11>@($"по адресу {Model.Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Model.Anketa.Region)}, {Model.Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetReduction(Model.Anketa.TypeOfSettlement)} {Model.Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Model.Anketa.StreetType)} {Model.Anketa.StreetName}, дом № {Model.Anketa.HouseNumber}, квартира {Model.Anketa.ApartmentNumber}")</TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=11><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">дом&nbsp;№&nbsp;23,квартира&nbsp;37</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">К&nbsp;заявлению&nbsp;прилагаются&nbsp;документы:</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C7" COLSPAN=8><SPAN STYLE="white-space:nowrap;max-width:0px;">1.</SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C7" COLSPAN=8><SPAN STYLE="white-space:nowrap;max-width:0px;">2.</SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD CLASS="R12C7"><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R6C1" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">(дата)</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD CLASS="R28C8" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">(подпись)</SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD></TD>
-        </TR>
-        <TR CLASS=R1>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD><SPAN></SPAN></TD>
-            <TD>&nbsp;</TD>
-        </TR>
-    </TABLE>
+        <TABLE align="center" style="width:70%; height:0px;" CELLSPACING=0>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL WIDTH=63>
+            <COL>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R0C6" COLSPAN=6>Директору учреждения образования "Молодечненский торгово-экономический колледж" Белкоопсоюза</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">Череповичу&nbsp;О.А.</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">@Model.GetFullName</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R3C6" COLSPAN=6>@Model.GetAddress</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R6C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">ЗАЯВЛЕНИЕ</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=6><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R9C1" COLSPAN=11>           Прошу принять меня на учёт желающих получить жилое помещение в общежитии. </TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R0>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R10C1" COLSPAN=11>Работаю (прохожу службу, учусь) в учреждении образования "Молодечненский торгово-экономический колледж" Белкоопсоюза,  специальность «@Model.Anketa.Specialty.Name», @Model.Anketa.Specialty.Group.Course курс</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=6><SPAN STYLE="white-space:nowrap;max-width:0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;В&nbsp;настоящее&nbsp;время&nbsp;проживаю&nbsp;в&nbsp;качестве</SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C7" COLSPAN=11><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R14>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R14C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">(нанимателя,&nbsp;поднанимателя,&nbsp;члена&nbsp;семьи&nbsp;нанимателя,&nbsp;собственника,&nbsp;члена&nbsp;организации&nbsp;граждан-застройщиков&nbsp;и&nbsp;др.&nbsp;)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R15C1" COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;в&nbsp;жилом&nbsp;помещении&nbsp;общей&nbsp;площадью&nbsp;___&nbsp;кв.&nbsp;метров,&nbsp;всего&nbsp;проживает&nbsp;___&nbsp;человек,</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R16C1" COLSPAN=11>@($"по адресу {Model.Anketa.Postcode}, {EnumHelper<Region>.GetReductionRegion(Model.Anketa.Region)}, {Model.Anketa.PlaceOfBirth}, {EnumHelper<TypeOfSettlement>.GetReduction(Model.Anketa.TypeOfSettlement)} {Model.Anketa.NameOfSettlement}, {EnumHelper<StreetType>.GetReductionStreet(Model.Anketa.StreetType)} {Model.Anketa.StreetName}, дом № {Model.Anketa.HouseNumber}, квартира {Model.Anketa.ApartmentNumber}")</TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=11><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD COLSPAN=11><SPAN STYLE="white-space:nowrap;max-width:0px;">К&nbsp;заявлению&nbsp;прилагаются&nbsp;документы:</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C7" COLSPAN=8><SPAN STYLE="white-space:nowrap;max-width:0px;">1.</SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C7" COLSPAN=8><SPAN STYLE="white-space:nowrap;max-width:0px;">2.</SPAN></TD>
+                <TD></TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD CLASS="R12C7"><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD>&nbsp;</TD>
+            </TR>
+            <TR CLASS=R1>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R6C1" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">(дата)</SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD><SPAN></SPAN></TD>
+                <TD CLASS="R28C8" COLSPAN=3><SPAN STYLE="white-space:nowrap;max-width:0px;">(подпись)</SPAN></TD>
+            </TR>
+        </TABLE>
+    </div>
 </BODY>
 </HTML>
