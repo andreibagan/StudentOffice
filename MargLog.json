@@ -1,0 +1,53 @@
+[
+  {
+    "semesterId": 10,
+    "groupId": 4,
+    "markUsers": [
+      {
+        "omissionTotal": 22,
+        "omissionDisrespectful": 1,
+        "userId": "731b5c50-cd0d-4354-b08f-1d61107911df",
+        "marks": [
+          {
+            "markValue": "9",
+            "disciplineId": 2
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 4
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 8
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 21
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 7
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 29
+          },
+          {
+            "markValue": "9",
+            "disciplineId": 33
+          }
+        ],
+        "markExams": [
+          {
+            "markValue": 9,
+            "examId": 1
+          },
+          {
+            "markValue": 9,
+            "examId": 2,
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -9,9 +9,13 @@ namespace StudentOffice.Models.DataBase
     public class Group
     {
         public int GroupId { get; set; }
+        [Display(Name = "Группа")]
         public string GroupName { get; set; }
+        [Display(Name = "Дата формирования")]
         public DateTime YearOfFormation { get; set; }
+        [Display(Name = "Дата расформирования")]
         public DateTime ExpirationDate { get; set; }
+        [Display(Name = "Курс")]
         public int Course { get; set; }
 
         [JsonIgnore]

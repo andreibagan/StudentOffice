@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models.DataBase
 {
@@ -8,7 +9,9 @@ namespace StudentOffice.Models.DataBase
     public class Discipline
     {
         public int DisciplineId { get; set; }
+        [Display(Name = "Название дисциплины")]
         public string DisciplineName { get; set; }
+        [Display(Name = "Краткое название дисциплины")]
         public string DisciplineShortName { get; set; }
 
         [JsonIgnore]

@@ -1,17 +1,20 @@
 ﻿@model MarkLog
-<a asp-action="Create" asp-controller="MarkLog">Добавить</a>
 
+<h3 align="center">Успеваемость</h3>
+<hr />
+
+<h5 class="mt-4 mb-4" align="center">Успеваемость учащегося @Model.MarkUsers?.FirstOrDefault()?.User?.GetFullNameR<br>группы @Model.Group?.GroupName<br>за @Model.Semester?.SemesterNumber семестр @Model.Group?.YearOfFormation.Year/@Model.Group?.ExpirationDate.Year учебного года</h5>
 
 @if (Model?.MarkUsers != null)
 {
     <table cellpadding="0" cellspacing="0" align="center">
         <tr>
 
-            <td rowspan="2">
+            <td rowspan="2" align="center">
                 №
             </td>
 
-            <td rowspan="2">
+            <td rowspan="2" align="center">
                 ФИО
             </td>
 
@@ -37,9 +40,9 @@
 
             @foreach (var mark in Model?.MarkUsers?.FirstOrDefault()?.Marks)
             {
-            <td class="rotate">
-                <div>@mark?.Discipline?.DisciplineName</div>
-            </td>
+                <td class="rotate">
+                    <div>@mark?.Discipline?.DisciplineName</div>
+                </td>
             }
 
             @foreach (var mark in Model.MarkUsers?.FirstOrDefault()?.MarkExams)
@@ -73,26 +76,26 @@
 
                 @foreach (var mark in markUser.value.Marks)
                 {
-                    <td>
+                    <td align="center">
                         @mark.MarkValue
                     </td>
                 }
 
                 @foreach (var markExam in markUser.value.MarkExams)
                 {
-                    <td>
+                    <td align="center">
                         @markExam.MarkValue
                     </td>
                 }
 
-                <td>
+                <td align="center">
                     @markUser.value.AverangeMark
                 </td>
 
-                <td>
+                <td align="center">
                     @markUser.value.OmissionTotal
                 </td>
-                <td>
+                <td align="center">
                     @markUser.value.OmissionDisrespectful
                 </td>
 
@@ -101,6 +104,15 @@
 
     </table>
 }
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form>
+            <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+        </form>
+    </div>
+</div>
+
+
 
 
 

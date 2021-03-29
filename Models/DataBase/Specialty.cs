@@ -27,10 +27,18 @@ namespace StudentOffice.Models.DataBase
         [Display(Name = "Отделение")]
         public Branch Branch { get; set; }
 
+        [Required(ErrorMessage = "Не указана группа")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Группа")]
         public int GroupId { get; set; }
+        [Display(Name = "Группа")]
         public virtual Group Group { get; set; }
         public virtual ICollection<Anketa> Anketas { get; set; }
+        [Required(ErrorMessage = "Не указана специализация")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Специализация")]
         public int SpecializationId { get; set; }
+        [Display(Name = "Специализация")]
         public virtual Specialization Specialization { get; set; }
 
 

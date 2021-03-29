@@ -1,0 +1,30 @@
+﻿@model StudentOffice.Models.DataBase.Discipline
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="center">Удаление дисциплины</h3>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisciplineName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplineName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DisciplineShortName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DisciplineShortName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="DisciplineId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> 
+    </form>
+</div>

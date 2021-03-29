@@ -10,7 +10,7 @@ namespace StudentOffice.Models.DataBase
     public class ApplicationInitializer
     {
         public static async Task InitializeAsync(UserManager<User> userManager, RoleManager<IdentityRole> roleManager, ApplicationContext context)
-        {  
+        {
             string adminEmail = "andrei.bagan2@mail.ru";
             string password = "petros123";
             if (await roleManager.FindByNameAsync("admin") == null)
@@ -83,7 +83,7 @@ namespace StudentOffice.Models.DataBase
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
-                }           
+                }
             }
             if (!context.DocumentTypes.Any())
             {
@@ -175,185 +175,185 @@ namespace StudentOffice.Models.DataBase
                     new Group
                     {
                         GroupName = "П1",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                        YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
 
                     },
                     new Group
                     {
                         GroupName = "Б1",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                       YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
                     },
                     new Group
                     {
                         GroupName = "П2",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                             YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "Б2",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                         YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "Б3",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                     YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "К3",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                       YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "П3",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                           YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "П310",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                           YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "ПО209",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                   YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "Б301",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                     YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "П206",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                      YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "СП405",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                          YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 4,
                     },
 
                     new Group
                     {
                         GroupName = "СП105",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                    YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
                     },
                     new Group
                     {
                         GroupName = "ОД103",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+           YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
                     },
                     new Group
                     {
                         GroupName = "ОД303",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                    YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "ПО309",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+          YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "П306",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+              YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "Б101",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+               YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
                     },
                     new Group
                     {
                         GroupName = "СП305",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                 YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "ВМ201",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+              YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "И312",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                  YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 3,
                     },
                     new Group
                     {
                         GroupName = "СП205",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                  YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "ОД203",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                     YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "П106",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+            YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 1,
                     },
                     new Group
                     {
                         GroupName = "П210",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 2,
                     },
                     new Group
                     {
                         GroupName = "ПО409",
-                        YearOfFormation = new DateTime(2020, 09, 01),
-                        ExpirationDate = new DateTime(2023, 06, 23),
+                 YearOfFormation = new DateTime(2020, 01, 01),
+                        ExpirationDate = new DateTime(2021, 01, 01),
                         Course = 4,
                     },
                 });
@@ -1929,18 +1929,6 @@ namespace StudentOffice.Models.DataBase
                 });
             }
 
-            //if (!context.SelectionСommitties.Any())
-            //{
-            //    await context.SelectionСommitties.AddRangeAsync(new List<SelectionСommittee>
-            //    {
-            //        new SelectionСommittee
-            //        {
-            //            Name = "Приемная комиссия",
-            //            Year = 2021
-            //        },
-            //    });
-            //}
-
             await context.SaveChangesAsync();
 
             if (!context.Specialties.Any())
@@ -2146,7 +2134,7 @@ namespace StudentOffice.Models.DataBase
                         EducationType = EducationType.CCO,
                         Branch = Branch.Daytime,
                         GroupId = context.Groups.FirstOrDefault(i => i.GroupName == "ОД203").GroupId,
-                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Операционная деятельность в логистике").SpecializationId    
+                        SpecializationId = context.Specializations.FirstOrDefault(i => i.SpecializationName == "Операционная деятельность в логистике").SpecializationId
                     },
                     new Specialty
                     {
@@ -2178,287 +2166,6 @@ namespace StudentOffice.Models.DataBase
 
             await context.SaveChangesAsync();
 
-            //if (!context.MarkLogs.Any())
-            //{
-            //    await context.MarkLogs.AddRangeAsync(new List<MarkLog>
-            //    {
-            //       new MarkLog
-            //       {
-            //           SemesterId = 1,
-            //       },
-            //    });
-            //}
-
-            //await context.SaveChangesAsync();
-
-            //if (!context.MarkUsers.Any())
-            //{
-            //    await context.MarkUsers.AddRangeAsync(new List<MarkUser>
-            //    {
-            //       new MarkUser
-            //       {
-            //           UserId = "4ac1a332-7bc9-4592-a955-8128cac4b874",
-            //           OmissionId = 1,
-            //           MarkLogId = 1
-            //       },
-            //       new MarkUser
-            //       {
-            //           UserId = "1d8820a0-6ac9-4bd2-b95c-917d6616751b",
-            //           OmissionId = 2,
-            //           MarkLogId = 1
-            //       },
-            //    });
-            //}
-
-
-            //await context.SaveChangesAsync();
-
-            //if (!context.Marks.Any())
-            //{
-            //    await context.Marks.AddRangeAsync(new List<Mark>
-            //    {
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 1,
-            //           MarkValue = "5"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 2,
-            //           MarkValue = "7"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 3,
-            //           MarkValue = "6"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 4,
-            //           MarkValue = "8"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 5,
-            //           MarkValue = "2"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 6,
-            //           MarkValue = "8"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 1,
-            //           GroupDisciplineId = 7,
-            //           MarkValue = "5"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 1,
-            //           MarkValue = "3"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 2,
-            //           MarkValue = "7"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 3,
-            //           MarkValue = "9"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 4,
-            //           MarkValue = "5"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 5,
-            //           MarkValue = "4"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 6,
-            //           MarkValue = "4"
-            //       },
-            //       new Mark
-            //       {
-            //           MarkUserId = 2,
-            //           GroupDisciplineId = 7,
-            //           MarkValue = "6"
-            //       },
-            //    });
-            //}
-
-            //if (!context.MarkExams.Any())
-            //{
-            //    await context.MarkExams.AddRangeAsync(new List<MarkExam>
-            //    {
-            //       new MarkExam
-            //       {
-            //           MarkValue = 7,
-            //           MarkUserId = 1,
-            //           GroupExamId = 1
-            //       },
-            //       new MarkExam
-            //       {
-            //           MarkValue = 5,
-            //           MarkUserId = 1,
-            //           GroupExamId = 2
-            //       },
-            //       new MarkExam
-            //       {
-            //           MarkValue = 8,
-            //           MarkUserId = 2,
-            //           GroupExamId = 1
-            //       },
-            //       new MarkExam
-            //       {
-            //           MarkValue = 9,
-            //           MarkUserId = 2,
-            //           GroupExamId = 2
-            //       },
-            //    });
-            //}
-
-
-            //await context.SaveChangesAsync();
-
-            //if (!context.TimeTables.Any())
-            //{
-            //    await context.TimeTables.AddRangeAsync(new List<TimeTable>
-            //    {
-            //        new TimeTable
-            //        {
-            //            DateTime = DateTime.Now,
-            //            DayNumber = 18,
-            //            PatternType = "Рабочий",
-            //            SemesterId = 1
-            //        },
-            //    });
-            //}
-
-            //await context.SaveChangesAsync();
-
-            //if (!context.TimeTableGroups.Any())
-            //{
-            //    await context.TimeTableGroups.AddRangeAsync(new List<TimeTableGroup>
-            //    {
-            //        new TimeTableGroup
-            //        {
-            //            GroupId = 1,
-            //            TimeTableId = 1,
-            //        },
-            //        new TimeTableGroup
-            //        {
-            //            GroupId = 2,
-            //            TimeTableId = 1,
-            //        },
-            //    });
-            //}
-
-            //await context.SaveChangesAsync();
-
-            //if (!context.Couples.Any())
-            //{
-            //    await context.Couples.AddRangeAsync(new List<Couple>
-            //    {
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 8,
-            //            AudienceId = 6,
-            //            TimeWindowId = 1,
-            //            UserId = "2d9c95e5-f5e9-4891-80d4-ee7818e7f173",
-            //            TimeTableGroupId = 1
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 7,
-            //            AudienceId = 6,
-            //            TimeWindowId = 1,
-            //            UserId = "6176f305-d1f7-4310-8be5-fb188e2c05c1",
-            //            TimeTableGroupId = 1
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 9,
-            //            AudienceId = 6,
-            //            TimeWindowId = 1,
-            //            UserId = "651507e2-6aca-4876-89e1-e03a0c1cb8e0",
-            //            TimeTableGroupId = 1
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 10,
-            //            AudienceId = 6,
-            //            TimeWindowId = 1,
-            //            UserId = "ab3ee0eb-fccf-4522-b41a-02ad24c4b75a",
-            //            TimeTableGroupId = 1
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 11,
-            //            AudienceId = 1,
-            //            TimeWindowId = 1,
-            //            UserId = "cbe0d18e-2763-4e7e-9ece-5eb8e7d08461",
-            //            TimeTableGroupId = 2
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 13,
-            //            AudienceId = 2,
-            //            TimeWindowId = 1,
-            //            UserId = "de1eaadb-4f45-4594-899a-66202bba02b2",
-            //            TimeTableGroupId = 2
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 7,
-            //            AudienceId = 2,
-            //            TimeWindowId = 1,
-            //            UserId = "651507e2-6aca-4876-89e1-e03a0c1cb8e0",
-            //            TimeTableGroupId = 2
-            //        },
-            //        new Couple
-            //        {
-            //            IsSubgroups = false,
-            //            Subgroups = 0,
-            //            DisciplineId = 10,
-            //            AudienceId = 6,
-            //            TimeWindowId = 1,
-            //            UserId = "ab3ee0eb-fccf-4522-b41a-02ad24c4b75a",
-            //            TimeTableGroupId = 2
-            //        },
-            //    });
-            //}
 
         }
     }

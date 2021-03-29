@@ -1,0 +1,52 @@
+﻿@model StudentOffice.Models.DataBase.Specialty
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="center">Изменение специальности</h3>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SpecialtyId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EducationType" class="control-label"></label>
+                <select asp-for="EducationType" class="custom-select" asp-items="Html.GetEnumSelectList<EducationType>()"></select>
+                <span asp-validation-for="EducationType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Branch" class="control-label"></label>
+                <select asp-for="Branch" class="custom-select" asp-items="Html.GetEnumSelectList<Branch>()"></select>
+                <span asp-validation-for="Branch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupId" class="control-label"></label>
+                <select asp-for="GroupId" class="custom-select" asp-items="ViewBag.GroupId"></select>
+                <span asp-validation-for="GroupId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpecializationId" class="control-label"></label>
+                <select asp-for="SpecializationId" class="custom-select" asp-items="ViewBag.SpecializationId"></select>
+                <span asp-validation-for="SpecializationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+        <form>
+            <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

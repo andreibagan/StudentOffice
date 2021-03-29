@@ -1,4 +1,8 @@
 ﻿@model TimeTableViewModel
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <h4 align="center">Расписание</h4>
 <hr />
@@ -6,15 +10,19 @@
 @*<a asp-action="Create" asp-controller="TimeTable">Добавить</a>
     <input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />*@
 
-@{ 
+@{
     TimeSpan timeSpan = new TimeSpan(08, 00, 00);
 }
 
 <form class="form">
     <div align="center">
-        <div>
-            <button style="margin-bottom: 20px;" class="btn btn-success" asp-controller="TimeTable" asp-action="Create">Добавить расписание</button><br />
-        </div>
+        @if (UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin").Result)
+        {
+            <div>
+                <button style="margin-bottom: 20px;" class="btn btn-success" asp-controller="TimeTable" asp-action="Create">Добавить расписание</button><br />
+            </div>
+        }
+
         <div>
             <label>Выберите группу:</label>
             <select style="width: 200px;" name="groupId" class="form-control">
@@ -39,15 +47,11 @@
 
 <br>
 
-<table align="center">
-
-    @*@foreach (var timeTableGroup in Model.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
-        {*@
-
+<table align="center" class="table-hover">
 
     @foreach (var timeTableGroup in Model.TimeTableGroups.Select((timeTableGroupValue, timeTableGroupIterator) => new { timeTableGroupValue, timeTableGroupIterator }))
     {
-        <tr>
+        <tr class="bg-primary">
 
             <td>
                 День
@@ -111,15 +115,19 @@
             }
 
         }
+                  
 
     }
 
 
 </table>
-
-<form>
-    <button style="margin-top: 50px" class="btn btn-warning" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
-</form>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form>
+            <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+        </form>
+    </div>
+</div>
 
 <style type="text/css">
     td {

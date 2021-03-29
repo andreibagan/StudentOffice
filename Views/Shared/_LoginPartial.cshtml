@@ -16,7 +16,7 @@
     <form id="logoutForm" class="form-inline navbar-brand float-right" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
         <div class="row float-right">
             <a style="white-space: nowrap" class="btn btn-primary col mr-lg-1" asp-controller="Home" asp-action="Index">Привет, @UserManager?.GetUserName(User)!</a>
-            <button style="white-space: nowrap" type="button" class="btn btn-warning col mr-lg-1">Роль: @UserManager?.GetRolesAsync(await UserManager.GetUserAsync(User))?.Result?.FirstOrDefault()</button>
+            <button style="white-space: nowrap" type="button" class="btn btn-warning col mr-lg-1">Вы вошли как: @UserManager?.GetRolesAsync(await UserManager.GetUserAsync(User))?.Result?.FirstOrDefault()</button>
             <button id="logout" type="submit" class="btn btn-danger col">Выйти</button>
         </div>
     </form>

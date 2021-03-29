@@ -3,11 +3,15 @@
     ViewBag.Title = "Список пользователей";
 }
 
-<a asp-action="Create">Добавить пользователя</a>
+
+<h3 align="center">Список пользователей</h3>
+<hr />
+
+<a asp-action="Create" class="btn btn-primary">Добавить пользователя</a>
 
 <form class="form-inline">
     <label>Выберите группу:</label>
-    <select name="groupId" class="form-control">
+    <select name="groupId" class="custom-select">
         @foreach (GroupModel group in Model.Groups)
         {
             <option value="@group.GroupId">@group.GroupName</option>
@@ -43,3 +47,7 @@
 </table>
 
 <a asp-controller="User" asp-action="Unload">Выгрузка пользователей</a>
+
+<form>
+    <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+</form>

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StudentOffice.Models.DataBase
 {
@@ -8,6 +9,7 @@ namespace StudentOffice.Models.DataBase
     public class Semester
     {
         public int SemesterId { get; set; }
+        [Display(Name = "Семестр")]
         public int SemesterNumber { get; set; }
         [JsonIgnore]
         public virtual ICollection<TimeTable> TimeTables { get; set; }

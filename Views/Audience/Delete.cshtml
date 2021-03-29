@@ -1,0 +1,36 @@
+﻿@model StudentOffice.Models.DataBase.Audience
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="center">Удаление аудитории</h3>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AudienceName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AudienceName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AudienceNameShort)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AudienceNameShort)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AudienceType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AudienceType)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AudienceId" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> 
+    </form>
+</div>

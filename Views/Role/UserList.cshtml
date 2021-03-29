@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<User>
 
-<h2>Список пользователей</h2>
+<h3 align="center">Список пользователей</h3>
+<hr />
 <table class="table">
     @foreach (var user in Model)
     {
@@ -11,4 +12,7 @@
             </td>
         </tr>
     }
-</table>    
+</table>
+<form>
+    <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+</form>

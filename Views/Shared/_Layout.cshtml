@@ -46,22 +46,36 @@
                             <div class="navbar-collapse collapse" id="navbarsExample09" style="">
                                 <ul class="navbar-nav mb-2 mb-lg-0">
                                     <li class="nav-item active">
-                                        <a class="nav-link" aria-current="page" href="#">Главная</a>
+                                        <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">Главная</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Панель администратора</a>
-                                    </li>
-                                    @*<li class="nav-item">
-                                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                                    </li>*@
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdown09">
-                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                        </ul>
-                                    </li>
+                                    @if (UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin").Result)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="dropdown10" data-bs-toggle="dropdown" aria-expanded="false">Панель администратора</a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown10">
+                                                <li><a class="dropdown-item" asp-controller="TimeTable" asp-action="Create">Расписание</a></li>
+                                                <li><a class="dropdown-item" asp-controller="User" asp-action="Index">Пользователи</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Role" asp-action="Index">Роли</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="dropdown09" data-bs-toggle="dropdown" aria-expanded="false">Справочники</a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdown09">
+                                                <li><a class="dropdown-item" asp-controller="SelectionСommittee" asp-action="Index">Приемные комиссии</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Audience" asp-action="Index">Аудитории</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Discipline" asp-action="Index">Дисциплины</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Exam" asp-action="Index">Экзамены</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Group" asp-action="Index">Группы</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Semester" asp-action="Index">Семестры</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Specialization" asp-action="Index">Специализации</a></li>
+                                                <li><a class="dropdown-item" asp-controller="Specialty" asp-action="Index">Специальности</a></li>
+                                                <li><a class="dropdown-item" asp-controller="DocumentType" asp-action="Index">Виды документов</a></li>
+                                                <li><a class="dropdown-item" asp-controller="TypeOfSpravka" asp-action="Index">Виды справок</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+
+
 
                                 </ul>
                             </div>

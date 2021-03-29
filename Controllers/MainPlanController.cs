@@ -79,6 +79,12 @@ namespace StudentOffice.Controllers
         {
 
             var user = await _userManager.Users.Include(i => i.Anketa).ThenInclude(i => i.Specialty).ThenInclude(i => i.Specialization).Include(i => i.MainPlans).FirstOrDefaultAsync(i => i.UserName == User.Identity.Name);
+
+            if (user?.Anketa == null)
+            {
+                return Content("Пожалуйста заполните анкету абитуриента");
+            }
+
             if (user?.MainPlans?.OrderByDescending(i => i.MainPlanId).FirstOrDefault() == null)
             {
                 ViewData["SelectionСommitteeId"] = new SelectList(_context.SelectionСommitties, "SelectionСommitteeId", "Name");

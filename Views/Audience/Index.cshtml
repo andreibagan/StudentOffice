@@ -1,0 +1,49 @@
+﻿@model IEnumerable<StudentOffice.Models.DataBase.Audience>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="center">Список аудиторий</h3>
+<hr />
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Добавить</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AudienceName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AudienceNameShort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AudienceType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AudienceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AudienceNameShort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AudienceType)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AudienceId" class="btn btn-info">Изменить</a>
+                    <a asp-action="Delete" asp-route-id="@item.AudienceId" class="btn btn-danger">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

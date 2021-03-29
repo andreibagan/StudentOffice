@@ -1,0 +1,33 @@
+﻿@model StudentOffice.Models.DataBase.Specialization
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 align="center">Изменение специализации</h3>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SpecializationId" />
+            <div class="form-group">
+                <label asp-for="SpecializationName" class="control-label"></label>
+                <input asp-for="SpecializationName" class="form-control" />
+                <span asp-validation-for="SpecializationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+        <form>
+            <button style="margin-top: 10px" class="btn btn-warning btn-block" method="get" asp-controller="Home" asp-action="Index">Вернуться на главную страницу</button>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

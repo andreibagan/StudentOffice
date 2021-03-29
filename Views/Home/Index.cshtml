@@ -1,4 +1,10 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity;
+@using StudentOffice.Models.DataBase;
+@using System.Linq;
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,23 +16,21 @@
         <div>
             <button style="margin-top: 40px" class="btn btn-info col" method="get" asp-controller="Anketa" asp-action="AddOrEdit">Заполнить анкету абитуриента</button>
         </div>
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Spravka" asp-action="AddOrEdit">Справки об обучении</button>
-        </div>
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
-        </div>
-        @*<div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Marklog" asp-action="Index">Отметки учащегося</button>
-        </div>*@
+        @if (UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin").Result)
+        {
+            <div>
+                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Spravka" asp-action="AddOrEdit">Справки об обучении</button>
+            </div>
+            <div>
+                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="TimeTable" asp-action="Index">Расписание занятий</button>
+            </div>
+            <div>
+                <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Marklog" asp-action="Index">Отметки учащегося</button>
+            </div>
+        }
+
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Document" asp-action="Index">Документы</button>
-        </div>
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="User" asp-action="Index">Пользователи</button>
-        </div>
-        <div>
-            <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="Role" asp-action="UserList">Роли</button>
         </div>
         <div>
             <button style="margin-top: 10px" class="btn btn-info col" method="get" asp-controller="MainPlan" asp-action="AddOrEdit">Записаться на подачу документов</button>
