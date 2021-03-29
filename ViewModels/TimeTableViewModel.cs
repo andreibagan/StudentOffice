@@ -27,9 +27,6 @@ namespace StudentOffice.ViewModels
 
         public List<TimeTableGroup> TimeTableGroups { get; set; }
 
-        [Required(ErrorMessage = "Не указано кол-во занятий")]
-        [DataType(DataType.Text)]
-        [Range(1, 20, ErrorMessage = "Неверно указано кол-во занятий")]
         [Display(Name = "Кол-во занятий")]
         public List<LessonViewModel> Lessons { get; set; }
 

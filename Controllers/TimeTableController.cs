@@ -78,7 +78,7 @@ namespace StudentOffice.Controllers
             {
                 if (groupId != null && groupId > 0)
                 {
-                    currentTimeTableGroups = await _context.TimeTableGroups
+                    currentTimeTableGroups.Add(_context.TimeTableGroups
                         .Include(i => i.TimeTable)
                         .ThenInclude(i => i.Semester)
                         .Include(i => i.Group)
@@ -91,13 +91,11 @@ namespace StudentOffice.Controllers
                         .Include(i => i.Couples)
                         .ThenInclude(i => i.Lessons)
                         .ThenInclude(i => i.Discipline)
-                      .Where(i => i.GroupId == groupId)
-                      .ToListAsync();
+                      .FirstOrDefault(i => i.GroupId == groupId && i.TimeTable.DateTime.Date == DateTime.Now.Date));
                 }
                 else
                 {
-                    //TODO: если пользователь имеет группу вывести ему сегодняшнюю
-                    currentTimeTableGroups = await _context.TimeTableGroups
+                    currentTimeTableGroups.Add(_context.TimeTableGroups
                         .Include(i => i.TimeTable)
                         .ThenInclude(i => i.Semester)
                         .Include(i => i.Group)
@@ -110,7 +108,7 @@ namespace StudentOffice.Controllers
                         .Include(i => i.Couples)
                         .ThenInclude(i => i.Lessons)
                         .ThenInclude(i => i.Discipline)
-                     .ToListAsync();
+                      .FirstOrDefault(i => i.TimeTable.DateTime.Date == DateTime.Now.Date));
                 }
             }
 

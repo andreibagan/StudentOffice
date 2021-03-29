@@ -1,0 +1,74 @@
+﻿@model StudentOffice.Models.DataBase.MainPlan
+@using StudentOffice.Helpers;
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>MainPlan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.MainPlanId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MainPlanId" />
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="custom-select">
+                    <option selected value="@Model.UserId">@Model.User.GetFullName</option>
+                </select>
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Уровень образования</label>
+                <select class="custom-select" disabled>
+                    <option selected value="">@(EnumHelper<EducationLevel>.GetDisplayValue(Model.User.Anketa.EducationLevel))</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Форма обучения</label>
+                <select class="custom-select" disabled>
+                    <option selected value="">@(EnumHelper<Branch>.GetDisplayValue(Model.User.Anketa.Specialty.Branch))</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Специальность</label>
+                <select class="custom-select" disabled>
+                    <option selected value="">@Model.User.Anketa.Specialty.Name</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Специализация</label>
+                <select class="custom-select" disabled>
+                    <option selected value="">@Model.User.Anketa.Specialty.Specialization.SpecializationName</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectionСommitteeId" class="control-label"></label>
+                <select asp-for="SelectionСommitteeId" class="custom-select">
+                    <option selected value="@Model.SelectionСommitteeId">@Model.GetSelectionСommittee.Name @Model.GetSelectionСommittee.DateStart.Date.Year/@Model.GetSelectionСommittee.DateEnd.Date.Year</option>
+                </select>
+                <span asp-validation-for="SelectionСommitteeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateTime" class="control-label"></label>
+                <input type="datetime-local" asp-for="DateTime" min="@(Model.GetSelectionСommittee.DateStart.Date.ToString("yyyy-MM-dd")+"T08:00")"  max="@(Model.GetSelectionСommittee.DateEnd.Date.ToString("yyyy-MM-dd")+"T17:00")" value="@(Model.DateTime.Date.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.Date.ToString("yyyy-MM-dd")+"T08:30" : Model.DateTime.ToString("yyyy-MM-dd")+"T"+Model.DateTime.ToString("HH:mm"))"  class="form-control" />
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

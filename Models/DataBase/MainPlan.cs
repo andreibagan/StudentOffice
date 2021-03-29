@@ -15,11 +15,16 @@ namespace StudentOffice.Models.DataBase
         [Required(ErrorMessage = "Не указана приемная комиссия")]
         [DataType(DataType.Text)]
         [Display(Name = "Приемная комиссия*")]
+        [Range(1, Int32.MaxValue, ErrorMessage = "Не выбрана приемная комиссия")]
         public int SelectionСommitteeId { get; set; }
         [Display(Name = "Приемная комиссия*")]
         public virtual SelectionСommittee GetSelectionСommittee { get; set; }
 
+        [Required(ErrorMessage = "Не указана абитуриент")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Абитуриент*")]
         public string UserId { get; set; }
+        [Display(Name = "Абитуриент*")]
         public virtual User User { get; set; }
 
 

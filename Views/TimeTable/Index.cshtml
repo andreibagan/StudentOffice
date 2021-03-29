@@ -4,7 +4,11 @@
 <hr />
 
 @*<a asp-action="Create" asp-controller="TimeTable">Добавить</a>
-<input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />*@
+    <input type="button" asp-action="Create" asp-controller="TimeTable" class="btn btn-success" value="Добавить расписание" />*@
+
+@{ 
+    TimeSpan timeSpan = new TimeSpan(08, 00, 00);
+}
 
 <form class="form">
     <div align="center">
@@ -25,12 +29,12 @@
 
 
         <label>Выберите дату:</label>
-        <input style="margin-bottom: 10px;width: 200px;" type="date" name="date" min="1950-01-01" max="3000-12-31" value="@DateTime.Now.Date" class="form-control" />
+        <input style="margin-bottom: 10px;width: 200px;" type="date" name="date" min="1950-01-01" max="3000-12-31" value="@DateTime.Now.Date.ToString("yyyy-MM-dd")" class="form-control" />
 
 
         <input type="submit" class="btn btn-primary" value="Сформировать расписание" />
     </div>
-   
+
 </form>
 
 <br>
@@ -53,6 +57,10 @@
                 ПАРА
             </td>
 
+            <td>
+                Время
+            </td>
+
             <td>@timeTableGroup.timeTableGroupValue.Group.GroupName</td>
 
         </tr>
@@ -62,15 +70,37 @@
             {
                 <tr>
 
-                    @if (lesson.i == 0)
+                    @if (couple.i == 0 && lesson.i == 0)
                     {
-                        <td id="rotate" rowspan="@Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count()" align="center">
+                        <td id="rotate" rowspan="@(Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).Couples.Count() * 2)" align="center">
                             @Model.TimeTableGroups.ElementAt(timeTableGroup.timeTableGroupIterator).TimeTable.DateTime.ToShortDateString()
                         </td>
                     }
 
                     <td>
-                        @(lesson.i + 1)
+                        @(couple.i + 1)
+                    </td>
+
+                    <td>
+                        @(timeSpan.ToString(@"hh\:mm")+" -")
+
+                        @{
+                            timeSpan = timeSpan.Add(new TimeSpan(00, 45, 00));
+                        }
+
+                        @(timeSpan.ToString(@"hh\:mm"))
+
+                        @{
+                            if (couple.i == 1 && lesson.i == 1)
+                            {
+                                timeSpan = timeSpan.Add(new TimeSpan(00, 30, 00));
+                            }
+                            else
+                            {
+                                timeSpan = timeSpan.Add(new TimeSpan(00, 10, 00));
+                            }
+
+                        }
                     </td>
 
                     <td style="text-align: left">

@@ -5,7 +5,7 @@
 
 <a asp-action="Create">Добавить пользователя</a>
 
-@*<form class="form-inline">
+<form class="form-inline">
     <label>Выберите группу:</label>
     <select name="groupId" class="form-control">
         @foreach (GroupModel group in Model.Groups)
@@ -14,12 +14,12 @@
         }
     </select>
     <input style="margin-left: 50px" type="submit" value="Применить" class="btn btn-success" />
-</form>*@
+</form>
 
 <table class="table">
     <tr>
         <th>Email</th>
-        @*<th>Группа</th>*@
+        <th>Группа</th>
         @*<th>Анкета</th>*@
         <th></th>
     </tr>
@@ -27,7 +27,7 @@
     {
         <tr>
             <td>@user.Email</td>
-            @*<td>@user.Anketa?.Specialty?.Groups?.FirstOrDefault()?.GroupName</td>*@
+            <td>@user.Anketa?.Specialty?.Group?.GroupName</td>
             @*<td><a asp-action="Anketa" asp-controller="Home" asp-route-id="@user.Id">Анкета</a></td>*@
             <td>
                 <form asp-action="Delete" asp-route-id="@user.Id" method="post">
